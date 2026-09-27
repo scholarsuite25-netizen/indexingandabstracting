@@ -74,7 +74,6 @@ export function SiteHeader() {
             </div>
           </div>
         </details>
-      </div>
       </header>
     </div>
   );
