@@ -1,0 +1,66 @@
+{
+  "chapter": 1,
+  "source": "lms-authored",
+  "questions": [
+    {
+      "n": 1,
+      "stem": "Which of the following best defines subject indexing?",
+      "options": {
+        "A": "Determining the subject content of a document and assigning terms that adequately represent that content for retrieval purposes.",
+        "B": "Arranging the documents in a collection alphabetically so that readers can browse the shelves.",
+        "C": "Copying every word that appears in a document's title into a search box.",
+        "D": "Listing the authors and publication dates of every item in a collection."
+      },
+      "answer": "A",
+      "explanation": "Lancaster (2003) defines subject indexing as the process of determining the subject content of a document and assigning terms that adequately represent that content for retrieval purposes. Subject indexing answers two connected questions: what is the document about, and which words or terms should a user search for to find it?"
+    },
+    {
+      "n": 2,
+      "stem": "How does subject analysis differ from indexing itself?",
+      "options": {
+        "A": "Subject analysis interprets the document to identify its main topic and concepts before any term is chosen, whereas indexing is the actual assignment of terms representing that content.",
+        "B": "They are the same process, and the two terms can be used interchangeably.",
+        "C": "Subject analysis copies every word that appears in the title, while indexing ignores the content of the document.",
+        "D": "Subject analysis takes place only after indexing terms have been assigned and checked."
+      },
+      "answer": "A",
+      "explanation": "Subject analysis is the thinking stage that happens before any term is chosen: the indexer interprets the content and decides what truly represents it. Indexing then assigns the terms that represent that analysis for retrieval."
+    },
+    {
+      "n": 3,
+      "stem": "Why are title words alone sometimes not enough to represent a document's subject?",
+      "options": {
+        "A": "Because titles are usually written in a language different from the indexing language.",
+        "B": "Because users always search with the exact words the author chose, so title words are always sufficient.",
+        "C": "Because a title may not capture all the concepts discussed, and users often search with synonyms, broader or narrower terms, or everyday language instead.",
+        "D": "Because titles can only be used with derived indexing and never with assigned indexing."
+      },
+      "answer": "C",
+      "explanation": "An indexer performing subject analysis does not simply copy the title; the indexer interprets the content and decides what truly represents it. Users also rarely search using the exact words an author or indexer might choose, so broader access is needed."
+    },
+    {
+      "n": 4,
+      "stem": "Which statement correctly distinguishes exhaustivity from selectivity as guiding principles of indexing?",
+      "options": {
+        "A": "Exhaustivity means all significant subjects discussed in the document are represented; selectivity means only meaningful and genuinely relevant concepts are indexed.",
+        "B": "Exhaustivity means only the main topic is indexed, while selectivity means every word in the document is indexed.",
+        "C": "Exhaustivity means using the same term for the same concept, while selectivity means avoiding ambiguous terms.",
+        "D": "Exhaustivity means indexing the full text of a document, while selectivity means indexing only its abstract."
+      },
+      "answer": "A",
+      "explanation": "Exhaustivity requires that all significant subjects discussed in the document be represented, while selectivity requires that only meaningful and genuinely relevant concepts be indexed, not every word that happens to appear."
+    },
+    {
+      "n": 5,
+      "stem": "What distinguishes assigned indexing from derived indexing?",
+      "options": {
+        "A": "Assigned indexing takes terms directly from the document's own words, while derived indexing selects terms from a controlled vocabulary.",
+        "B": "Assigned indexing selects terms from a controlled vocabulary or indexing language, while derived indexing takes terms directly from the document's own words.",
+        "C": "Assigned indexing is carried out only by computers, while derived indexing is always done by hand.",
+        "D": "Assigned indexing applies to book indexes only, while derived indexing applies to periodical indexes only."
+      },
+      "answer": "B",
+      "explanation": "Assigned indexing selects terms from a controlled vocabulary or indexing language rather than copying words directly from the document. Derived indexing, covered in Chapter 9, takes terms directly from the document's own words."
+    }
+  ]
+}

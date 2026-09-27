@@ -1,0 +1,173 @@
+{
+  "source": "supplied",
+  "short_answer": [
+    {
+      "n": 1,
+      "question_md": "Define subject indexing.",
+      "model_answer_md": "Subject indexing represents the subject content of a document for the purpose of retrieval.",
+      "source": "supplied",
+      "position": 1
+    },
+    {
+      "n": 2,
+      "question_md": "What is a controlled vocabulary?",
+      "model_answer_md": "A controlled vocabulary is an organised set of authorised terms used consistently for indexing and retrieval.",
+      "source": "supplied",
+      "position": 2
+    },
+    {
+      "n": 3,
+      "question_md": "Define BT, NT, and RT.",
+      "model_answer_md": "BT is Broader Term, NT is Narrower Term, and RT is Related Term.",
+      "source": "supplied",
+      "position": 3
+    },
+    {
+      "n": 4,
+      "question_md": "What is pre-coordinate indexing?",
+      "model_answer_md": "Pre-coordinate indexing combines concepts before retrieval takes place.",
+      "source": "supplied",
+      "position": 4
+    },
+    {
+      "n": 5,
+      "question_md": "What is post-coordinate indexing?",
+      "model_answer_md": "Post-coordinate indexing combines separate concepts during the act of retrieval.",
+      "source": "supplied",
+      "position": 5
+    },
+    {
+      "n": 6,
+      "question_md": "What do KWIC and KWOC stand for?",
+      "model_answer_md": "KWIC is Keyword in Context; KWOC is Keyword Out of Context.",
+      "source": "supplied",
+      "position": 6
+    },
+    {
+      "n": 7,
+      "question_md": "Define exhaustivity and specificity.",
+      "model_answer_md": "Exhaustivity concerns the number of important concepts represented; specificity concerns how precisely each one is represented.",
+      "source": "supplied",
+      "position": 7
+    },
+    {
+      "n": 8,
+      "question_md": "State the precision and recall formulas.",
+      "model_answer_md": "Precision equals relevant retrieved divided by total retrieved. Recall equals relevant retrieved divided by total relevant.",
+      "source": "supplied",
+      "position": 8
+    },
+    {
+      "n": 9,
+      "question_md": "Define indicative and informative abstracts.",
+      "model_answer_md": "Indicative abstracts describe the scope of a document; informative abstracts provide substantive information and findings.",
+      "source": "supplied",
+      "position": 9
+    },
+    {
+      "n": 10,
+      "question_md": "What is CAS?",
+      "model_answer_md": "CAS is a Current Awareness Service.",
+      "source": "supplied",
+      "position": 10
+    },
+    {
+      "n": 11,
+      "question_md": "What is an index, and how does it differ from a table of contents?",
+      "model_answer_md": "An index is an alphabetical guide to specific information within a document, usually placed at the end; a table of contents appears at the start and lists chapters in the order they occur.",
+      "source": "supplied",
+      "position": 11
+    },
+    {
+      "n": 12,
+      "question_md": "Who developed PRECIS, and what does the acronym stand for?",
+      "model_answer_md": "PRECIS, the Preserved Context Index System, was developed by Derek Austin.",
+      "source": "supplied",
+      "position": 12
+    },
+    {
+      "n": 13,
+      "question_md": "What is automatic indexing?",
+      "model_answer_md": "Automatic indexing uses computer algorithms to identify and assign index terms to a document with little or no manual intervention.",
+      "source": "supplied",
+      "position": 13
+    },
+    {
+      "n": 14,
+      "question_md": "Name two computer-assisted indexing software packages.",
+      "model_answer_md": "CINDEX, Sky Index, and Macrex are widely used computer-assisted indexing software packages.",
+      "source": "supplied",
+      "position": 14
+    },
+    {
+      "n": 15,
+      "question_md": "What is a critical abstract?",
+      "model_answer_md": "A critical abstract summarises a document’s content while also offering an assessment of its strengths, weaknesses, or significance.",
+      "source": "supplied",
+      "position": 15
+    }
+  ],
+  "essay": [
+    {
+      "n": 1,
+      "question_md": "Discuss the objectives and guiding principles of subject indexing.",
+      "source": "supplied",
+      "position": 1
+    },
+    {
+      "n": 2,
+      "question_md": "Compare pre-coordinate and post-coordinate indexing.",
+      "source": "supplied",
+      "position": 2
+    },
+    {
+      "n": 3,
+      "question_md": "Explain thesaurus structure and semantic relationships.",
+      "source": "supplied",
+      "position": 3
+    },
+    {
+      "n": 4,
+      "question_md": "Discuss the contribution of the Cranfield tradition.",
+      "source": "supplied",
+      "position": 4
+    },
+    {
+      "n": 5,
+      "question_md": "Explain precision, recall, and fallout, using examples.",
+      "source": "supplied",
+      "position": 5
+    },
+    {
+      "n": 6,
+      "question_md": "Compare indicative and informative abstracts, and explain where the critical and slant abstract fit alongside them.",
+      "source": "supplied",
+      "position": 6
+    },
+    {
+      "n": 7,
+      "question_md": "Discuss the role of abstracts in Current Awareness Services, Selective Dissemination of Information, and database searching.",
+      "source": "supplied",
+      "position": 7
+    },
+    {
+      "n": 8,
+      "question_md": "Discuss the advantages and limitations of AI-assisted indexing and abstracting.",
+      "source": "supplied",
+      "position": 8
+    },
+    {
+      "n": 9,
+      "question_md": "Discuss the process and challenges of book indexing.",
+      "source": "supplied",
+      "position": 9
+    },
+    {
+      "n": 10,
+      "question_md": "Examine the role of computer-assisted indexing software and Artificial Intelligence in modern indexing services.",
+      "source": "supplied",
+      "position": 10
+    }
+  ],
+  "model_outline_md": "## A Model Comparison Outline\n\nWhen answering a comparison question, such as one contrasting pre-coordinate and post-coordinate indexing, the following outline provides a reliable structure:\n1. Introduction: define both systems clearly.\n2. Timing: pre-coordinate combines concepts during indexing; post-coordinate combines them during retrieval.\n3. Roles: pre-coordinate places more responsibility on the indexer; post-coordinate gives the searcher more responsibility for combining concepts.\n4. Flexibility: post-coordinate generally permits more novel combinations of terms.\n5. Control: pre-coordinate can provide carefully designed, controlled conceptual expressions.\n6. Limitations: pre-coordinate indexing may fail to anticipate every combination a user might want; post-coordinate indexing depends heavily on the searcher’s own skill and use of terminology.\n7. Conclusion: the most suitable system depends on the particular information environment and retrieval objectives involved."
+}

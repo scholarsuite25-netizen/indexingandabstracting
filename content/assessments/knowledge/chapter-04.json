@@ -1,0 +1,66 @@
+{
+  "chapter": 4,
+  "source": "lms-authored",
+  "questions": [
+    {
+      "n": 1,
+      "stem": "Which statement best defines a controlled vocabulary?",
+      "options": {
+        "A": "An alphabetical list of page numbers directing readers to topics in a document.",
+        "B": "An organised set of approved terms that are used consistently for indexing and retrieval, limiting the acceptable ways to express a concept.",
+        "C": "Any list of keywords that an author supplies with a paper.",
+        "D": "A general dictionary that defines words as they are used in everyday language."
+      },
+      "answer": "B",
+      "explanation": "A controlled vocabulary is an organised set of approved terms used consistently for indexing and retrieval. By limiting the acceptable ways to express a concept, it reduces unnecessary variation and improves the match between indexer and searcher vocabulary."
+    },
+    {
+      "n": 2,
+      "stem": "What makes a thesaurus different from an ordinary dictionary?",
+      "options": {
+        "A": "A thesaurus lists only proper names, while a dictionary lists only common nouns.",
+        "B": "A thesaurus is arranged chronologically, while a dictionary is arranged alphabetically.",
+        "C": "A thesaurus is a controlled vocabulary in which the terms are connected through clearly defined relationships such as BT, NT and RT, while a dictionary simply defines words.",
+        "D": "There is no difference; the two terms mean the same thing."
+      },
+      "answer": "C",
+      "explanation": "In information retrieval, a thesaurus is a controlled vocabulary whose terms are connected through clearly defined relationships such as BT, NT and RT. That structure makes it deliberately suited to indexing and searching, unlike an ordinary dictionary that simply defines words."
+    },
+    {
+      "n": 3,
+      "stem": "When building BT and NT relationships between terms, which statement is correct?",
+      "options": {
+        "A": "A narrower concept points upward to its broader concept using BT, and a broader concept points downward to each of its narrower concepts using NT.",
+        "B": "LIBRARIES BT ACADEMIC LIBRARIES is the correct way to state the relationship.",
+        "C": "BT and NT may be used interchangeably because direction does not matter.",
+        "D": "A narrower concept points downward to its broader concept using NT."
+      },
+      "answer": "A",
+      "explanation": "Direction matters: a narrower concept always points upward to its broader concept using BT, and a broader concept points downward using NT. The worked example shows LIBRARIES BT ACADEMIC LIBRARIES would be incorrect; the correct form is ACADEMIC LIBRARIES BT LIBRARIES."
+    },
+    {
+      "n": 4,
+      "stem": "For the concept Digital Libraries, which relationship correctly identifies the concept Libraries?",
+      "options": {
+        "A": "Libraries is the Broader Term (BT) of Digital Libraries.",
+        "B": "Libraries is a Narrower Term (NT) of Digital Libraries.",
+        "C": "Libraries is only a non-preferred term for Digital Libraries.",
+        "D": "Libraries has no relationship with Digital Libraries."
+      },
+      "answer": "A",
+      "explanation": "A narrower concept points upward to its broader concept using BT, so Digital Libraries would carry the Broader Term Libraries. Broader–narrower links use BT/NT, while associations between concepts that are neither synonyms nor hierarchical are recorded as RTs."
+    },
+    {
+      "n": 5,
+      "stem": "Which of the following is NOT one of the eleven steps involved in constructing a thesaurus?",
+      "options": {
+        "A": "Define the subject field the thesaurus will cover.",
+        "B": "Identify homonyms among the candidate terms.",
+        "C": "Assign page locators to every entry.",
+        "D": "Test the thesaurus against real indexing and searching tasks."
+      },
+      "answer": "C",
+      "explanation": "The eleven steps run from defining the subject field and collecting candidate terms through selecting preferred terms, establishing BT/NT, RT and USE/UF relationships, arranging the terms, testing, and revising. Assigning page locators belongs to book indexing, not thesaurus construction."
+    }
+  ]
+}

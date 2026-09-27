@@ -1,0 +1,1416 @@
+
+
+===== PAGE 1 =====
+ 
+ 
+INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+Study Guide Edition 
+Second Edition, Expanded • 2026 
+
+
+===== PAGE 2 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+2 
+Copyright and Use 
+This study guide is an original educational compilation prepared to support students taking LIS 815. It 
+draws on the LIS 815 and LIS 814 course outlines and on standard reference works in the field, and is 
+intended for use as a study aid alongside prescribed texts and lecture materials. Where this guide differs 
+from the instructions of a lecturer or the requirements of an institution, those instructions and 
+requirements take precedence. 
+This expanded edition incorporates additional material on book indexing, the digital and AI-assisted 
+transformation of indexing practice, and further scholarly definitions and citations, while preserving the 
+structure, tone and pedagogical approach of the original edition. 
+Preface 
+This book has been written for postgraduate students who are new to the subject of indexing and 
+abstracting. Plain language is used throughout, while retaining the technical terms required for the 
+course. 
+The guide follows a fourteen-chapter structure organised into seven modules, and places emphasis on 
+understanding before memorisation. Each chapter includes learning objectives, explanations in everyday 
+language, worked examples, and review questions to help consolidate learning. 
+For systems such as PRECIS, students should follow the exact operator rules prescribed by their lecturer or 
+course manual, since notational conventions can vary between institutions. 
+The structure of this guide reflects common assessment components in courses of this kind: thesaurus 
+construction and PRECIS practice, abstract writing, comparison of pre-coordinate and post-coordinate 
+systems, and retrieval calculations. 
+
+
+===== PAGE 3 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+3 
+Table of Contents 
+MODULE 1 — Theoretical Foundations and Types of Indexes 
+Chapter 1 — Fundamentals and Objectives of Subject Indexing 
+Chapter 2 — Types of Indexes and Book Indexing 
+Chapter 3 — Semantics and Syntax in Assigned Indexing 
+MODULE 2 — Vocabulary Control 
+Chapter 4 — Thesaurus Construction: Design and Term Selection 
+Chapter 5 — Thesaurus Construction: Structure and Maintenance 
+MODULE 3 — Pre-Coordinate Indexing Systems 
+Chapter 6 — Classic Pre-Coordinate Techniques 
+Chapter 7 — Permuted and Algorithmic Systems 
+MODULE 4 — Post-Coordinate and Derived Indexing 
+Chapter 8 — Post-Coordinate Indexing Systems 
+Chapter 9 — Search Strategies and Derived Indexing 
+MODULE 5 — Performance Evaluation and System Metrics 
+Chapter 10 — Evaluation Methodologies 
+Chapter 11 — Precision, Recall and Search Optimisation 
+MODULE 6 — Abstracting Principles and Applications 
+Chapter 12 — Abstracting Techniques and Types 
+Chapter 13 — Uses and Applications of Abstracts 
+MODULE 7 — Digital, Automated and AI-Assisted Indexing 
+Chapter 14 — Automatic Indexing, Computer-Assisted Tools and Artificial Intelligence 
+Appendix A — Practical Exercises 
+Appendix B — Revision Questions and Model Answers 
+Appendix C — Glossary of Key Terms 
+Assessment and Examination Guide 
+Final Revision Checklist 
+
+
+===== PAGE 4 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+4 
+MODULE 1 — THEORETICAL FOUNDATIONS AND TYPES OF INDEXES 
+Chapter 1: Fundamentals and Objectives of Subject Indexing 
+By the end of this chapter, you should be able to: 
+• Define subject indexing and subject analysis. 
+• Explain why indexing is necessary for information retrieval. 
+• Identify the main objectives and guiding principles of subject indexing. 
+• Relate indexing decisions to the information needs of users. 
+ 
+1.1 What Is Subject Indexing? 
+Subject indexing is the process of representing what a document is about by assigning terms, phrases, 
+symbols, or other representations that a person can later use to find that document. In simple terms, 
+subject indexing answers two connected questions: what is this document about, and which words or 
+terms should a user search for to find it? 
+Think of a library, a database, or even a search engine as a very large room full of documents. Without a 
+system that labels each document by its subject matter, a user would have to read every single item to 
+know what it contains. Subject indexing is the labelling system that makes this unnecessary. 
+Several scholars have refined this basic idea. Lancaster (2003) defines subject indexing as the process of 
+determining the subject content of a document and assigning terms that adequately represent that 
+content for retrieval purposes. Rowley and Farrow (2000) describe it as the assignment of descriptive 
+terms that represent the topics discussed in documents so that they can be identified during information 
+searches. The British Standard BS ISO 5963 frames indexing as the process of examining documents, 
+identifying their subject matter, and selecting indexing terms that accurately represent their contents, 
+while ISO 999 similarly treats indexing as the systematic analysis and representation of the intellectual 
+content of documents to facilitate retrieval. Taken together, these definitions point to three recurring 
+components of subject indexing: subject analysis, selection of indexing terms, and information retrieval. 
+1.2 What Is Subject Analysis? 
+Subject analysis is the thinking stage that happens before any term is chosen. The indexer reads and 
+examines the document to identify its main topic, the important concepts it discusses, how those 
+concepts relate to one another, and which aspects of the document will matter most to the people who 
+will eventually search for it. An indexer performing subject analysis does not simply copy every word that 
+appears in the title; instead, the indexer interprets the content and decides what truly represents it. 
+EXAMPLE 
+A paper titled “Use of Artificial Intelligence in Nigerian University Libraries” is not just about the words 
+in its title. Careful subject analysis might identify the core concepts as Artificial Intelligence, University 
+Libraries, Nigeria, Library Services, and Information Technology. Which of these are chosen as index 
+terms depends on the indexing language and policy in use. 
+ 
+1.3 Why Indexing Matters 
+Large collections of documents contain far more material than any user could inspect item by item. 
+Indexing creates organised access points that connect specific documents to the information needs of 
+
+
+===== PAGE 5 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+5 
+specific users, making systematic and efficient retrieval possible. Without indexing, search would depend 
+entirely on chance or on browsing everything. 
+1.4 A Short History 
+Early systems of retrieval relied mainly on access by author and by title. As collections grew larger, it 
+became clear that subject access was also required, since users often know what a document is about 
+before they know who wrote it. Over time, several traditions developed to provide this subject access, 
+including formal subject headings, classification-based indexing, chain indexing, coordinate indexing 
+systems, and, more recently, computer-assisted and machine-supported methods. 
+1.5 How Users Actually Search 
+Users rarely search using the exact words that an author or an indexer might choose. They may use 
+synonyms, broader or narrower terms, informal phrases, or natural, everyday language that differs from 
+the technical vocabulary of the field. Good indexing practice, supported by controlled vocabularies, helps 
+bridge the gap between how users express their needs and how documents are actually labelled. 
+1.6 The Main Objectives of Subject Indexing 
+The major objectives of subject indexing can be summarised as follows: 
+• Accurate subject representation — making sure the index terms genuinely reflect what the 
+document is about. 
+• Consistent access points — using the same term for the same concept every time, so that related 
+documents are grouped together. 
+• Efficient retrieval — helping users find what they need with the least possible effort. 
+• Reduction of ambiguity — avoiding confusion between terms that sound alike but mean different 
+things, or between different terms that mean the same thing. 
+• Connection of related concepts — showing how ideas relate to one another so that users are not 
+limited to a single narrow search. 
+• Support for user discovery — helping users find documents they did not already know existed. 
+• Improved precision and recall — helping ensure that searches return documents that are genuinely 
+relevant, without missing too many that are. 
+1.7 Guiding Principles of Subject Indexing 
+Beyond its objectives, professional practice is guided by a set of working principles that an indexer applies 
+to every document: 
+• Specificity — indexing terms should describe the subject as precisely as the vocabulary allows. 
+• Consistency — the same concept should always be represented using the same authorised term. 
+• User orientation — terms should reflect the language and search behaviour of the people who will 
+actually be searching. 
+• Exhaustivity — all significant subjects discussed in the document should be represented. 
+• Selectivity — only meaningful and genuinely relevant concepts should be indexed, not every word 
+that happens to appear. 
+• Objectivity — indexing should reflect the document’s actual content rather than the personal 
+opinions of the indexer. 
+These principles reappear throughout this guide, particularly in Chapter 10, where exhaustivity and 
+specificity are treated as measurable dimensions of indexing quality. 
+
+
+===== PAGE 6 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+6 
+1.8 A Note on Assigned Indexing 
+When an indexer selects terms from a controlled vocabulary or indexing language rather than copying 
+words directly from the document, the result is known as assigned indexing. This is contrasted with 
+derived indexing, covered in Chapter 9, where terms are taken directly from the document’s own words. 
+Most professional subject indexing in libraries and databases is assigned indexing, because it allows the 
+indexer to represent a concept even when the author never used the preferred term explicitly. 
+Review Questions 
+1. What is subject indexing? Give one scholarly definition in addition to your own explanation. 
+2. How does subject analysis differ from indexing itself? 
+3. Why are title words alone sometimes not enough to represent a document’s subject? 
+4. List and briefly explain four objectives of subject indexing. 
+5. Distinguish between exhaustivity and selectivity as guiding principles of indexing. 
+6. What is the difference between assigned indexing and derived indexing? 
+Chapter 2: Types of Indexes and Book Indexing 
+By the end of this chapter, you should be able to: 
+• Define an index and identify its main components. 
+• Distinguish an index from a table of contents. 
+• List and describe the major types of book indexes. 
+• Explain the stages involved in preparing a book index. 
+ 
+2.1 What Is an Index? 
+An index is a systematically arranged guide to the contents of a document, usually placed at the end of a 
+book, journal, report, or other publication. It consists of important words, names, subjects, concepts, 
+places, and other significant terms, arranged alphabetically, together with references — usually page 
+numbers — that direct readers to where the information can be found. 
+An index serves as a pointer or roadmap to information. Instead of reading an entire publication from 
+beginning to end, a reader can consult the index to quickly locate specific information. Knight (1979) 
+defined an index simply as an alphabetical list of names, subjects, or other entries, with references 
+indicating where they occur in a document. Lancaster (2003) went further, describing an index as a device 
+that provides access to information by identifying the concepts discussed in a document and directing 
+users to their locations. Mulvany (2005) emphasised the intellectual side of the work, defining indexing as 
+the process of analysing the content of a document, selecting the significant concepts, and arranging 
+them systematically to facilitate retrieval. Taken together, these definitions make clear that an index is 
+more than a list of page numbers — it is a retrieval tool built on careful intellectual analysis. 
+2.2 Components of an Index 
+A typical index consists of four elements: 
+• Headings (main entries) — the primary terms or concepts under which information is listed. 
+• Subheadings (subentries) — more specific aspects of the main heading, used to organise related 
+information. 
+
+
+===== PAGE 7 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+7 
+• Locators — page numbers, section numbers, or paragraph numbers indicating where the 
+information appears. 
+• Cross-references — See and See also references that direct readers to related or preferred terms. 
+EXAMPLE 
+Library — automation, 45–52; budgeting, 120–125; collections, 33–41; digitization, 180–195; 
+management, 70–85; services, 95–110. Here “Library” is the main heading, and “automation,” 
+“budgeting,” and the rest are subheadings, each with its own locator. 
+ 
+A good index uses See and See also with a clear division of labour: See directs the reader from a term that 
+is not used to the preferred term (for example, E-books. See Electronic books), while See also directs the 
+reader to a related but distinct topic that may also be worth consulting (for example, Libraries. See also 
+Digital libraries). 
+2.3 Index versus Table of Contents 
+Although both help a reader navigate a publication, an index and a table of contents serve different 
+purposes. 
+Table of Contents 
+Index 
+Appears at the beginning of a book 
+Usually appears at the end 
+Lists chapters and major sections 
+Lists subjects, names, places, concepts and 
+keywords 
+Follows the order of the book 
+Arranged alphabetically 
+Shows the structure of the publication 
+Provides detailed access to specific information 
+Helps readers navigate chapters 
+Helps readers locate specific topics 
+ 
+2.4 Types of Book Indexes 
+Indexes are not all built to the same purpose. The major types found in books and other publications 
+include: 
+• Subject index — the most common type, listing topics and concepts. 
+• Author index — arranged by the names of authors cited or discussed. 
+• Name index — covering persons, whether authors or not. 
+• Title index — arranged by the titles of works mentioned. 
+• Geographical index — arranged by place names. 
+• Chronological index — arranged by date or period. 
+• Citation index — showing which works have cited a given publication. 
+• Analytical index — covering ideas and concepts in depth, often with detailed subentries. 
+• Keyword index — built from significant words occurring in the text. 
+• Combined index — merging two or more of the above into a single alphabetical sequence. 
+2.5 Characteristics of a Good Index 
+
+
+===== PAGE 8 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+8 
+An effective index is arranged alphabetically, is accurate and complete, uses clear and familiar 
+terminology, includes important concepts rather than every word that appears, contains precise locators, 
+provides cross-references to related topics, faithfully reflects the actual content of the document, and 
+enables quick, easy retrieval of information. 
+2.6 Book Indexing as an Intellectual Process 
+Book indexing is the systematic and intellectual process of analysing the content of a book, identifying its 
+significant concepts, subjects, names, places, events, and ideas, and arranging them in alphabetical order 
+with accurate locators so that readers can identify, locate, and retrieve information accurately and 
+efficiently. It is not a mechanical task of extracting words from a text; rather, it requires the indexer to 
+understand the subject matter, determine which concepts matter to readers, select appropriate terms, 
+and organise those terms consistently. Book indexing is particularly valued in academic, scholarly, 
+professional, technical, legal, medical, and reference publications, where readers often seek specific 
+pieces of information rather than reading the entire work sequentially. 
+2.7 The Process of Book Indexing 
+Preparing a book index generally follows a sequence of stages: 
+1. Reading the book — the indexer studies the content carefully. 
+2. Subject analysis — important concepts are identified. 
+3. Selection of entries — relevant indexing terms are chosen. 
+4. Preparing main entries — major concepts become headings. 
+5. Preparing subentries — related ideas are grouped under main headings. 
+6. Assigning locators — correct page or section numbers are inserted. 
+7. Creating cross-references — related concepts are linked with See and See also. 
+8. Alphabetical arrangement — entries are sorted alphabetically. 
+9. Editing — errors and inconsistencies are corrected. 
+10. Proofreading — the completed index is verified before publication. 
+2.8 Challenges of Book Indexing 
+Book indexing is time-consuming, requires genuine subject expertise, and demands consistency across 
+what may be hundreds of entries. Indexers must select appropriate terminology, deal with 
+interdisciplinary topics that do not fit neatly under one heading, and manage synonyms and homonyms. 
+Professional indexing can also be costly, page numbering can shift after late layout changes, and 
+publishing deadlines are often tight — pressures that have only intensified with the rapid growth of digital 
+publications, discussed further in Chapter 14. 
+Review Questions 
+1. Define an index in your own words, and cite one scholarly definition. 
+2. List the four components of an index and give an example of each. 
+3. Give three differences between a table of contents and an index. 
+4. Name and briefly describe five types of book indexes. 
+5. List, in order, the ten stages typically involved in preparing a book index. 
+6. State three challenges commonly faced by book indexers. 
+Chapter 3: Semantics and Syntax in Assigned Indexing 
+
+
+===== PAGE 9 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+9 
+By the end of this chapter, you should be able to: 
+• Explain the meaning of semantics and syntax as they apply to indexing. 
+• Identify equivalence, hierarchical, and associative relationships between terms. 
+• Explain syntactic control, role operators, and citation order. 
+ 
+3.1 Semantics: The Study of Meaning 
+In everyday language, semantics is simply the study of meaning. In indexing, semantic relationships 
+describe how concepts and the terms that represent them relate to one another. Three relationships are 
+especially important in indexing work: equivalence, hierarchy, and association. 
+3.2 Equivalence 
+Equivalence connects two or more different terms that can represent the same concept, or concepts that 
+are close enough to be treated as the same for retrieval purposes. In a controlled vocabulary, one of these 
+terms is usually chosen as the preferred term, while the others are marked as non-preferred and simply 
+point the user toward the preferred form. 
+3.3 Hierarchy 
+A hierarchical relationship connects a general concept to a more specific one. A Broader Term (often 
+abbreviated BT) represents the more general concept, while a Narrower Term (NT) represents the more 
+specific one. 
+EXAMPLE 
+Libraries is a Broader Term for University Libraries; University Libraries is a Narrower Term for 
+Libraries. 
+ 
+3.4 Association 
+A Related Term (RT) connects two concepts that are meaningfully associated with one another but are 
+neither synonyms nor in a broader–narrower relationship. For instance, the concepts Libraries and 
+Librarians are closely related in meaning, even though neither is a broader or narrower version of the 
+other. 
+3.5 Syntax: The Study of Order and Combination 
+While semantics is about meaning, syntax is about how concepts are combined or ordered when they are 
+expressed together. Good syntactic control prevents an index entry from becoming a meaningless list of 
+separate words, and instead preserves the relationships that exist among the concepts being described. 
+3.6 Role Operators 
+Role operators identify the function that each concept plays within a subject statement — for example, 
+distinguishing an action from the person or thing performing it, or from the object being acted upon. Role 
+operators are especially important in structured indexing systems such as PRECIS. Because different 
+courses and institutions may use slightly different notations, students should always learn and apply the 
+exact operator table prescribed in their own course manual. 
+3.7 Citation Order 
+
+
+===== PAGE 10 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+10 
+Citation order refers to the sequence in which concepts appear within a coordinated indexing expression. 
+Changing that order can change the emphasis of the statement, and in some cases can change its 
+meaning altogether, which is why citation order is treated as a deliberate design choice rather than an 
+arbitrary one. 
+Review Questions 
+1. Define semantics and syntax as used in indexing. 
+2. Give an example of an equivalence relationship. 
+3. Explain the difference between BT, NT, and RT. 
+4. Why is syntax important in the design of an indexing system? 
+
+
+===== PAGE 11 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+11 
+MODULE 2 — VOCABULARY CONTROL 
+Chapter 4: Thesaurus Construction: Design and Term Selection 
+By the end of this chapter, you should be able to: 
+• Define controlled vocabulary and thesaurus. 
+• Explain why vocabulary control is necessary. 
+• Select suitable candidate terms. 
+• Establish BT, NT, and RT relationships between terms. 
+ 
+4.1 What Is a Controlled Vocabulary? 
+A controlled vocabulary is an organised set of approved terms that are used consistently for indexing and 
+retrieval. By limiting the number of acceptable ways to express a concept, a controlled vocabulary reduces 
+unnecessary variation and improves the match between the words an indexer uses and the words a 
+searcher later types. Well-known examples used in professional practice include the Library of Congress 
+Subject Headings (LCSH), the Sears List of Subject Headings, Medical Subject Headings (MeSH), AGROVOC, 
+the ERIC Thesaurus, and the UNESCO Thesaurus. 
+4.2 What Is a Thesaurus? 
+In information retrieval, a thesaurus is a controlled vocabulary in which the terms are connected through 
+clearly defined relationships, such as BT, NT, and RT. This makes it more than an ordinary dictionary: a 
+dictionary simply defines words, while a retrieval thesaurus is deliberately structured to support indexing 
+and searching. 
+4.3 Selecting Candidate Terms 
+Candidate terms — the raw material from which a thesaurus is eventually built — may be gathered from 
+document titles, abstracts, author-supplied keywords, full text, existing published vocabularies, reference 
+works, and the everyday language used by the community of people who will actually be searching. Each 
+candidate term is then reviewed for clarity, consistency, how current it is, and how useful it is likely to be 
+for retrieval. 
+4.4 Preferred and Non-Preferred Terms 
+The preferred term is the specific form of a concept that has been selected for indexing. A non-preferred 
+term is a synonym or near-synonym that directs both users and indexers toward the preferred form 
+instead. 
+EXAMPLE 
+CARS USE AUTOMOBILES — here, Cars is the non-preferred term and Automobiles is the preferred 
+term. 
+ 
+4.5 Building BT, NT, and RT Relationships 
+When building these relationships, direction matters. A narrower concept always points upward to its 
+broader concept using BT, and a broader concept points downward to each of its narrower concepts using 
+NT. 
+
+
+===== PAGE 12 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+12 
+WORKED EXAMPLE 
+It would be incorrect to say LIBRARIES BT ACADEMIC LIBRARIES. The correct statement is ACADEMIC 
+LIBRARIES BT LIBRARIES (Academic Libraries is narrower, so its Broader Term is Libraries), and 
+correspondingly LIBRARIES NT ACADEMIC LIBRARIES. 
+ 
+4.6 A Complete Thesaurus Entry 
+A full thesaurus entry typically brings all of these relationships together in one place. For example: 
+EXAMPLE ENTRY 
+UNIVERSITY LIBRARIES — BT: Libraries. NT: Law Libraries, Medical Libraries. RT: Academic Librarians, 
+Digital Libraries. UF: Higher Education Libraries. 
+ 
+4.7 The Steps in Thesaurus Construction 
+Building a thesaurus from scratch is itself a project with a recognisable sequence of stages: 
+1. Define the subject field the thesaurus will cover. 
+2. Collect candidate terms from the sources described in section 4.3. 
+3. Identify synonyms among the candidate terms. 
+4. Identify homonyms — terms that look alike but carry different meanings. 
+5. Select the preferred term for each concept. 
+6. Establish hierarchical (BT/NT) relationships. 
+7. Establish associative (RT) relationships. 
+8. Establish equivalence (USE/UF) relationships. 
+9. Arrange the terms systematically, alphabetically and/or by classified display. 
+10. Test the thesaurus against real indexing and searching tasks. 
+11. Revise and update it regularly as terminology changes. 
+Review Questions 
+1. What is a controlled vocabulary? 
+2. What makes a thesaurus different from an ordinary dictionary? 
+3. Create one BT, two NTs, and two RTs for the concept Digital Libraries. 
+4. List the eleven steps involved in constructing a thesaurus. 
+Chapter 5: Thesaurus Construction: Structure and Maintenance 
+By the end of this chapter, you should be able to: 
+• Explain the purpose of a scope note. 
+• Use USE and UF references correctly. 
+• Distinguish between alphabetical and classified thesaurus displays. 
+• Describe the basic tasks involved in thesaurus maintenance. 
+ 
+5.1 Scope Notes 
+
+
+===== PAGE 13 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+13 
+A scope note is a short explanatory statement attached to a term to clarify exactly how that term is to be 
+interpreted or applied within a particular vocabulary. Scope notes are especially useful when a term is 
+ambiguous in everyday language or when it carries a specialised meaning within the subject field. 
+5.2 USE and UF References 
+USE directs a searcher or indexer from a non-preferred term toward the preferred term that should be 
+used instead. UF, which stands for Used For, works in the opposite direction: it is displayed underneath 
+the preferred term to show which non-preferred terms lead to it. 
+EXAMPLE 
+AUTOMOBILES — UF: Cars. | CARS — USE: Automobiles. 
+ 
+5.3 Alphabetical Display 
+In an alphabetical display, terms are simply arranged from A to Z. This arrangement is convenient for a 
+user who already knows the specific term they are interested in and wants to look up its relationships 
+quickly. 
+5.4 Classified Display 
+In a classified display, terms are grouped together within a broader conceptual structure rather than 
+alphabetically. This arrangement supports browsing, allowing a user to explore related areas of a subject 
+even when they do not yet know the exact term they need. 
+5.5 Maintaining a Thesaurus 
+A thesaurus is never a finished product. Because terminology changes over time, thesauri require 
+continuing revision. Typical maintenance tasks include adding new terms as they emerge, revising 
+definitions and scope notes, merging or splitting concepts as understanding of a field develops, updating 
+cross-references, and keeping a documented record of why each decision was made. 
+5.6 The Role of Software 
+Thesaurus-management software can support many of the mechanical aspects of this work, including 
+data entry, checking that relationships are consistent, version control, and publication of the finished 
+thesaurus. However, such software supports the intellectual work of the indexer; it does not replace the 
+human judgement required to decide what a term means and how it relates to other terms. 
+Review Questions 
+1. Write a scope note for a term that could easily be misunderstood. 
+2. Create your own USE and UF pair. 
+3. Give one advantage of an alphabetical display and one advantage of a classified display. 
+
+
+===== PAGE 14 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+14 
+MODULE 3 — PRE-COORDINATE INDEXING SYSTEMS 
+Chapter 6: Classic Pre-Coordinate Techniques 
+By the end of this chapter, you should be able to: 
+• Define pre-coordinate indexing. 
+• Explain chain indexing. 
+• Explain cyclic (cycled) indexing. 
+• Discuss the advantages and limitations of pre-coordinate systems. 
+ 
+6.1 What Is Pre-Coordinate Indexing? 
+In pre-coordinate indexing, the concepts that make up a subject are combined into a single indexing 
+expression at the moment the document is indexed — that is, before any user ever performs a search. 
+The indexer, not the searcher, is responsible for deciding how the different concepts relate to one 
+another within that expression. 
+EXAMPLE 
+University Libraries — Automation — Nigeria. The relationship between these three concepts, and the 
+order in which they appear, is determined entirely by the indexer at the time of indexing. 
+ 
+6.2 Key Characteristics 
+Pre-coordinate systems can produce carefully controlled and well-structured representations of a 
+document’s subject, and are common in traditional subject-heading systems. Their main limitation is that 
+the indexer must try to anticipate which combinations of concepts will actually be useful to future users, 
+which is not always possible to predict with certainty, and skilled, trained indexers are needed to apply 
+the rules correctly. 
+6.3 Chain Indexing 
+Chain indexing is closely associated with the Indian librarian and classification theorist S. R. Ranganathan. 
+This technique derives subject entries from the hierarchical chain of concepts found within a classification 
+scheme, and it creates access points directly from that conceptual structure, illustrating the close 
+relationship between classification and subject indexing. 
+6.4 Cyclic (Cycled) Indexing 
+Cyclic indexing approaches generate multiple index entries by varying the position or focus of terms 
+within a compound subject, so that each significant component is, in turn, brought into the leading 
+position. This provides several different access points that all lead back to the same document, increasing 
+the chance that a user will find it regardless of which term they search first. 
+WORKED EXAMPLE 
+The subject “Use of Artificial Intelligence in University Libraries in Nigeria” could generate cycled 
+access points such as: Artificial Intelligence — University Libraries — Nigeria; University Libraries — 
+Artificial Intelligence — Nigeria; and Nigeria — University Libraries — Artificial Intelligence. 
+ 
+
+
+===== PAGE 15 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+15 
+6.5 Advantages and Limitations 
+Pre-coordinate systems offer several advantages, alongside some real limitations: 
+• Advantage — controlled and predictable representation of subjects. 
+• Advantage — explicit relationships between concepts are preserved. 
+• Advantage — access points are consistent and predictable for users. 
+• Advantage — can provide highly precise subject access. 
+• Limitation — considerable intellectual effort is required from the indexer. 
+• Limitation — the system depends heavily on the rules being applied correctly. 
+• Limitation — the combinations a user actually searches for may differ from those the indexer 
+anticipated. 
+• Limitation — users may need to understand the indexing structure to search it effectively. 
+Review Questions 
+1. Define pre-coordinate indexing in your own words. 
+2. Why might pre-coordinate indexing be considered less flexible than post-coordinate indexing? 
+3. Which scholar is closely associated with chain indexing? 
+4. What is the purpose of cycling in indexing? Illustrate with an example of your own. 
+Chapter 7: Permuted and Algorithmic Systems 
+By the end of this chapter, you should be able to: 
+• Explain what SLIC is. 
+• Explain the purpose and origin of PRECIS. 
+• Understand the role of operators and string generation. 
+ 
+7.1 SLIC (Selective Listing in Combination) 
+SLIC stands for Selective Listing in Combination. It is a pre-coordinate approach that provides multiple 
+access points by generating selected combinations of the terms assigned to a document, emphasising the 
+analysis of subject concepts and their relationships when constructing index entries. 
+7.2 PRECIS (Preserved Context Index System) 
+PRECIS stands for Preserved Context Index System. It was developed by the British indexer Derek Austin 
+for the British National Bibliography, and was designed specifically to preserve the context and the 
+relationships between concepts within a subject statement while still generating a set of usable index 
+entries automatically, once the necessary input had been supplied. Its major contribution was its attempt 
+to preserve the meaning and context of concepts, rather than merely listing isolated keywords, and it was 
+significant in the wider development of computer-assisted subject indexing. 
+7.3 Role Operators in PRECIS 
+Role operators indicate the function that each concept plays within a subject statement — for example, 
+distinguishing an action from its agent, its object, or another role it might play. Because the exact symbols 
+and rules used can differ between manuals, students should always learn and apply the version 
+prescribed by their own lecturer. 
+7.4 How a PRECIS String Is Built 
+
+
+===== PAGE 16 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+16 
+Building a PRECIS-style index string generally follows a practical sequence: 
+1. Understand the subject of the document as a whole. 
+2. Identify the individual concepts contained within that subject. 
+3. Identify the role that each concept plays. 
+4. Apply the prescribed role operators to each concept. 
+5. Generate the finished index string from the ordered, labelled concepts. 
+7.5 Why Preserving Context Matters 
+Consider a simple, unordered list of terms: students; libraries; databases; use. This list does not make 
+clear who is using what, or what the actual relationship between these concepts is. A syntactic system 
+such as PRECIS is designed precisely to prevent this kind of ambiguity by preserving the relationships 
+between the concepts. 
+Review Questions 
+1. What does SLIC stand for? 
+2. What does PRECIS stand for, and who developed it? 
+3. Why are role operators necessary in a system like PRECIS? 
+4. Why is preserving context useful to a searcher? 
+
+
+===== PAGE 17 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+17 
+MODULE 4 — POST-COORDINATE AND DERIVED INDEXING 
+Chapter 8: Post-Coordinate Indexing Systems 
+By the end of this chapter, you should be able to: 
+• Define post-coordinate indexing. 
+• Explain how terms are combined at the point of retrieval. 
+• Describe free-text searching, Uniterm indexing, and optical coincidence systems. 
+ 
+8.1 What Is Post-Coordinate Indexing? 
+In post-coordinate indexing, concepts are assigned to a document separately, as individual terms, and it is 
+the searcher or the retrieval system that combines them together at the moment of searching, rather 
+than the indexer combining them in advance. 
+EXAMPLE 
+A document might simply receive the three separate terms Artificial Intelligence, University Libraries, 
+and Reference Services, without any single combined expression being created in advance. A user 
+could later combine any two or three of these with AND to retrieve it. 
+ 
+8.2 Pre-Coordinate versus Post-Coordinate 
+The essential difference is timing. Pre-coordinate indexing combines concepts while the document is 
+being indexed. Post-coordinate indexing leaves each term separately searchable and lets the combination 
+happen later, during retrieval. 
+8.3 Free-Text Searching 
+Free-text searching looks for words directly within fields such as titles, abstracts, or the full text of a 
+document, without relying entirely on a controlled vocabulary. This approach is flexible, but it can suffer 
+from problems such as synonyms not being matched, ambiguous words, and variations in spelling. 
+8.4 Uniterm Indexing 
+Uniterm indexing is an early and influential example of the post-coordinate approach. It works by 
+assigning individual, single terms to documents and then combining those terms only at the point of 
+retrieval, illustrating the basic principle behind all post-coordinate systems. 
+8.5 Optical Coincidence Systems 
+Historically, optical coincidence systems used physical cards or other machine-readable formats to 
+identify which documents shared a chosen set of terms. Modern digital Boolean searching performs the 
+same essential logical operations, but does so electronically rather than mechanically. 
+8.6 Advantages and Limitations 
+Post-coordinate systems allow for flexible and often unexpected combinations of terms at search time, 
+are well suited to computerised retrieval, and scale well to large databases. However, this flexibility 
+comes at a cost: it places greater responsibility on the searcher to construct an effective query, results can 
+be affected by inconsistent or uncontrolled terminology, and a poorly formed search can produce high 
+recall but low precision. 
+
+
+===== PAGE 18 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+18 
+Review Questions 
+1. Define post-coordinate indexing in your own words. 
+2. Give two differences between pre-coordinate and post-coordinate indexing. 
+3. What is Uniterm indexing? 
+4. Why can post-coordinate searching produce high recall but low precision if handled poorly? 
+Chapter 9: Search Strategies and Derived Indexing 
+By the end of this chapter, you should be able to: 
+• Explain how a search strategy is formulated. 
+• Use basic Boolean operators. 
+• Explain what derived indexing is, including its advantages and disadvantages. 
+• Describe KWIC and KWOC. 
+ 
+9.1 What Is a Search Strategy? 
+A search strategy is a planned approach to translating a real information need into searchable concepts, 
+specific terms, and useful combinations of those terms. Searching is generally an iterative activity, 
+meaning that a searcher typically refines their approach over several attempts rather than getting the 
+perfect result in a single step. 
+9.2 Boolean Operators 
+Three basic Boolean operators are used to combine search terms: 
+• AND narrows a search by requiring that both concepts be present. 
+• OR broadens a search by accepting either concept. 
+• NOT excludes a specified concept from the results. 
+EXAMPLE 
+LIBRARIES AND ARTIFICIAL INTELLIGENCE narrows a search to documents containing both concepts. 
+CARS OR AUTOMOBILES broadens a search to accept either term. 
+ 
+9.3 Formulating a Search 
+A typical search formulation follows these steps: 
+1. Start by identifying the major concepts in the information need. 
+2. Identify synonyms and related terms for each concept. 
+3. Run an initial search using these terms. 
+4. Inspect the records retrieved for useful results and new vocabulary. 
+5. Refine the query, using controlled vocabulary terms where they are available. 
+9.4 Derived Indexing 
+Derived indexing obtains its index terms directly from features of the document itself — most commonly 
+the title, but also abstracts, full text, author-supplied keywords, and captions. This approach can be fast 
+and economical, since it requires little additional intellectual effort and is well suited to automation, but 
+its quality depends entirely on how well the source field actually represents the document’s subject. 
+
+
+===== PAGE 19 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+19 
+Because derived terms are taken from the author’s own words rather than a controlled vocabulary, they 
+may include irrelevant words, fail to capture implied context, or run into synonym and ambiguity 
+problems that a trained indexer would normally resolve. 
+9.5 KWIC (Keyword in Context) 
+KWIC stands for Keyword in Context. In a KWIC display, a significant keyword is shown together with the 
+words surrounding it in the title, so that the keyword retains the context in which it originally appeared. 
+9.6 KWOC (Keyword Out of Context) 
+KWOC stands for Keyword Out of Context. In a KWOC display, the keyword is shown separately from the 
+rest of the title, typically as a heading, followed underneath by the full citation. 
+9.7 Comparing KWIC and KWOC 
+KWIC keeps each keyword embedded within its surrounding title, preserving context at a glance. KWOC 
+instead places the keyword outside the title as a separate heading. Both techniques create multiple access 
+points from terms that have been derived directly from the document, rather than assigned by an 
+indexer. 
+Review Questions 
+1. Build a Boolean search statement for finding documents about social media and academic 
+performance among university students. 
+2. Explain the difference between KWIC and KWOC. 
+3. State one advantage and one limitation of derived indexing. 
+4. Why is derived indexing well suited to automation? 
+
+
+===== PAGE 20 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+20 
+MODULE 5 — PERFORMANCE EVALUATION AND SYSTEM METRICS 
+Chapter 10: Evaluation Methodologies 
+By the end of this chapter, you should be able to: 
+• Explain why indexing systems need to be evaluated. 
+• Define relevance, exhaustivity, and specificity. 
+• List the recognised criteria for evaluating an index. 
+• Explain the significance of the Cranfield research tradition. 
+ 
+10.1 Why Evaluate an Indexing System? 
+Having a large collection of documents and assigning many index terms does not automatically mean that 
+a retrieval system is actually useful to its users. Evaluation provides real evidence about whether users are 
+able to find relevant information efficiently, rather than relying on assumptions. 
+10.2 Relevance 
+A document is considered relevant when it genuinely satisfies a user’s information need. It is important to 
+understand that relevance is not the same thing as simple keyword matching — a document can contain 
+the exact word a user searched for and still fail to actually answer that user’s question. 
+10.3 Exhaustivity 
+Exhaustivity refers to the extent to which the important concepts within a document are represented by 
+the index terms assigned to it. A more exhaustive indexing approach provides more conceptual access 
+points into the same document. 
+10.4 Specificity 
+Specificity refers to how precisely an indexing term represents the actual subject of the document. For a 
+document specifically about university libraries, the term “Libraries” is less specific than the term 
+“University Libraries.” 
+10.5 The Trade-Off Between Exhaustivity and Specificity 
+Exhaustivity asks how many important concepts were represented, while specificity asks how precisely 
+each individual concept was represented. Indexing that is too broad can increase the retrieval of 
+irrelevant material, even though it may appear to be thorough. 
+10.6 Criteria for Evaluating an Index 
+Beyond relevance, exhaustivity, and specificity, a comprehensive evaluation of an index examines several 
+further qualities: 
+• Accuracy — index terms should correctly represent the document’s content. 
+• Consistency — different indexers should produce reasonably similar results when indexing the same 
+material. 
+• Usability — users should be able to understand and use the index without special training. 
+• Currency — the vocabulary should reflect current terminology and changes in the subject field. 
+• Coverage — the index should adequately cover the documents in the collection as a whole. 
+10.7 The Cranfield Experiments 
+
+
+===== PAGE 21 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+21 
+The Cranfield research programme, closely associated with the researcher Cyril Cleverdon, helped to 
+establish a systematic, evidence-based approach to evaluating retrieval systems. This tradition introduced 
+the use of test collections, sets of queries, and formal relevance judgements, allowing retrieval results to 
+be measured rather than merely asserted. It encouraged experimental comparison between systems, 
+rather than unsupported claims about which indexing approach was best. 
+10.8 Over-Retrieval and Under-Retrieval 
+Over-retrieval occurs when a search returns too many irrelevant documents. Under-retrieval occurs when 
+relevant documents are missed altogether. The quality of the indexing, the strength of vocabulary control, 
+and the search strategy used can all influence which of these problems occurs. 
+Review Questions 
+1. Define exhaustivity. 
+2. Define specificity. 
+3. List five recognised criteria for evaluating an index, beyond exhaustivity and specificity. 
+4. What was important about the Cranfield research tradition? 
+5. Explain the difference between over-retrieval and under-retrieval. 
+Chapter 11: Precision, Recall, and Search Optimisation 
+By the end of this chapter, you should be able to: 
+• Define and calculate precision, recall, and fallout. 
+• Explain the meaning of TP, FP, FN, and TN. 
+• Explain the trade-off between precision and recall. 
+• Apply basic techniques of search optimisation. 
+ 
+11.1 Four Possible Outcomes 
+Every document in a collection, in relation to a given search, falls into one of four possible categories: 
+• True Positive (TP): the document is relevant and was retrieved. 
+• False Positive (FP): the document is not relevant, but was retrieved anyway. 
+• False Negative (FN): the document is relevant, but was not retrieved. 
+• True Negative (TN): the document is not relevant and was correctly not retrieved. 
+11.2 Precision 
+Precision answers the question: of everything that was retrieved, how much of it was actually relevant? 
+FORMULA 
+Precision = Relevant Retrieved ÷ Total Retrieved = TP ÷ (TP + FP) 
+ 
+11.3 Recall 
+Recall answers a different question: of all the relevant documents that exist in the collection, how many 
+of them were actually retrieved? 
+
+
+===== PAGE 22 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+22 
+FORMULA 
+Recall = Relevant Retrieved ÷ Total Relevant = TP ÷ (TP + FN) 
+ 
+11.4 A Simple Worked Example 
+Suppose a collection contains 100 relevant documents in total. A search retrieves 20 documents, of which 
+15 turn out to be relevant. 
+CALCULATION 
+Precision = 15 ÷ 20 = 75%. Recall = 15 ÷ 100 = 15%. This search produced fairly clean results, but it 
+missed a large number of the relevant documents that were actually available. 
+ 
+11.5 Fallout 
+Fallout measures the proportion of non-relevant documents that were retrieved, out of all the non-
+relevant documents that exist in the collection. 
+FORMULA 
+Fallout = Non-Relevant Retrieved ÷ Total Non-Relevant = FP ÷ (FP + TN) 
+ 
+11.6 A Fuller Worked Example 
+Suppose a collection contains 1,000 documents in total, of which 200 are relevant to a particular search. 
+That search retrieves 100 documents, of which 80 are relevant. 
+CALCULATION 
+Precision = 80 ÷ 100 = 80%. Recall = 80 ÷ 200 = 40%. Non-relevant retrieved = 20; total non-relevant = 
+800; Fallout = 20 ÷ 800 = 2.5%. 
+ 
+11.7 The Precision–Recall Trade-Off 
+A broad search strategy tends to increase recall, but it often retrieves more irrelevant results along with it, 
+which reduces precision. A narrow search strategy tends to improve precision, but risks missing relevant 
+documents. The appropriate balance between the two depends entirely on the specific information need 
+of the user. 
+11.8 Improving Recall 
+• Use synonyms and related terms. 
+• Broaden the search appropriately. 
+• Use the OR operator. 
+• Search additional fields, not only the title. 
+• Make use of controlled-vocabulary relationships such as BT and NT. 
+• Inspect useful results for additional relevant terminology. 
+11.9 Improving Precision 
+
+
+===== PAGE 23 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+23 
+• Use more specific terms. 
+• Combine concepts using the AND operator. 
+• Use phrase searching where it is supported. 
+• Apply suitable filters. 
+• Exclude unwanted concepts carefully, using NOT. 
+Review Questions 
+1. A database contains 50 relevant documents. A search retrieves 25 documents, of which 20 are 
+relevant. Calculate the precision and recall. 
+2. A database contains 500 documents, 100 of which are relevant. A search retrieves 50 documents, 
+of which 35 are relevant. Calculate the precision, recall, and fallout. 
+3. Explain, in your own words, what it means for a search to have high precision but low recall. 
+
+
+===== PAGE 24 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+24 
+MODULE 6 — ABSTRACTING PRINCIPLES AND APPLICATIONS 
+Chapter 12: Abstracting Techniques and Types 
+By the end of this chapter, you should be able to: 
+• Define an abstract. 
+• Explain content extraction and editing. 
+• Distinguish between indicative, informative, critical, slant, author's, and structured abstracts. 
+• Write a simple academic abstract. 
+ 
+12.1 What Is an Abstract? 
+An abstract is a concise representation of a document’s content. Depending on its particular type, an 
+abstract may present the purpose of a study, the method used, the main findings, and the conclusion 
+reached. 
+12.2 Why Abstracts Matter 
+Abstracts help users screen large amounts of literature quickly and decide which documents genuinely 
+deserve a full reading. They are particularly important within bibliographic and indexing-and-abstracting 
+databases, where a user may be scanning hundreds of records at once. 
+12.3 Content Extraction 
+When preparing an abstract, the writer should ask a consistent set of questions of the source document: 
+• What is the problem being addressed? 
+• What is the objective of the work? 
+• What exactly was studied? 
+• How was it studied — what method was used? 
+• What were the main findings? 
+• What conclusion or recommendation was reached? 
+12.4 Principles of Good Abstracting 
+A good abstract should be clear, concise, accurate, objective, self-contained, coherent, grammatically 
+correct, and faithful to the source document. It should never introduce unsupported claims, invented 
+information, or the personal opinions of the person writing the abstract. 
+12.5 The Indicative Abstract 
+An indicative abstract tells the reader what a document covers and answers the question “What does this 
+document discuss?”, but it usually does not report detailed findings. It is generally brief. 
+EXAMPLE 
+This article discusses the application of artificial intelligence in university libraries, examining major 
+uses, potential benefits, implementation challenges, and implications for future services. 
+ 
+12.6 The Informative Abstract 
+
+
+===== PAGE 25 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+25 
+An informative abstract provides substantive information, most commonly including the purpose, 
+method, findings, and conclusion of a study. It is detailed enough that a reader can often use it to judge 
+whether the original document is worth reading in full. 
+EXAMPLE 
+This study examined AI adoption among university librarians in Nigeria. A questionnaire was 
+administered to librarians in selected universities. The findings showed high awareness but limited 
+formal training, along with concerns about accuracy and data privacy. The study recommends regular 
+AI-literacy programmes and institutional guidance. 
+ 
+12.7 The Indicative-Informative Abstract 
+As the name suggests, an indicative-informative abstract combines features of both types above: it 
+indicates the general scope of the document while also reporting some of its substantive findings, without 
+going into the full detail of a purely informative abstract. 
+12.8 The Critical Abstract 
+A critical abstract goes a step further than a purely descriptive summary. In addition to summarising the 
+content, it offers an assessment or evaluation of the document — commenting, for example, on the 
+strengths, weaknesses, methodology, reliability, or significance of the work. Because it involves 
+judgement rather than pure description, a critical abstract is usually prepared by someone with subject 
+expertise. 
+12.9 The Author's Abstract 
+An author’s abstract is simply an abstract prepared by the author of the original document, rather than by 
+an independent indexer or abstractor. Many journals require authors to submit one alongside their 
+article. 
+12.10 The Slant Abstract 
+A slant abstract emphasises the particular aspects of a document that are most relevant to a specific 
+audience. The very same source document may be presented differently depending on whether the 
+intended reader is a librarian, an administrator, or a technical specialist. 
+12.11 The Structured Abstract 
+A structured abstract organises its content under clear headings, such as Background, Objective, Method, 
+Results, and Conclusion. This format improves scanning and makes it easy for a reader to locate a specific 
+piece of information quickly. 
+12.12 Editing an Abstract 
+Editing involves removing repetition, correcting inaccuracies, simplifying unclear wording, checking that 
+the important findings are actually present, and making sure that no personal judgement or invented 
+information has crept into the text. 
+12.13 A Complete Worked Example 
+Source material: a study examined electronic database use by postgraduate students at three Nigerian 
+universities. Questionnaires were administered to 300 students, producing 240 valid responses. Seventy-
+eight percent of respondents used databases at least monthly, while 45 percent had difficulty developing 
+
+
+===== PAGE 26 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+26 
+effective search strategies. Google Scholar and institutional databases were the most frequently used 
+resources, and the researchers recommended information-literacy training. 
+RESULTING INFORMATIVE ABSTRACT 
+This study examined electronic database use among postgraduate students at three Nigerian 
+universities. Questionnaires were administered to 300 students, producing 240 valid responses. The 
+findings showed that 78% used electronic databases at least monthly, while 45% experienced 
+difficulty developing effective search strategies. Google Scholar and institutional databases were 
+frequently used. The study recommends regular information-literacy training to strengthen students’ 
+database-searching skills. 
+ 
+Review Questions 
+1. What is the difference between an indicative abstract and an informative abstract? 
+2. What is a critical abstract, and how does it differ from an author’s abstract? 
+3. What is a slant abstract? 
+4. List the common headings used in a structured abstract. 
+5. List five qualities of a good abstract. 
+Chapter 13: Uses and Applications of Abstracts 
+By the end of this chapter, you should be able to: 
+• Explain the major uses of abstracts. 
+• Explain Current Awareness Services (CAS) and Selective Dissemination of Information (SDI). 
+• Describe how abstracts function within bibliographic databases and major indexing-and-abstracting 
+services. 
+• Explain the difference between extractive and abstractive summarisation. 
+• Discuss the relationship between human and AI-assisted abstracting. 
+ 
+13.1 Abstracts in Databases 
+Bibliographic and indexing-and-abstracting databases typically contain titles, authors, publication details, 
+assigned indexing terms, and abstracts. The abstract helps a user judge the relevance of a document 
+before deciding whether to obtain the full text. 
+13.2 Current Awareness Services (CAS) 
+Current Awareness Services keep users informed about newly available information within a subject area 
+of interest to them. Alerts sent through such services may include citations together with abstracts, 
+allowing users to quickly identify newly published material that is relevant to their work. 
+13.3 Selective Dissemination of Information (SDI) 
+Selective Dissemination of Information distributes newly available material according to the individual 
+interests or profile of each user. Abstracts help recipients of an SDI service decide quickly whether a newly 
+identified document is actually useful to them. 
+13.4 Abstracts and Information Retrieval 
+
+
+===== PAGE 27 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+27 
+A single search can return hundreds of records. Reading the abstracts attached to those records allows a 
+user to screen them efficiently, rather than having to read every full document, and to select only the 
+most promising ones for closer reading. 
+13.5 Major Indexing and Abstracting Services 
+Indexing and abstracting services provide organised access to scholarly and professional literature across 
+disciplines, combining the indexing and abstracting principles covered throughout this guide into large-
+scale, continuously updated products. Well-known examples include Scopus, Web of Science, 
+PubMed/MEDLINE, the ERIC database, Chemical Abstracts, Library and Information Science Abstracts 
+(LISA), Library Literature & Information Science Full Text, and the EBSCO and ProQuest families of 
+databases. These services assist researchers in discovering literature across different disciplines, and are 
+themselves a practical demonstration of subject indexing and abstracting at scale. 
+13.6 Automated Summarisation 
+Automated summarisation uses computational methods to produce shorter representations of 
+documents. It becomes especially useful when very large collections of material must be processed 
+quickly, at a scale that would be impractical for human abstractors alone. 
+13.7 Extractive Summarisation 
+Extractive methods work by selecting important words, phrases, or whole sentences directly from the 
+source document. The resulting summary is therefore built largely from text that already existed in the 
+original. 
+13.8 Abstractive Summarisation 
+Abstractive methods attempt to represent the meaning of the source document using newly generated 
+wording, rather than simply lifting text from the original. Modern AI systems can assist with this kind of 
+summarisation, but their output may sometimes omit important details or distort the original meaning, so 
+it always requires careful checking against the source. 
+13.9 Human Abstractors versus Automated Systems 
+Human abstractors bring contextual judgement to their work and can tailor an abstract for a specialised 
+audience in a way that automated systems currently cannot match. Automated systems, in turn, offer 
+speed and the ability to work at a much larger scale. In practice, a workflow that combines automated 
+assistance with human quality control often produces the best results. 
+13.10 The Complete Workflow 
+The relationship between indexing and abstracting can be summarised as a single continuous workflow: a 
+document undergoes subject analysis, is indexed, is abstracted, becomes part of a database record, is 
+found through a user’s search, is screened by the user through its record, and is finally selected for full-
+text reading. Indexing provides the structured access points that make a document findable in the first 
+place; abstracting then provides the concise representation of content that helps the user decide whether 
+it is worth reading in full. 
+Review Questions 
+1. What is CAS, and how does it differ from SDI? 
+2. How do abstracts help the users of a database? 
+3. Name three major indexing and abstracting services and the disciplines they primarily serve. 
+
+
+===== PAGE 28 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+28 
+4. Explain the difference between extractive and abstractive summarisation. 
+5. Why should AI-generated abstracts always be checked against the original source? 
+
+
+===== PAGE 29 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+29 
+MODULE 7 — DIGITAL, AUTOMATED AND AI-ASSISTED INDEXING 
+Chapter 14: Automatic Indexing, Computer-Assisted Tools and Artificial 
+Intelligence 
+By the end of this chapter, you should be able to: 
+• Explain automatic and computer-assisted indexing. 
+• Describe hyperlinked and dynamic indexes in digital publishing. 
+• Discuss what Artificial Intelligence can and cannot currently do in indexing and abstracting. 
+• Explain the continuing role of the human indexer and abstractor. 
+ 
+14.1 From Manual to Digital Indexing 
+Traditionally, indexing was carried out entirely by hand: indexers read whole manuscripts, identified 
+important concepts, prepared index cards or handwritten notes, arranged entries alphabetically, and 
+assigned page references. This process was highly labour-intensive, time-consuming, and susceptible to 
+human error. The digital publishing revolution has introduced computer-assisted indexing tools, electronic 
+publishing platforms, digital books, online databases, and Artificial Intelligence, all of which have 
+significantly changed indexing practice. Although the fundamental principles — subject analysis, concept 
+identification, consistency, specificity, and user-centred organisation — remain unchanged, the methods 
+used to apply them have become more sophisticated and efficient. 
+14.2 Automatic Indexing 
+Automatic indexing uses computer algorithms to identify and assign terms to a document by analysing its 
+titles, abstracts, full text, keywords, metadata, citations, and author information, without an indexer 
+manually assigning every term. Its advantages include rapid processing, the ability to handle large-scale 
+indexing that would overwhelm a purely manual process, reduced manual labour, consistency of 
+application, and suitability for very large collections. Its limitations are equally real: algorithmic context 
+may be misunderstood, ambiguous terms may be incorrectly interpreted, meaningful semantic 
+relationships may be missed altogether, and human quality control is still generally necessary before the 
+results are relied upon. 
+14.3 Computer-Assisted Indexing Software 
+A distinct category of tool assists, rather than replaces, the professional indexer. Computer-assisted 
+indexing software helps create accurate, consistent, and well-organised indexes while reducing the time 
+and effort required for repetitive tasks, automating routine functions such as sorting entries 
+alphabetically, checking for duplicate entries, maintaining consistent terminology, managing cross-
+references, and formatting the finished index to a publisher’s specifications. Among the most widely 
+recognised packages are CINDEX, a professional indexing tool widely used by publishers and freelance 
+indexers; Sky Index, a Windows-based application that supports large indexing projects while 
+automatically maintaining alphabetical order and page references; and Macrex, one of the earliest 
+professional indexing programs, particularly popular in academic publishing for its flexibility with large 
+scholarly works and multiple levels of subentries. These tools increase productivity by automating 
+formatting and organisational tasks, freeing the indexer to concentrate on the intellectual work of 
+deciding what deserves an entry. 
+14.4 Hyperlinked and Dynamic Indexes 
+
+
+===== PAGE 30 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+30 
+Electronic books, online textbooks, digital encyclopaedias, institutional repositories, and web-based 
+publications are no longer restricted to static page numbers. Instead, they often use hyperlinks, 
+bookmarks, anchors, and search functions in place of conventional locators. In a hyperlinked index, an 
+entry links directly to the relevant section of the document, so a reader can click through to the required 
+information immediately rather than manually turning to an indicated page. Some digital publications go 
+further still, using dynamic indexes that update automatically whenever the underlying document is 
+revised — unlike a printed index, which must be completely reworked after any change to pagination. 
+Digital indexes may also link to figures, tables, appendices, multimedia resources such as audio and video, 
+external websites, related chapters, and supplementary online materials, so that a modern digital index 
+has evolved from a simple alphabetical list into an interactive navigation system. 
+14.5 What Artificial Intelligence Can Do 
+AI-powered systems apply Natural Language Processing (NLP), Machine Learning (ML), semantic analysis, 
+and text mining to analyse documents and identify important concepts. In indexing and abstracting work 
+more broadly, AI can assist with: 
+• extracting keywords automatically; 
+• identifying frequently occurring concepts; 
+• recognising the names of people, organisations, and places (named-entity recognition); 
+• detecting relationships among concepts and performing semantic indexing; 
+• recommending indexing terms and generating preliminary index entries; 
+• identifying synonyms and related expressions; 
+• classifying topics according to subject categories; 
+• suggesting appropriate cross-references; 
+• generating metadata and assisting with automatic abstracting; and 
+• supporting similarity detection, recommendation, and question-answering systems built on top of 
+indexed collections. 
+These capabilities substantially reduce the time required for preliminary indexing and abstracting, 
+particularly when dealing with lengthy academic publications or very large digital collections. 
+14.6 The Continuing Role of the Human Indexer 
+Despite these advances, Artificial Intelligence has not replaced the professional indexer or abstractor. 
+Indexing remains fundamentally an intellectual activity that requires human judgement, contextual 
+understanding, subject expertise, and sensitivity to users’ information needs. AI systems can readily 
+identify frequently occurring words, but they often struggle to determine which concepts are truly 
+significant, meanings that are implied rather than stated, the difference between important and trivial 
+information, the contextual meaning of an ambiguous term, the appropriate level of specificity, likely user 
+search behaviour, and conceptual relationships that call for professional interpretation. 
+EXAMPLE 
+An AI system may notice the word “cloud” hundreds of times in a computer science textbook. A 
+professional indexer recognises that the relevant concept is Cloud Computing, not simply “cloud,” and 
+may divide the entry into subentries such as cloud infrastructure, cloud security, and cloud storage. 
+Likewise, a history book may repeatedly mention “Washington” — a human indexer can tell whether 
+this means George Washington, Washington, D.C., or Washington State, ensuring readers are 
+directed accurately. 
+ 
+
+
+===== PAGE 31 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+31 
+14.7 Benefits and Challenges of Digital and AI-Assisted Indexing 
+The adoption of digital technologies has brought real benefits: faster index preparation, improved 
+consistency of entries, automatic alphabetical arrangement, efficient management of cross-references, 
+easier correction and revision, better collaboration between publishers and indexers across locations, 
+support for very large indexing projects, interactive hyperlinks in electronic publications, reduced 
+production costs, and improved accessibility through searchable, navigable indexes. 
+These gains come with real challenges. AI-generated indexes may include irrelevant or excessive entries, 
+because algorithms often rely on word frequency rather than genuine conceptual importance; automated 
+systems may overlook implicit ideas, fail to recognise specialised terminology, or misinterpret context. 
+Other recurring challenges include over-reliance on automated tools, inconsistencies in AI-generated 
+terminology, software compatibility issues across publishing platforms, the need for continual software 
+updates and staff training, difficulty indexing multimedia and interactive content, and ethical concerns 
+relating to algorithmic bias and transparency. These limitations reinforce the importance of professional 
+human oversight throughout the indexing and abstracting process. 
+14.8 Future Trends 
+The future of indexing and abstracting is expected to involve deeper integration of Artificial Intelligence, 
+semantic technologies, and linked data: AI systems that understand context more accurately, semantic 
+indexing that works with concepts rather than isolated keywords, multilingual indexing for global 
+audiences, voice-search-compatible indexes, and personalised digital indexes that adapt to individual 
+users’ interests and search histories. Cloud computing and collaborative online platforms are also 
+enabling indexers, editors, and publishers to work simultaneously on the same projects regardless of 
+location. As digital libraries and open-access repositories continue to expand, indexing and abstracting will 
+increasingly support the discovery and retrieval of information across vast collections of interconnected 
+resources — with the fundamental principles set out in this guide continuing to underpin that work, 
+whichever tools are used to apply them. 
+Review Questions 
+1. What is automatic indexing, and what are its main advantages and limitations? 
+2. Name three computer-assisted indexing software packages and explain what they automate. 
+3. Explain the difference between a hyperlinked index and a dynamic index. 
+4. List five tasks that AI can assist with in indexing and abstracting. 
+5. Using the Cloud Computing or Washington example (or one of your own), explain why human 
+judgement remains necessary in indexing. 
+6. State three challenges of digital or AI-assisted indexing. 
+
+
+===== PAGE 32 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+32 
+Appendix A: Practical Exercises 
+Thesaurus Construction 
+1. Construct a thesaurus entry for the term University Libraries, including one Broader Term, two 
+Narrower Terms, two Related Terms, and one UF reference. 
+2. Construct a thesaurus entry for the term Information Literacy, and justify each relationship you 
+establish. 
+Indexing Practice 
+Index the subject “Use of social media by postgraduate students for academic communication.” Identify 
+at least four concepts, and explain the reasoning behind each choice. 
+Further Indexing Practice 
+For each title below, propose at least four appropriate index terms and briefly justify your choices: 
+1. “Use of Social Media by University Students for Academic Research in Nigeria.” 
+2. “Application of Artificial Intelligence in Academic Libraries.” 
+3. “Preservation of Indigenous Knowledge Resources in Nigerian University Libraries.” 
+PRECIS Preparation 
+Analyse the statement “Postgraduate students use electronic databases for academic research.” Identify 
+the agent, the action, the object, and the purpose within this statement before applying the exact 
+operator rules prescribed by your own course. 
+KWIC and KWOC Practice 
+Create both a KWIC entry and a KWOC entry for the title “Artificial Intelligence Applications in Nigerian 
+University Libraries.” 
+Evaluation Practice 
+A collection contains 800 documents, of which 160 are relevant to a particular search. That search 
+retrieves 100 documents, of which 70 are relevant. Calculate the precision, recall, and fallout for this 
+search. 
+Abstracting Practice 
+Write a 60–80 word indicative abstract and a separate 100–150 word informative abstract for a 
+hypothetical paper about information-literacy training and database use among postgraduate students. 
+Full Abstracting Exercise 
+Working from a research article of approximately 1,500–3,000 words (your own choice, or one supplied 
+by your lecturer): 
+1. Identify the title. 
+2. Identify the research problem. 
+3. Identify the objectives. 
+4. Identify the methodology. 
+5. Identify the major findings. 
+6. Identify the conclusion. 
+
+
+===== PAGE 33 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+33 
+7. Prepare a 150–250 word informative abstract. 
+8. Identify five appropriate keywords. 
+
+
+===== PAGE 34 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+34 
+Appendix B: Revision Questions and Model Answers 
+Short-Answer Questions 
+1. Define subject indexing. 
+2. What is a controlled vocabulary? 
+3. Define BT, NT, and RT. 
+4. What is pre-coordinate indexing? 
+5. What is post-coordinate indexing? 
+6. What do KWIC and KWOC stand for? 
+7. Define exhaustivity and specificity. 
+8. State the precision and recall formulas. 
+9. Define indicative and informative abstracts. 
+10. What is CAS? 
+11. What is an index, and how does it differ from a table of contents? 
+12. Who developed PRECIS, and what does the acronym stand for? 
+13. What is automatic indexing? 
+14. Name two computer-assisted indexing software packages. 
+15. What is a critical abstract? 
+Model Answers 
+• Subject indexing represents the subject content of a document for the purpose of retrieval. 
+• A controlled vocabulary is an organised set of authorised terms used consistently for indexing and 
+retrieval. 
+• BT is Broader Term, NT is Narrower Term, and RT is Related Term. 
+• Pre-coordinate indexing combines concepts before retrieval takes place. 
+• Post-coordinate indexing combines separate concepts during the act of retrieval. 
+• KWIC is Keyword in Context; KWOC is Keyword Out of Context. 
+• Exhaustivity concerns the number of important concepts represented; specificity concerns how 
+precisely each one is represented. 
+• Precision equals relevant retrieved divided by total retrieved. Recall equals relevant retrieved 
+divided by total relevant. 
+• Indicative abstracts describe the scope of a document; informative abstracts provide substantive 
+information and findings. 
+• CAS is a Current Awareness Service. 
+• An index is an alphabetical guide to specific information within a document, usually placed at the 
+end; a table of contents appears at the start and lists chapters in the order they occur. 
+• PRECIS, the Preserved Context Index System, was developed by Derek Austin. 
+• Automatic indexing uses computer algorithms to identify and assign index terms to a document with 
+little or no manual intervention. 
+• CINDEX, Sky Index, and Macrex are widely used computer-assisted indexing software packages. 
+• A critical abstract summarises a document’s content while also offering an assessment of its 
+strengths, weaknesses, or significance. 
+Essay Questions 
+
+
+===== PAGE 35 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+35 
+1. Discuss the objectives and guiding principles of subject indexing. 
+2. Compare pre-coordinate and post-coordinate indexing. 
+3. Explain thesaurus structure and semantic relationships. 
+4. Discuss the contribution of the Cranfield tradition. 
+5. Explain precision, recall, and fallout, using examples. 
+6. Compare indicative and informative abstracts, and explain where the critical and slant abstract fit 
+alongside them. 
+7. Discuss the role of abstracts in Current Awareness Services, Selective Dissemination of Information, 
+and database searching. 
+8. Discuss the advantages and limitations of AI-assisted indexing and abstracting. 
+9. Discuss the process and challenges of book indexing. 
+10. Examine the role of computer-assisted indexing software and Artificial Intelligence in modern 
+indexing services. 
+A Model Comparison Outline 
+When answering a comparison question, such as one contrasting pre-coordinate and post-coordinate 
+indexing, the following outline provides a reliable structure: 
+1. Introduction: define both systems clearly. 
+2. Timing: pre-coordinate combines concepts during indexing; post-coordinate combines them during 
+retrieval. 
+3. Roles: pre-coordinate places more responsibility on the indexer; post-coordinate gives the searcher 
+more responsibility for combining concepts. 
+4. Flexibility: post-coordinate generally permits more novel combinations of terms. 
+5. Control: pre-coordinate can provide carefully designed, controlled conceptual expressions. 
+6. Limitations: pre-coordinate indexing may fail to anticipate every combination a user might want; 
+post-coordinate indexing depends heavily on the searcher’s own skill and use of terminology. 
+7. Conclusion: the most suitable system depends on the particular information environment and 
+retrieval objectives involved. 
+
+
+===== PAGE 36 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+36 
+Appendix C: Glossary of Key Terms 
+Abstract — A concise representation of a document’s content. 
+Abstracting — The process of preparing abstracts. 
+Assigned indexing — Indexing in which an indexer selects terms from an indexing language or controlled 
+vocabulary, rather than copying them directly from the document. 
+Author's abstract — An abstract prepared by the author of the original document. 
+Automatic indexing — Indexing performed by computer algorithms with little or no manual intervention. 
+BT — Broader Term; a more general concept within a thesaurus hierarchy. 
+Book index — An alphabetical guide to the significant content of a book, with locators, usually placed at 
+the end. 
+CAS — Current Awareness Service. 
+Chain indexing — A pre-coordinate indexing technique, associated with S. R. Ranganathan, that derives 
+subject entries from the hierarchical chain of a classification scheme. 
+Computer-assisted indexing — The use of software to support tasks such as sorting, formatting, and 
+cross-reference management, while the indexer retains intellectual control. 
+Controlled vocabulary — An organised set of authorised terms used consistently for indexing and 
+retrieval. 
+Critical abstract — An abstract that summarises a document while also offering an evaluation of its 
+strengths, weaknesses, or significance. 
+Cross-reference — A See or See also note directing a reader from one index term to another. 
+Cyclic (cycled) indexing — A technique that varies the leading term in a compound subject to create 
+multiple access points. 
+Derived indexing — Indexing based on features taken directly from the document, such as title words. 
+Dynamic index — A digital index that updates automatically when the underlying document changes. 
+Exhaustivity — The extent to which important document concepts are represented in indexing. 
+Fallout — The proportion of non-relevant documents retrieved, out of all non-relevant documents 
+available. 
+Hyperlinked index — A digital index whose entries link directly to the relevant section of a document. 
+Index — A systematically arranged guide to the contents of a document, consisting of terms and locators. 
+Indexing — Representing document content with terms or symbols to support retrieval. 
+Indexing and abstracting service — A database or publication, such as Scopus or MEDLINE, that provides 
+organised indexing and abstracting access to literature across a discipline. 
+Indicative abstract — An abstract that indicates the scope or topics covered by a document. 
+Informative abstract — An abstract that reports substantive content such as purpose, method, findings, 
+and conclusion. 
+ISO 999 / BS ISO 5963 — International and British standards providing guidance on the content, structure, 
+and preparation of indexes. 
+KWIC — Keyword in Context. 
+KWOC — Keyword Out of Context. 
+Locator — The page, section, or paragraph reference attached to an index entry. 
+NT — Narrower Term; a more specific concept within a thesaurus hierarchy. 
+Post-coordinate indexing — Indexing in which concepts are combined during retrieval. 
+
+
+===== PAGE 37 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+37 
+PRECIS — Preserved Context Index System, developed by Derek Austin. 
+Precision — The proportion of retrieved documents that are relevant. 
+Pre-coordinate indexing — Indexing in which concepts are combined before retrieval. 
+Recall — The proportion of all relevant documents that are actually retrieved. 
+RT — Related Term; an associated concept that is neither equivalent nor hierarchical. 
+SDI — Selective Dissemination of Information. 
+SLIC — Selective Listing in Combination. 
+Specificity — The precision with which an indexing term represents a concept. 
+Subject analysis — The intellectual examination of a document to identify its subject content. 
+Thesaurus — A controlled vocabulary organised by defined semantic relationships. 
+UF — Used For; a reference from a preferred term to a non-preferred term. 
+USE — A reference directing a non-preferred term to the preferred term. 
+
+
+===== PAGE 38 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+A Beginner-Friendly Guide to LIS 815 
+38 
+Assessment and Examination Guide 
+Assessment 
+Weight 
+Main Preparation 
+Indexing Practicum 
+20% 
+Thesaurus entry design, book-
+index construction, and PRECIS 
+exercises 
+Abstracting Portfolio 
+15% 
+Indicative, informative, and 
+critical abstracts 
+Mid-Term Assessment 
+15% 
+Pre-coordinate versus post-
+coordinate analysis 
+Final Examination 
+50% 
+Comprehensive theory and 
+practical examination, including 
+digital and AI-assisted indexing 
+ 
+Final Revision Checklist 
+• Explain the major terms of this course in your own words. 
+• Cite at least one scholarly definition of indexing and of an index (e.g. Lancaster, Mulvany, Knight, or 
+the relevant ISO standard). 
+• Construct basic thesaurus relationships (BT, NT, RT, USE, UF). 
+• Distinguish clearly between pre-coordinate, post-coordinate, and derived indexing. 
+• Explain PRECIS, its origin, its syntax, and its role operators. 
+• Construct simple KWIC and KWOC displays. 
+• Describe the components and types of a book index, and the stages of book indexing. 
+• Calculate precision, recall, and fallout. 
+• Explain exhaustivity, specificity, and the other criteria used to evaluate an index. 
+• Write indicative, informative, and critical abstracts. 
+• Compare human and automated approaches to indexing and abstracting, including the role of AI. 
+• Answer practical questions in your own words, without relying on memorised wording. 

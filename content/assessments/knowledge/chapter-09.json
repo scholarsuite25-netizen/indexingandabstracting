@@ -1,0 +1,66 @@
+{
+  "chapter": 9,
+  "source": "lms-authored",
+  "questions": [
+    {
+      "n": 1,
+      "stem": "Which Boolean search statement would best find documents about social media and academic performance among university students?",
+      "options": {
+        "A": "social media NOT academic performance",
+        "B": "social media",
+        "C": "social media AND academic performance",
+        "D": "social media OR academic performance"
+      },
+      "answer": "C",
+      "explanation": "AND narrows a search by requiring that both concepts be present, so the statement retrieves only documents covering social media together with academic performance."
+    },
+    {
+      "n": 2,
+      "stem": "In a KWOC display, how is the keyword presented?",
+      "options": {
+        "A": "Shown separately from the rest of the title, typically as a heading followed underneath by the full citation",
+        "B": "Embedded within the surrounding words of the title, preserving its context",
+        "C": "Assigned as a controlled-vocabulary descriptor by a trained indexer",
+        "D": "Listed only in the document's abstract"
+      },
+      "answer": "A",
+      "explanation": "KWOC stands for Keyword Out of Context: the keyword is placed outside the title as a separate heading, with the full citation given underneath."
+    },
+    {
+      "n": 3,
+      "stem": "Which of the following is a limitation of derived indexing?",
+      "options": {
+        "A": "It requires substantial additional intellectual effort",
+        "B": "It cannot be automated in any way",
+        "C": "It never draws terms from the document title",
+        "D": "Terms taken from the author's own words may include irrelevant words, fail to capture implied context, or face synonym and ambiguity problems"
+      },
+      "answer": "D",
+      "explanation": "Because derived terms come from the document's own words rather than a controlled vocabulary, they may be irrelevant or ambiguous — problems a trained indexer would normally resolve."
+    },
+    {
+      "n": 4,
+      "stem": "Why is derived indexing well suited to automation?",
+      "options": {
+        "A": "Because it requires trained indexers to assign descriptors from a thesaurus",
+        "B": "Because it obtains its index terms directly from features of the document itself, such as the title, requiring little additional intellectual effort",
+        "C": "Because it relies on formal relevance judgements and test collections",
+        "D": "Because it excludes the full text and captions of a document"
+      },
+      "answer": "B",
+      "explanation": "Terms are drawn straight from document features, so the process needs little intellectual effort and can therefore be carried out by machine."
+    },
+    {
+      "n": 5,
+      "stem": "Which Boolean operator broadens a search by accepting either concept?",
+      "options": {
+        "A": "OR",
+        "B": "AND",
+        "C": "NOT",
+        "D": "NOR"
+      },
+      "answer": "A",
+      "explanation": "OR broadens a search by accepting either concept, whereas AND narrows and NOT excludes a specified concept."
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "chapter": 5,
+  "source": "lms-authored",
+  "questions": [
+    {
+      "n": 1,
+      "stem": "What is the purpose of a scope note attached to a term?",
+      "options": {
+        "A": "To clarify exactly how that term is to be interpreted or applied within a particular vocabulary",
+        "B": "To list every non-preferred synonym that leads to the term",
+        "C": "To arrange all terms in the vocabulary from A to Z",
+        "D": "To record why the term was removed from the thesaurus"
+      },
+      "answer": "A",
+      "explanation": "A scope note is a short explanatory statement attached to a term to clarify exactly how that term is to be interpreted or applied within a particular vocabulary, especially when the term is ambiguous or carries a specialised meaning."
+    },
+    {
+      "n": 2,
+      "stem": "In a USE and UF reference pair, which direction does the USE reference point?",
+      "options": {
+        "A": "From the preferred term down to its narrower terms",
+        "B": "From the non-preferred term toward the preferred term that should be used instead",
+        "C": "From the preferred term to every related term in the classified display",
+        "D": "From one non-preferred term to another non-preferred term"
+      },
+      "answer": "B",
+      "explanation": "USE directs a searcher or indexer from a non-preferred term toward the preferred term that should be used instead; UF (Used For) works in the opposite direction beneath the preferred term."
+    },
+    {
+      "n": 3,
+      "stem": "Which pair of references correctly expresses the relationship between cars and automobiles?",
+      "options": {
+        "A": "CARS — UF: Automobiles. | AUTOMOBILES — USE: Cars.",
+        "B": "AUTOMOBILES — UF: Cars. | CARS — USE: Automobiles.",
+        "C": "AUTOMOBILES — USE: Cars. | CARS — USE: Automobiles.",
+        "D": "AUTOMOBILES — UF: Cars. | CARS — UF: Automobiles."
+      },
+      "answer": "B",
+      "explanation": "The source example reads AUTOMOBILES — UF: Cars. | CARS — USE: Automobiles: the preferred term carries the UF reference and the non-preferred term carries the USE reference."
+    },
+    {
+      "n": 4,
+      "stem": "What is one advantage of a classified display over an alphabetical display?",
+      "options": {
+        "A": "It supports browsing, allowing a user to explore related areas of a subject even when they do not yet know the exact term they need",
+        "B": "It lets a user who already knows the specific term look up its relationships quickly",
+        "C": "It arranges terms simply from A to Z",
+        "D": "It removes the need for scope notes on ambiguous terms"
+      },
+      "answer": "A",
+      "explanation": "In a classified display, terms are grouped within a broader conceptual structure rather than alphabetically, which supports browsing of related areas — the alphabetical display's advantage is quick lookup of a known term."
+    },
+    {
+      "n": 5,
+      "stem": "Which of the following is a typical thesaurus maintenance task?",
+      "options": {
+        "A": "Keeping a documented record of why each decision was made",
+        "B": "Freezing the vocabulary so that terminology never changes",
+        "C": "Deleting cross-references once the thesaurus is published",
+        "D": "Replacing the indexer's human judgement with software"
+      },
+      "answer": "A",
+      "explanation": "Typical maintenance tasks include adding new terms, revising definitions and scope notes, merging or splitting concepts, updating cross-references, and keeping a documented record of why each decision was made."
+    }
+  ]
+}

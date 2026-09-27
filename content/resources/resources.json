@@ -1,0 +1,40 @@
+{
+  "source": "supplied",
+  "items": [
+    {
+      "title": "Indexing and Abstracting - complete study guide (PDF)",
+      "description": "The full supplied study guide behind every module of this course. Download it once and you can read offline; the reader on this site follows the same text, section by section.",
+      "kind": "file",
+      "visibility": "students",
+      "source": "supplied",
+      "storage_path": "docs/Indexing_and_Abstracting_Complete_Ebook.pdf",
+      "mime_type": "application/pdf"
+    },
+    {
+      "title": "Help and frequently asked questions",
+      "description": "How the course, the examinations, your private notes and the certificate work.",
+      "kind": "link",
+      "visibility": "students",
+      "source": "lms-authored",
+      "url": "/help"
+    },
+    {
+      "title": "LIS 814 objective examination paper (as supplied)",
+      "description": "The supplied objective paper, kept as staff reference. Students sit the paper inside the platform, where it is timed and marked for them - this file is never handed out.",
+      "kind": "exam_paper",
+      "visibility": "staff",
+      "source": "supplied",
+      "storage_path": "docs/LIS_814_Objective_Examination.pdf",
+      "mime_type": "application/pdf"
+    },
+    {
+      "title": "LIS 814 theory examination paper (as supplied)",
+      "description": "The supplied theory paper, kept as staff reference for marking and for the question set. Not shown to students.",
+      "kind": "exam_paper",
+      "visibility": "staff",
+      "source": "supplied",
+      "storage_path": "docs/LIS_814_Theory_Examination.pdf",
+      "mime_type": "application/pdf"
+    }
+  ]
+}

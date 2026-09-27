@@ -1,0 +1,205 @@
+
+
+===== PAGE 1 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+Theory Examination 
+1 
+LIS 815: Indexing and Abstracting 
+Theory Examination 
+Time Allowed: 2 Hours 
+Instructions 
+1. This paper contains SEVEN (7) questions. 
+2. Answer any FIVE (5) questions only. 
+3. All questions carry equal marks (20 marks each). 
+4. Write clearly and number your answers to match the question numbers on this paper. 
+ 
+Question 1   (Module 1 — Foundations and Types of Indexes) 
+(a) Define subject indexing and subject analysis, citing at least one scholarly definition of each. (6 
+marks) 
+(b) State and explain four objectives and two guiding principles of subject indexing. (6 marks) 
+(c) Define an index, distinguish it from a table of contents, and describe the stages involved in 
+preparing a book index. (8 marks) 
+Question 2   (Module 2 — Vocabulary Control) 
+(a) Define controlled vocabulary and thesaurus, and explain why vocabulary control is necessary in 
+indexing. (5 marks) 
+(b) Using the concept “Digital Libraries,” construct a thesaurus entry showing one BT, two NTs, two 
+RTs, and one UF/USE pair. (7 marks) 
+(c) Explain the purpose of a scope note, and distinguish between alphabetical and classified 
+thesaurus displays. Describe two tasks involved in thesaurus maintenance. (8 marks) 
+Question 3   (Module 3 — Pre-Coordinate Indexing Systems) 
+(a) Define pre-coordinate indexing and explain chain indexing, naming the scholar most closely 
+associated with it. (6 marks) 
+(b) Explain cyclic (cycled) indexing with an example of your own. (5 marks) 
+(c) Explain PRECIS — what the acronym stands for, who developed it, and why preserving context 
+matters — and describe the practical sequence used to build a PRECIS string. (9 marks) 
+Question 4   (Module 4 — Post-Coordinate and Derived Indexing) 
+(a) Distinguish between pre-coordinate and post-coordinate indexing, giving two differences. (6 
+marks) 
+(b) Explain Uniterm indexing and free-text searching, noting one limitation of each. (6 marks) 
+(c) Define derived indexing, and explain KWIC and KWOC with an example of each. (8 marks) 
+Question 5   (Module 5 — Evaluation and System Metrics) 
+(a) Define exhaustivity and specificity, and explain the trade-off between them. (5 marks) 
+(b) Explain the significance of the Cranfield research tradition. (4 marks) 
+
+
+===== PAGE 2 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+Theory Examination 
+2 
+(c) A collection contains 600 documents, of which 120 are relevant to a given search. The search 
+retrieves 80 documents, of which 60 are relevant. Calculate the precision, recall, and fallout for 
+this search, showing your working. (11 marks) 
+Question 6   (Module 6 — Abstracting Principles and Applications) 
+(a) Define an abstract, and state four qualities of a good abstract. (5 marks) 
+(b) Distinguish between indicative, informative, critical, and slant abstracts, giving one example title 
+or context for each. (9 marks) 
+(c) Explain Current Awareness Services (CAS) and Selective Dissemination of Information (SDI), and 
+name two major indexing and abstracting services used in scholarly research. (6 marks) 
+Question 7   (Module 7 — Digital, Automated and AI-Assisted Indexing) 
+(a) Explain automatic indexing, including two advantages and two limitations. (6 marks) 
+(b) Distinguish between a hyperlinked index and a dynamic index, and name two computer-assisted 
+indexing software packages. (6 marks) 
+(c) Using an example, explain why human judgement remains necessary in indexing despite the 
+capabilities of Artificial Intelligence. (8 marks) 
+
+
+===== PAGE 3 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+Theory Examination 
+3 
+Model Answers 
+For examiner and candidate reference. Answers are indicative rather than exhaustive; award marks for any well-reasoned 
+equivalent response. 
+Question 1   (Module 1 — Foundations and Types of Indexes) 
+(a) Subject indexing is the process of representing what a document is about by assigning terms, 
+phrases, symbols or other representations that a user can later search for to find the document. 
+Subject analysis is the preceding intellectual stage in which the indexer examines the document to 
+identify its main topic, significant concepts and their relationships, before any term is assigned. 
+Scholarly definitions: Lancaster (2003) defines subject indexing as determining a document's 
+subject content and assigning terms that adequately represent it for retrieval; Rowley and Farrow 
+(2000) describe it as assigning descriptive terms representing a document's topics so they can be 
+identified during searches; BS ISO 5963 and ISO 999 frame indexing as the systematic examination 
+and representation of a document's intellectual content to facilitate retrieval. 
+(b) Objectives (any four): accurate subject representation; consistent access points; efficient 
+retrieval; reduction of ambiguity; connection of related concepts; support for user discovery; 
+improved precision and recall. Guiding principles (any two): specificity (terms should be as precise 
+as the vocabulary allows); consistency (the same concept always represented by the same term); 
+user orientation (reflecting how users actually search); exhaustivity (all significant subjects 
+represented); selectivity (only meaningful concepts indexed); objectivity (reflecting the 
+document's actual content, not the indexer's opinion). 
+(c) An index is a systematically arranged guide to a document's contents, consisting of headings, 
+subheadings, locators and cross-references, usually placed at the end of a publication. Unlike a 
+table of contents — which appears at the start, follows the book's own order, and lists chapters — 
+an index is arranged alphabetically, lists subjects/names/places/concepts, and provides detailed 
+access to specific information rather than showing structure. Stages of book indexing: reading the 
+book; subject analysis; selection of entries; preparing main entries; preparing subentries; 
+assigning locators; creating cross-references; alphabetical arrangement; editing; proofreading. 
+Question 2   (Module 2 — Vocabulary Control) 
+(a) A controlled vocabulary is an organised set of approved terms used consistently for indexing and 
+retrieval; a thesaurus is a controlled vocabulary whose terms are connected by defined 
+relationships (BT, NT, RT). Vocabulary control is necessary because it reduces unwanted variation 
+in terminology and improves the match between the words an indexer assigns and the words a 
+searcher later uses. 
+(b) Example entry for DIGITAL LIBRARIES: BT — Libraries. NT — Institutional Repositories, Digital 
+Archives (or similar narrower concepts). RT — Electronic Books, Information Technology. UF/USE 
+— e.g. “E-Libraries USE Digital Libraries.” (Any reasonable, correctly-directed set of relationships 
+should be credited.) 
+(c) A scope note is a short statement clarifying how a term should be interpreted or applied within a 
+vocabulary, useful where a term is ambiguous or has a specialised meaning. An alphabetical 
+display arranges terms A–Z, convenient for a user who already knows the term they want; a 
+classified display groups terms within a conceptual structure, supporting browsing. Maintenance 
+tasks (any two): adding new terms; revising definitions/scope notes; merging or splitting 
+concepts; updating cross-references; documenting decisions. 
+
+
+===== PAGE 4 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+Theory Examination 
+4 
+Question 3   (Module 3 — Pre-Coordinate Indexing Systems) 
+(a) Pre-coordinate indexing combines the concepts of a subject into a single indexing expression at 
+the time of indexing, before any search takes place, with the indexer deciding how concepts 
+relate. Chain indexing derives subject entries from the hierarchical chain of concepts in a 
+classification scheme; it is closely associated with S. R. Ranganathan. 
+(b) Cyclic (cycled) indexing generates multiple index entries by varying the position or focus of terms 
+within a compound subject, so each significant component in turn becomes the leading term, 
+giving several access points to the same document. Example: “Artificial Intelligence — University 
+Libraries — Nigeria” could also be cycled as “University Libraries — Artificial Intelligence — 
+Nigeria” and “Nigeria — University Libraries — Artificial Intelligence.” 
+(c) PRECIS stands for Preserved Context Index System, developed by Derek Austin for the British 
+National Bibliography. It was designed to preserve the relationships between concepts in a 
+subject statement while generating usable index entries, avoiding the ambiguity of an unordered 
+list of keywords. Building a string: (1) understand the subject as a whole; (2) identify the individual 
+concepts; (3) identify the role each concept plays; (4) apply the prescribed role operators; (5) 
+generate the finished index string. 
+Question 4   (Module 4 — Post-Coordinate and Derived Indexing) 
+(a) Pre-coordinate indexing combines concepts during indexing, with the indexer responsible for the 
+combination; post-coordinate indexing leaves concepts as separate terms that the searcher or 
+system combines at the point of retrieval. A second difference: pre-coordinate systems offer 
+more controlled, predictable access but may not anticipate every useful combination, while post-
+coordinate systems are more flexible but place greater responsibility on the searcher. 
+(b) Uniterm indexing assigns individual, single terms to documents and combines them only at 
+retrieval — an early illustration of the post-coordinate principle; its limitation is that it depends 
+heavily on the searcher combining terms correctly. Free-text searching looks for words directly in 
+fields such as titles or abstracts without relying on a controlled vocabulary; its limitation is that it 
+can suffer from unmatched synonyms, ambiguity and spelling variation. 
+(c) Derived indexing obtains index terms directly from features of the document itself, most 
+commonly the title, rather than from a controlled vocabulary. KWIC (Keyword in Context) displays 
+a keyword together with its surrounding title words so context is preserved — e.g. indexing 
+“Artificial Intelligence Applications in Nigerian University Libraries” under “Applications” would 
+show it within its title context. KWOC (Keyword Out of Context) displays the same keyword as a 
+separate heading above the full citation, outside the title. 
+Question 5   (Module 5 — Evaluation and System Metrics) 
+(a) Exhaustivity is the extent to which the important concepts in a document are represented by 
+index terms; specificity is how precisely each indexing term represents the subject. The trade-off: 
+greater exhaustivity gives more access points but, if indexing becomes too broad, precision can 
+suffer through increased retrieval of irrelevant material. 
+(b) The Cranfield research programme, associated with Cyril Cleverdon, established a systematic, 
+evidence-based approach to evaluating retrieval systems using test collections, queries and 
+
+
+===== PAGE 5 =====
+LIS 815 • INDEXING AND ABSTRACTING 
+Theory Examination 
+5 
+formal relevance judgements, encouraging experimental comparison rather than unsupported 
+claims about which indexing system was best. 
+(c) Precision = Relevant Retrieved ÷ Total Retrieved = 60 ÷ 80 = 75%. Recall = Relevant Retrieved ÷ 
+Total Relevant = 60 ÷ 120 = 50%. Non-relevant retrieved = 80 − 60 = 20. Total non-relevant = 600 − 
+120 = 480. Fallout = Non-Relevant Retrieved ÷ Total Non-Relevant = 20 ÷ 480 ≈ 4.2%. 
+Question 6   (Module 6 — Abstracting Principles and Applications) 
+(a) An abstract is a concise representation of a document's content, which may present its purpose, 
+method, findings and conclusion. Qualities of a good abstract (any four): clear, concise, accurate, 
+objective, self-contained, coherent, faithful to the source, free of unsupported claims or personal 
+opinion. 
+(b) An indicative abstract tells the reader what a document covers without detailed findings (e.g. an 
+abstract simply describing that a paper “discusses the application of AI in university libraries”). An 
+informative abstract reports substantive purpose, method, findings and conclusion (e.g. reporting 
+the actual survey findings on AI adoption among Nigerian librarians). A critical abstract 
+summarises the content while also evaluating its strengths, weaknesses or significance. A slant 
+abstract emphasises the aspects of a document most relevant to a specific audience, such as 
+librarians versus administrators reading the same source. 
+(c) CAS (Current Awareness Services) keep users informed about newly available information in their 
+subject area, often through alerts containing citations and abstracts. SDI (Selective Dissemination 
+of Information) distributes newly available material according to each user's individual profile or 
+interests. Major indexing and abstracting services (any two): Scopus, Web of Science, 
+PubMed/MEDLINE, ERIC, Chemical Abstracts, LISA. 
+Question 7   (Module 7 — Digital, Automated and AI-Assisted Indexing) 
+(a) Automatic indexing uses computer algorithms to identify and assign index terms by analysing a 
+document's titles, abstracts, full text, keywords, metadata and citations, without an indexer 
+manually assigning every term. Advantages (any two): rapid processing; ability to handle large-
+scale indexing; reduced manual labour; consistency of application. Limitations (any two): 
+algorithmic misunderstanding of context; incorrect interpretation of ambiguous terms; missed 
+semantic relationships; continued need for human quality control. 
+(b) A hyperlinked index links each entry directly to the relevant section of a digital document, so a 
+reader can click through immediately. A dynamic index goes further and updates automatically 
+whenever the underlying document is revised, unlike a printed index which must be reworked 
+after any change in pagination. Computer-assisted indexing software (any two): CINDEX, Sky 
+Index, Macrex. 
+(c) AI systems readily detect frequently occurring words but often cannot judge which concepts are 
+genuinely significant, resolve ambiguous meanings, or select the right level of specificity. Example: 
+an AI system may flag the word “cloud” hundreds of times in a computing text, but a human 
+indexer recognises the relevant concept is Cloud Computing and can divide it into subentries such 
+as cloud security and cloud storage; similarly, a human indexer can tell whether “Washington” 
+refers to George Washington, Washington, D.C., or Washington State, while an algorithm may 
+not. 

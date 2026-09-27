@@ -1,0 +1,66 @@
+{
+  "chapter": 7,
+  "source": "lms-authored",
+  "questions": [
+    {
+      "n": 1,
+      "stem": "What does SLIC stand for?",
+      "options": {
+        "A": "Selective Listing in Combination",
+        "B": "Subject Links in Classification",
+        "C": "Structured List of Index Concepts",
+        "D": "Sequential Lookup of Index Entries"
+      },
+      "answer": "A",
+      "explanation": "SLIC stands for Selective Listing in Combination, a pre-coordinate approach that generates selected combinations of the terms assigned to a document."
+    },
+    {
+      "n": 2,
+      "stem": "What does PRECIS stand for, and who developed it?",
+      "options": {
+        "A": "Preserved Context Index System, developed by the British indexer Derek Austin",
+        "B": "Preserved Context Index System, developed by S. R. Ranganathan",
+        "C": "Selective Listing in Combination, developed for the British National Bibliography",
+        "D": "Pre-coordinate Indexing System, developed by the Library of Congress"
+      },
+      "answer": "A",
+      "explanation": "PRECIS stands for Preserved Context Index System and was developed by the British indexer Derek Austin for the British National Bibliography."
+    },
+    {
+      "n": 3,
+      "stem": "Why are role operators necessary in a system like PRECIS?",
+      "options": {
+        "A": "They indicate the function that each concept plays within a subject statement, such as distinguishing an action from its agent or its object",
+        "B": "They sort every term in the index string into alphabetical order",
+        "C": "They replace the need to identify the individual concepts in the subject",
+        "D": "They allow a searcher to drop the context from an index entry"
+      },
+      "answer": "A",
+      "explanation": "Role operators indicate the function each concept plays within a subject statement — for example distinguishing an action from its agent, its object, or another role."
+    },
+    {
+      "n": 4,
+      "stem": "Why is preserving context useful to a searcher?",
+      "options": {
+        "A": "It prevents ambiguity by making clear who is using what and what the actual relationships between the concepts are",
+        "B": "It lets the searcher retrieve every document containing any single keyword",
+        "C": "It removes the need to identify the individual concepts of a subject",
+        "D": "It shortens every index string down to one isolated keyword"
+      },
+      "answer": "A",
+      "explanation": "A simple unordered list such as students; libraries; databases; use does not make clear who is using what; a syntactic system like PRECIS preserves the relationships between the concepts to prevent this ambiguity."
+    },
+    {
+      "n": 5,
+      "stem": "Which sequence correctly describes how a PRECIS-style index string is built?",
+      "options": {
+        "A": "Understand the subject, identify the individual concepts, identify the role each concept plays, apply the prescribed role operators, then generate the finished index string",
+        "B": "Apply the role operators first, then identify the concepts, then understand the subject",
+        "C": "List the terms alphabetically, then arrange them by role, then generate the string",
+        "D": "Generate the finished index string first, then identify the individual concepts"
+      },
+      "answer": "A",
+      "explanation": "The source gives the practical sequence: understand the subject as a whole, identify the individual concepts, identify the role each concept plays, apply the prescribed role operators, then generate the finished index string from the ordered, labelled concepts."
+    }
+  ]
+}

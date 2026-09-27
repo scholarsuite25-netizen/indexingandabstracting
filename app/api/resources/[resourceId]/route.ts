@@ -1,0 +1,62 @@
+import fs from "node:fs";
+import path from "node:path";
+import { NextResponse } from "next/server";
+import { getSessionUser } from "@/lib/auth";
+import { getResourceForDownload } from "@/lib/data/tooling";
+
+/**
+ * Authorised downloads. The row must already be visible to the caller under
+ * row-level security, so an examination paper (staff-only) or a locked
+ * resource answers 404 - the same as any id that does not exist. The file
+ * itself is read from inside the repository, never from a client-supplied path.
+ */
+export async function GET(
+  _request: Request,
+  { params }: { params: Promise<{ resourceId: string }> },
+) {
+  const { resourceId } = await params;
+
+  const user = await getSessionUser();
+  if (!user) {
+    return NextResponse.json({ error: "Sign in to download this resource." }, { status: 401 });
+  }
+
+  const resource = await getResourceForDownload(resourceId);
+  if (!resource) {
+    return NextResponse.json({ error: "Not found." }, { status: 404 });
+  }
+
+  // Links point at their own URL; this route only serves files.
+  if (resource.kind === "link" || !resource.storagePath) {
+    return NextResponse.json({ error: "Not found." }, { status: 404 });
+  }
+
+  // Files live in the repository's docs/ folder. The stored path must point
+  // straight at one file there, so a stray row cannot climb out of it.
+  const name = path.basename(resource.storagePath);
+  if (path.posix.dirname(resource.storagePath) !== "docs" || !name) {
+    return NextResponse.json({ error: "Not found." }, { status: 404 });
+  }
+  const absolute = path.join(process.cwd(), "docs", name);
+
+  let stat: fs.Stats;
+  try {
+    stat = fs.statSync(absolute);
+  } catch {
+    return NextResponse.json({ error: "The file is not on the server." }, { status: 404 });
+  }
+  if (!stat.isFile()) {
+    return NextResponse.json({ error: "Not found." }, { status: 404 });
+  }
+
+  const body = new Uint8Array(fs.readFileSync(absolute));
+  return new NextResponse(body, {
+    status: 200,
+    headers: {
+      "Content-Type": resource.mimeType ?? "application/octet-stream",
+      "Content-Length": String(stat.size),
+      "Content-Disposition": `attachment; filename="${path.basename(absolute)}"`,
+      "Cache-Control": "private, no-store",
+    },
+  });
+}

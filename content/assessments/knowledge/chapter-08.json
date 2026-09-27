@@ -1,0 +1,66 @@
+{
+  "chapter": 8,
+  "source": "lms-authored",
+  "questions": [
+    {
+      "n": 1,
+      "stem": "In post-coordinate indexing, who combines the concepts of a subject?",
+      "options": {
+        "A": "The searcher or the retrieval system, at the moment of searching",
+        "B": "The indexer, at the moment the document is indexed",
+        "C": "The cataloguer, before the document is shelved",
+        "D": "The author, before the document is published"
+      },
+      "answer": "A",
+      "explanation": "In post-coordinate indexing concepts are assigned separately as individual terms, and it is the searcher or the retrieval system that combines them together at the moment of searching."
+    },
+    {
+      "n": 2,
+      "stem": "Which statement gives two correct differences between pre-coordinate and post-coordinate indexing?",
+      "options": {
+        "A": "Pre-coordinate combines concepts while the document is being indexed; post-coordinate leaves each term separately searchable for combination later, during retrieval",
+        "B": "Pre-coordinate combines concepts during retrieval; post-coordinate combines them before indexing",
+        "C": "Both systems combine concepts only at the point of searching",
+        "D": "Pre-coordinate leaves each term separately searchable; post-coordinate combines them in advance"
+      },
+      "answer": "A",
+      "explanation": "The essential difference is timing: pre-coordinate indexing combines concepts while the document is being indexed, whereas post-coordinate indexing leaves each term separately searchable and lets the combination happen later, during retrieval."
+    },
+    {
+      "n": 3,
+      "stem": "What is Uniterm indexing?",
+      "options": {
+        "A": "An early post-coordinate approach that assigns individual, single terms to documents and combines them only at the point of retrieval",
+        "B": "A pre-coordinate method that derives entries from a classification chain",
+        "C": "A classified display that groups terms alphabetically from A to Z",
+        "D": "A syntactic system that uses role operators to preserve context"
+      },
+      "answer": "A",
+      "explanation": "Uniterm indexing is an early and influential example of the post-coordinate approach: individual, single terms are assigned to documents and combined only at the point of retrieval."
+    },
+    {
+      "n": 4,
+      "stem": "Why can post-coordinate searching produce high recall but low precision if handled poorly?",
+      "options": {
+        "A": "Results can be affected by inconsistent or uncontrolled terminology, and a poorly formed search can retrieve many irrelevant documents",
+        "B": "Because the indexer must anticipate every useful combination in advance",
+        "C": "Because free-text searching never matches synonyms of a word",
+        "D": "Because optical coincidence cards cannot be combined electronically"
+      },
+      "answer": "A",
+      "explanation": "Post-coordinate flexibility comes at a cost: results can be affected by inconsistent or uncontrolled terminology, and a poorly formed search can produce high recall but low precision."
+    },
+    {
+      "n": 5,
+      "stem": "Which problem can free-text searching suffer from?",
+      "options": {
+        "A": "Synonyms not being matched, ambiguous words, and variations in spelling",
+        "B": "The requirement that every document receive a controlled vocabulary term",
+        "C": "The impossibility of combining two or three terms with AND",
+        "D": "The loss of all access points except the leading term"
+      },
+      "answer": "A",
+      "explanation": "Free-text searching looks directly in titles, abstracts or full text without relying entirely on a controlled vocabulary, so it can suffer from synonyms not being matched, ambiguous words, and variations in spelling."
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "chapter": 3,
+  "source": "lms-authored",
+  "questions": [
+    {
+      "n": 1,
+      "stem": "In indexing, how are semantics and syntax distinguished?",
+      "options": {
+        "A": "Semantics is the study of meaning and how concepts relate to one another, while syntax concerns how concepts are combined or ordered when they are expressed together.",
+        "B": "Semantics deals with alphabetical arrangement, while syntax deals with page numbering.",
+        "C": "Semantics governs cross-references, while syntax governs the choice of headings.",
+        "D": "Semantics and syntax are two names for the same process of assigning terms."
+      },
+      "answer": "A",
+      "explanation": "In indexing, semantic relationships describe how concepts and the terms representing them relate to one another. Syntax is about how concepts are combined or ordered when they are expressed together, and good syntactic control preserves those relationships."
+    },
+    {
+      "n": 2,
+      "stem": "Which of the following best illustrates an equivalence relationship?",
+      "options": {
+        "A": "A Broader Term and a Narrower Term placed at different levels of a hierarchy.",
+        "B": "Two or more different terms that can represent the same concept, with one chosen as the preferred term and the others marked non-preferred.",
+        "C": "Two associated concepts that are neither synonyms nor in a broader–narrower relationship.",
+        "D": "The sequence in which concepts appear in a coordinated indexing expression."
+      },
+      "answer": "B",
+      "explanation": "Equivalence connects two or more different terms that can represent the same concept, or concepts close enough to be treated as the same for retrieval purposes. One term is usually chosen as the preferred term while the others are marked non-preferred."
+    },
+    {
+      "n": 3,
+      "stem": "What do BT and NT indicate in a hierarchical relationship?",
+      "options": {
+        "A": "BT points from a broader concept down to its narrower concepts, while NT points up from a narrower concept to its broader concept.",
+        "B": "BT represents the more general concept, while NT represents the more specific one.",
+        "C": "BT and NT are used only for terms that are exact synonyms.",
+        "D": "BT stands for backup term and NT stands for a term that is not indexed."
+      },
+      "answer": "B",
+      "explanation": "A hierarchical relationship connects a general concept to a more specific one: a Broader Term (BT) represents the more general concept, while a Narrower Term (NT) represents the more specific one. Libraries is a Broader Term for University Libraries."
+    },
+    {
+      "n": 4,
+      "stem": "What does a Related Term (RT) connection indicate?",
+      "options": {
+        "A": "The two terms are exact synonyms that can replace each other.",
+        "B": "One concept is a broader or narrower version of the other.",
+        "C": "The two concepts are meaningfully associated but are neither synonyms nor in a broader–narrower relationship, as with Libraries and Librarians.",
+        "D": "One term is the preferred form and the other is a non-preferred variant of it."
+      },
+      "answer": "C",
+      "explanation": "A Related Term (RT) connects two concepts that are meaningfully associated with one another but are neither synonyms nor in a broader–narrower relationship. Libraries and Librarians are closely related even though neither is a broader or narrower version of the other."
+    },
+    {
+      "n": 5,
+      "stem": "Why is syntax important in the design of an indexing system?",
+      "options": {
+        "A": "Because it fixes the alphabetical order in which entries are listed.",
+        "B": "Because good syntactic control prevents an index entry from becoming a meaningless list of separate words and instead preserves the relationships among the concepts being described.",
+        "C": "Because it replaces the need for a controlled vocabulary.",
+        "D": "Because it determines how many page locators each entry receives."
+      },
+      "answer": "B",
+      "explanation": "While semantics is about meaning, syntax is about how concepts are combined or ordered when expressed together. Good syntactic control prevents an index entry from becoming a meaningless list of separate words."
+    }
+  ]
+}

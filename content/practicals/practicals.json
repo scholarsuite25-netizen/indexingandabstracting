@@ -1,0 +1,77 @@
+{
+  "source": "supplied",
+  "activities": [
+    {
+      "n": 1,
+      "group": "Thesaurus Construction",
+      "title": "Construct a thesaurus entry for University Libraries",
+      "instructions_md": "1. Construct a thesaurus entry for the term University Libraries, including one Broader Term, two Narrower Terms, two Related Terms, and one UF reference.",
+      "source": "supplied",
+      "position": 1
+    },
+    {
+      "n": 2,
+      "group": "Thesaurus Construction",
+      "title": "Construct a thesaurus entry for Information Literacy",
+      "instructions_md": "2. Construct a thesaurus entry for the term Information Literacy, and justify each relationship you establish.",
+      "source": "supplied",
+      "position": 2
+    },
+    {
+      "n": 3,
+      "group": "Indexing Practice",
+      "title": "Index the subject on social media use by postgraduate students",
+      "instructions_md": "Index the subject “Use of social media by postgraduate students for academic communication.” Identify at least four concepts, and explain the reasoning behind each choice.",
+      "source": "supplied",
+      "position": 3
+    },
+    {
+      "n": 4,
+      "group": "Further Indexing Practice",
+      "title": "Propose index terms for three titles",
+      "instructions_md": "For each title below, propose at least four appropriate index terms and briefly justify your choices:\n1. “Use of Social Media by University Students for Academic Research in Nigeria.”\n2. “Application of Artificial Intelligence in Academic Libraries.”\n3. “Preservation of Indigenous Knowledge Resources in Nigerian University Libraries.”",
+      "source": "supplied",
+      "position": 4
+    },
+    {
+      "n": 5,
+      "group": "PRECIS Preparation",
+      "title": "Analyse a PRECIS statement",
+      "instructions_md": "Analyse the statement “Postgraduate students use electronic databases for academic research.” Identify the agent, the action, the object, and the purpose within this statement before applying the exact operator rules prescribed by your own course.",
+      "source": "supplied",
+      "position": 5
+    },
+    {
+      "n": 6,
+      "group": "KWIC and KWOC Practice",
+      "title": "Create KWIC and KWOC entries",
+      "instructions_md": "Create both a KWIC entry and a KWOC entry for the title “Artificial Intelligence Applications in Nigerian University Libraries.”",
+      "source": "supplied",
+      "position": 6
+    },
+    {
+      "n": 7,
+      "group": "Evaluation Practice",
+      "title": "Calculate precision, recall and fallout",
+      "instructions_md": "A collection contains 800 documents, of which 160 are relevant to a particular search. That search retrieves 100 documents, of which 70 are relevant. Calculate the precision, recall, and fallout for this search.",
+      "source": "supplied",
+      "position": 7
+    },
+    {
+      "n": 8,
+      "group": "Abstracting Practice",
+      "title": "Write indicative and informative abstracts",
+      "instructions_md": "Write a 60–80 word indicative abstract and a separate 100–150 word informative abstract for a hypothetical paper about information-literacy training and database use among postgraduate students.",
+      "source": "supplied",
+      "position": 8
+    },
+    {
+      "n": 9,
+      "group": "Full Abstracting Exercise",
+      "title": "Prepare a full abstract from a research article",
+      "instructions_md": "Working from a research article of approximately 1,500–3,000 words (your own choice, or one supplied by your lecturer):\n1. Identify the title.\n2. Identify the research problem.\n3. Identify the objectives.\n4. Identify the methodology.\n5. Identify the major findings.\n6. Identify the conclusion.\n7. Prepare a 150–250 word informative abstract.\n8. Identify five appropriate keywords.",
+      "source": "supplied",
+      "position": 9
+    }
+  ]
+}

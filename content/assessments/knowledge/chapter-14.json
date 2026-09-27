@@ -1,0 +1,66 @@
+{
+  "chapter": 14,
+  "source": "lms-authored",
+  "questions": [
+    {
+      "n": 1,
+      "stem": "Which of the following is a stated limitation of automatic indexing?",
+      "options": {
+        "A": "It cannot analyse titles, abstracts, full text or metadata.",
+        "B": "It is too slow to handle large-scale indexing.",
+        "C": "Algorithmic context may be misunderstood and semantic relationships may be missed, so human quality control is still generally necessary.",
+        "D": "It requires an indexer to manually assign every term to a document."
+      },
+      "answer": "C",
+      "explanation": "Automatic indexing is rapid and suits very large collections, but algorithmic context may be misunderstood, ambiguous terms misinterpreted and semantic relationships missed, so human quality control is still generally necessary."
+    },
+    {
+      "n": 2,
+      "stem": "Which group lists the three computer-assisted indexing software packages described in this chapter?",
+      "options": {
+        "A": "CINDEX, Sky Index and Macrex",
+        "B": "Scopus, Web of Science and PubMed/MEDLINE",
+        "C": "Natural Language Processing, Machine Learning and text mining",
+        "D": "ERIC, Chemical Abstracts and Library and Information Science Abstracts"
+      },
+      "answer": "A",
+      "explanation": "CINDEX, Sky Index and Macrex are the widely recognised computer-assisted indexing packages named in section 14.3; the other options are databases or AI techniques."
+    },
+    {
+      "n": 3,
+      "stem": "What is the difference between a hyperlinked index and a dynamic index?",
+      "options": {
+        "A": "A hyperlinked index links an entry directly to the relevant section of the document, while a dynamic index updates automatically whenever the underlying document is revised.",
+        "B": "A dynamic index links an entry directly to the relevant page, while a hyperlinked index must be completely reworked after any change to pagination.",
+        "C": "A hyperlinked index can only link to figures and tables, while a dynamic index can only link to external websites.",
+        "D": "A dynamic index is used only for printed books, while a hyperlinked index is used only for online databases."
+      },
+      "answer": "A",
+      "explanation": "In a hyperlinked index an entry links directly to the relevant section so the reader can click through immediately; dynamic indexes update automatically when the document changes, unlike a printed index that must be reworked after any change to pagination."
+    },
+    {
+      "n": 4,
+      "stem": "Which of the following is a task that AI can assist with in indexing and abstracting?",
+      "options": {
+        "A": "Deciding the appropriate level of specificity for an ambiguous term",
+        "B": "Determining which concepts are truly significant to a specialised audience",
+        "C": "Extracting keywords automatically from a document",
+        "D": "Judging meanings that are implied rather than stated"
+      },
+      "answer": "C",
+      "explanation": "Section 14.5 lists extracting keywords automatically among the tasks AI can assist with; judging specificity, significance and implied meanings are examples of work that still requires the human indexer."
+    },
+    {
+      "n": 5,
+      "stem": "Which of the following is a stated challenge of digital or AI-assisted indexing?",
+      "options": {
+        "A": "Inconsistencies in AI-generated terminology",
+        "B": "Faster index preparation",
+        "C": "Improved accessibility through searchable, navigable indexes",
+        "D": "Easier correction and revision of entries"
+      },
+      "answer": "A",
+      "explanation": "Section 14.7 lists inconsistencies in AI-generated terminology among the recurring challenges; faster preparation, improved accessibility and easier correction are benefits, not challenges."
+    }
+  ]
+}

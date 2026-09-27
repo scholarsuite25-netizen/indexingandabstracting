@@ -1,0 +1,66 @@
+{
+  "chapter": 6,
+  "source": "lms-authored",
+  "questions": [
+    {
+      "n": 1,
+      "stem": "In pre-coordinate indexing, when are the concepts of a subject combined into a single indexing expression?",
+      "options": {
+        "A": "At the moment the document is indexed — before any user ever performs a search",
+        "B": "At the moment of searching, by the retrieval system",
+        "C": "Only after a user submits a query containing those terms",
+        "D": "When the document is shelved, by the cataloguer"
+      },
+      "answer": "A",
+      "explanation": "In pre-coordinate indexing the concepts are combined into a single indexing expression at the moment the document is indexed — before any user ever performs a search."
+    },
+    {
+      "n": 2,
+      "stem": "Why might pre-coordinate indexing be considered less flexible than post-coordinate indexing?",
+      "options": {
+        "A": "The indexer must try to anticipate which combinations of concepts will actually be useful to future users",
+        "B": "It only allows one term to be assigned to each document",
+        "C": "It prevents any combination of terms from ever being searched",
+        "D": "It requires every search to use a classified display"
+      },
+      "answer": "A",
+      "explanation": "The indexer, not the searcher, decides how concepts relate in advance, and anticipating which combinations will be useful to future users is not always possible with certainty."
+    },
+    {
+      "n": 3,
+      "stem": "Which scholar is closely associated with chain indexing?",
+      "options": {
+        "A": "Derek Austin",
+        "B": "S. R. Ranganathan",
+        "C": "H. P. Luhn",
+        "D": "Gerard Salton"
+      },
+      "answer": "B",
+      "explanation": "Chain indexing is closely associated with the Indian librarian and classification theorist S. R. Ranganathan; it derives subject entries from the hierarchical chain of concepts in a classification scheme."
+    },
+    {
+      "n": 4,
+      "stem": "What is the purpose of cycling (cycled) indexing?",
+      "options": {
+        "A": "To vary the position or focus of terms so each significant component is brought into the leading position, giving several access points to the same document",
+        "B": "To repeat one index entry several times so it appears more often in the index",
+        "C": "To merge two separate classification schemes into a single chain",
+        "D": "To arrange every index entry alphabetically from A to Z"
+      },
+      "answer": "A",
+      "explanation": "Cyclic indexing generates multiple index entries by varying the position or focus of terms within a compound subject, so that each significant component is in turn brought into the leading position."
+    },
+    {
+      "n": 5,
+      "stem": "Which of the following is listed as an advantage of pre-coordinate systems?",
+      "options": {
+        "A": "Explicit relationships between concepts are preserved",
+        "B": "Users never need to understand the indexing structure",
+        "C": "No intellectual effort is required from the indexer",
+        "D": "Search combinations always differ from those the indexer anticipated"
+      },
+      "answer": "A",
+      "explanation": "Controlled and predictable representations, preserved explicit relationships, consistent access points and precise subject access are the listed advantages; the limitations include heavy intellectual effort and users needing to understand the structure."
+    }
+  ]
+}

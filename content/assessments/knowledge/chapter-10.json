@@ -1,0 +1,66 @@
+{
+  "chapter": 10,
+  "source": "lms-authored",
+  "questions": [
+    {
+      "n": 1,
+      "stem": "Exhaustivity refers to:",
+      "options": {
+        "A": "How precisely an indexing term represents the actual subject of the document",
+        "B": "The extent to which the important concepts within a document are represented by the index terms assigned to it",
+        "C": "Whether index terms correctly represent the document's content",
+        "D": "The index's coverage of the documents in the collection as a whole"
+      },
+      "answer": "B",
+      "explanation": "Exhaustivity is about how many of a document's important concepts are represented; a more exhaustive approach provides more conceptual access points."
+    },
+    {
+      "n": 2,
+      "stem": "For a document specifically about university libraries, which term shows greater specificity?",
+      "options": {
+        "A": "Libraries",
+        "B": "Information resources",
+        "C": "Academic institutions",
+        "D": "University Libraries"
+      },
+      "answer": "D",
+      "explanation": "Specificity refers to how precisely a term represents the actual subject, and 'University Libraries' is more precise than the broader 'Libraries'."
+    },
+    {
+      "n": 3,
+      "stem": "Which of the following is a recognised criterion for evaluating an index, beyond relevance, exhaustivity, and specificity?",
+      "options": {
+        "A": "Consistency",
+        "B": "Popularity",
+        "C": "Profitability",
+        "D": "Prestige"
+      },
+      "answer": "A",
+      "explanation": "The additional criteria listed are accuracy, consistency, usability, currency, and coverage — consistency means different indexers produce reasonably similar results."
+    },
+    {
+      "n": 4,
+      "stem": "What was important about the Cranfield research tradition?",
+      "options": {
+        "A": "It proved that one indexing approach is always superior to all others",
+        "B": "It replaced human indexers with automatic subject analysis",
+        "C": "It introduced test collections, sets of queries, and formal relevance judgements, allowing retrieval results to be measured rather than merely asserted",
+        "D": "It showed that evaluation of retrieval systems is unnecessary"
+      },
+      "answer": "C",
+      "explanation": "The Cranfield programme, associated with Cyril Cleverdon, established a systematic, evidence-based approach using test collections, queries, and relevance judgements."
+    },
+    {
+      "n": 5,
+      "stem": "A search returns very many irrelevant documents. Which problem does this illustrate?",
+      "options": {
+        "A": "Under-retrieval",
+        "B": "Over-retrieval",
+        "C": "Low exhaustivity",
+        "D": "Poor currency of vocabulary"
+      },
+      "answer": "B",
+      "explanation": "Over-retrieval occurs when a search returns too many irrelevant documents; under-retrieval occurs when relevant documents are missed altogether."
+    }
+  ]
+}

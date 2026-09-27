@@ -1,0 +1,26 @@
+{
+  "source": "lms-authored",
+  "items": [
+    {
+      "title": "Welcome to LIS 815 - Indexing and Abstracting",
+      "body_md": "The course is seven modules and fourteen chapters, in the order of the supplied study guide. Read a chapter, answer its knowledge check, and the next lesson opens - the system checks the reading requirement for you, so a quick click through will not move you on.\n\nYour notes and bookmarks belong to you alone. Start on the course page and use **Continue** whenever you come back.",
+      "audience": "all",
+      "pinned": true,
+      "status": "published"
+    },
+    {
+      "title": "How your progress is recorded",
+      "body_md": "While you read, the platform records how much of a lesson you have covered and how long you spent on it. **Mark as completed** only works once you have read the required share of the lesson and passed any knowledge check attached to it, and it always tells you plainly what is missing.\n\nYou can close the browser and come back later: your place, your last lesson and your last section are waiting.",
+      "audience": "enrolled",
+      "pinned": false,
+      "status": "published"
+    },
+    {
+      "title": "Examinations: the objective paper, then the theory paper",
+      "body_md": "The objective paper has 100 multiple-choice questions in 90 minutes and is marked automatically the moment you submit. You need **70%** to open the theory examination.\n\nThe theory paper shows you 7 questions and you answer exactly 5, each worth 20 marks, in 2 hours. Your lecturer reads and marks each answer and releases the result with feedback. Both papers, and every attempt you have made, are listed under **Assessments**.",
+      "audience": "enrolled",
+      "pinned": false,
+      "status": "published"
+    }
+  ]
+}

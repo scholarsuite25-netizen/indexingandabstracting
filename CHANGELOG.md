@@ -1,0 +1,140 @@
+# Changelog
+
+## 2026-09-27 — Phases 6–8 live gate closed: every migration applied, `test:all` green
+
+- **The database is on your project, all 10 migrations.** `DATABASE_URL` was added to `.env.local`, `npm run db:push` connected through the IPv4 pooler (the direct address is IPv6-only and unreachable from this machine; the pooler's certificate is signed by Supabase's own CA, so the script falls back to trusting it only for that one error), and the Phase 6 assessment engine, Phase 7 theory examination, Phase 8 study-tooling hardening and the new `0010` below are installed. `npm run db:push -- --check` says so and changes nothing.
+- **`db:push` no longer trusts a marker that never moves.** It decided "already up to date" from the presence of the Phase 7 functions, which stays true for every later migration — a new file would have been silently skipped, which is exactly what happened to `0010` on the first attempt. It now stores a fingerprint of the SQL it sent (`schema_sql_sha256` in `system_settings`) and re-sends only when that fingerprint changes; every migration is written to be re-runnable, so a re-send is harmless. `--check` reports the same thing.
+- **Migration `0010_released_marks_only.sql` — the mark stays off the learner's row until release.** `grade_theory_answer()` used to publish a running total after the first answer was marked, on the `theory_submissions` row the learner reads for their "where is my paper" list. Now `total_score` is written only once all five answers carry a mark, and the learner's own row cannot be selected while it holds a mark they have not been given (`released_at` is what turns that column on for them). A released paper can no longer be re-marked, and releasing twice says so instead of returning quietly. `check:sql` asserts the null-until-the-end total; `test:theory` asserts the same against the live project.
+- **The theory suite writes theory answers the way a learner has to.** Phase 7 removed the direct `UPDATE` on `theory_answers`, so `rls-tests.mjs` was matching zero rows and then handing in an empty paper. It now reads its five answer ids and calls `save_theory_answer()` for each, and still proves the direct write changes nothing.
+- **The assessment suite was fixed against reality rather than expectations.** Four of its failures were the test's own: RLS *filters* rows instead of raising, so "cannot read `questions`" now asserts zero rows (as `test:rls` always did); the service role completes the lesson chain upstream of the knowledge check, which is what the file header promised and the code did not do; the `not_attempted` gate check moved ahead of the throwaway timed paper, which is also an objective attempt; and the staff check creates its own `course_staff` row because the seed carries no staff accounts yet.
+- **The theory suite needed enrolling.** `verify-theory.mjs` never called `enroll_self`, so the first call reported "Not enrolled in this course" and everything after it fell over; its objective-score helper also upserted on `id` it never supplied. Both fixed, plus the same empty-rows assertion for `questions`.
+- **Suites are scoped to the LIS 815 course.** `verify-progression`, `verify-pages` and `verify-tooling` queried lessons and chapters across every course in the database, so the `RLS-TEST-*` courses left behind by a failed run's cleanup polluted the reading order (4 extra lessons, and a learner asked to complete a lesson from a course they had not joined). Chapters are now reached through the course's modules, and the leftovers — 4 courses and 9 test accounts — were deleted.
+- **`test:all` is one command with a memory.** `scripts/test-all.mjs` replaces the chain of `&&`: it runs the seven suites in order, stops at the first genuine failure, and retries a suite *only* when its output shows the connection itself broke (`fetch failed`). Your line does drop requests now and then, and a red run should still mean a real problem. It also leaves a few seconds between the live suites.
+- Green: `lint`, `typecheck`, `build`, `check:content` **31 ✅**, `check:sql` **10 migrations valid**, `test:rls` **48 ✅**, `test:progress` **13 ✅**, `test:assessment` **29 ✅**, `test:theory` **34 ✅**, `test:tooling` **20 ✅** — 144 checks — and `test:pages` **17 ✅** against a production build served on port 3100 (downloads, study-tool pages, reader, dashboard).
+
+## 2026-09-26 — Phase 8: learner tooling (glossary, notes, search, announcements, resources, revision)
+
+- Seven new signed-in pages under `/dashboard`: **glossary**, **search**, **announcements**, **resources**, **revision**, **notes**, **bookmarks**, plus a **Study tools** menu in the nav and quick links with an unread-notification count on the dashboard. `lib/data/tooling.ts` holds every fetcher they share.
+- **Notes and bookmarks are personal by construction.** They are written from the reader (highlight text, or the "Keep this lesson" card in the rail, which now shows a note count and the saved state) and read back through `lib/data/tooling.ts`, so one learner's rows are never in another learner's query. `npm run test:tooling` proves that B cannot read, edit or delete A's note, and sees none of A's bookmarks; `test:rls` still covers the same ground in PGlite.
+- **Course search** calls `search_content()` on the server and marks the matched words in the snippet. It never returns a lesson the learner has not unlocked — the test makes that the point: "PRECIS" and "recall" come back for any enrolled learner, while "scope note" returns the chapter that teaches it when asked as staff and **nothing** when asked as a learner who has not reached chapter 5.
+- **Announcements** come from `content/announcements/announcements.json` (three published notices) and the page also holds in-app **notifications**: a learner sees only their own, and can mark them read but never rewrite them (the rewrite guard is migration `0009`, asserted in `check:sql`).
+- **Resources centre** seeds `content/resources/resources.json`: the study-guide PDF and the help page for students, the two supplied examination papers as `kind = exam_paper, visibility = staff`. Files download through `/api/resources/<id>`, which answers 401 without a session and 404 when row-level security hides the row, and serves only files stored under the repository's `docs/` folder.
+- **Revision centre** is Appendix B (`content/revision/revision.json`: 15 short-answer questions with model answers, 10 essay questions) plus the twelve-line final checklist from `content/orientation/revision-checklist.md`. It reads from the repository rather than the database, so it works on your project today; the progress ticks are saved in the browser and the page says so.
+- **Migration `0009_study_tooling.sql`**: `resources_select` tightened so an examination paper is invisible even if a row claims `visibility = 'students'`, and a trigger that lets notifications be marked read and nothing else. It is applied in `check:sql` (PGlite, idempotent, with student-visibility probes) and will arrive with your next `npm run db:push`. Until then the live project is safe anyway, because the seeded papers are staff-only — `test:tooling` prints a `NOTE` rather than pretending the harder rule is live.
+- **Seeding** now loads resources and announcements, so `npm run db:seed` adds 7 rows (513 total) and stays idempotent; `check:content` grew to **31 checks** — a new section [7] validates the resource and announcement files (kinds, visibility, an examination paper that must be staff-only, the file paths actually being in the repository, audience and status) and `content/FORMAT.md` documents both formats — and `supabase/combined_migrations.sql` regenerated over 9 migrations / 4,930 lines (`combine-sql.mjs` now discovers migration files instead of listing them).
+- **Two new gates.** `scripts/verify-tooling.mjs` + `npm run test:tooling`: 20 checks against your project covering search, note and bookmark privacy, glossary enrolment, resource visibility, announcement scheduling, notification privacy and the revision content — it is part of `test:all`. `scripts/verify-pages.mjs` grew from 7 to **17 checks**: each new page as a signed-in learner, the dashboard's links into them, and the three download rules (401 signed out, a real `%PDF` attachment for a student, 404 for an examination paper).
+- Build detail worth recording: Turbopack warned that resolving the stored file path traced the whole project into the server bundle, so downloads now join `process.cwd(), "docs", basename(...)` — statically scoped, traversal-proof, and the warning is gone.
+- Green at this point: `lint`, `typecheck`, `build`, `check:content` 31 ✅, `check:sql` All migrations valid, `test:rls` 48 ✅, `test:progress` 13 ✅, `test:tooling` 20 ✅, `test:pages` 17 ✅. `test:all` still stops at `test:assessment`, because Phases 6 and 7 are waiting on `npm run db:push` (see the entry below).
+
+## 2026-09-26 — Phase 5 gate closed: `test:pages` proves the reader over real HTTP
+
+- `scripts/verify-pages.mjs` + `npm run test:pages` drives a production build (`npm run start`) over HTTP instead of only talking to the API — **7 checks, 7 passed, 0 failed**.
+- Signed out, `/dashboard`, `/dashboard/course`, `/dashboard/lessons/<uuid>` and `/profile` all answer 307 to `/login?next=…`, while `/`, `/help` and `/login` still answer 200. Signed in, the dashboard shows the learner's progress, the course page lists the outline with lesson states, a completed lesson renders its sections, a locked lesson page contains no lesson content, and an unknown lesson id shows the not-found page rather than a reader.
+- One honest quirk the test records rather than hides: the root `app/loading.tsx` shell streams before `notFound()` can run, so an unknown lesson id answers **HTTP 200 with the 404 UI**. The assertion therefore checks what the learner sees and that no reader content leaked — not the status line.
+- The reader's rail no longer tells a `check` lesson that "the questions open in the next stage of the build". Phase 6 runs the knowledge check inside the lesson now, so the rail states the pass mark.
+- Green at this point: `typecheck`, `lint`, `build`, `check:sql`, `check:content`, `test:progress` 13/13, `test:pages` 7/7.
+
+## 2026-09-26 — No more pasting SQL into Supabase: `npm run db:push`
+
+- The recurring request to copy `supabase/combined_migrations.sql` into the Supabase SQL Editor is gone. `npm run db:push` applies every migration to the live project over a normal encrypted database connection, prints what it changed, and is safe to run twice.
+- Why it was never automated before: the only credential in the project was the service-role key, and PostgREST cannot run DDL with it — a service-role-callable `exec_sql` function would be a permanent backdoor into the database, so it was never created. Supabase's direct database address is now IPv6-only, which this machine cannot reach, so the script connects through the project's IPv4 pooler address and finds the right region by trying them.
+- Set-up for the owner is one copy-paste, once: the connection string from the dashboard's **Settings > Database** panel, pasted into `.env.local` as `DATABASE_URL`. If they would rather not store it, the same command prompts for the password and does not save it. `.env*` is already git-ignored, so it can never be committed.
+- Failure is safe by design: the whole migration file runs as a single batch inside one implicit transaction, so a failure anywhere leaves the database exactly as it was, and the error is reported with the offending line of the migration file and a plain-English explanation.
+- `npm run db:push -- --check` reports what the live database has (Postgres version, table and policy counts, whether the Phase 7 engine is installed) and changes nothing.
+- `npm run test:all` now runs every check in order — content, migrations, security rules, progression, objective exam, theory exam — for one pass/fail summary.
+- `NONCODER_SETUP.md` and `README.md` rewritten around the new command. `lint` and `typecheck` clean.
+
+## 2026-09-26 — Phase 7: theory examination (5 of 7), end to end
+
+- Migration `0008_theory_exam.sql` takes the written paper from "open" to "released": autosaving with a word count (`total_words`), a countdown that closes the paper on its own, an enforced exactly-5-of-7 selection, a learner workspace, a staff marking queue, a staff grading view, a released result, claiming, per-answer marking with a running total, re-grading with a before/after audit entry, overall feedback, release, and the learner's notification.
+- Expiry is a value, not an exception. `save_theory_answer()` returns `{ expired: true, saved: false }` after it has closed the paper, because raising would roll the closure back. A timed-out paper is handed in with whatever was written and goes into the queue like any other.
+- **Three database bugs closed.** `grade_theory_answer()` used to accept a paper still in draft, and a re-grade overwrote the score with nothing in the audit log. Then the bigger one: the write policies that let a learner update their own draft row are **removed entirely**. Row-level security is per row, not per column, so an update policy on a draft would have let a learner move their own `expires_at` to next year and set their own `total_score`. Every write now goes through a `SECURITY DEFINER` function that re-checks ownership, the draft state and the clock, and a direct `UPDATE` matches zero rows. Proven in both the PGlite suite and `npm run test:theory`.
+- Learner: `/dashboard/theory/[submissionId]` (the paper — choose five, write, autosave, countdown, hand in), `/dashboard/theory/results/[submissionId]` (the mark, per-question feedback, the comment on the paper, and an honest "waiting to be marked" state while it is not out), plus a start/resume button on the assessment centre that says where an in-progress paper is and lists every paper already handed in.
+- Marker: `/admin/theory` (every handed-in paper; a learner's draft is never listed) and `/admin/theory/[submissionId]` (the learner's writing beside the model answer, a mark out of 20, feedback, "marked against", a comment on the paper, and release once all five are marked). Drafts and released papers are read-only, so the screen never offers a click the server would refuse.
+- Three autosave bugs fixed in the runner: one debounce timer was shared by all seven questions, so moving on from a question you had just written to cancelled the save of the one behind it (now one timer per question, and leaving a question flushes it); the textarea was editable before the selection had been confirmed, which the server refuses (now only server-confirmed questions are writable); and a setState-in-effect was used to mirror the clock.
+- `scripts/verify-theory.mjs` + `npm run test:theory`: 24 checks against the live project, walking one paper the whole way — gate, open, resume, five-of-seven, autosave, hand in, close, queue, claim, mark, re-grade, feedback, release, notification, result, and the out-of-time path. Every action runs as a signed-in learner or a signed-in marker over the anon key, so the security in front of it is part of what is proved.
+- `check:sql` → All migrations valid (PGlite: clean apply, idempotent second run, 37 tables, 76 policies, plus the theory workflow tests). `check:content` → 25 checks. `typecheck`, `lint`, `build` (24 routes) all clean. `supabase/combined_migrations.sql` regenerated: 8 migrations, 4,861 lines, pure ASCII.
+- **Live gate:** `npm run db:push` (see the entry above) then `npm run test:assessment` and `npm run test:theory`.
+
+## 2026-09-26 — Phase 6: assessment engine
+
+- Migration `0007_assessment_engine.sql` replaces the placeholder attempt logic with a real engine: `start_objective_attempt`, `save_answer`, `submit_objective_attempt`, `get_attempt_snapshot`, `get_attempt_results`, `assessment_centre` and `theory_eligibility`, plus the lessons that must be finished before the paper opens, a reading window and the two-gate unlock.
+- The attempt is a real row set, not a blob: `assessment_attempts` and `attempt_answers`, so a reload resumes exactly where the learner left off, changing an answer replaces it rather than adding a second row, and the server marks the paper instead of trusting the browser. An expired attempt is marked from the answers it did save and says so, rather than being lost.
+- `is_correct` and `score` are never written by the client. Two `SECURITY DEFINER` helpers (`option_belongs_to_question`, `question_in_attempt`) do the ownership checks, because a policy subquery runs with the caller's own permissions and had been failing silently for every learner.
+- UI: the assessment centre `/dashboard/assessments` with the gate, the objective runner `/dashboard/assessments/attempt/[attemptId]` with autosave, a live clock and the server's own refusal as the message, and the released result `/dashboard/assessments/results/[attemptId]`.
+- `scripts/verify-assessment.mjs` + `npm run test:assessment`: the exam rules against the live project, including the timed-attempt path and the 70% gate at 0/69/70/100.
+- `check:sql` → All migrations valid. `check:content` → 25 checks. `typecheck`, `lint`, `build` clean.
+- **Still to do by hand:** apply the regenerated `supabase/combined_migrations.sql` in the Supabase SQL Editor, then run `npm run test:assessment`.
+
+## 2026-09-26 — Phase 2 gate closed: `test:rls` green against the live project
+
+- The corrected `supabase/combined_migrations.sql` was re-applied in the Supabase SQL Editor. `npm run test:rls` went from **39 passed / 9 failed** to **48 passed / 0 failed**: the search RPC works, students can record exam answers, the server marks the attempt, the 70% objective gate opens the theory exam, and the exactly-5-of-7 theory rules hold.
+- `scripts/combine-sql.mjs` now folds the handful of typographic characters used in the migrations to ASCII and **fails loudly** on any other non-ASCII character, so the hand-pasted file cannot be corrupted by an editor or clipboard using a different encoding.
+- `check:sql` gained a final gate: it applies `supabase/combined_migrations.sql` to an empty database and then a second time, proving the exact file that gets pasted is valid and idempotent.
+
+## 2026-09-25 — Phase 5: course reader and progression engine
+
+- Reader: `/dashboard/course` (7 modules → 14 chapters → 28 lessons, with locked/available/in-progress/completed states, progress ring and a "continue where you left off" link) and `/dashboard/lessons/[lessonId]` (Markdown sections by kind, breadcrumb, sticky rail with section scrollspy, prev/next across the whole course, resume on the last section read).
+- Reading is tracked client-side (scroll depth + section coverage + time, throttled) and written through the `record_reading_event()` RPC; `mark_lesson_complete()` decides completion server-side and returns a plain-English reason when it refuses. Self-enrolment through `enroll_self()`.
+- `scripts/verify-progression.mjs` + `npm run test:progress`: 13 checks against the live project — **13 passed, 0 failed** (locked content invisible to direct URL/API calls, reading threshold enforced with a readable message, chain intact, roll-up, tamper attempts refused, progress survives a fresh sign-in).
+- Fixed three assertion bugs in that suite that had been reporting false failures: it treated the knowledge-check lesson as if it had body text, asserted the wrong direction on a successful completion, and matched a literal `%` against a message that spells out "percent".
+- **Two real database bugs, found by `npm run test:rls` against the live project (39 ✅ / 9 ❌) and fixed in the migrations:**
+  - `search_content()` failed on every call with `operator does not exist: tsvector + tsvector` — the `+` operator for `tsvector` was removed in PostgreSQL 14; now `||`.
+  - No student could ever record an exam answer. The `attempt_answers` insert/update policies confirmed the chosen option with a subquery on `question_options`, a table students may not read — and a policy subquery runs with the caller's own permissions, so the check silently failed for every learner. New `SECURITY DEFINER` helpers `option_belongs_to_question()` and `question_in_attempt()` now do that work.
+- `check:sql` hardened so neither class of bug can return: it grants the Supabase API roles and finishes as the **`authenticated` role**, proving a student can enrol, search, record an answer, cannot set `is_correct`, cannot borrow another question's option, and that the server marks the attempt (50% from the saved answer). plpgsql bodies are not validated until they run, so calling every RPC matters.
+- `supabase/combined_migrations.sql` regenerated (safe to re-apply: `create or replace` / `drop … if exists` throughout). `test:progress` ✅ `check:sql` ✅ `check:content` ✅ `typecheck` ✅ `lint` ✅ `build` ✅.
+- Housekeeping: removed an unused font import in `app/layout.tsx` that was keeping `npm run lint` at one warning.
+
+## 2026-09-25 — Phase 4: content pipeline and seed
+
+- `content/FORMAT.md` defines the repo-first content format (Markdown + YAML frontmatter chapters, JSON assessment/glossary/practical/revision files, `source:` labelling on everything).
+- All supplied material transcribed verbatim: 14 chapter files (7 modules, TOC titles exact), 70 knowledge-check MCQs (`lms-authored` from review questions), the full **100-question objective paper with its answer key** (chapters tagged per BUILD_PLAN Appendix A), the **7 theory questions** with sub-part marks and model answers, Appendix A (9 practicals), Appendix B (15 short-answer + 10 essay + model outline), Appendix C (**42 glossary terms** — the plan's "53" was wrong), and 6 orientation pages (Start Here).
+- `scripts/validate-content.mjs` + `npm run check:content`: 25 checks — structure vs TOC, 5-MCQ knowledge sets, 100/100 stems **and** 400/400 options fuzzy-diffed against the extracted PDFs, theory marks sum to 20, glossary/practical/revision counts vs source, source-label audit, 100% section-fidelity coverage.
+- `scripts/seed.mjs` + `npm run db:seed`: idempotent seeder (find-by-natural-key → skip; `--force` updates; `--dry-run`; `--pglite` proves everything against a throwaway local Postgres with the real migrations — run 1 inserts 506 rows, run 2 inserts 0, all counts asserted). Assessment weights 20/15/15/50 seeded as source-attributed settings.
+- `content/ISSUES.md`: 18 source ambiguities documented, never silently fixed (glossary count, LIS_814 filenames, two-vs-three packages, extraction artefacts, odd headings, editorial chapter tags for Q99–Q100, …).
+- Gates: `check:content` ✅ `check:sql` ✅ `typecheck` ✅ `lint` ✅ `build` ✅.
+
+## 2026-09-25 — Phase 3: authentication and roles
+
+- Migration `0006_auth.sql`: `claim_first_superadmin()` (advisory-locked, one-time, audited), `superadmin_exists()`, `audit_role_change()` trigger on `user_roles`, `avatars` storage bucket with own-folder-only policies (guarded so it applies only on real Supabase).
+- Next 16 uses **`proxy.ts`** instead of `middleware.ts`: session refresh, unauthenticated visitors to protected routes → `/login?next=…`, signed-in users bounced off auth pages to their role home, `/admin` and `/superadmin` enforced by role before rendering.
+- Supabase SSR server helper (`lib/supabase/server.ts`) degrades gracefully when keys are missing; `lib/auth.ts` provides `getSessionUser` / `requireUser` / `requireRole` (server-only), `lib/roles.ts` provides client-safe role helpers (`homeForRole`, `safeNextPath`, `friendlyAuthError`).
+- Real sign-up / sign-in / password-reset / email-confirmation flows wired into the hand-built forms, including role-aware post-login redirect and a clear "Waiting for Supabase keys" state while `.env.local` is empty.
+- New routes: `/forgot-password`, `/reset-password`, `/auth/callback`, `/auth/confirm`, `/setup/claim-superadmin`, `/profile`, plus `/dashboard`, `/admin`, `/superadmin` areas with a shared app shell (role badge, responsive nav, sign-out).
+- Profile: name, institution, bio, optional avatar upload (2 MB limit) and password change.
+- `npm run check:sql` expanded: superadmin claim proven one-time, role granted, audit row written; fixed a `coalesce(uuid, '')` type error in the new audit trigger caught by the smoke tests.
+- Gate checks run: `typecheck` ✅ `lint` ✅ `build` ✅ (14 routes + proxy), production server probed — all protected routes land on `/login`, public routes 200.
+
+## 2026-09-25 — Phase 2: database, migrations and RLS
+
+- Five migrations written under `supabase/migrations/`: `0001_schema.sql` (37 tables), `0002_functions.sql` (security-definer RPCs and rules), `0003_rls.sql` (RLS on every table, 76 policies, column-guard triggers), `0004_seed_settings.sql` (roles, permissions, 14 settings), `0005_search.sql` (full-text search index, triggers, `search_content()`).
+- Server-side rules enforced in Postgres: reading threshold + knowledge-check gating for lesson completion, prerequisite chain, 70% objective gate for the theory exam, exactly-5-of-7 theory selection, server-side marking, single-correct-option invariant, automatic certificate eligibility.
+- Question content is served only through RPCs (`get_attempt_snapshot`, `get_attempt_results`, `get_theory_questions`) — students can never read `questions`/`question_options` directly, and correct answers/model answers are withheld until marking (academic-integrity rule from discovery).
+- `scripts/validate-sql.mjs` + `npm run check:sql`: migrations validated against PGlite (Postgres-in-WASM) with Supabase auth/roles emulation — clean apply, idempotent second run, RLS coverage and invariant smoke tests all pass.
+- `scripts/rls-tests.mjs` + `npm run test:rls`: 40+ negative/positive security tests against a real Supabase project (runs once `.env.local` keys are supplied).
+- `typecheck` ✅ `lint` ✅ after Phase 2.
+
+## 2026-09-25 — Phase 1: scaffold and design system
+
+- Discovery phase completed: all three source PDFs extracted to `docs/extracted/*.txt` and analysed; `BUILD_PLAN.md` and `IMPLEMENTATION_CHECKLIST.md` produced.
+- Next.js 16 + TypeScript + Tailwind CSS 4 scaffold created (App Router, no `src/` folder, `@/*` import alias).
+- Design tokens (academic palette, typography, spacing, focus/reduced-motion/print rules) defined in `app/globals.css`.
+- Core UI kit added under `components/ui`: Button, ButtonLink, Card, Badge, Input/Textarea/Label, Progress, Skeleton, EmptyState, Dialog (native `<dialog>`), Tabs, Table, Callout, Toaster.
+- Public landing page, help/FAQ page, sign-in and sign-up screens, 404, loading and error pages added.
+- Environment validation (`lib/env.ts`, server-only) and Supabase browser client helper added.
+- Security headers added in `next.config.ts`.
+- `DECISIONS.md` started (D1–D13).
+
+## 2026-09-25 — Expanded OpenCode package
+
+Added reusable Markdown specifications for:
+- architecture
+- database design
+- assessment rules
+- content enrichment
+- OpenCode build workflow
+- non-coder setup
+- QA and acceptance testing
+- AI/indexing enrichment
+
+The three supplied source PDFs remain in `/docs` and are treated as the authoritative source materials for the core LIS 815 course and examinations.

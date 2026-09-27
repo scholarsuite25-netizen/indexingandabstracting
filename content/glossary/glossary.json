@@ -1,0 +1,257 @@
+{
+  "source": "supplied",
+  "terms": [
+    {
+      "term": "Abstract",
+      "definition": "A concise representation of a document’s content.",
+      "source": "supplied",
+      "position": 1
+    },
+    {
+      "term": "Abstracting",
+      "definition": "The process of preparing abstracts.",
+      "source": "supplied",
+      "position": 2
+    },
+    {
+      "term": "Assigned indexing",
+      "definition": "Indexing in which an indexer selects terms from an indexing language or controlled vocabulary, rather than copying them directly from the document.",
+      "source": "supplied",
+      "position": 3
+    },
+    {
+      "term": "Author's abstract",
+      "definition": "An abstract prepared by the author of the original document.",
+      "source": "supplied",
+      "position": 4
+    },
+    {
+      "term": "Automatic indexing",
+      "definition": "Indexing performed by computer algorithms with little or no manual intervention.",
+      "source": "supplied",
+      "position": 5
+    },
+    {
+      "term": "BT",
+      "definition": "Broader Term; a more general concept within a thesaurus hierarchy.",
+      "source": "supplied",
+      "position": 6
+    },
+    {
+      "term": "Book index",
+      "definition": "An alphabetical guide to the significant content of a book, with locators, usually placed at the end.",
+      "source": "supplied",
+      "position": 7
+    },
+    {
+      "term": "CAS",
+      "definition": "Current Awareness Service.",
+      "source": "supplied",
+      "position": 8
+    },
+    {
+      "term": "Chain indexing",
+      "definition": "A pre-coordinate indexing technique, associated with S. R. Ranganathan, that derives subject entries from the hierarchical chain of a classification scheme.",
+      "source": "supplied",
+      "position": 9
+    },
+    {
+      "term": "Computer-assisted indexing",
+      "definition": "The use of software to support tasks such as sorting, formatting, and cross-reference management, while the indexer retains intellectual control.",
+      "source": "supplied",
+      "position": 10
+    },
+    {
+      "term": "Controlled vocabulary",
+      "definition": "An organised set of authorised terms used consistently for indexing and retrieval.",
+      "source": "supplied",
+      "position": 11
+    },
+    {
+      "term": "Critical abstract",
+      "definition": "An abstract that summarises a document while also offering an evaluation of its strengths, weaknesses, or significance.",
+      "source": "supplied",
+      "position": 12
+    },
+    {
+      "term": "Cross-reference",
+      "definition": "A See or See also note directing a reader from one index term to another.",
+      "source": "supplied",
+      "position": 13
+    },
+    {
+      "term": "Cyclic (cycled) indexing",
+      "definition": "A technique that varies the leading term in a compound subject to create multiple access points.",
+      "source": "supplied",
+      "position": 14
+    },
+    {
+      "term": "Derived indexing",
+      "definition": "Indexing based on features taken directly from the document, such as title words.",
+      "source": "supplied",
+      "position": 15
+    },
+    {
+      "term": "Dynamic index",
+      "definition": "A digital index that updates automatically when the underlying document changes.",
+      "source": "supplied",
+      "position": 16
+    },
+    {
+      "term": "Exhaustivity",
+      "definition": "The extent to which important document concepts are represented in indexing.",
+      "source": "supplied",
+      "position": 17
+    },
+    {
+      "term": "Fallout",
+      "definition": "The proportion of non-relevant documents retrieved, out of all non-relevant documents available.",
+      "source": "supplied",
+      "position": 18
+    },
+    {
+      "term": "Hyperlinked index",
+      "definition": "A digital index whose entries link directly to the relevant section of a document.",
+      "source": "supplied",
+      "position": 19
+    },
+    {
+      "term": "Index",
+      "definition": "A systematically arranged guide to the contents of a document, consisting of terms and locators.",
+      "source": "supplied",
+      "position": 20
+    },
+    {
+      "term": "Indexing",
+      "definition": "Representing document content with terms or symbols to support retrieval.",
+      "source": "supplied",
+      "position": 21
+    },
+    {
+      "term": "Indexing and abstracting service",
+      "definition": "A database or publication, such as Scopus or MEDLINE, that provides organised indexing and abstracting access to literature across a discipline.",
+      "source": "supplied",
+      "position": 22
+    },
+    {
+      "term": "Indicative abstract",
+      "definition": "An abstract that indicates the scope or topics covered by a document.",
+      "source": "supplied",
+      "position": 23
+    },
+    {
+      "term": "Informative abstract",
+      "definition": "An abstract that reports substantive content such as purpose, method, findings, and conclusion.",
+      "source": "supplied",
+      "position": 24
+    },
+    {
+      "term": "ISO 999 / BS ISO 5963",
+      "definition": "International and British standards providing guidance on the content, structure, and preparation of indexes.",
+      "source": "supplied",
+      "position": 25
+    },
+    {
+      "term": "KWIC",
+      "definition": "Keyword in Context.",
+      "source": "supplied",
+      "position": 26
+    },
+    {
+      "term": "KWOC",
+      "definition": "Keyword Out of Context.",
+      "source": "supplied",
+      "position": 27
+    },
+    {
+      "term": "Locator",
+      "definition": "The page, section, or paragraph reference attached to an index entry.",
+      "source": "supplied",
+      "position": 28
+    },
+    {
+      "term": "NT",
+      "definition": "Narrower Term; a more specific concept within a thesaurus hierarchy.",
+      "source": "supplied",
+      "position": 29
+    },
+    {
+      "term": "Post-coordinate indexing",
+      "definition": "Indexing in which concepts are combined during retrieval.",
+      "source": "supplied",
+      "position": 30
+    },
+    {
+      "term": "PRECIS",
+      "definition": "Preserved Context Index System, developed by Derek Austin.",
+      "source": "supplied",
+      "position": 31
+    },
+    {
+      "term": "Precision",
+      "definition": "The proportion of retrieved documents that are relevant.",
+      "source": "supplied",
+      "position": 32
+    },
+    {
+      "term": "Pre-coordinate indexing",
+      "definition": "Indexing in which concepts are combined before retrieval.",
+      "source": "supplied",
+      "position": 33
+    },
+    {
+      "term": "Recall",
+      "definition": "The proportion of all relevant documents that are actually retrieved.",
+      "source": "supplied",
+      "position": 34
+    },
+    {
+      "term": "RT",
+      "definition": "Related Term; an associated concept that is neither equivalent nor hierarchical.",
+      "source": "supplied",
+      "position": 35
+    },
+    {
+      "term": "SDI",
+      "definition": "Selective Dissemination of Information.",
+      "source": "supplied",
+      "position": 36
+    },
+    {
+      "term": "SLIC",
+      "definition": "Selective Listing in Combination.",
+      "source": "supplied",
+      "position": 37
+    },
+    {
+      "term": "Specificity",
+      "definition": "The precision with which an indexing term represents a concept.",
+      "source": "supplied",
+      "position": 38
+    },
+    {
+      "term": "Subject analysis",
+      "definition": "The intellectual examination of a document to identify its subject content.",
+      "source": "supplied",
+      "position": 39
+    },
+    {
+      "term": "Thesaurus",
+      "definition": "A controlled vocabulary organised by defined semantic relationships.",
+      "source": "supplied",
+      "position": 40
+    },
+    {
+      "term": "UF",
+      "definition": "Used For; a reference from a preferred term to a non-preferred term.",
+      "source": "supplied",
+      "position": 41
+    },
+    {
+      "term": "USE",
+      "definition": "A reference directing a non-preferred term to the preferred term.",
+      "source": "supplied",
+      "position": 42
+    }
+  ]
+}

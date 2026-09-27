@@ -1,0 +1,66 @@
+{
+  "chapter": 11,
+  "source": "lms-authored",
+  "questions": [
+    {
+      "n": 1,
+      "stem": "A database contains 50 relevant documents. A search retrieves 25 documents, of which 20 are relevant. What are the precision and recall?",
+      "options": {
+        "A": "Precision 40%, recall 80%",
+        "B": "Precision 80%, recall 40%",
+        "C": "Precision 80%, recall 50%",
+        "D": "Precision 50%, recall 80%"
+      },
+      "answer": "B",
+      "explanation": "Precision = 20 ÷ 25 = 80% (relevant retrieved ÷ total retrieved); recall = 20 ÷ 50 = 40% (relevant retrieved ÷ total relevant)."
+    },
+    {
+      "n": 2,
+      "stem": "A database contains 500 documents, 100 of which are relevant. A search retrieves 50 documents, of which 35 are relevant. What are the precision, recall, and fallout?",
+      "options": {
+        "A": "Precision 70%, recall 35%, fallout 15%",
+        "B": "Precision 35%, recall 70%, fallout 3.75%",
+        "C": "Precision 70%, recall 35%, fallout 3.75%",
+        "D": "Precision 70%, recall 15%, fallout 3.75%"
+      },
+      "answer": "C",
+      "explanation": "Precision = 35 ÷ 50 = 70%; recall = 35 ÷ 100 = 35%; non-relevant retrieved = 15, total non-relevant = 400, so fallout = 15 ÷ 400 = 3.75%."
+    },
+    {
+      "n": 3,
+      "stem": "What does it mean for a search to have high precision but low recall?",
+      "options": {
+        "A": "It retrieves almost every relevant document, along with many irrelevant ones",
+        "B": "It returns no documents at all",
+        "C": "It retrieves only irrelevant documents",
+        "D": "Most of the documents it retrieves are relevant, but it misses a large share of the relevant documents that exist"
+      },
+      "answer": "D",
+      "explanation": "High precision means a large proportion of retrieved documents are relevant; low recall means many relevant documents were not retrieved — typically a narrow search strategy."
+    },
+    {
+      "n": 4,
+      "stem": "Which formula correctly gives fallout?",
+      "options": {
+        "A": "FP ÷ (FP + TN)",
+        "B": "TP ÷ (TP + FP)",
+        "C": "TP ÷ (TP + FN)",
+        "D": "TN ÷ (FP + TN)"
+      },
+      "answer": "A",
+      "explanation": "Fallout measures the proportion of non-relevant documents retrieved out of all non-relevant documents: FP ÷ (FP + TN). The other formulas give precision and recall."
+    },
+    {
+      "n": 5,
+      "stem": "Which outcome category describes a document that is relevant but was not retrieved?",
+      "options": {
+        "A": "True Positive (TP)",
+        "B": "False Negative (FN)",
+        "C": "False Positive (FP)",
+        "D": "True Negative (TN)"
+      },
+      "answer": "B",
+      "explanation": "A false negative is a relevant document that was not retrieved; a false positive is a non-relevant document that was retrieved anyway."
+    }
+  ]
+}

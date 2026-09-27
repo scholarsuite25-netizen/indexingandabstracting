@@ -1,0 +1,66 @@
+{
+  "chapter": 13,
+  "source": "lms-authored",
+  "questions": [
+    {
+      "n": 1,
+      "stem": "Which statement correctly distinguishes Current Awareness Services (CAS) from Selective Dissemination of Information (SDI)?",
+      "options": {
+        "A": "CAS distributes new material according to each user's individual profile, while SDI alerts everyone in a subject area.",
+        "B": "CAS keeps users informed about newly available information in a subject area, while SDI distributes new material according to each user's individual interests or profile.",
+        "C": "CAS and SDI are two different names for the same abstracting service.",
+        "D": "CAS supplies only full-text documents, while SDI supplies only citations without abstracts."
+      },
+      "answer": "B",
+      "explanation": "CAS keeps users informed about newly available information within a subject area of interest, whereas SDI distributes newly available material according to the individual interests or profile of each user."
+    },
+    {
+      "n": 2,
+      "stem": "How do abstracts help the users of a bibliographic database?",
+      "options": {
+        "A": "They replace the assigned indexing terms in the database record.",
+        "B": "They let a user judge the relevance of a document before deciding whether to obtain the full text.",
+        "C": "They guarantee that the full text of every record is available online.",
+        "D": "They arrange the records in the database alphabetically by author."
+      },
+      "answer": "B",
+      "explanation": "The abstract helps a user judge the relevance of a document before deciding whether to obtain the full text, and it lets a user screen hundreds of search results efficiently."
+    },
+    {
+      "n": 3,
+      "stem": "Which group consists only of major indexing and abstracting services discussed in this chapter?",
+      "options": {
+        "A": "CINDEX, Sky Index and Macrex",
+        "B": "Natural Language Processing, Machine Learning and text mining",
+        "C": "Scopus, Web of Science and PubMed/MEDLINE",
+        "D": "Current Awareness Services, Selective Dissemination of Information and automated summarisation"
+      },
+      "answer": "C",
+      "explanation": "Scopus, Web of Science and PubMed/MEDLINE are named as well-known indexing and abstracting services; CINDEX, Sky Index and Macrex are indexing software packages, not services."
+    },
+    {
+      "n": 4,
+      "stem": "Which statement correctly distinguishes extractive summarisation from abstractive summarisation?",
+      "options": {
+        "A": "Extractive methods generate newly worded text, while abstractive methods lift sentences from the original document.",
+        "B": "Extractive methods select important words, phrases, or whole sentences directly from the source document, while abstractive methods represent the meaning using newly generated wording.",
+        "C": "Extractive methods are used only by AI systems, while abstractive methods are used only by human abstractors.",
+        "D": "Extractive methods always distort the original meaning, while abstractive methods never omit important details."
+      },
+      "answer": "B",
+      "explanation": "Extractive methods work by selecting text that already existed in the original; abstractive methods attempt to represent the meaning using newly generated wording."
+    },
+    {
+      "n": 5,
+      "stem": "Why should AI-generated abstracts always be checked against the original source?",
+      "options": {
+        "A": "Because AI systems cannot process very large collections of material quickly.",
+        "B": "Because their output may sometimes omit important details or distort the original meaning.",
+        "C": "Because AI-generated abstracts are always produced by extractive methods only.",
+        "D": "Because checking is required before an abstract can be added to any bibliographic record."
+      },
+      "answer": "B",
+      "explanation": "Modern AI systems can assist with abstractive summarisation, but their output may omit important details or distort the original meaning, so it always requires careful checking against the source."
+    }
+  ]
+}

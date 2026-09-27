@@ -1,0 +1,66 @@
+{
+  "chapter": 2,
+  "source": "lms-authored",
+  "questions": [
+    {
+      "n": 1,
+      "stem": "Which of the following is NOT one of the four components of an index?",
+      "options": {
+        "A": "Headings (main entries)",
+        "B": "Subheadings (subentries)",
+        "C": "Locators",
+        "D": "Abstracts"
+      },
+      "answer": "D",
+      "explanation": "The four components of a typical index are headings (main entries), subheadings (subentries), locators, and cross-references (See and See also). An abstract summarises a document and is not a component of an index."
+    },
+    {
+      "n": 2,
+      "stem": "Which statement correctly distinguishes a table of contents from an index?",
+      "options": {
+        "A": "A table of contents appears at the beginning and follows the order of the book, while an index usually appears at the end and is arranged alphabetically.",
+        "B": "A table of contents is arranged alphabetically, while an index follows the order of the book.",
+        "C": "A table of contents gives detailed access to specific topics, while an index only lists chapter titles.",
+        "D": "There is no real difference; the two serve exactly the same purpose."
+      },
+      "answer": "A",
+      "explanation": "The table of contents appears at the beginning of a book and follows the order of the book, showing its structure. The index usually appears at the end, is arranged alphabetically, and provides detailed access to specific information."
+    },
+    {
+      "n": 3,
+      "stem": "Which of the following is NOT listed as a type of book index?",
+      "options": {
+        "A": "Citation index",
+        "B": "Chronological index",
+        "C": "Annotated index",
+        "D": "Geographical index"
+      },
+      "answer": "C",
+      "explanation": "The chapter lists subject, author, name, title, geographical, chronological, citation, analytical, keyword and combined indexes. An annotated index is not among the major types described."
+    },
+    {
+      "n": 4,
+      "stem": "Which of the following is NOT one of the ten stages typically involved in preparing a book index?",
+      "options": {
+        "A": "Reading the book",
+        "B": "Assigning locators",
+        "C": "Peer review",
+        "D": "Proofreading"
+      },
+      "answer": "C",
+      "explanation": "The ten stages run from reading the book and subject analysis through to editing and proofreading. Peer review is not one of the stages listed in the chapter."
+    },
+    {
+      "n": 5,
+      "stem": "Which of the following is a challenge commonly faced by book indexers?",
+      "options": {
+        "A": "Deciding whether the index should appear at the beginning or at the end of the book.",
+        "B": "Selecting appropriate terminology and managing interdisciplinary topics, synonyms and homonyms.",
+        "C": "Keeping the chapters of the book in alphabetical order.",
+        "D": "Avoiding the use of See and See also references."
+      },
+      "answer": "B",
+      "explanation": "Book indexing is time-consuming, demands consistency, and requires indexers to select appropriate terminology, deal with interdisciplinary topics, and manage synonyms and homonyms. Page shifts and tight deadlines add to the pressure."
+    }
+  ]
+}

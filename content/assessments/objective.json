@@ -1,0 +1,1514 @@
+{
+  "title": "Objective Examination",
+  "duration_minutes": 90,
+  "pass_mark": 50,
+  "instructions": [
+    "This paper contains ONE HUNDRED (100) objective questions.",
+    "Answer ALL questions.",
+    "Each question has four options, A to D. Only ONE option is correct.",
+    "Circle or shade the letter of the correct option on your answer sheet.",
+    "Each question carries one (1) mark."
+  ],
+  "questions": [
+    {
+      "n": 1,
+      "stem": "Subject indexing is best defined as:",
+      "options": {
+        "A": "The physical binding and shelving of documents",
+        "B": "The process of representing a document's subject content with terms for retrieval",
+        "C": "The process of printing a book's table of contents",
+        "D": "A method of cataloguing authors alphabetically"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q1",
+      "module": 1,
+      "chapter": 1
+    },
+    {
+      "n": 2,
+      "stem": "According to Lancaster (2003), subject indexing involves:",
+      "options": {
+        "A": "Assigning a call number to a document",
+        "B": "Translating a document into another language",
+        "C": "Binding related documents together",
+        "D": "Determining subject content and assigning terms that adequately represent it for retrieval"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q2",
+      "module": 1,
+      "chapter": 1
+    },
+    {
+      "n": 3,
+      "stem": "Subject analysis takes place:",
+      "options": {
+        "A": "Before index terms are assigned, as the indexer identifies the main topic and concepts",
+        "B": "After index terms have been assigned",
+        "C": "Only when a document is being digitised",
+        "D": "Only in post-coordinate systems"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q3",
+      "module": 1,
+      "chapter": 1
+    },
+    {
+      "n": 4,
+      "stem": "Which of the following is NOT one of the stated objectives of subject indexing?",
+      "options": {
+        "A": "Accurate subject representation",
+        "B": "Maximising the number of pages in a document",
+        "C": "Consistent access points",
+        "D": "Reduction of ambiguity"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q4",
+      "module": 1,
+      "chapter": 1
+    },
+    {
+      "n": 5,
+      "stem": "The guiding principle of indexing that requires the same concept always be represented by the same term is:",
+      "options": {
+        "A": "Consistency",
+        "B": "Specificity",
+        "C": "Selectivity",
+        "D": "Objectivity"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q5",
+      "module": 1,
+      "chapter": 1
+    },
+    {
+      "n": 6,
+      "stem": "Indexing in which the indexer selects terms from a controlled vocabulary, rather than copying words from the document, is called:",
+      "options": {
+        "A": "Derived indexing",
+        "B": "Assigned indexing",
+        "C": "Automatic indexing",
+        "D": "Free-text indexing"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q6",
+      "module": 1,
+      "chapter": 1
+    },
+    {
+      "n": 7,
+      "stem": "Early retrieval systems relied mainly on access by:",
+      "options": {
+        "A": "Subject and keyword",
+        "B": "Abstract and citation",
+        "C": "Publisher and price",
+        "D": "Author and title"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q7",
+      "module": 1,
+      "chapter": 1
+    },
+    {
+      "n": 8,
+      "stem": "An index is best described as:",
+      "options": {
+        "A": "A systematically arranged guide to a document's contents, with terms and locators",
+        "B": "A chronological list of a book's chapters",
+        "C": "A summary of a document written by its author",
+        "D": "A list of a document's illustrations only"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q8",
+      "module": 1,
+      "chapter": 2
+    },
+    {
+      "n": 9,
+      "stem": "Which scholar defined indexing as analysing content, selecting significant concepts, and arranging them systematically to facilitate retrieval?",
+      "options": {
+        "A": "Cyril Cleverdon",
+        "B": "S. R. Ranganathan",
+        "C": "Mulvany (2005)",
+        "D": "Derek Austin"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q9",
+      "module": 1,
+      "chapter": 2
+    },
+    {
+      "n": 10,
+      "stem": "In an index entry, the page or section reference is called the:",
+      "options": {
+        "A": "Heading",
+        "B": "Locator",
+        "C": "Subheading",
+        "D": "Cross-reference"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q10",
+      "module": 1,
+      "chapter": 2
+    },
+    {
+      "n": 11,
+      "stem": "A 'See also' reference in an index is used to:",
+      "options": {
+        "A": "Correct a spelling error",
+        "B": "Direct a reader to a related but distinct topic worth consulting",
+        "C": "Direct a reader from a non-preferred term to the preferred term",
+        "D": "Indicate that an entry has been deleted"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q11",
+      "module": 1,
+      "chapter": 2
+    },
+    {
+      "n": 12,
+      "stem": "Which of these is TRUE of a table of contents but NOT of an index?",
+      "options": {
+        "A": "It is arranged alphabetically",
+        "B": "It lists subjects, names and concepts",
+        "C": "It usually appears at the end of a book",
+        "D": "It appears at the beginning of a book and follows the book's own order"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q12",
+      "module": 1,
+      "chapter": 2
+    },
+    {
+      "n": 13,
+      "stem": "An index arranged by the names of persons discussed in a work, whether or not they are authors, is a:",
+      "options": {
+        "A": "Citation index",
+        "B": "Geographical index",
+        "C": "Chronological index",
+        "D": "Name index"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q13",
+      "module": 1,
+      "chapter": 2
+    },
+    {
+      "n": 14,
+      "stem": "Which of the following is the FIRST stage in the process of preparing a book index?",
+      "options": {
+        "A": "Reading the book",
+        "B": "Assigning locators",
+        "C": "Alphabetical arrangement",
+        "D": "Proofreading"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q14",
+      "module": 1,
+      "chapter": 2
+    },
+    {
+      "n": 15,
+      "stem": "In indexing, semantics refers to:",
+      "options": {
+        "A": "The order in which concepts are combined",
+        "B": "The study of meaning and how concepts and terms relate to one another",
+        "C": "The physical layout of an index page",
+        "D": "The choice of font used in an index"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q15",
+      "module": 1,
+      "chapter": 3
+    },
+    {
+      "n": 16,
+      "stem": "A Broader Term (BT) represents:",
+      "options": {
+        "A": "A more general concept than the term it is attached to",
+        "B": "A more specific concept than the term it is attached to",
+        "C": "A synonym of the term it is attached to",
+        "D": "An unrelated concept"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q16",
+      "module": 1,
+      "chapter": 3
+    },
+    {
+      "n": 17,
+      "stem": "'Libraries' is the Broader Term for 'University Libraries'; therefore 'University Libraries' is the:",
+      "options": {
+        "A": "Related Term for Libraries",
+        "B": "Narrower Term for Libraries",
+        "C": "Preferred Term for Libraries",
+        "D": "Non-preferred Term for Libraries"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q17",
+      "module": 1,
+      "chapter": 3
+    },
+    {
+      "n": 18,
+      "stem": "A Related Term (RT) connects two concepts that are:",
+      "options": {
+        "A": "Identical in meaning",
+        "B": "In a strict broader/narrower relationship",
+        "C": "Always spelled the same way",
+        "D": "Meaningfully associated but neither synonymous nor hierarchical"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q18",
+      "module": 1,
+      "chapter": 3
+    },
+    {
+      "n": 19,
+      "stem": "Syntax in indexing is concerned with:",
+      "options": {
+        "A": "The meaning of individual words",
+        "B": "The colour scheme of a printed index",
+        "C": "The number of entries in a thesaurus",
+        "D": "How concepts are combined or ordered within an index expression"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q19",
+      "module": 1,
+      "chapter": 3
+    },
+    {
+      "n": 20,
+      "stem": "Role operators are especially important in which indexing system?",
+      "options": {
+        "A": "KWIC",
+        "B": "Uniterm",
+        "C": "PRECIS",
+        "D": "Chain indexing"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q20",
+      "module": 1,
+      "chapter": 3
+    },
+    {
+      "n": 21,
+      "stem": "Changing the citation order of concepts in an indexing expression can:",
+      "options": {
+        "A": "Never affect meaning",
+        "B": "Change the emphasis or even the meaning of the expression",
+        "C": "Only affect how the index looks visually",
+        "D": "Automatically improve recall"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q21",
+      "module": 1,
+      "chapter": 3
+    },
+    {
+      "n": 22,
+      "stem": "A controlled vocabulary is best described as:",
+      "options": {
+        "A": "Any list of words found in a dictionary",
+        "B": "A list of banned words in an index",
+        "C": "A set of terms unique to one single document",
+        "D": "An organised set of approved terms used consistently for indexing and retrieval"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q22",
+      "module": 2,
+      "chapter": 4
+    },
+    {
+      "n": 23,
+      "stem": "What distinguishes a retrieval thesaurus from an ordinary dictionary?",
+      "options": {
+        "A": "A thesaurus never contains definitions",
+        "B": "A dictionary is always larger",
+        "C": "A thesaurus is structured by defined relationships such as BT, NT and RT",
+        "D": "A thesaurus only contains one-word terms"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q23",
+      "module": 2,
+      "chapter": 4
+    },
+    {
+      "n": 24,
+      "stem": "In 'CARS USE AUTOMOBILES', which term is the preferred term?",
+      "options": {
+        "A": "Automobiles",
+        "B": "Cars",
+        "C": "Both are preferred",
+        "D": "Neither is preferred"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q24",
+      "module": 2,
+      "chapter": 4
+    },
+    {
+      "n": 25,
+      "stem": "Which of these is NOT a common source of candidate terms for a thesaurus?",
+      "options": {
+        "A": "Document titles and abstracts",
+        "B": "Author-supplied keywords",
+        "C": "The indexer's personal diary",
+        "D": "Existing published vocabularies"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q25",
+      "module": 2,
+      "chapter": 4
+    },
+    {
+      "n": 26,
+      "stem": "Medical Subject Headings is more commonly known by the abbreviation:",
+      "options": {
+        "A": "LCSH",
+        "B": "ERIC",
+        "C": "AGROVOC",
+        "D": "MeSH"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q26",
+      "module": 2,
+      "chapter": 4
+    },
+    {
+      "n": 27,
+      "stem": "The correct direction for a hierarchical relationship is:",
+      "options": {
+        "A": "LIBRARIES BT ACADEMIC LIBRARIES",
+        "B": "ACADEMIC LIBRARIES BT LIBRARIES",
+        "C": "LIBRARIES RT ACADEMIC LIBRARIES only",
+        "D": "ACADEMIC LIBRARIES UF LIBRARIES"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q27",
+      "module": 2,
+      "chapter": 4
+    },
+    {
+      "n": 28,
+      "stem": "Which is the correct FIRST step in constructing a thesaurus?",
+      "options": {
+        "A": "Test the thesaurus against real tasks",
+        "B": "Define the subject field the thesaurus will cover",
+        "C": "Publish the finished thesaurus",
+        "D": "Assign USE/UF references"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q28",
+      "module": 2,
+      "chapter": 4
+    },
+    {
+      "n": 29,
+      "stem": "A scope note is used to:",
+      "options": {
+        "A": "Clarify how a term should be interpreted within a vocabulary",
+        "B": "List every document indexed under a term",
+        "C": "Show the page number of a term's first use",
+        "D": "Translate a term into another language"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q29",
+      "module": 2,
+      "chapter": 5
+    },
+    {
+      "n": 30,
+      "stem": "'AUTOMOBILES — UF: Cars' means:",
+      "options": {
+        "A": "Automobiles is Used For Cars",
+        "B": "Cars is the preferred term",
+        "C": "Cars is a non-preferred term that leads to the preferred term Automobiles",
+        "D": "Automobiles and Cars are unrelated"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q30",
+      "module": 2,
+      "chapter": 5
+    },
+    {
+      "n": 31,
+      "stem": "An alphabetical thesaurus display is most convenient when a user:",
+      "options": {
+        "A": "Wants to browse a whole subject area without knowing specific terms",
+        "B": "Already knows the specific term and wants to inspect its relationships",
+        "C": "Wants to see terms grouped by concept only",
+        "D": "Wants to avoid using any terms at all"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q31",
+      "module": 2,
+      "chapter": 5
+    },
+    {
+      "n": 32,
+      "stem": "A classified thesaurus display supports:",
+      "options": {
+        "A": "Searching by exact page number",
+        "B": "Removing all cross-references",
+        "C": "Combining post-coordinate Boolean searches only",
+        "D": "Browsing across related conceptual areas"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q32",
+      "module": 2,
+      "chapter": 5
+    },
+    {
+      "n": 33,
+      "stem": "Which of the following is a typical thesaurus maintenance task?",
+      "options": {
+        "A": "Adding new terms and updating cross-references as terminology changes",
+        "B": "Deleting the entire vocabulary annually",
+        "C": "Preventing any revision once published",
+        "D": "Converting all terms into acronyms"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q33",
+      "module": 2,
+      "chapter": 5
+    },
+    {
+      "n": 34,
+      "stem": "Thesaurus-management software mainly supports:",
+      "options": {
+        "A": "Replacing the intellectual judgement of the indexer entirely",
+        "B": "Entry, relationship checking, version control and publication",
+        "C": "Physical printing of books only",
+        "D": "Determining a document's price"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q34",
+      "module": 2,
+      "chapter": 5
+    },
+    {
+      "n": 35,
+      "stem": "USE and UF are best described as:",
+      "options": {
+        "A": "Two unrelated indexing systems",
+        "B": "Formulas for calculating recall",
+        "C": "A pair of reciprocal references linking preferred and non-preferred terms",
+        "D": "Types of book indexes"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q35",
+      "module": 2,
+      "chapter": 5
+    },
+    {
+      "n": 36,
+      "stem": "In pre-coordinate indexing, concepts are combined:",
+      "options": {
+        "A": "By the searcher at the time of retrieval",
+        "B": "By the indexer at the time of indexing, before any search takes place",
+        "C": "Automatically by AI only",
+        "D": "Only when using Boolean operators"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q36",
+      "module": 3,
+      "chapter": 6
+    },
+    {
+      "n": 37,
+      "stem": "Chain indexing is most closely associated with:",
+      "options": {
+        "A": "Derek Austin",
+        "B": "S. R. Ranganathan",
+        "C": "Cyril Cleverdon",
+        "D": "Calvin Mooers"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q37",
+      "module": 3,
+      "chapter": 6
+    },
+    {
+      "n": 38,
+      "stem": "Chain indexing derives subject entries from:",
+      "options": {
+        "A": "The alphabetical order of authors",
+        "B": "A random sample of index terms",
+        "C": "The hierarchical chain of concepts in a classification scheme",
+        "D": "The publisher's marketing description"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q38",
+      "module": 3,
+      "chapter": 6
+    },
+    {
+      "n": 39,
+      "stem": "Cyclic (cycled) indexing works by:",
+      "options": {
+        "A": "Varying the position of terms in a compound subject to create multiple access points",
+        "B": "Deleting terms that repeat too often",
+        "C": "Translating index terms into several languages",
+        "D": "Removing all cross-references from an entry"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q39",
+      "module": 3,
+      "chapter": 6
+    },
+    {
+      "n": 40,
+      "stem": "A key limitation of pre-coordinate indexing is that:",
+      "options": {
+        "A": "The indexer must anticipate combinations that may not match what users actually search for",
+        "B": "It cannot be used with classification schemes",
+        "C": "It never provides controlled representation",
+        "D": "It requires no intellectual effort at all"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q40",
+      "module": 3,
+      "chapter": 6
+    },
+    {
+      "n": 41,
+      "stem": "Which of the following is an ADVANTAGE of pre-coordinate systems?",
+      "options": {
+        "A": "They require no trained indexers",
+        "B": "Explicit relationships between concepts are preserved",
+        "C": "They always produce more results than post-coordinate systems",
+        "D": "They eliminate the need for subject analysis"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q41",
+      "module": 3,
+      "chapter": 6
+    },
+    {
+      "n": 42,
+      "stem": "For the subject 'Use of AI in University Libraries in Nigeria', a cycled entry could be:",
+      "options": {
+        "A": "AI use only, with no other terms",
+        "B": "A single entry with no reordering",
+        "C": "Nigeria — University Libraries — Artificial Intelligence",
+        "D": "An entry sorted by document length"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q42",
+      "module": 3,
+      "chapter": 6
+    },
+    {
+      "n": 43,
+      "stem": "SLIC stands for:",
+      "options": {
+        "A": "Systematic Listing of Index Cards",
+        "B": "Structured Language Indexing Catalogue",
+        "C": "Selective Listing in Combination",
+        "D": "Sequential Listing of Index Concepts"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q43",
+      "module": 3,
+      "chapter": 7
+    },
+    {
+      "n": 44,
+      "stem": "PRECIS stands for:",
+      "options": {
+        "A": "Pre-Coordinate Retrieval and Classification Index System",
+        "B": "Primary Concept Index Search",
+        "C": "Permuted Retrieval and Citation Index System",
+        "D": "Preserved Context Index System"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q44",
+      "module": 3,
+      "chapter": 7
+    },
+    {
+      "n": 45,
+      "stem": "PRECIS was developed by:",
+      "options": {
+        "A": "S. R. Ranganathan",
+        "B": "Cyril Cleverdon",
+        "C": "Derek Austin",
+        "D": "Calvin Mooers"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q45",
+      "module": 3,
+      "chapter": 7
+    },
+    {
+      "n": 46,
+      "stem": "PRECIS was originally developed for use by:",
+      "options": {
+        "A": "The Library of Congress",
+        "B": "UNESCO",
+        "C": "The National Library of Nigeria",
+        "D": "The British National Bibliography"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q46",
+      "module": 3,
+      "chapter": 7
+    },
+    {
+      "n": 47,
+      "stem": "Role operators in PRECIS are used to:",
+      "options": {
+        "A": "Indicate the function each concept plays within a subject statement",
+        "B": "Determine the price of a document",
+        "C": "Replace the need for subject analysis",
+        "D": "Convert an index into a table of contents"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q47",
+      "module": 3,
+      "chapter": 7
+    },
+    {
+      "n": 48,
+      "stem": "Which of the following is the correct FIRST step in building a PRECIS-style string?",
+      "options": {
+        "A": "Apply the prescribed role operators",
+        "B": "Understand the subject of the document as a whole",
+        "C": "Generate the finished index string",
+        "D": "Identify the role each concept plays"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q48",
+      "module": 3,
+      "chapter": 7
+    },
+    {
+      "n": 49,
+      "stem": "The list 'students; libraries; databases; use' is problematic because it:",
+      "options": {
+        "A": "Contains too few words",
+        "B": "Uses only Related Terms",
+        "C": "Does not show the relationship between who is using what",
+        "D": "Cannot be alphabetised"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q49",
+      "module": 3,
+      "chapter": 7
+    },
+    {
+      "n": 50,
+      "stem": "In post-coordinate indexing, concepts are combined:",
+      "options": {
+        "A": "By the indexer, before the document is added to the collection",
+        "B": "Only by using a printed thesaurus",
+        "C": "Never — post-coordinate systems do not permit combination",
+        "D": "By the searcher or system, at the point of retrieval"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q50",
+      "module": 4,
+      "chapter": 8
+    },
+    {
+      "n": 51,
+      "stem": "Uniterm indexing illustrates the basic principle of:",
+      "options": {
+        "A": "Post-coordinate indexing",
+        "B": "Pre-coordinate indexing",
+        "C": "Chain indexing",
+        "D": "PRECIS"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q51",
+      "module": 4,
+      "chapter": 8
+    },
+    {
+      "n": 52,
+      "stem": "Free-text searching looks for words in fields such as titles or abstracts:",
+      "options": {
+        "A": "Without relying entirely on a controlled vocabulary",
+        "B": "Using only a controlled vocabulary",
+        "C": "Only after translation into a second language",
+        "D": "Only in printed indexes"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q52",
+      "module": 4,
+      "chapter": 8
+    },
+    {
+      "n": 53,
+      "stem": "A limitation of free-text searching is that it can suffer from:",
+      "options": {
+        "A": "Excessive vocabulary control",
+        "B": "Too many cross-references",
+        "C": "An inability to use any keyboard characters",
+        "D": "Synonyms not being matched and ambiguous or misspelled words"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q53",
+      "module": 4,
+      "chapter": 8
+    },
+    {
+      "n": 54,
+      "stem": "Historically, optical coincidence systems used physical cards to:",
+      "options": {
+        "A": "Print entire books",
+        "B": "Identify documents sharing a chosen set of terms",
+        "C": "Replace the need for indexing altogether",
+        "D": "Store abstracts only"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q54",
+      "module": 4,
+      "chapter": 8
+    },
+    {
+      "n": 55,
+      "stem": "Compared to pre-coordinate indexing, post-coordinate indexing generally offers:",
+      "options": {
+        "A": "Less flexibility but more control",
+        "B": "No difference at all",
+        "C": "Fewer possible search combinations",
+        "D": "More flexible combination of terms at search time, with more responsibility on the searcher"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q55",
+      "module": 4,
+      "chapter": 8
+    },
+    {
+      "n": 56,
+      "stem": "A document assigned the separate terms 'Artificial Intelligence', 'University Libraries' and 'Reference Services' without any pre-set combined expression illustrates:",
+      "options": {
+        "A": "Pre-coordinate indexing",
+        "B": "Chain indexing",
+        "C": "Post-coordinate indexing",
+        "D": "PRECIS role operators"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q56",
+      "module": 4,
+      "chapter": 8
+    },
+    {
+      "n": 57,
+      "stem": "A search strategy is best described as:",
+      "options": {
+        "A": "A random combination of any words",
+        "B": "A planned approach to translating an information need into searchable terms and combinations",
+        "C": "A method used only in book indexing",
+        "D": "A fixed list that never changes during a search"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q57",
+      "module": 4,
+      "chapter": 9
+    },
+    {
+      "n": 58,
+      "stem": "The Boolean operator that NARROWS a search by requiring both concepts to be present is:",
+      "options": {
+        "A": "OR",
+        "B": "NOT",
+        "C": "USE",
+        "D": "AND"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q58",
+      "module": 4,
+      "chapter": 9
+    },
+    {
+      "n": 59,
+      "stem": "'CARS OR AUTOMOBILES' will retrieve documents containing:",
+      "options": {
+        "A": "Only 'Cars'",
+        "B": "Only 'Automobiles'",
+        "C": "Either term",
+        "D": "Neither term"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q59",
+      "module": 4,
+      "chapter": 9
+    },
+    {
+      "n": 60,
+      "stem": "Derived indexing obtains its index terms from:",
+      "options": {
+        "A": "A controlled vocabulary chosen independently of the document",
+        "B": "A randomly generated word list",
+        "C": "Features of the document itself, such as its title",
+        "D": "The indexer's personal opinion"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q60",
+      "module": 4,
+      "chapter": 9
+    },
+    {
+      "n": 61,
+      "stem": "KWIC stands for:",
+      "options": {
+        "A": "Keyword Indexed by Chapter",
+        "B": "Key Weighted Index Catalogue",
+        "C": "Keyword Isolated from Content",
+        "D": "Keyword in Context"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q61",
+      "module": 4,
+      "chapter": 9
+    },
+    {
+      "n": 62,
+      "stem": "In a KWOC display, the keyword is shown:",
+      "options": {
+        "A": "Separately from the title, typically as a heading above the citation",
+        "B": "Embedded within the surrounding title text",
+        "C": "Only in a footnote",
+        "D": "In a different language from the rest of the entry"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q62",
+      "module": 4,
+      "chapter": 9
+    },
+    {
+      "n": 63,
+      "stem": "A key advantage of derived indexing is that it is:",
+      "options": {
+        "A": "Always more accurate than assigned indexing",
+        "B": "Immune to problems with synonyms",
+        "C": "Only usable in pre-coordinate systems",
+        "D": "Fast, economical, and well suited to automation"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q63",
+      "module": 4,
+      "chapter": 9
+    },
+    {
+      "n": 64,
+      "stem": "A document is considered 'relevant' when it:",
+      "options": {
+        "A": "Genuinely satisfies the user's information need",
+        "B": "Contains the exact search word, regardless of content",
+        "C": "Was published within the last year",
+        "D": "Has the shortest title in the collection"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q64",
+      "module": 5,
+      "chapter": 10
+    },
+    {
+      "n": 65,
+      "stem": "Exhaustivity refers to:",
+      "options": {
+        "A": "How precisely a single term represents a concept",
+        "B": "The extent to which important concepts in a document are represented by index terms",
+        "C": "The total number of documents in a collection",
+        "D": "The number of synonyms a thesaurus contains"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q65",
+      "module": 5,
+      "chapter": 10
+    },
+    {
+      "n": 66,
+      "stem": "Specificity refers to:",
+      "options": {
+        "A": "The number of index terms assigned to a document",
+        "B": "How precisely an indexing term represents the actual subject of a document",
+        "C": "The physical size of a document",
+        "D": "How quickly a document can be retrieved"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q66",
+      "module": 5,
+      "chapter": 10
+    },
+    {
+      "n": 67,
+      "stem": "For a document specifically about university libraries, which term is MORE specific?",
+      "options": {
+        "A": "Libraries",
+        "B": "Information centres",
+        "C": "University Libraries",
+        "D": "Institutions"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q67",
+      "module": 5,
+      "chapter": 10
+    },
+    {
+      "n": 68,
+      "stem": "The Cranfield research tradition is most closely associated with:",
+      "options": {
+        "A": "Derek Austin",
+        "B": "S. R. Ranganathan",
+        "C": "Cyril Cleverdon",
+        "D": "Mulvany"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q68",
+      "module": 5,
+      "chapter": 10
+    },
+    {
+      "n": 69,
+      "stem": "The Cranfield experiments were significant because they:",
+      "options": {
+        "A": "Banned the use of controlled vocabularies",
+        "B": "Eliminated the need for precision and recall",
+        "C": "Established systematic, evidence-based evaluation using test collections and relevance judgements",
+        "D": "Focused only on book indexing"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q69",
+      "module": 5,
+      "chapter": 10
+    },
+    {
+      "n": 70,
+      "stem": "Retrieving far too many irrelevant documents in a search is known as:",
+      "options": {
+        "A": "Over-retrieval",
+        "B": "Under-retrieval",
+        "C": "Fallout",
+        "D": "Exhaustivity"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q70",
+      "module": 5,
+      "chapter": 11
+    },
+    {
+      "n": 71,
+      "stem": "Precision is calculated as:",
+      "options": {
+        "A": "Relevant Retrieved ÷ Total Relevant",
+        "B": "Non-Relevant Retrieved ÷ Total Non-Relevant",
+        "C": "Relevant Retrieved ÷ Total Retrieved",
+        "D": "Total Retrieved ÷ Total Relevant"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q71",
+      "module": 5,
+      "chapter": 11
+    },
+    {
+      "n": 72,
+      "stem": "Recall is calculated as:",
+      "options": {
+        "A": "Relevant Retrieved ÷ Total Relevant",
+        "B": "Relevant Retrieved ÷ Total Retrieved",
+        "C": "Total Non-Relevant ÷ Total Retrieved",
+        "D": "Total Retrieved ÷ Total Documents"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q72",
+      "module": 5,
+      "chapter": 11
+    },
+    {
+      "n": 73,
+      "stem": "Fallout is calculated as:",
+      "options": {
+        "A": "TP ÷ (TP + FN)",
+        "B": "TP ÷ (TP + FP)",
+        "C": "TN ÷ (TN + FP)",
+        "D": "FP ÷ (FP + TN)"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q73",
+      "module": 5,
+      "chapter": 11
+    },
+    {
+      "n": 74,
+      "stem": "If a search retrieves 20 documents, 15 of which are relevant, out of 100 relevant documents in the collection, the precision is:",
+      "options": {
+        "A": "15%",
+        "B": "20%",
+        "C": "100%",
+        "D": "75%"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q74",
+      "module": 5,
+      "chapter": 11
+    },
+    {
+      "n": 75,
+      "stem": "Using the same figures as the previous question (15 relevant retrieved out of 100 total relevant), the recall is:",
+      "options": {
+        "A": "75%",
+        "B": "20%",
+        "C": "85%",
+        "D": "15%"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q75",
+      "module": 5,
+      "chapter": 11
+    },
+    {
+      "n": 76,
+      "stem": "A broad search strategy tends to:",
+      "options": {
+        "A": "Increase precision but always reduce recall to zero",
+        "B": "Have no effect on either measure",
+        "C": "Increase recall but often reduce precision",
+        "D": "Only work in pre-coordinate systems"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q76",
+      "module": 5,
+      "chapter": 11
+    },
+    {
+      "n": 77,
+      "stem": "To improve precision, a searcher should generally:",
+      "options": {
+        "A": "Use broader terms and the OR operator",
+        "B": "Remove all search terms",
+        "C": "Search only by publication date",
+        "D": "Use more specific terms and combine concepts with AND"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q77",
+      "module": 5,
+      "chapter": 11
+    },
+    {
+      "n": 78,
+      "stem": "An abstract is best defined as:",
+      "options": {
+        "A": "A full reproduction of a document's text",
+        "B": "A list of a document's references only",
+        "C": "A concise representation of a document's content",
+        "D": "The table of contents of a document"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q78",
+      "module": 6,
+      "chapter": 12
+    },
+    {
+      "n": 79,
+      "stem": "An abstract that tells the reader what a document covers, without reporting detailed findings, is called:",
+      "options": {
+        "A": "An informative abstract",
+        "B": "A critical abstract",
+        "C": "An indicative abstract",
+        "D": "A structured abstract"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q79",
+      "module": 6,
+      "chapter": 12
+    },
+    {
+      "n": 80,
+      "stem": "An abstract that reports the purpose, method, findings and conclusion of a study is called:",
+      "options": {
+        "A": "An informative abstract",
+        "B": "An indicative abstract",
+        "C": "A slant abstract",
+        "D": "An author's abstract"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q80",
+      "module": 6,
+      "chapter": 12
+    },
+    {
+      "n": 81,
+      "stem": "An abstract that also evaluates the strengths, weaknesses or significance of a document is called:",
+      "options": {
+        "A": "A critical abstract",
+        "B": "An indicative abstract",
+        "C": "A structured abstract only",
+        "D": "A derived abstract"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q81",
+      "module": 6,
+      "chapter": 12
+    },
+    {
+      "n": 82,
+      "stem": "An abstract emphasising the aspects of a document most relevant to a specific audience is called:",
+      "options": {
+        "A": "An informative abstract",
+        "B": "A slant abstract",
+        "C": "An author's abstract",
+        "D": "A critical abstract"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q82",
+      "module": 6,
+      "chapter": 12
+    },
+    {
+      "n": 83,
+      "stem": "A structured abstract typically organises its content under headings such as:",
+      "options": {
+        "A": "Preface, Foreword, Index, Appendix",
+        "B": "Title, Author, Publisher, Price",
+        "C": "Background, Objective, Method, Results, Conclusion",
+        "D": "Chapter, Section, Page, Line"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q83",
+      "module": 6,
+      "chapter": 12
+    },
+    {
+      "n": 84,
+      "stem": "Which of the following should NEVER appear in a well-written abstract?",
+      "options": {
+        "A": "Unsupported claims or the personal opinions of the abstractor",
+        "B": "The purpose of the study",
+        "C": "The main findings",
+        "D": "The conclusion reached"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q84",
+      "module": 6,
+      "chapter": 12
+    },
+    {
+      "n": 85,
+      "stem": "Current Awareness Services (CAS) exist to:",
+      "options": {
+        "A": "Replace the need for abstracts",
+        "B": "Keep users informed about newly available information in their subject area",
+        "C": "Archive documents permanently without access",
+        "D": "Translate documents automatically"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q85",
+      "module": 6,
+      "chapter": 13
+    },
+    {
+      "n": 86,
+      "stem": "Selective Dissemination of Information (SDI) distributes material according to:",
+      "options": {
+        "A": "Alphabetical order of author surnames only",
+        "B": "A fixed schedule unrelated to user interests",
+        "C": "The size of the document",
+        "D": "Each user's individual interests or profile"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q86",
+      "module": 6,
+      "chapter": 13
+    },
+    {
+      "n": 87,
+      "stem": "Which of the following is a major indexing and abstracting service?",
+      "options": {
+        "A": "Microsoft Word",
+        "B": "Adobe Photoshop",
+        "C": "WhatsApp",
+        "D": "Scopus"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q87",
+      "module": 6,
+      "chapter": 13
+    },
+    {
+      "n": 88,
+      "stem": "Extractive summarisation works by:",
+      "options": {
+        "A": "Generating entirely new wording not found in the source",
+        "B": "Deleting the abstract altogether",
+        "C": "Selecting important words, phrases or sentences directly from the source",
+        "D": "Translating the document into another language"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q88",
+      "module": 6,
+      "chapter": 13
+    },
+    {
+      "n": 89,
+      "stem": "Abstractive summarisation attempts to:",
+      "options": {
+        "A": "Represent the source's meaning using newly generated wording",
+        "B": "Copy the source document exactly",
+        "C": "Remove all findings from a study",
+        "D": "Avoid any computational methods"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q89",
+      "module": 6,
+      "chapter": 13
+    },
+    {
+      "n": 90,
+      "stem": "AI-generated abstractive summaries should always be:",
+      "options": {
+        "A": "Published without review",
+        "B": "Checked against the source document, since details may be omitted or distorted",
+        "C": "Used only for fictional works",
+        "D": "Rejected in every case"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q90",
+      "module": 6,
+      "chapter": 13
+    },
+    {
+      "n": 91,
+      "stem": "In the complete indexing-and-abstracting workflow, indexing mainly provides:",
+      "options": {
+        "A": "Structured access points that make a document findable",
+        "B": "The final full-text reading experience",
+        "C": "The document's price",
+        "D": "A replacement for abstracting"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q91",
+      "module": 7,
+      "chapter": 14
+    },
+    {
+      "n": 92,
+      "stem": "Automatic indexing uses:",
+      "options": {
+        "A": "Computer algorithms to identify and assign terms with little or no manual intervention",
+        "B": "Only handwritten index cards",
+        "C": "Exclusively post-coordinate Boolean logic",
+        "D": "A printed thesaurus alone, with no software involved"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q92",
+      "module": 7,
+      "chapter": 14
+    },
+    {
+      "n": 93,
+      "stem": "Which of the following is a recognised computer-assisted indexing software package?",
+      "options": {
+        "A": "Photoshop",
+        "B": "AutoCAD",
+        "C": "CINDEX",
+        "D": "Excel Solver"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q93",
+      "module": 7,
+      "chapter": 14
+    },
+    {
+      "n": 94,
+      "stem": "A hyperlinked index differs from a traditional printed index in that it:",
+      "options": {
+        "A": "Links each entry directly to the relevant section of the document",
+        "B": "Uses page numbers exclusively",
+        "C": "Cannot contain cross-references",
+        "D": "Must always be printed on paper"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q94",
+      "module": 7,
+      "chapter": 14
+    },
+    {
+      "n": 95,
+      "stem": "A dynamic index is distinctive because it:",
+      "options": {
+        "A": "Never changes once created",
+        "B": "Updates automatically whenever the underlying document is revised",
+        "C": "Can only be used in printed books",
+        "D": "Requires re-typing the entire book to update"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q95",
+      "module": 7,
+      "chapter": 14
+    },
+    {
+      "n": 96,
+      "stem": "Named-entity recognition, as used in AI-assisted indexing, helps to:",
+      "options": {
+        "A": "Recognise the names of people, organisations and places within a document",
+        "B": "Print the final index automatically without any checking",
+        "C": "Replace the need for locators",
+        "D": "Convert a table of contents into an abstract"
+      },
+      "answer": "A",
+      "source": "supplied",
+      "source_ref": "Obj Q96",
+      "module": 7,
+      "chapter": 14
+    },
+    {
+      "n": 97,
+      "stem": "A key limitation of AI in indexing is that it often struggles to:",
+      "options": {
+        "A": "Count the number of words in a document",
+        "B": "Process large collections quickly",
+        "C": "Identify frequently occurring words",
+        "D": "Judge which concepts are truly significant and resolve ambiguous meanings"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q97",
+      "module": 7,
+      "chapter": 14
+    },
+    {
+      "n": 98,
+      "stem": "In the 'Washington' example used to illustrate the continuing role of human indexers, the challenge is that the word could refer to:",
+      "options": {
+        "A": "Only one possible meaning",
+        "B": "George Washington, Washington D.C., or Washington State",
+        "C": "A type of thesaurus relationship",
+        "D": "A Boolean operator"
+      },
+      "answer": "B",
+      "source": "supplied",
+      "source_ref": "Obj Q98",
+      "module": 7,
+      "chapter": 14
+    },
+    {
+      "n": 99,
+      "stem": "Which pairing correctly matches a system with its originator?",
+      "options": {
+        "A": "PRECIS — S. R. Ranganathan",
+        "B": "Chain indexing — Cyril Cleverdon",
+        "C": "Cranfield tests — Derek Austin",
+        "D": "PRECIS — Derek Austin"
+      },
+      "answer": "D",
+      "source": "supplied",
+      "source_ref": "Obj Q99",
+      "module": 3,
+      "chapter": 7
+    },
+    {
+      "n": 100,
+      "stem": "Which of the following best summarises the overall relationship between indexing and abstracting?",
+      "options": {
+        "A": "They are unrelated activities performed by different professions with no shared purpose",
+        "B": "Abstracting always precedes subject analysis",
+        "C": "Indexing provides structured access points, while abstracting provides a concise representation of content, together supporting discovery and retrieval",
+        "D": "Indexing has been fully replaced by automatic abstracting"
+      },
+      "answer": "C",
+      "source": "supplied",
+      "source_ref": "Obj Q100",
+      "module": 6,
+      "chapter": 12
+    }
+  ]
+}

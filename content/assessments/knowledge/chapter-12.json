@@ -1,0 +1,66 @@
+{
+  "chapter": 12,
+  "source": "lms-authored",
+  "questions": [
+    {
+      "n": 1,
+      "stem": "What is the key difference between an indicative abstract and an informative abstract?",
+      "options": {
+        "A": "An indicative abstract reports detailed findings, while an informative abstract only outlines the scope",
+        "B": "An indicative abstract tells the reader what the document discusses without reporting detailed findings, while an informative abstract provides the purpose, method, findings, and conclusion",
+        "C": "An indicative abstract is always written by the author, while an informative abstract is always written by an indexer",
+        "D": "An indicative abstract must appear under headings, while an informative abstract never does"
+      },
+      "answer": "B",
+      "explanation": "The indicative abstract answers 'What does this document discuss?', whereas the informative abstract gives substantive information including findings."
+    },
+    {
+      "n": 2,
+      "stem": "How does a critical abstract differ from an author's abstract?",
+      "options": {
+        "A": "A critical abstract is written by the author, while an author's abstract is written by an independent abstractor",
+        "B": "A critical abstract only lists keywords, while an author's abstract summarises the content",
+        "C": "A critical abstract offers an assessment of the document's strengths, weaknesses, methodology, reliability, or significance, while an author's abstract is prepared by the author of the original document",
+        "D": "There is no difference; the two terms mean the same thing"
+      },
+      "answer": "C",
+      "explanation": "A critical abstract goes beyond description to evaluate the work (usually by someone with subject expertise); an author's abstract is simply one the document's own author prepared."
+    },
+    {
+      "n": 3,
+      "stem": "What is a slant abstract?",
+      "options": {
+        "A": "An abstract organised under clear headings such as Background, Objective, Method, Results, and Conclusion",
+        "B": "An abstract that reports only the conclusions of the study, with no summary of the method",
+        "C": "An abstract written by the author of the original document rather than by an independent indexer or abstractor",
+        "D": "An abstract that emphasises the particular aspects of a document that are most relevant to a specific audience"
+      },
+      "answer": "D",
+      "explanation": "A slant abstract emphasises the aspects of a document most relevant to a specific audience — the source may be presented differently for each kind of reader."
+    },
+    {
+      "n": 4,
+      "stem": "Which set lists the common headings used in a structured abstract?",
+      "options": {
+        "A": "Background, Objective, Method, Results, and Conclusion",
+        "B": "Title, Author, Keywords, References",
+        "C": "Problem, Hypothesis, Data, Analysis, Discussion",
+        "D": "Summary, Extract, Digest, Synopsis"
+      },
+      "answer": "A",
+      "explanation": "A structured abstract organises content under clear headings such as Background, Objective, Method, Results, and Conclusion, which improves scanning."
+    },
+    {
+      "n": 5,
+      "stem": "Which is a quality of a good abstract?",
+      "options": {
+        "A": "It includes unsupported claims to make the study sound important",
+        "B": "It is clear, concise, accurate, objective, self-contained, coherent, grammatically correct, and faithful to the source document",
+        "C": "It adds the personal opinions of the person writing it",
+        "D": "It introduces invented information missing from the source"
+      },
+      "answer": "B",
+      "explanation": "Good abstracts are clear, concise, accurate, objective, self-contained, coherent, grammatically correct, and faithful to the source — never unsupported or invented content."
+    }
+  ]
+}
