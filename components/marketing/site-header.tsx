@@ -75,6 +75,6 @@ export function SiteHeader() {
           </div>
         </details>
       </header>
-    </div>
+  </div>
   );
 }
