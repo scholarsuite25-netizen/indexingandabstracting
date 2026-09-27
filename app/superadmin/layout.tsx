@@ -1,13 +1,21 @@
 import { requireRole } from "@/lib/auth";
 import { AppShell } from "@/components/shell/app-shell";
+import {
+  LayoutDashboard,
+  Users,
+  Settings,
+  FileText,
+  Shield,
+  ArrowLeft,
+} from "lucide-react";
 
 const superadminNav = [
-  { href: "/superadmin", label: "System", exact: true },
-  { href: "/superadmin/users", label: "Users" },
-  { href: "/superadmin/settings", label: "Settings" },
-  { href: "/superadmin/audit", label: "Audit" },
-  { href: "/admin", label: "Admin" },
-  { href: "/profile", label: "Profile" },
+  { href: "/superadmin", label: "System", exact: true, icon: <LayoutDashboard className="size-4" /> },
+  { href: "/superadmin/users", label: "Users", icon: <Users className="size-4" /> },
+  { href: "/superadmin/settings", label: "Settings", icon: <Settings className="size-4" /> },
+  { href: "/superadmin/audit", label: "Audit", icon: <FileText className="size-4" /> },
+  { href: "/admin", label: "Admin", icon: <Shield className="size-4" /> },
+  { href: "/profile", label: "Profile", icon: <ArrowLeft className="size-4" /> },
 ];
 
 export default async function SuperadminLayout({ children }: { children: React.ReactNode }) {

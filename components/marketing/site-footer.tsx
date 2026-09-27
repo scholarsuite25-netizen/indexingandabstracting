@@ -3,20 +3,20 @@ import { BookOpen } from "lucide-react";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border bg-surface no-print">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-3">
-        <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-2.5">
-            <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-white">
-              <BookOpen className="size-4" aria-hidden />
+    <footer className="border-t border-border bg-gradient-to-b from-surface to-canvas no-print pb-8">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-4 lg:gap-16">
+        <div className="flex flex-col gap-4 md:col-span-2">
+          <div className="flex items-center gap-3">
+            <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-600 text-white shadow-sm">
+              <BookOpen className="size-5" aria-hidden />
             </span>
-            <span className="text-sm font-semibold text-ink">
+            <span className="text-base font-bold tracking-tight text-ink">
               LIS 815 LMS
             </span>
           </div>
-          <p className="measure text-sm text-ink-muted">
-            Indexing and Abstracting — a course learning platform built around
-            the supplied LIS 815 study guide and examination papers.
+          <p className="max-w-sm text-sm leading-relaxed text-ink-muted">
+            Indexing and Abstracting — a premium learning platform built around
+            the official LIS 815 study guide and examination papers.
           </p>
         </div>
 

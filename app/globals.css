@@ -80,6 +80,28 @@
     max-width: 68ch;
   }
 
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 59, 92, 0.4),
+      rgba(255, 184, 0, 0.4),
+      rgba(168, 85, 247, 0.4),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
   .skip-link {
     position: absolute;
     left: 0.75rem;

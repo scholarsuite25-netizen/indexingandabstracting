@@ -10,16 +10,16 @@ const navLinks = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-surface/90 backdrop-blur no-print">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-2.5">
-          <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-white">
+    <div className="fixed top-0 z-50 w-full px-4 pt-4 sm:px-6 no-print pointer-events-none">
+      <header className="pointer-events-auto mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 rounded-2xl border border-white/20 bg-white/70 px-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md transition-all sm:px-6 dark:border-white/10 dark:bg-slate-900/70">
+        <Link href="/" className="flex items-center gap-3 transition-transform hover:scale-105">
+          <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-600 text-white shadow-sm">
             <BookOpen className="size-5" aria-hidden />
           </span>
           <span className="flex flex-col leading-tight">
-            <span className="text-sm font-semibold text-ink">LIS 815</span>
-            <span className="text-xs text-ink-muted">
-              Indexing and Abstracting
+            <span className="text-base font-bold text-ink tracking-tight">LIS 815</span>
+            <span className="text-xs font-medium text-ink-muted">
+              Indexing & Abstracting
             </span>
           </span>
         </Link>
@@ -75,6 +75,7 @@ export function SiteHeader() {
           </div>
         </details>
       </div>
-    </header>
+      </header>
+    </div>
   );
 }
