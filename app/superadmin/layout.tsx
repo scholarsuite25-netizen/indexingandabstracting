@@ -1,5 +1,5 @@
 import { requireRole } from "@/lib/auth";
-import { AppShell } from "@/components/shell/app-shell";
+import { SidebarShell } from "@/components/shell/sidebar-shell";
 import {
   LayoutDashboard,
   Users,
@@ -22,8 +22,8 @@ export default async function SuperadminLayout({ children }: { children: React.R
   const user = await requireRole("superadmin");
 
   return (
-    <AppShell email={user.email} roleLabel="Superadmin" nav={superadminNav}>
+    <SidebarShell email={user.email} roleLabel="Superadmin" nav={superadminNav}>
       {children}
-    </AppShell>
+    </SidebarShell>
   );
 }

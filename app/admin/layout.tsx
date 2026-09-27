@@ -1,5 +1,5 @@
 import { requireRole } from "@/lib/auth";
-import { AppShell } from "@/components/shell/app-shell";
+import { SidebarShell } from "@/components/shell/sidebar-shell";
 import {
   LayoutDashboard,
   FileText,
@@ -27,8 +27,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const user = await requireRole("admin", "superadmin");
 
   return (
-    <AppShell email={user.email} roleLabel="Admin" nav={adminNav}>
+    <SidebarShell email={user.email} roleLabel="Admin" nav={adminNav}>
       {children}
-    </AppShell>
+    </SidebarShell>
   );
 }
