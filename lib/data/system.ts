@@ -3,7 +3,7 @@ import "server-only";
 import { createServerSupabase } from "@/lib/supabase/server";
 
 async function signedIn(supabase: Awaited<ReturnType<typeof createServerSupabase>>): Promise<string | null> {
-  const { data: { user } } = await supabase.auth.getUser();
+  const { data: { user } } = await supabase!.auth.getUser();
   return user?.id ?? null;
 }
 
@@ -47,7 +47,7 @@ export async function getSystemStats(): Promise<SystemStat | null> {
   const userId = await signedIn(supabase);
   if (!userId) return null;
 
-  const [profileCount, settingsCount, auditCount, userRoles] = await Promise.all([
+  const [{ count: profilesCount }, { count: settingsCount }, { count: auditCount }, userRoles] = await Promise.all([
     supabase.from("profiles").select("id", { count: "exact", head: true }),
     supabase.from("system_settings").select("key", { count: "exact", head: true }),
     supabase.from("audit_logs").select("id", { count: "exact", head: true }),
@@ -63,19 +63,19 @@ export async function getSystemStats(): Promise<SystemStat | null> {
     supabase.from("roles").select("id").eq("code", "admin").maybeSingle(),
   ]);
   const studentCount = studentRole
-    ? Number((await supabase.from("user_roles").select("id", { count: "exact", head: true }).eq("role_id", studentRole.id)).data?.[0]?.count ?? 0)
+    ? Number((await supabase.from("user_roles").select("id", { count: "exact", head: true }).eq("role_id", studentRole.id)).count ?? 0)
     : 0;
   const adminCount = adminRole
-    ? Number((await supabase.from("user_roles").select("id", { count: "exact", head: true }).eq("role_id", adminRole.id)).data?.[0]?.count ?? 0)
+    ? Number((await supabase.from("user_roles").select("id", { count: "exact", head: true }).eq("role_id", adminRole.id)).count ?? 0)
     : 0;
 
   return {
-    users: Number(profileCount.data?.[0]?.count ?? 0),
+    users: Number(profilesCount ?? 0),
     students: studentCount,
     admins: adminCount,
     superadmins: codeSet.has("superadmin") ? 1 : 0,
-    settingsCount: Number(settingsCount.data?.[0]?.count ?? 0),
-    auditCount: Number(auditCount.data?.[0]?.count ?? 0),
+    settingsCount: Number(settingsCount ?? 0),
+    auditCount: Number(auditCount ?? 0),
   };
 }
 
@@ -148,7 +148,14 @@ export async function getAuditLogs(): Promise<AuditRow[]> {
     .limit(100);
   if (error) return [];
   const actorIds = [...new Set((data ?? []).map((r: { actor_id?: string }) => r.actor_id).filter((x): x is string => x != null))];
-  if (actorIds.length === 0) return (data ?? []) as AuditRow[];
+  if (actorIds.length === 0) {
+    return (data ?? []).map(
+      (r: { id: string; action: string; entity_type: string | null; entity_id: string | null; created_at: string; actor_id?: string }) => ({
+        ...r,
+        actor_email: null,
+      })
+    ) as AuditRow[];
+  }
 
   const { data: actors } = await supabase.from("profiles").select("id, email").in("id", actorIds);
   const actorMap = new Map((actors ?? []).map((a: { id: string; email: string }) => [a.id, a.email]));

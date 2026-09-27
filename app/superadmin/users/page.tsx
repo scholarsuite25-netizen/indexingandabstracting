@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { UserPlus, UserX } from "lucide-react";
+import { UserPlus, UserX, UserCog } from "lucide-react";
 import {
   Badge,
   Button,
@@ -10,7 +10,6 @@ import {
   EmptyState,
   Input,
   Label,
-  Select,
   Table,
   TBody,
   TD,

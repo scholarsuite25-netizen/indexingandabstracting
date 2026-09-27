@@ -3,7 +3,7 @@ import {
   ArrowRight,
   Award,
   GraduationCap,
-  LayerGroup,
+  LayoutGrid,
   PencilLine,
   Scale,
   Users,
@@ -82,7 +82,7 @@ export default async function AdminPage() {
         </div>
       ) : (
         <EmptyState
-          icon={<LayerGroup className="size-8" />}
+          icon={<LayoutGrid className="size-8" />}
           title="Loading dashboard statistics"
           description="Your dashboard statistics are not available yet. Try again in a moment."
         />
@@ -127,7 +127,7 @@ export default async function AdminPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <LayerGroup className="size-4 text-ink-subtle" aria-hidden />
+                <LayoutGrid className="size-4 text-ink-subtle" aria-hidden />
                 Reports
               </CardTitle>
             </CardHeader>

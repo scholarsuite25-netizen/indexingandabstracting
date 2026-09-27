@@ -298,19 +298,19 @@ Migration `0009_study_tooling.sql` (exam papers invisible even when a row says `
 
 **Goal:** the three role dashboards plus reporting.
 
-- [ ] **[ME]** Learner dashboard complete: progress, current module/lesson, completed/remaining, objective status+score, theory eligibility, theory result, certificate status, recent activity
-- [ ] **[ME]** Admin dashboard: learners, active learners, completion rate, attempts, average score, theory-eligible count, grading queue, completions, certificates, recent registrations, engagement
-- [ ] **[ME]** Superadmin dashboard: system stats, users/roles, settings, audit log viewer
-- [ ] **[ME]** Reports: CSV export (learners, attempts, grades); question analytics (difficulty index, option distribution) with plain-English help text
-- [ ] **[ME]** Content manager UI: create/edit/reorder/publish modules, chapters, lessons, sections (no code needed by you)
-- [ ] **[ME]** Question bank UI: list/edit questions and options; exam settings editor
-- [ ] **[VERIFY]** Dashboard numbers reconcile with hand-checked database counts
+- [x] **[ME]** Learner dashboard complete: progress, current module/lesson, completed/remaining, objective status+score, theory eligibility, theory result, certificate status, recent activity
+- [x] **[ME]** Admin dashboard: learners, active learners, completion rate, attempts, average score, theory-eligible count, grading queue, completions, certificates, recent registrations, engagement
+- [x] **[ME]** Superadmin dashboard: system stats, users/roles, settings, audit log viewer
+- [x] **[ME]** Reports: CSV export (learners, attempts, grades); question analytics (difficulty index, option distribution) with plain-English help text
+- [x] **[ME]** Content manager UI: create/edit/reorder/publish modules, chapters, lessons, sections
+- [x] **[ME]** Question bank UI: list/edit questions and options; exam settings editor
+- [x] **[VERIFY]** Dashboard numbers reconcile with hand-checked database counts
 
 **GATE — Phase 9**
-- [ ] **[VERIFY]** With seeded demo data, every metric matches a manual query
-- [ ] **[VERIFY]** Empty/loading/error states on all dashboard panels
-- [ ] **[VERIFY]** Admin edits a lesson title in the UI → learner sees the change
-- [ ] **[VERIFY]** Non-superadmin cannot open system settings or audit log
+- [x] **[VERIFY]** With seeded demo data, every metric matches a manual query
+- [x] **[VERIFY]** Empty/loading/error states on all dashboard panels
+- [x] **[VERIFY]** Admin edits a lesson title in the UI → learner sees the change
+- [x] **[VERIFY]** Non-superadmin cannot open system settings or audit log
 
 ---
 

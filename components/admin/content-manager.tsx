@@ -19,17 +19,10 @@ import {
   CardHeader,
   CardTitle,
   EmptyState,
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
 } from "@/components/ui";
 
 type Module = { id: string; position: number; title: string; status: string };
-type Chapter = { id: string; module_id: string; position: number; title: string; slug: string };
+type Chapter = { id: string; module_id: string; position: number; title: string; slug: string; status: string };
 type Lesson = { id: string; chapter_id: string; position: number; title: string; status: string };
 type Section = { id: string; lesson_id: string; position: number; title: string };
 
@@ -41,7 +34,7 @@ export default function ContentManager() {
 
   const load = useCallback(async () => {
     setLoading(true);
-    const { data: mods } = await supabase
+    const { data: mods } = await supabase!
       .from("modules")
       .select("id, position, title, status")
       .order("position");
@@ -52,7 +45,7 @@ export default function ContentManager() {
   useEffect(() => { load(); }, [load]);
 
   async function move(kind: string, id: string, delta: number) {
-    const { error } = await supabase.rpc("move_content_row", {
+    const { error } = await supabase!.rpc("move_content_row", {
       p_kind: kind,
       p_id: id,
       p_delta: delta,
@@ -70,7 +63,7 @@ export default function ContentManager() {
     id: string,
     value: string
   ) {
-    const { error } = await supabase.from(table).update({ title: value }).eq("id", id);
+    const { error } = await supabase!.from(table).update({ title: value }).eq("id", id);
     if (error) {
       toast.error(error.message);
     } else {
@@ -80,7 +73,7 @@ export default function ContentManager() {
   }
 
   async function toggleStatus(table: string, id: string, status: string) {
-    const { error } = await supabase.from(table).update({ status }).eq("id", id);
+    const { error } = await supabase!.from(table).update({ status }).eq("id", id);
     if (error) {
       toast.error(error.message);
     } else {
@@ -91,12 +84,12 @@ export default function ContentManager() {
 
   async function addRow(table: string, parentId: string | null) {
     const col = table === "lesson_sections" ? "lesson_id" : table === "chapters" ? "module_id" : "course_id";
-    const courseId = (await supabase.from("courses").select("id").eq("code", "LIS 815").maybeSingle()).data?.id;
+    const courseId = (await supabase!.from("courses").select("id").eq("code", "LIS 815").maybeSingle()).data?.id;
     const base: Record<string, unknown> = { [col]: courseId ?? parentId, position: 0 };
     if (table === "chapters") base.title = "New chapter";
     if (table === "lessons") base.title = "New lesson";
     if (table === "lesson_sections") base.title = "New section";
-    const { error } = await supabase.from(table).insert(base);
+    const { error } = await supabase!.from(table).insert(base);
     if (error) {
       toast.error(error.message);
     } else {
@@ -167,7 +160,7 @@ function Chapters({
 
   useEffect(() => {
     setLoading(true);
-    supabase.from("chapters").select("id, module_id, position, title, slug, status").eq("module_id", mod.id).order("position").then(({ data }) => { setChapters((data ?? []) as Chapter[]); setLoading(false); });
+    supabase!.from("chapters").select("id, module_id, position, title, slug, status").eq("module_id", mod.id).order("position").then(({ data }) => { setChapters((data ?? []) as Chapter[]); setLoading(false); });
   }, [mod.id, supabase]);
 
   return (

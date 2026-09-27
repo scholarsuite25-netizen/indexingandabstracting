@@ -1,6 +1,23 @@
 # Changelog
 
-## 2026-09-27 — Phases 6–8 live gate closed: every migration applied, `test:all` green
+## 2026-09-27 — Phase 9 live gate closed: three dashboards, CSV reports, content manager, question bank
+
+- **Migration `0011_reporting.sql`** adds four SECURITY DEFINER RPCs: `admin_dashboard_stats()` (all admin metrics in one call), `question_analytics()` (difficulty index + option distribution per MCQ question), `admin_report()` (CSV-ready rows for learners/attempts/grades), and `move_content_row()` (atomic reorder for modules/chapters/lessons/sections). All check `is_course_staff`; `admin_report` validates the `kind` parameter. `check:sql` validates the new functions and the combined file is re-runnable.
+- **Learner dashboard** now shows objective status (best %, pass mark, passed/below/not-attempted), theory eligibility (state, threshold, best %, reason, paper link), certificate status (eligible/issued/number), and recent activity (last 10 reading/completion events).
+- **Admin dashboard** (`/admin`) stat cards: learners, active learners, completion rate, attempts, avg score, theory eligible, grading queue, completions, certificates, registrations, engagement by module. Quick links to learners, theory marking, reports, content, questions, assessments.
+- **Admin learners page** (`/admin/learners`) table with progress, objective best %, theory status, enrolment status, CSV export link.
+- **Admin reports page** (`/admin/reports`) three CSV exports (learners/attempts/grades) plus question analytics panel with difficulty index (p = correct/attempts) and option distribution with help text.
+- **CSV route** `GET /api/admin/reports/csv/[kind]` role-checked, `text/csv` with `Content-Disposition`.
+- **Superadmin dashboard** (`/superadmin`) system stats (users, role counts, settings, audit count) and panels for Users & roles, Settings, Audit log.
+- **Superadmin users** (`/superadmin/users`) grant/revoke admin via server actions, every change audited.
+- **Superadmin settings** (`/superadmin/settings`) edit non-secret settings inline, secret settings hidden.
+- **Superadmin audit** (`/superadmin/audit`) table of recent audit entries with actor email.
+- **Content manager** (`/admin/content`) client component: nested modules→chapters→lessons→sections with inline title edit, publish/draft toggle, up/down reorder via `move_content_row`, add new items.
+- **Question bank** (`/admin/questions`) client component: list published theory MCQ questions, inline edit stem/points, options with correct-answer radio, add option.
+- **Assessments settings** (`/admin/assessments`) inline edit pass mark, duration, max attempts, status for each assessment.
+- **Nav updates** in admin and superadmin layouts.
+- **New test suite** `scripts/verify-dashboards.mjs` reconciles `admin_dashboard_stats` counts with hand-checked queries; added as `test:dashboards` to `test:all`.
+- **Gate verified:** `lint`, `typecheck`, `build`, `check:sql`, `db:push` (live), `test:dashboards` green.
 
 - **The database is on your project, all 10 migrations.** `DATABASE_URL` was added to `.env.local`, `npm run db:push` connected through the IPv4 pooler (the direct address is IPv6-only and unreachable from this machine; the pooler's certificate is signed by Supabase's own CA, so the script falls back to trusting it only for that one error), and the Phase 6 assessment engine, Phase 7 theory examination, Phase 8 study-tooling hardening and the new `0010` below are installed. `npm run db:push -- --check` says so and changes nothing.
 - **`db:push` no longer trusts a marker that never moves.** It decided "already up to date" from the presence of the Phase 7 functions, which stays true for every later migration — a new file would have been silently skipped, which is exactly what happened to `0010` on the first attempt. It now stores a fingerprint of the SQL it sent (`schema_sql_sha256` in `system_settings`) and re-sends only when that fingerprint changes; every migration is written to be re-runnable, so a re-send is harmless. `--check` reports the same thing.

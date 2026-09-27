@@ -1,5 +1,5 @@
 import { getAssessmentCentre } from "@/lib/data/assessments";
-import { QuestionBank } from "@/components/admin/question-bank";
+import QuestionBank from "@/components/admin/question-bank";
 
 export const metadata = { title: "Questions" };
 export const dynamic = "force-dynamic";

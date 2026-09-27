@@ -431,8 +431,8 @@ export async function getLearnerDashboard(): Promise<LearnerDashboard | null> {
     getLearnerOverview(),
     supabase.from("courses").select("id").eq("code", "LIS 815").maybeSingle(),
   ]);
-  if (!overview || !courseRow) return null;
-  const courseId = courseRow.id;
+  if (!overview || !courseRow.data) return null;
+  const courseId = courseRow.data.id;
 
   const centre = await supabase.rpc("assessment_centre", { p_course_id: courseId });
   const objectiveData = (centre.data as Record<string, unknown>)?.assessments as
@@ -460,7 +460,7 @@ export async function getLearnerDashboard(): Promise<LearnerDashboard | null> {
     attemptCount: Number(theoryGate.attempt_count ?? 0),
     reason: String(theoryGate.reason ?? ""),
     paper: theoryPaper
-      ? { id: theoryPaper.id, title: theoryPaper.title, status: theoryPaper.attempts[0]?.status ?? "none", totalScore: null }
+      ? { id: (theoryPaper as unknown as { id: string }).id, title: theoryPaper.title, status: theoryPaper.attempts[0]?.status ?? "none", totalScore: null }
       : null,
   };
 
@@ -485,7 +485,6 @@ export async function getLearnerDashboard(): Promise<LearnerDashboard | null> {
     supabase.from("lesson_progress").select("completed_at, lesson_id").eq("user_id", user.id).eq("status", "completed").order("completed_at", { ascending: false }).limit(6),
   ]);
   const recentActivity: RecentActivity = [];
-  const lessonTitleMap = new Map<string, string>();
   for (const r of (reading.data ?? []) as { created_at: string; lesson_id: string }[]) {
     recentActivity.push({ kind: "reading", title: "", module: "", date: r.created_at });
   }
@@ -494,9 +493,8 @@ export async function getLearnerDashboard(): Promise<LearnerDashboard | null> {
   }
   recentActivity.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  /** Why getLessonView returned nothing, so the reader can explain it plainly. */
-export type LessonUnavailableReason = "not-enrolled" | "missing";
-
+  return { overview, objective, theory, certificate, recentActivity: recentActivity.slice(0, 10) };
+}
 export async function explainLessonUnavailable(): Promise<LessonUnavailableReason> {
   const supabase = await createServerSupabase();
   if (!supabase) return "missing";

@@ -20,6 +20,7 @@ const SUITES = [
   "test:assessment",
   "test:theory",
   "test:tooling",
+  "test:dashboards",
 ];
 
 const NETWORK = /fetch failed|ECONNRESET|ETIMEDOUT|ENOTFOUND|EAI_AGAIN|socket hang up/i;

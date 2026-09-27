@@ -104,22 +104,11 @@ export default async function AssessmentsPage() {
                     <form action={handleUpdate} className="flex items-center gap-1">
                       <input type="hidden" name="assessmentId" value={a.id} />
                       <input type="hidden" name="field" value="max_attempts" />
-                      <Input type="number" defaultValue={a.max_attempts} name="value" className="w-16" />
+                      <Input type="number" defaultValue={a.max_attempts ?? ""} name="value" className="w-16" />
                       <Button variant="ghost" size="sm" type="submit">Save</Button>
                     </form>
                   </TD>
-                  <TD>
-                    <form action={handleUpdate} className="inline">
-                      <input type="hidden" name="assessmentId" value={a.id} />
-                      <input type="hidden" name="field" value="status" />
-                      <select name="value" defaultValue={a.status} className="text-sm border rounded px-1 py-0.5">
-                        <option value="draft">Draft</option>
-                        <option value="published">Published</option>
-                        <option value="archived">Archived</option>
-                      </select>
-                      <Button variant="ghost" size="sm" type="submit">Save</Button>
-                    </form>
-                  </TD>
+                  <TD />
                   <TD />
                 </TR>
               ))}
