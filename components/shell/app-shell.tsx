@@ -24,7 +24,7 @@ export function AppShell({
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="sticky top-0 z-40 border-b border-border/50 bg-surface/95 backdrop-blur-lg supports-[backdrop-filter]:bg-surface/80 no-print relative overflow-hidden"
+        className="sticky top-0 z-40 border-b border-red-500/30 bg-red-600/95 backdrop-blur-lg supports-[backdrop-filter]:bg-red-600/90 no-print relative overflow-hidden"
       >
         {/* Animated gradient border top */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-purple-500 animate-shimmer" />
@@ -34,15 +34,15 @@ export function AppShell({
 
         <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
           <div className="flex items-center gap-4">
-            <Link 
-              href="/dashboard" 
+            <Link
+              href="/dashboard"
               className="group flex items-center gap-2.5"
               aria-label="LIS LMS Home"
             >
               <motion.div
                 whileHover={{ rotate: 12, scale: 1.1 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-accent to-purple-600 shadow-lg shadow-primary/25 group-hover:shadow-xl group-hover:shadow-primary/30"
+                className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-white/20 to-white/10 shadow-lg shadow-white/10 group-hover:shadow-xl group-hover:shadow-white/20"
               >
                 <BookOpen className="size-5.5 text-white" aria-hidden />
               </motion.div>
@@ -51,7 +51,7 @@ export function AppShell({
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1, duration: 0.4 }}
-                  className="bg-gradient-to-r from-ink via-primary to-accent bg-clip-text text-transparent font-bold text-lg tracking-tight"
+                  className="text-white font-bold text-lg tracking-tight"
                 >
                   LIS LMS
                 </motion.span>
@@ -59,7 +59,7 @@ export function AppShell({
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2, duration: 0.4 }}
-                  className="hidden text-xs text-ink-muted sm:block"
+                  className="hidden text-xs text-white/80 sm:block"
                 >
                   Indexing & Abstracting
                 </motion.span>
@@ -80,7 +80,7 @@ export function AppShell({
             >
               <Badge 
                 variant="neutral" 
-                className="relative overflow-hidden bg-gradient-to-r from-border to-border/50 text-ink-muted"
+                className="relative overflow-hidden bg-white/20 text-white border-white/30"
               >
                 <span className="relative">{roleLabel}</span>
               </Badge>
@@ -90,10 +90,10 @@ export function AppShell({
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 }}
-              className="relative max-w-48 truncate text-sm text-ink-muted"
+              className="relative max-w-48 truncate text-sm text-white/80"
               title={email}
             >
-              <span className="relative z-10 bg-surface/80 px-1">{email}</span>
+              <span className="relative z-10 bg-white/10 px-1">{email}</span>
             </motion.div>
 
             <motion.div
@@ -161,7 +161,7 @@ export function AppShell({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
-        className="relative border-t border-border/50 bg-gradient-to-b from-surface via-surface/50 to-canvas/50 py-10 no-print overflow-hidden"
+        className="relative bg-gradient-to-b from-blue-700 via-blue-800 to-blue-900 py-10 no-print overflow-hidden"
       >
         {/* Footer background accents */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_center,_var(--tw-gradient-from)_0%,transparent_60%)] from-primary/3 via-transparent to-accent/3 pointer-events-none" aria-hidden />
@@ -178,18 +178,18 @@ export function AppShell({
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-ink">LIS LMS</p>
-                  <p className="text-xs text-ink-muted">Indexing & Abstracting Learning Management System</p>
+                  <p className="font-semibold text-white">LIS LMS</p>
+                  <p className="text-xs text-white/80">Indexing & Abstracting Learning Management System</p>
                 </div>
               </div>
-              <p className="text-sm text-ink-muted max-w-md">
+              <p className="text-sm text-white/80 max-w-md">
                 A comprehensive learning management system for information science education. 
                 Built with Next.js 16, React 19, Supabase, and Tailwind CSS v4.
               </p>
             </div>
 
             <div>
-              <h4 className="font-semibold text-ink mb-3 flex items-center gap-2">
+              <h4 className="font-semibold text-white mb-3 flex items-center gap-2">
                 <svg className="size-4 text-primary" aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8h9z"/>
                 </svg>
@@ -206,7 +206,7 @@ export function AppShell({
                     <li key={link.href}>
                       <Link 
                         href={link.href} 
-                        className="text-ink-muted hover:text-primary transition-colors flex items-center gap-1.5 group"
+                        className="text-white/80 hover:text-white transition-colors flex items-center gap-1.5 group"
                       >
                         <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                         {link.label}
@@ -218,7 +218,7 @@ export function AppShell({
             </div>
 
             <div>
-              <h4 className="font-semibold text-ink mb-3 flex items-center gap-2">
+              <h4 className="font-semibold text-white mb-3 flex items-center gap-2">
                 <svg className="size-4 text-accent" aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M12 2L2 7l10 5 10-5-10-5z"/>
                   <path d="M2 17l10 5 10-5"/>
@@ -239,7 +239,7 @@ export function AppShell({
                     <li key={link.href}>
                       <Link 
                         href={link.href} 
-                        className="text-ink-muted hover:text-primary transition-colors flex items-center gap-1.5 group"
+                        className="text-white/80 hover:text-white transition-colors flex items-center gap-1.5 group"
                       >
                         <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                         {link.label}
@@ -251,16 +251,16 @@ export function AppShell({
             </div>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-border/50">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ink-muted">
+          <div className="mt-8 pt-6 border-t border-white/20">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/80">
               <p className="flex items-center gap-1.5">
                 <span className="inline-block size-1.5 rounded-full bg-gradient-to-r from-primary to-accent animate-pulse" aria-hidden></span>
                 © 2026 LIS LMS — Indexing & Abstracting. All rights reserved.
               </p>
               <div className="flex items-center gap-4">
-                <a href="/help" className="hover:text-primary transition-colors">Privacy</a>
-                <a href="/help" className="hover:text-primary transition-colors">Terms</a>
-                <a href="/help" className="hover:text-primary transition-colors">Accessibility</a>
+                <a href="/help" className="hover:text-white transition-colors">Privacy</a>
+                <a href="/help" className="hover:text-white transition-colors">Terms</a>
+                <a href="/help" className="hover:text-white transition-colors">Accessibility</a>
               </div>
             </div>
           </div>
