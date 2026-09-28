@@ -94,7 +94,7 @@ async function courseIdFor(
   const { data: course } = await supabase!
     .from("courses")
     .select("id")
-    .eq("code", "LIS 815")
+    .eq("code", "LIS LMS")
     .maybeSingle();
   return course?.id ?? null;
 }

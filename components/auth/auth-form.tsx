@@ -123,7 +123,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
             <BookOpen className="size-5" aria-hidden />
           </span>
           <span className="text-sm font-semibold text-ink">
-            LIS 815 · Indexing and Abstracting
+            LIS LMS · Indexing and Abstracting
           </span>
         </Link>
       </div>

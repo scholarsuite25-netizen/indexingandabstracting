@@ -11,7 +11,7 @@ export interface Module {
 }
 
 export const COURSE = {
-  code: "LIS 815",
+  code: "LIS LMS",
   title: "Indexing and Abstracting",
   tagline: "A beginner-friendly guide to subject indexing, vocabulary control and abstracting",
   description:

@@ -84,7 +84,7 @@ export default function ContentManager() {
 
   async function addRow(table: string, parentId: string | null) {
     const col = table === "lesson_sections" ? "lesson_id" : table === "chapters" ? "module_id" : "course_id";
-    const courseId = (await supabase!.from("courses").select("id").eq("code", "LIS 815").maybeSingle()).data?.id;
+    const courseId = (await supabase!.from("courses").select("id").eq("code", "LIS LMS").maybeSingle()).data?.id;
     const base: Record<string, unknown> = { [col]: courseId ?? parentId, position: 0 };
     if (table === "chapters") base.title = "New chapter";
     if (table === "lessons") base.title = "New lesson";

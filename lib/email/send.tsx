@@ -52,7 +52,7 @@ export async function sendWelcomeEmail(
   return sendTemplatedEmail(
     to,
     WelcomeTemplate({ fullName, dashboardUrl }),
-    "Welcome to LIS 815 \u2014 Your Learning Journey Begins"
+    "Welcome to LIS LMS \u2014 Your Learning Journey Begins"
   );
 }
 
@@ -65,7 +65,7 @@ export async function sendPasswordResetEmail(
   return sendTemplatedEmail(
     to,
     PasswordResetTemplate({ fullName, resetUrl, expiresHours }),
-    "Reset Your LIS 815 Password"
+    "Reset Your LIS LMS Password"
   );
 }
 
@@ -78,7 +78,7 @@ export async function sendVerificationEmail(
   return sendTemplatedEmail(
     to,
     VerificationTemplate({ fullName, verificationUrl, expiresHours }),
-    "Verify Your Email Address \u2014 LIS 815"
+    "Verify Your Email Address \u2014 LIS LMS"
   );
 }
 

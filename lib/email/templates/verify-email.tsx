@@ -39,7 +39,7 @@ export function VerificationTemplate({ fullName, verificationUrl, expiresHours }
   </head>
   <body>
     <div class="email-wrapper">
-      <div class="preheader">Verify your email to activate your LIS 815 account</div>
+      <div class="preheader">Verify your email to activate your LIS LMS account</div>
       <div class="email-container">
         <div class="header">
           <div class="logo" aria-hidden="true">
@@ -48,10 +48,10 @@ export function VerificationTemplate({ fullName, verificationUrl, expiresHours }
               <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
             </svg>
           </div>
-          <h1>LIS 815</h1>
+          <h1>LIS LMS</h1>
         </div>
         <div class="content">
-          <p style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px;">Welcome to LIS 815, ${fullName}!</p>
+          <p style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px;">Welcome to LIS LMS, ${fullName}!</p>
           <p style="color: #4b5563; margin-bottom: 24px; font-size: 16px;">Thanks for registering. Please verify your email address to activate your account and start learning:</p>
           <div style="text-align: center;"><a href="${verificationUrl}" class="cta-button">Verify Email Address</a></div>
           <div class="info-box">
@@ -61,9 +61,9 @@ export function VerificationTemplate({ fullName, verificationUrl, expiresHours }
           <p style="word-break: break-all; color: #3b82f6; font-size: 13px; font-family: monospace; background: #f3f4f6; padding: 12px; border-radius: 6px;">${verificationUrl}</p>
           <div class="divider" />
           <div class="footer">
-            <p style="margin-bottom: 8px;">LIS 815 \u2014 Indexing and Abstracting Course Platform</p>
+            <p style="margin-bottom: 8px;">LIS LMS \u2014 Indexing and Abstracting Course Platform</p>
             <p style="margin-bottom: 4px;"><a href="mailto:esutlibrary@gmail.com">esutlibrary@gmail.com</a></p>
-            <p style="font-size: 12px; margin-top: 12px;">You received this email because you have an account on the LIS 815 platform.</p>
+            <p style="font-size: 12px; margin-top: 12px;">You received this email because you have an account on the LIS LMS platform.</p>
           </div>
         </div>
       </div>

@@ -29,7 +29,7 @@ export function EnrolButton({ courseId, enrolmentOpen }: { courseId: string; enr
       );
       return;
     }
-    toast.success("You are enrolled — welcome to LIS 815!");
+    toast.success("You are enrolled — welcome to LIS LMS!");
     router.refresh();
   }
 

@@ -44,7 +44,7 @@ export function SidebarNav({ links, isOpen, onClose, onNavigate }: SidebarNavPro
               href="/"
               className="flex items-center gap-2.5"
               onClick={onClose}
-              aria-label="LIS 815 Home"
+              aria-label="LIS LMS Home"
             >
               <span className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-accent to-purple-600 text-white">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="size-5" aria-hidden>
@@ -52,7 +52,7 @@ export function SidebarNav({ links, isOpen, onClose, onNavigate }: SidebarNavPro
                   <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
                 </svg>
               </span>
-              <span className="font-bold text-lg text-ink tracking-tight">LIS 815</span>
+              <span className="font-bold text-lg text-ink tracking-tight">LIS LMS</span>
             </Link>
             <button
               onClick={onClose}
@@ -111,7 +111,7 @@ export function SidebarNav({ links, isOpen, onClose, onNavigate }: SidebarNavPro
           {/* Sidebar Footer */}
           <div className="p-4 border-t border-border/50">
             <p className="text-xs text-ink-muted text-center">
-              LIS 815 — Indexing & Abstracting
+              LIS LMS — Indexing & Abstracting
             </p>
           </div>
         </div>

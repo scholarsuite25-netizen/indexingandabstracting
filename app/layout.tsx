@@ -19,17 +19,17 @@ const sourceSerif = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "LIS 815 — Indexing and Abstracting",
-    template: "%s · LIS 815 LMS",
+    default: "LIS LMS — Indexing and Abstracting",
+    template: "%s · LIS LMS LMS",
   },
   description:
-    "Learning management system for LIS 815 Indexing and Abstracting: seven modules, fourteen chapters, practical exercises, objective and theory examinations.",
+    "Learning management system for LIS LMS Indexing and Abstracting: seven modules, fourteen chapters, practical exercises, objective and theory examinations.",
   manifest: "/manifest.json",
   themeColor: "#ff3b5c",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "LIS 815",
+    title: "LIS LMS",
   },
   formatDetection: {
     telephone: false,

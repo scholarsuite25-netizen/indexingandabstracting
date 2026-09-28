@@ -39,7 +39,7 @@ export function PasswordResetTemplate({ fullName, resetUrl, expiresHours }: Pass
   </head>
   <body>
     <div class="email-wrapper">
-      <div class="preheader">Reset your LIS 815 password \u2014 secure link inside</div>
+      <div class="preheader">Reset your LIS LMS password \u2014 secure link inside</div>
       <div class="email-container">
         <div class="header">
           <div class="logo" aria-hidden="true">
@@ -48,11 +48,11 @@ export function PasswordResetTemplate({ fullName, resetUrl, expiresHours }: Pass
               <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
             </svg>
           </div>
-          <h1>LIS 815</h1>
+          <h1>LIS LMS</h1>
         </div>
         <div class="content">
           <p style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px;">Hello ${fullName},</p>
-          <p style="color: #4b5563; margin-bottom: 24px; font-size: 16px;">We received a request to reset your password for your LIS 815 account. Click the button below to create a new password:</p>
+          <p style="color: #4b5563; margin-bottom: 24px; font-size: 16px;">We received a request to reset your password for your LIS LMS account. Click the button below to create a new password:</p>
           <div style="text-align: center;"><a href="${resetUrl}" class="cta-button">Reset Password</a></div>
           <div class="alert-box">
             <p style="margin: 0; color: #991b1b; font-size: 15px;"><strong>Security notice:</strong> This link expires in ${expiresHours} hours. If you didn't request this, please ignore this email.</p>
@@ -63,9 +63,9 @@ export function PasswordResetTemplate({ fullName, resetUrl, expiresHours }: Pass
           <p style="color: #6b7280; font-size: 14px;">If you didn't request a password reset, no action is needed. Your account remains secure.</p>
           <div class="divider" />
           <div class="footer">
-            <p style="margin-bottom: 8px;">LIS 815 \u2014 Indexing and Abstracting Course Platform</p>
+            <p style="margin-bottom: 8px;">LIS LMS \u2014 Indexing and Abstracting Course Platform</p>
             <p style="margin-bottom: 4px;"><a href="mailto:esutlibrary@gmail.com">esutlibrary@gmail.com</a></p>
-            <p style="font-size: 12px; margin-top: 12px;">You received this email because you have an account on the LIS 815 platform.</p>
+            <p style="font-size: 12px; margin-top: 12px;">You received this email because you have an account on the LIS LMS platform.</p>
           </div>
         </div>
       </div>

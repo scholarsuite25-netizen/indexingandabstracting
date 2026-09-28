@@ -37,7 +37,7 @@ export function AppShell({
             <Link 
               href="/dashboard" 
               className="group flex items-center gap-2.5"
-              aria-label="LIS 815 Home"
+              aria-label="LIS LMS Home"
             >
               <motion.div
                 whileHover={{ rotate: 12, scale: 1.1 }}
@@ -53,7 +53,7 @@ export function AppShell({
                   transition={{ delay: 0.1, duration: 0.4 }}
                   className="bg-gradient-to-r from-ink via-primary to-accent bg-clip-text text-transparent font-bold text-lg tracking-tight"
                 >
-                  LIS 815
+                  LIS LMS
                 </motion.span>
                 <motion.span
                   initial={{ opacity: 0, x: -10 }}
@@ -161,7 +161,7 @@ export function AppShell({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
-        className="relative border-t border-border/50 bg-gradient-to-b from-surface via-surface to-canvas py-8 no-print overflow-hidden"
+        className="relative border-t border-border/50 bg-gradient-to-b from-surface via-surface/50 to-canvas/50 py-10 no-print overflow-hidden"
       >
         {/* Footer background accents */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_center,_var(--tw-gradient-from)_0%,transparent_60%)] from-primary/3 via-transparent to-accent/3 pointer-events-none" aria-hidden />
@@ -172,11 +172,14 @@ export function AppShell({
             <div className="lg:col-span-2">
               <div className="flex items-center gap-2.5 mb-4">
                 <div className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-accent to-purple-600 shadow-lg shadow-primary/25">
-                  <GraduationCap className="size-5 text-white" aria-hidden />
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="size-5 text-white" aria-hidden>
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                  </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-ink">LIS 815 — Indexing & Abstracting</p>
-                  <p className="text-xs text-ink-muted">Course materials from the supplied source PDFs</p>
+                  <p className="font-semibold text-ink">LIS LMS</p>
+                  <p className="text-xs text-ink-muted">Indexing & Abstracting Learning Management System</p>
                 </div>
               </div>
               <p className="text-sm text-ink-muted max-w-md">
@@ -187,7 +190,9 @@ export function AppShell({
 
             <div>
               <h4 className="font-semibold text-ink mb-3 flex items-center gap-2">
-                <Sparkles className="size-4 text-primary" aria-hidden />
+                <svg className="size-4 text-primary" aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8h9z"/>
+                </svg>
                 Quick Links
               </h4>
               <nav aria-label="Footer navigation">
@@ -214,7 +219,11 @@ export function AppShell({
 
             <div>
               <h4 className="font-semibold text-ink mb-3 flex items-center gap-2">
-                <Sparkles className="size-4 text-accent" aria-hidden />
+                <svg className="size-4 text-accent" aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                  <path d="M2 17l10 5 10-5"/>
+                  <path d="M2 12l10 5 10-5"/>
+                </svg>
                 Study Tools
               </h4>
               <nav aria-label="Study tools">
@@ -246,7 +255,7 @@ export function AppShell({
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ink-muted">
               <p className="flex items-center gap-1.5">
                 <span className="inline-block size-1.5 rounded-full bg-gradient-to-r from-primary to-accent animate-pulse" aria-hidden></span>
-                © 2026 LIS 815 Indexing and Abstracting. All rights reserved.
+                © 2026 LIS LMS — Indexing & Abstracting. All rights reserved.
               </p>
               <div className="flex items-center gap-4">
                 <a href="/help" className="hover:text-primary transition-colors">Privacy</a>

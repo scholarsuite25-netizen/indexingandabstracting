@@ -69,7 +69,7 @@ export async function getLearnerOverview(): Promise<Overview | null> {
   const { data: course } = await supabase
     .from("courses")
     .select("id, code, title, description, enrolment_open")
-    .eq("code", "LIS 815")
+    .eq("code", "LIS LMS")
     .maybeSingle();
   if (!course) return null;
 
@@ -429,7 +429,7 @@ export async function getLearnerDashboard(): Promise<LearnerDashboard | null> {
 
   const [overview, courseRow] = await Promise.all([
     getLearnerOverview(),
-    supabase.from("courses").select("id").eq("code", "LIS 815").maybeSingle(),
+    supabase.from("courses").select("id").eq("code", "LIS LMS").maybeSingle(),
   ]);
   if (!overview || !courseRow.data) return null;
   const courseId = courseRow.data.id;
@@ -507,7 +507,7 @@ export async function explainLessonUnavailable(): Promise<LessonUnavailableReaso
   const { data: course } = await supabase
     .from("courses")
     .select("id")
-    .eq("code", "LIS 815")
+    .eq("code", "LIS LMS")
     .maybeSingle();
   if (!course) return "missing";
 

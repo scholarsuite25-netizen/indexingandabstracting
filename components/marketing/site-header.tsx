@@ -17,7 +17,7 @@ export function SiteHeader() {
             <BookOpen className="size-5" aria-hidden />
           </span>
           <span className="flex flex-col leading-tight">
-            <span className="text-base font-bold text-ink tracking-tight">LIS 815</span>
+            <span className="text-base font-bold text-ink tracking-tight">LIS LMS</span>
             <span className="text-xs font-medium text-ink-muted">
               Indexing & Abstracting
             </span>

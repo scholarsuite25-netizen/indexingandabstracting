@@ -89,7 +89,7 @@ export function SidebarShell({
             <Link
               href="/dashboard"
               className="flex items-center gap-2.5 transition-transform hover:scale-105"
-              aria-label="LIS 815 Home"
+              aria-label="LIS LMS Home"
             >
               <span className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-accent to-purple-600 shadow-lg shadow-primary/25">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="size-5 text-white" aria-hidden>
@@ -98,7 +98,7 @@ export function SidebarShell({
                 </svg>
               </span>
               <span className="flex flex-col leading-tight">
-                <span className="text-sm font-semibold text-ink">LIS 815</span>
+                <span className="text-sm font-semibold text-ink">LIS LMS</span>
                 <span className="hidden text-xs text-ink-muted sm:block">Indexing & Abstracting</span>
               </span>
             </Link>

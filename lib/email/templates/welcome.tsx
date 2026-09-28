@@ -11,7 +11,7 @@ export function WelcomeTemplate({ fullName, dashboardUrl }: WelcomeTemplateProps
     <meta charSet="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-    <title>Welcome to LIS 815</title>
+    <title>Welcome to LIS LMS</title>
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: #1a1a2e; background-color: #f3f4f6; -webkit-font-smoothing: antialiased; }
@@ -38,7 +38,7 @@ export function WelcomeTemplate({ fullName, dashboardUrl }: WelcomeTemplateProps
   </head>
   <body>
     <div class="email-wrapper">
-      <div class="preheader">Welcome to LIS 815 \u2014 Your indexing and abstracting journey starts here</div>
+      <div class="preheader">Welcome to LIS LMS \u2014 Your indexing and abstracting journey starts here</div>
       <div class="email-container">
         <div class="header">
           <div class="logo" aria-hidden="true">
@@ -47,11 +47,11 @@ export function WelcomeTemplate({ fullName, dashboardUrl }: WelcomeTemplateProps
               <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
             </svg>
           </div>
-          <h1>LIS 815</h1>
+          <h1>LIS LMS</h1>
         </div>
         <div class="content">
           <p style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px;">Welcome, ${fullName}!</p>
-          <p style="color: #4b5563; margin-bottom: 24px; font-size: 16px;">Your account has been created successfully. You're now ready to begin your journey through <strong>LIS 815: Indexing and Abstracting</strong>.</p>
+          <p style="color: #4b5563; margin-bottom: 24px; font-size: 16px;">Your account has been created successfully. You're now ready to begin your journey through <strong>LIS LMS: Indexing and Abstracting</strong>.</p>
           <div class="success-box">
             <p style="margin: 0; color: #166534; font-size: 15px;"><strong>What's next?</strong> Enrol in the course, explore the modules, and start tracking your progress.</p>
           </div>
@@ -68,9 +68,9 @@ export function WelcomeTemplate({ fullName, dashboardUrl }: WelcomeTemplateProps
         </div>
         <div class="divider" />
         <div class="footer">
-          <p style="margin-bottom: 8px;">LIS 815 \u2014 Indexing and Abstracting Course Platform</p>
+          <p style="margin-bottom: 8px;">LIS LMS \u2014 Indexing and Abstracting Course Platform</p>
           <p style="margin-bottom: 4px;"><a href="mailto:esutlibrary@gmail.com">esutlibrary@gmail.com</a></p>
-          <p style="font-size: 12px; margin-top: 12px;">You received this email because you have an account on the LIS 815 platform.</p>
+          <p style="font-size: 12px; margin-top: 12px;">You received this email because you have an account on the LIS LMS platform.</p>
         </div>
       </div>
     </div>

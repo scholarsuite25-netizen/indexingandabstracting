@@ -57,7 +57,7 @@ export function AssessmentReminderTemplate({ fullName, assessmentTitle, assessme
               <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
             </svg>
           </div>
-          <h1>LIS 815</h1>
+          <h1>LIS LMS</h1>
         </div>
         <div class="content">
           <p style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px;">Hello ${fullName},</p>
@@ -71,9 +71,9 @@ export function AssessmentReminderTemplate({ fullName, assessmentTitle, assessme
         </div>
         <div class="divider" />
         <div class="footer">
-          <p style="margin-bottom: 8px;">LIS 815 \u2014 Indexing and Abstracting Course Platform</p>
+          <p style="margin-bottom: 8px;">LIS LMS \u2014 Indexing and Abstracting Course Platform</p>
           <p style="margin-bottom: 4px;"><a href="mailto:esutlibrary@gmail.com">esutlibrary@gmail.com</a></p>
-          <p style="font-size: 12px; margin-top: 12px;">You received this email because you have an account on the LIS 815 platform.</p>
+          <p style="font-size: 12px; margin-top: 12px;">You received this email because you have an account on the LIS LMS platform.</p>
         </div>
       </div>
     </div>

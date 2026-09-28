@@ -11,12 +11,12 @@ export function SiteFooter() {
               <BookOpen className="size-5" aria-hidden />
             </span>
             <span className="text-base font-bold tracking-tight text-ink">
-              LIS 815 LMS
+              LIS LMS LMS
             </span>
           </div>
           <p className="max-w-sm text-sm leading-relaxed text-ink-muted">
             Indexing and Abstracting — a premium learning platform built around
-            the official LIS 815 study guide and examination papers.
+            the official LIS LMS study guide and examination papers.
           </p>
         </div>
 
@@ -49,7 +49,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-border">
         <p className="mx-auto max-w-6xl px-4 py-4 text-xs text-ink-subtle sm:px-6">
-          Course material © the supplied LIS 815 study guide and examination
+          Course material © the supplied LIS LMS study guide and examination
           papers. Supplementary enrichment material is clearly labelled.
         </p>
       </div>

@@ -141,7 +141,7 @@ export type TheoryGradingQueue = {
 };
 
 async function courseIdFor(supabase: Supabase): Promise<string | null> {
-  const { data } = await supabase.from("courses").select("id").eq("code", "LIS 815").maybeSingle();
+  const { data } = await supabase.from("courses").select("id").eq("code", "LIS LMS").maybeSingle();
   return data?.id ?? null;
 }
 

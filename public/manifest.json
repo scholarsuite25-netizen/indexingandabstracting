@@ -1,6 +1,6 @@
 {
-  "name": "LIS 815 — Indexing & Abstracting",
-  "short_name": "LIS 815",
+  "name": "LIS LMS — Indexing & Abstracting",
+  "short_name": "LIS LMS",
   "description": "Free online course for library and information science students covering indexing, abstracting, and metadata standards.",
   "start_url": "/dashboard",
   "display": "standalone",

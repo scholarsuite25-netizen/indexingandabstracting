@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     q: "What are Supplementary Enrichment materials?",
-    a: "Some units go beyond the supplied LIS 815 study guide — for example metadata, authority control, full-text indexing and AI literacy. They are always marked with a 'Supplementary Enrichment' label, are never presented as part of the original course text, and are not examined.",
+    a: "Some units go beyond the supplied LIS LMS study guide — for example metadata, authority control, full-text indexing and AI literacy. They are always marked with a 'Supplementary Enrichment' label, are never presented as part of the original course text, and are not examined.",
   },
   {
     q: "Can I study on my phone?",
