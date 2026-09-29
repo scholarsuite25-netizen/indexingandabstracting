@@ -1,0 +1,94 @@
+# LIS 815 LMS - the checks that run on every push and pull request.
+#
+# Two jobs:
+#
+#   quality  always runs. It needs no Supabase account and no secrets, so it can
+#            never fail "because the keys are missing": lint, type-check, the content
+#            files, and every migration applied to a throwaway Postgres-in-WASM.
+#
+#   live     runs only when the three Supabase values are configured as repository
+#            secrets (Settings > Secrets and variables > Actions > New repository
+#            secret): NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY and
+#            SUPABASE_SERVICE_ROLE_KEY. With them it pushes the migrations in
+#            check-only mode and runs the whole live suite against your project.
+#
+# Without those secrets the live job is skipped rather than failed, so the badge
+# stays honest on a fresh clone.
+
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+  SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+
+jobs:
+  quality:
+    name: lint, types, content, SQL
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type-check
+        run: npm run typecheck
+
+      - name: Content files
+        run: npm run check:content
+
+      - name: Migrations (applied twice, to prove they are re-runnable)
+        run: npm run check:sql
+
+      - name: Production build
+        run: npm run build
+
+  live:
+    name: live suites against Supabase
+    runs-on: ubuntu-latest
+    needs: quality
+    timeout-minutes: 45
+    if: ${{ env.SUPABASE_SERVICE_ROLE_KEY != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Write .env.local from the repository secrets
+        run: |
+          {
+            echo "NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL"
+            echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$NEXT_PUBLIC_SUPABASE_ANON_KEY"
+            echo "SUPABASE_SERVICE_ROLE_KEY=$SUPABASE_SERVICE_ROLE_KEY"
+          } > .env.local
+          chmod 600 .env.local
+
+      - name: Report what the live database already has
+        run: npm run db:push -- --check
+
+      - name: The whole gate
+        run: npm run test:all
+        env:
+          TEST_ALL_RETRIES: "1"

@@ -17,8 +17,11 @@
     "test:theory": "node scripts/verify-theory.mjs",
     "test:tooling": "node scripts/verify-tooling.mjs",
     "test:dashboards": "node scripts/verify-dashboards.mjs",
+    "test:smoke": "node scripts/smoke-test.mjs",
     "test:all": "node scripts/test-all.mjs",
     "db:push": "node scripts/db-push.mjs",
+    "db:backup": "node scripts/db-backup.mjs",
+    "db:restore": "node scripts/db-backup.mjs --restore",
     "db:seed": "node scripts/seed.mjs"
   },
   "dependencies": {

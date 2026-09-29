@@ -46,21 +46,21 @@ function QuestionTable({ questions }: { questions: QuestionAnalytics[] }) {
   }
 
   return (
-    <Table>
+    <Table className="min-w-[640px]">
       <THead>
         <TR>
-          <TH>Question</TH>
-          <TH>Points</TH>
-          <TH>Attempts</TH>
-          <TH>Correct</TH>
-          <TH>Difficulty</TH>
-          <TH>Options</TH>
+          <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Question</TH>
+          <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Points</TH>
+          <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Attempts</TH>
+          <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Correct</TH>
+          <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Difficulty</TH>
+          <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Options</TH>
         </TR>
       </THead>
       <TBody>
         {questions.map((q) => (
           <TR key={q.id}>
-            <TD>
+            <TD className="text-ink-muted">
               <div className="max-w-md text-sm text-ink">
                 <span className="tabular-nums text-ink-subtle">Q{q.position}.</span>{" "}
                 {q.stem_md.replace(/\*\*([^*]+)\*\*/g, "$1").replace(/`/g, "")}
@@ -69,14 +69,14 @@ function QuestionTable({ questions }: { questions: QuestionAnalytics[] }) {
             <TD className="tabular-nums text-ink-muted">{q.points}</TD>
             <TD className="tabular-nums text-ink-muted">{q.n_attempts}</TD>
             <TD className="tabular-nums text-ink-muted">{q.correct_count}</TD>
-            <TD>
+            <TD className="text-ink-muted">
               <Badge variant={difficultyColor(q.difficulty_index)}>
                 {q.difficulty_index !== null
                   ? `${Math.round(q.difficulty_index * 100)}%`
                   : "—"}
               </Badge>
             </TD>
-            <TD>
+            <TD className="text-ink-muted">
               <div className="flex flex-col gap-1">
                 {q.options.map((o) => (
                   <div key={o.label} className="flex items-center gap-2 text-xs text-ink-muted">
@@ -109,12 +109,15 @@ export default async function ReportsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
+      <header className="flex flex-wrap items-end justify-between gap-3">
+        <div className="flex flex-col gap-1">
           <h1 className="font-display text-2xl text-ink">Reports</h1>
-          <p className="text-sm text-ink-muted">{user.email}</p>
+          <p className="text-sm text-ink-muted">
+            Export learner, attempt and grade data, plus question-level analytics.
+          </p>
+          <p className="text-xs text-ink-subtle">{user.email}</p>
         </div>
-      </div>
+      </header>
 
       <section className="flex flex-col gap-4">
         <div className="flex items-center gap-2">
@@ -131,7 +134,7 @@ export default async function ReportsPage() {
               <CardHeader>
                 <CardTitle>{r.label}</CardTitle>
               </CardHeader>
-              <CardContent className="text-sm text-ink-muted">
+              <CardContent className="flex flex-col items-start text-sm text-ink-muted">
                 {r.desc}
                 <ButtonLink href={r.href} variant="outline" size="sm" className="mt-3">
                   Download <Download className="size-3" />
@@ -172,6 +175,11 @@ export default async function ReportsPage() {
             icon={<FlaskConical className="size-8" />}
             title="No assessment to analyse"
             description="Publish an assessment with multiple-choice questions first, then come back."
+            action={
+              <ButtonLink href="/admin/assessments" variant="primary" size="sm">
+                Open assessments
+              </ButtonLink>
+            }
           />
         )}
       </section>

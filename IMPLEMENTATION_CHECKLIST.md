@@ -14,15 +14,17 @@
 **Legend of commands** (run in this project folder, in a terminal):
 
 ```
-npm run dev          # start the app locally (http://localhost:3000)
-npm run build        # production build (must pass with zero errors)
-npm run lint         # code style checks
-npm run typecheck    # TypeScript checks
-npm run test         # automated tests
-npm run test:e2e     # browser journey tests
-npm run db:migrate   # apply database schema
-npm run db:seed      # load LIS 815 content
-npm run db:backup    # take a database backup
+npm run dev            # start the app locally (http://localhost:3000)
+npm run build          # production build (must pass with zero errors)
+npm run lint           # code style checks
+npm run typecheck      # TypeScript checks
+npm run test:all       # the whole gate, in order (this is the one that matters)
+npm run db:push        # apply database migrations (never paste SQL again)
+npm run db:push -- --check   # report what the live database has, change nothing
+npm run db:seed        # load LIS 815 content
+npm run db:backup      # take a database backup
+npm run db:restore -- --dry-run   # rehearse a restore, change nothing
+npm run test:smoke -- --url https://your-site   # check the deployed site
 ```
 
 ---
@@ -104,7 +106,7 @@ npm run db:backup    # take a database backup
 - [x] **[VERIFY]** Student **cannot** read `question_options`, cannot write `lesson_progress`, cannot insert grades, cannot change own role ✅ written into `test:rls` (executes against your project)
 - [x] **[VERIFY]** Instructor (non-admin, course-assigned) can author content; students cannot ✅ written into `test:rls`
 - [x] **[VERIFY]** `npm run test:rls` green **against your Supabase project** ✅ **48 passed, 0 failed** (26 Sep, after the two database fixes below were re-applied)
-- [ ] **[VERIFY]** Public certificate verification returns only minimal fields *(Phase 11 — page does not exist yet)*
+- [x] **[VERIFY]** Public certificate verification returns only minimal fields ✅ built with Phase 10 and proven by `check:sql` ("a signed-out visitor verifies a certificate and sees only public fields")
 - [ ] **[YOU]** Confirm in the Supabase Table Editor that you can see the tables (a quick confidence check)
 
 ---
@@ -314,46 +316,48 @@ Migration `0009_study_tooling.sql` (exam papers invisible even when a row says `
 
 ---
 
-## PHASE 10 — CERTIFICATES & VERIFICATION
+## PHASE 10 — CERTIFICATES & VERIFICATION ✅ (built & verified 29 Sep)
 
 **Goal:** configurable eligibility, issuance, printable certificate, public verification.
 
-- [ ] **[ME]** Eligibility engine (settings): required lessons complete + objective passed + theory graded/passed (configurable) + practicals if enabled
-- [ ] **[ME]** Certificate issuance (staff/superadmin, or automatic on release) with unguessable certificate number + audit
-- [ ] **[ME]** Printable certificate page (browser Print → PDF; no PDF library) with learner name, course, date, number, institution, QR
-- [ ] **[ME]** QR generated in-browser (no external API)
-- [ ] **[ME]** Public `/verify/[number]` page: name, course, completion date, status only; rate-limited; audited
-- [ ] **[ME]** Revoke flow (status + reason) reflected on verification
+- [x] **[ME]** Eligibility engine (settings): required lessons complete + objective passed + theory graded/passed (configurable) + practicals if enabled — `certificate_eligible()` in `supabase/migrations/0013_certificate_publicity.sql`, proven by `check:sql` (practicals off by default, pass mark on the same 0–10 scale the grader uses)
+- [x] **[ME]** Certificate issuance (staff/superadmin, or automatic on release) with unguessable certificate number + audit — `issue_certificate()` / `issue_certificate_core()`; `release_theory_grade()` issues it when `auto_issue_certificates` is on ✅ `check:sql` "releasing a marked paper issues the certificate automatically"
+- [x] **[ME]** Printable certificate page (browser Print → PDF; no PDF library) with learner name, course, date, number, institution, QR — `components/…/certificate-view.tsx` + `@media print` rules in `globals.css`
+- [x] **[ME]** QR generated in-browser (no external API) — `react-qr-code` inside `certificate-view.tsx`
+- [x] **[ME]** Public `/verify/[number]` page: name, course, completion date, status only; rate-limited; audited — `get_public_certificate()` (30 lookups/minute per caller, audited, minimal fields) ✅ `check:sql` and the live production smoke test
+- [x] **[ME]** Revoke flow (status + reason) reflected on verification — `revoke_certificate()` + `components/staff/certificate-revoke.tsx` + admin screen ✅ `check:sql` (refuses a missing reason, audits the change, shows the reason publicly)
 
 **GATE — Phase 10**
-- [ ] **[VERIFY]** Learner missing one requirement → no certificate, with a list of what's outstanding
-- [ ] **[VERIFY]** Verification with a random number returns "not found"; real number returns minimal data
-- [ ] **[VERIFY]** Revoked certificate reports as revoked
-- [ ] **[VERIFY]** Verification endpoint rate-limited and audited
-- [ ] **[VERIFY]** Certificate prints correctly on A4 from a phone and a desktop
+- [ ] **[VERIFY]** Learner missing one requirement → no certificate, with a list of what's outstanding — *built in `/dashboard/certificate` (shows lessons, objective, theory and practicals outstanding); not yet covered by an automated check, so it stays open until you or a test looks at it*
+- [x] **[VERIFY]** Verification with a random number returns "not found"; real number returns minimal data ✅ `check:sql` (two tests) and `npm run test:smoke` against the live site
+- [x] **[VERIFY]** Revoked certificate reports as revoked ✅ `check:sql`, with the reason shown
+- [x] **[VERIFY]** Verification endpoint rate-limited and audited ✅ `check:sql` ("stops after 30 lookups a minute per caller")
+- [ ] **[VERIFY]** Certificate prints correctly on A4 from a phone and a desktop *(manual, one minute: open your certificate and use Print → Save as PDF)*
 
 ---
 
-## PHASE 11 — PRACTICAL LABS & ENRICHMENT CONTENT
+## PHASE 11 — PRACTICAL LABS & ENRICHMENT CONTENT (practicals built; enrichment not started)
 
 **Goal:** Appendix A practical activities and the full, clearly-badged Supplementary Enrichment layer.
 
-- [ ] **[ME]** Practical activity pages (instructions, workspace, submission, rubric, model solution after release)
-- [ ] **[ME]** Staff review/approve submissions (self-certify setting available)
-- [ ] **[ME]** Author the Supplementary Enrichment units (topics in `BUILD_PLAN.md` §16), each with objectives, sections, Nigerian/African examples where natural, self-check
-- [ ] **[ME]** Persistent "Supplementary Enrichment — not part of the supplied LIS 815 source" badge on units and in search results
-- [ ] **[VERIFY]** Enrichment never gates an examination or required completion (default settings)
+- [x] **[ME]** Practical activity pages (instructions, workspace, submission, rubric, model solution after release) — `/dashboard/practicals`, `/dashboard/practicals/[activityId]`; 9 activities seeded from Appendix A
+- [x] **[ME]** Staff review/approve submissions (self-certify setting available) — `/admin/practicals` + `components/staff/practical-grader.tsx` (scores 0–10, feedback, release), which is also what the certificate pass mark is measured against
+- [ ] **[ME]** Author the Supplementary Enrichment units (topics in `BUILD_PLAN.md` §16), each with objectives, sections, Nigerian/African examples where natural, self-check — **0 of 16 units written.** This is the largest remaining content job and it is content work, not code: say the word and it is next.
+- [ ] **[ME]** Persistent "Supplementary Enrichment — not part of the supplied LIS 815 source" badge on units and in search results — *nothing to badge yet; the `source: supplementary` field and the search filter already exist in the data model*
+- [x] **[VERIFY]** Enrichment never gates an examination or required completion (default settings) ✅ `check:sql` "practical activities do not gate a certificate by default", and no enrichment rows exist to gate anything
 
 **GATE — Phase 11**
-- [ ] **[VERIFY]** Every enrichment row has `source = supplementary`; no supplied row contains enrichment text (automated audit)
-- [ ] **[VERIFY]** Learner can complete the course without touching enrichment (default)
-- [ ] **[VERIFY]** At least one practical activity submittable and gradable end-to-end
+- [ ] **[VERIFY]** Every enrichment row has `source = supplementary`; no supplied row contains enrichment text (automated audit) — *the audit has nothing to read yet; it belongs with the enrichment work*
+- [x] **[VERIFY]** Learner can complete the course without touching enrichment (default) ✅ true by construction today (no enrichment rows), and the settings that would add a requirement are off by default
+- [ ] **[VERIFY]** At least one practical activity submittable and gradable end-to-end — *the screens and the grading path are built but no automated suite walks a submission from hand-in to grade; a manual pass or one scripted test would close this*
 
 ---
 
-## PHASE 12 — ACCESSIBILITY, PERFORMANCE & POLISH
+## PHASE 12 — ACCESSIBILITY, PERFORMANCE & POLISH (nothing verified yet)
 
 **Goal:** WCAG 2.2 AA intent + low-bandwidth friendliness.
+
+**Honest state (29 Sep):** `axe-core` is installed and `lint` / `typecheck` / `build` are clean, but there is no automated accessibility script, no recorded keyboard or screen-reader pass, no contrast audit and no Lighthouse run. Every box below stays open until one of those is done and the result recorded here.
 
 - [ ] **[ME]** axe-core automated scan on key pages; fix all serious/critical issues
 - [ ] **[ME]** Manual keyboard pass: enrol → read → complete → answer an exam question → submit (no mouse)
@@ -371,9 +375,11 @@ Migration `0009_study_tooling.sql` (exam papers invisible even when a row says `
 
 ---
 
-## PHASE 13 — FULL QA
+## PHASE 13 — FULL QA (automated gate green; acceptance journey open)
 
 **Goal:** prove the acceptance criteria from `QA_ACCEPTANCE.md` and `BUILD_PLAN.md` §19.
+
+**Honest state (29 Sep):** `npm run test:all` is green — content, migrations, RLS, progression, assessment, theory, tooling, dashboards — which covers most of the happy paths and many failure paths in the matrix. What it does not cover: the end-to-end acceptance journey (register → exams → grade → certificate → public verification) as one scripted run, the security sweep as its own pass, and the content proof-read. Those stay open.
 
 - [ ] **[ME]** Complete the test matrix: happy paths + all failure paths (69%, skipping lessons, tampered completion, tampered score, unauthorised routes, expired session, direct API manipulation, 4-of-6 theory selection, duplicate submit)
 - [ ] **[ME]** End-to-end acceptance journey automated (register → … → certificate)
@@ -394,22 +400,22 @@ Migration `0009_study_tooling.sql` (exam papers invisible even when a row says `
 
 **Goal:** live on a real URL, documented for whoever maintains it next.
 
-- [ ] **[YOU]** Free GitHub account (if you don't have one) — I generate every command
-- [ ] **[YOU]** Push repo to GitHub (copy-paste block provided)
-- [ ] **[YOU]** Free Vercel account → import repo → set environment variables (exact names/values given; service-role key pasted into Vercel only)
-- [ ] **[YOU]** In Supabase: **Auth → URL Configuration** → add the Vercel domain (clicks given)
-- [ ] **[ME]** `START_HERE.md` — the full non-coder runbook (13 numbered steps, exact clicks, exact credentials, where each one goes)
-- [ ] **[ME]** `COSTS.md`, `SECURITY.md`, `RLS.md`, `DEPLOYMENT.md`, `DATABASE.md`, `ASSESSMENT_ENGINE.md`, `CONTENT_MODEL.md`, `TEST_PLAN.md`, `ARCHITECTURE.md`, `DECISIONS.md`, `README.md`, `CHANGELOG.md` final
-- [ ] **[ME]** CI: lint + typecheck + tests + build on every push
-- [ ] **[ME]** `scripts/db-backup` + documented restore drill
-- [ ] **[ME]** Production smoke test (full journey on the live URL)
+- [x] **[YOU]** Free GitHub account (if you don't have one) — I generate every command ✅ the repository exists: `github.com/scholarsuite25-netizen/indexingandabstracting`
+- [x] **[YOU]** Push repo to GitHub (copy-paste block provided) ✅ `main` is in step with `origin/main` (today's work is still uncommitted — say the word and I will commit it)
+- [x] **[YOU]** Free Vercel account → import repo → set environment variables (exact names/values given; service-role key pasted into Vercel only) ✅ the site answers at `https://indexingandabstracting.vercel.app` and the signed-in journey runs against it
+- [x] **[YOU]** In Supabase: **Auth → URL Configuration** → add the Vercel domain (clicks given) ✅ sign-in works on the live site, which only happens when this is set
+- [x] **[ME]** `START_HERE.md` — the full non-coder runbook (13 numbered steps, exact clicks, exact credentials, where each one goes) ✅ written 29 Sep
+- [x] **[ME]** `COSTS.md`, `SECURITY.md`, `RLS.md`, `DEPLOYMENT.md`, `DATABASE.md`, `ASSESSMENT_ENGINE.md`, `CONTENT_MODEL.md`, `TEST_PLAN.md`, `ARCHITECTURE.md`, `DECISIONS.md`, `README.md`, `CHANGELOG.md` final ✅ all twelve exist (seven written 29 Sep; the figures they could not verify from the repo are marked "to confirm" rather than guessed)
+- [x] **[ME]** CI: lint + typecheck + tests + build on every push ✅ `.github/workflows/ci.yml`: `quality` runs lint, typecheck, `check:content`, `check:sql` and `npm run build` on every push; `live` adds `db:push -- --check` and `npm run test:all` when the three Supabase values are set as repository secrets
+- [x] **[ME]** `scripts/db-backup` + documented restore drill ✅ `npm run db:backup` wrote 39 tables / 2045 rows to `backups/`; `npm run db:restore -- --dry-run` rehearsed the full restore inside a transaction and rolled it back (every row count matched). `DATABASE.md` documents both.
+- [x] **[ME]** Production smoke test (full journey on the live URL) ✅ `npm run test:smoke -- --url https://indexingandabstracting.vercel.app` → **5 passed, 0 failed**, including the 17-check signed-in journey
 
 **GATE — Final**
-- [ ] **[VERIFY]** Production URL serves the app over HTTPS
-- [ ] **[VERIFY]** Full journey completed on production: student → exams → grade → certificate → public verification
-- [ ] **[VERIFY]** `npm run test:all` green against production-equivalent config
-- [ ] **[VERIFY]** No secrets in git history; `.env.example` complete
-- [ ] **[VERIFY]** Backups scheduled; a restore has been drilled once
+- [x] **[VERIFY]** Production URL serves the app over HTTPS ✅ the smoke test fetched every page over `https://`
+- [ ] **[VERIFY]** Full journey completed on production: student → exams → grade → certificate → public verification — *the reading, study-tool and download half of the journey is scripted and green on production; the examination → grading → certificate half has only been proven against the live database, not by one walk-through on the live site. That walk-through is the last big check.*
+- [x] **[VERIFY]** `npm run test:all` green against production-equivalent config ✅ all eight suites green on 29 Sep against your live Supabase project (after the anon key was replaced and migration 0013 applied)
+- [x] **[VERIFY]** No secrets in git history; `.env.example` complete ✅ no `.env*` file was ever committed, no JWT or service key appears in any commit, and `.env.example` carries all 17 names
+- [ ] **[VERIFY]** Backups scheduled; a restore has been drilled once — *drilled once ✅ (29 Sep, dry run). "Scheduled" is open: nothing takes a backup automatically yet, so it is a habit until you want a weekly `npm run db:backup` in CI or a reminder.*
 - [ ] **[YOU]** Final acceptance: **"DELIVERED"**
 
 ---
@@ -427,19 +433,20 @@ Migration `0009_study_tooling.sql` (exam papers invisible even when a row says `
 | 6 — Knowledge checks, objective exam, 70% gate | ✅ built & verified — `npm run db:push` applied, `npm run test:assessment` **29 ✅ / 0 ❌** |
 | 7 — Theory exam & grading | ✅ built & verified — `npm run db:push` applied, `npm run test:theory` **34 ✅ / 0 ❌**, `check:sql` green (10 migrations) |
 | 8 — Learner tooling | ✅ built & verified — `npm run test:tooling` 20 ✅ / 0 ❌, `npm run test:pages` 17 ✅ / 0 ❌, `lint` / `typecheck` / `build` clean |
-| 9 — Dashboards & Analytics | ✅ built (Admin analytics and grading queues done) |
-| 10 — Certificates & Verification | ✅ built |
-| 11 — Practical Labs & Enrichment | ✅ built (Admin grading UI done) |
-| 12 — Accessibility & Polish | ✅ automated checks built and verified (axe-core installed, fonts & contrast verified, keyboard checks passed) |
-| 13 — Full QA | ✅ automated tests green (144/144 passed, typecheck clean) |
-| 14 — Deployment | ✅ Vercel config, README, and SECURITY.md docs delivered |
+| 9 — Dashboards & Analytics | ✅ built & verified — `npm run test:dashboards` green 29 Sep (hand-checked counts matched; the `question_analytics` RPC bug it exposed is fixed in `0011_reporting.sql`) |
+| 10 — Certificates & Verification | ✅ built & verified 29 Sep — eligibility, issuance on release, revoke, rate-limited public verify all proven by `check:sql`; production smoke green (2 gate checks still open: outstanding-requirements UI, A4 print) |
+| 11 — Practical Labs & Enrichment | ⚠️ practicals built (pages, workspace, grading); **Supplementary Enrichment not started (0 of 16 units)** |
+| 12 — Accessibility & Polish | ❌ not verified — `lint` / `typecheck` / `build` clean and axe installed, but no axe run, keyboard pass, contrast audit or Lighthouse score has been recorded |
+| 13 — Full QA | ⚠️ automated gate green 29 Sep (all eight suites); the end-to-end acceptance journey and the security sweep are still open |
+| 14 — Deployment | ⚠️ live at `https://indexingandabstracting.vercel.app` with docs, CI, backup + restore drill and a green production smoke test; the exams-to-certificate half of the production journey and your final acceptance remain |
 
-**GATE — Phases 1–8 closed:** `npm run test:all` runs the whole gate in order (content, migrations, RLS, progression, assessment, theory, tooling) and is **green**: 31 content checks, 10 migrations valid, 48 + 13 + 29 + 34 + 20 live checks = **144 ✅ / 0 ❌**. `test:pages` 17 ✅ against a production build, `lint` / `typecheck` / `build` clean. The runner (`scripts/test-all.mjs`) retries a suite only when it fails on the connection itself (`fetch failed`), never a suite that failed on its own assertions — your line drops a request now and then, and a red run should still mean a real problem.
+**GATE — re-run 29 Sep:** `npm run test:all` **green**: `check:content` 31 ✅, `check:sql` all migrations + every certificate check ✅, `test:rls` 48 ✅, `test:progress` 13 ✅, `test:assessment` 29 ✅, `test:theory` 34 ✅, `test:tooling` 20 ✅, `test:dashboards` 1 ✅ — 0 failures. `lint` 0 errors, `typecheck` clean, `build` clean. `npm run test:smoke` against the live URL: **5 ✅ / 0 ❌** (17-check signed-in journey included). The runner retries a suite only when it fails on the connection itself (`fetch failed`), never a suite that failed on its own assertions.
 
-**Next action (you):** none for the database — `DATABASE_URL` is in `.env.local` and `npm run db:push` has applied every migration (it records a fingerprint of what it sent, so it now tells "nothing new" from "there is a new file" and will send the difference). When you have ten minutes, use the app:
-1. `npm run dev` → <http://localhost:3000> → create your account → enrol → read lesson 1 and try to mark it complete before reading 90%
-2. Click **"Claim Superadmin"** once at `/setup/claim-superadmin` (that is how you become the platform owner — no passwords in code)
-3. Resize to 360px and confirm the reader has no sideways scrolling
-4. Pass the objective paper at 70%+, then open the theory exam from the assessment centre, answer 5 of 7, hand it in, and mark it at `/admin/theory`
+**What went wrong today, and what fixed it (29 Sep):** `.env.local` had been overwritten by an unrelated script, so the Supabase keys were gone. The URL and anon key were recovered from the local build cache, the service-role key and `DATABASE_URL` came back from the dashboard, and the recovered anon key turned out to be signed with a superseded secret (`Invalid API key`) — replaced with the one the project still accepts. Migration `0013_certificate_publicity.sql` had been written but never applied, so `npm run db:push` sent it. `question_analytics` was fixed (two aggregate ORDER BYs referenced aliases out of scope), and `scripts/db-backup.mjs` needed two fixes found by actually running the backup and the restore drill.
 
-**Then me:** Phase 9 — the three dashboards and the admin's own content screens: learner progress, admin and superadmin dashboards, CSV reports, and the question bank UI.
+**Next action (you):** three short ones, then the rest is mine:
+1. Walk the site as a student on `npm run dev` → <http://localhost:3000>: read a lesson, try to mark it complete before 90%, resize to 360px.
+2. On the live site, do the half of the journey no script covers yet: objective paper at 70%+ → theory exam (5 of 7) → hand in → mark it at `/admin/theory` → release → open `/dashboard/certificate` → copy the number → check it at `https://indexingandabstracting.vercel.app/verify/<number>`.
+3. Decide on the Supplementary Enrichment units (16 of them, content work) — say **"write the enrichment units"** and that becomes the next block.
+
+**Then me:** the Phase 12 accessibility/performance passes, the scripted acceptance journey, and a scheduled backup — in whichever order you point me at.

@@ -9,12 +9,14 @@ import {
   HelpCircle,
   Settings,
   MessageSquare,
+  Award,
 } from "lucide-react";
 
 const adminNav = [
   { href: "/admin", label: "Overview", exact: true, icon: <LayoutDashboard className="size-4" /> },
   { href: "/admin/theory", label: "Theory marking", icon: <FileText className="size-4" /> },
   { href: "/admin/learners", label: "Learners", icon: <Users className="size-4" /> },
+  { href: "/admin/certificates", label: "Certificates", icon: <Award className="size-4" /> },
   { href: "/admin/reports", label: "Reports", icon: <BarChart3 className="size-4" /> },
   { href: "/admin/content", label: "Content", icon: <FolderOpen className="size-4" /> },
   { href: "/admin/questions", label: "Questions", icon: <MessageSquare className="size-4" /> },

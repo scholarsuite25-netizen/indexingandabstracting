@@ -46,7 +46,7 @@ export function SidebarNav({ links, isOpen, onClose, onNavigate }: SidebarNavPro
               onClick={onClose}
               aria-label="LIS LMS Home"
             >
-              <span className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-accent to-purple-600 text-white">
+              <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-white">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="size-5" aria-hidden>
                   <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
                   <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
@@ -82,27 +82,26 @@ export function SidebarNav({ links, isOpen, onClose, onNavigate }: SidebarNavPro
                     onClose();
                   }}
                   className={cn(
-                    "relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium",
-                    "transition-all duration-200 ease-out",
+                    "relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium",
+                    "transition-colors duration-150",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2",
                     active
-                      ? "bg-gradient-to-r from-primary/15 to-accent/15 text-ink font-semibold"
-                      : "text-ink-muted hover:bg-gradient-to-r hover:from-primary/5 hover:to-accent/5 hover:text-ink"
+                      ? "bg-primary-soft text-primary font-semibold"
+                      : "text-ink-muted hover:bg-canvas hover:text-ink"
                   )}
                 >
+                  {active && (
+                    <span
+                      className="absolute left-0 top-1/2 h-5 w-0.5 -translate-y-1/2 rounded-full bg-primary"
+                      aria-hidden
+                    />
+                  )}
                   {link.icon && (
-                    <span className={cn("size-4 shrink-0 transition-transform", active ? "scale-110" : "")} aria-hidden>
+                    <span className="size-4 shrink-0" aria-hidden>
                       {link.icon}
                     </span>
                   )}
                   {link.label}
-                  {active && (
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: "100%" }}
-                      className="absolute left-0 bottom-0 h-1 bg-gradient-to-r from-primary to-accent rounded-br-xl"
-                    />
-                  )}
                 </Link>
               );
             })}

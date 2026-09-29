@@ -36,20 +36,35 @@ export default function QuestionBank({ assessmentId }: { assessmentId: string })
   const [optionsMap, setOptionsMap] = useState<Record<string, OptionRow[]>>({});
   const [loading, setLoading] = useState(true);
 
-  const load = useCallback(async () => {
-    setLoading(true);
+  const fetchQuestions = useCallback(async () => {
     const { data: qs } = await supabase!
       .from("questions")
       .select("id, position, stem_md, type, points")
       .eq("assessment_id", assessmentId)
       .eq("status", "published")
       .order("position");
-    const qMap = new Map((qs ?? []).map((q: Question) => [q.id, q]));
-    setQuestions(qs ?? []);
-    setLoading(false);
+    return (qs ?? []) as Question[];
   }, [assessmentId, supabase]);
 
-  useEffect(() => { load(); }, []);
+  const load = useCallback(async () => {
+    setLoading(true);
+    setQuestions(await fetchQuestions());
+    setLoading(false);
+  }, [fetchQuestions]);
+
+  // Same shape as ContentManager: the response, not the effect body, is what updates
+  // state, so the first paint is the loading state already held in useState.
+  useEffect(() => {
+    let cancelled = false;
+    fetchQuestions().then((qs) => {
+      if (cancelled) return;
+      setQuestions(qs);
+      setLoading(false);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [fetchQuestions]);
 
   useEffect(() => {
     if (questions.length === 0) return;

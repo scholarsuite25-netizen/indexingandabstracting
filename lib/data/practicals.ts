@@ -1,5 +1,19 @@
 import { createServerSupabase } from "@/lib/supabase/server";
 
+/** The columns practical_submissions exposes through the API. */
+export type PracticalSubmissionRow = {
+  id: string;
+  user_id: string;
+  activity_id: string;
+  body: string;
+  status: "draft" | "submitted" | "graded";
+  score: number | null;
+  feedback: string | null;
+  graded_by: string | null;
+  submitted_at: string | null;
+  graded_at: string | null;
+};
+
 export async function getPracticalActivities() {
   const supabase = await createServerSupabase();
   if (!supabase) return [];
@@ -38,18 +52,32 @@ export async function getPracticalActivity(activityId: string) {
 
   if (error || !data) return null;
 
-  // Filter to just this user's submission
-  const submission = Array.isArray(data.submissions) 
-    ? data.submissions.find((s: any) => s.user_id === user.id) 
-    : data.submissions?.user_id === user.id ? data.submissions : null;
+  // RLS already narrows this to rows the caller may read, but row-level security is
+  // about who, not which submission: filter to this user's own one either way.
+  const raw = data.submissions as PracticalSubmissionRow[] | PracticalSubmissionRow | null;
+  const submission = Array.isArray(raw)
+    ? (raw.find((s) => s.user_id === user.id) ?? null)
+    : raw && raw.user_id === user.id
+      ? raw
+      : null;
 
   return {
     ...data,
-    submission: submission || null
+    submission,
   };
 }
 
-export async function getPracticalSubmissionsQueue() {
+/** One row of the staff grading queue, as PostgREST returns the joined rows. */
+export type PracticalQueueRow = {
+  id: string;
+  status: "draft" | "submitted" | "graded";
+  score: number | null;
+  submitted_at: string | null;
+  activity: { title: string } | { title: string }[] | null;
+  user: { full_name: string; email: string | null } | { full_name: string; email: string | null }[] | null;
+};
+
+export async function getPracticalSubmissionsQueue(): Promise<PracticalQueueRow[]> {
   const supabase = await createServerSupabase();
   if (!supabase) return [];
 

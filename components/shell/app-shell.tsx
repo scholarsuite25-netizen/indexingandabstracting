@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { BookOpen, GraduationCap, Sparkles } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui";
 import { NavLinks, type NavLink } from "@/components/shell/nav-links";
 import { SignOutButton } from "@/components/auth/sign-out-button";
-import { motion } from "framer-motion";
 
 export function AppShell({
   email,
@@ -20,50 +19,25 @@ export function AppShell({
 }) {
   return (
     <div className="flex min-h-screen flex-col bg-canvas">
-      <motion.header
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="sticky top-0 z-40 border-b border-border/50 bg-surface/95 backdrop-blur-lg supports-[backdrop-filter]:bg-surface/80 no-print relative overflow-hidden"
-      >
-        {/* Animated gradient border top */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-purple-500 animate-shimmer" />
-        
-        {/* Subtle background pattern */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-from)_0%,transparent_70%)] from-primary/5 via-transparent to-accent/5" aria-hidden />
-
-        <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+      <header className="sticky top-0 z-40 border-b border-border bg-surface/95 backdrop-blur-lg supports-[backdrop-filter]:bg-surface/80 no-print">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
           <div className="flex items-center gap-4">
-            <Link 
-              href="/dashboard" 
-              className="group flex items-center gap-2.5"
+            <Link
+              href="/dashboard"
+              className="flex items-center gap-2.5"
               aria-label="LIS LMS Home"
             >
-              <motion.div
-                whileHover={{ rotate: 12, scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-accent to-purple-600 shadow-lg shadow-primary/25 group-hover:shadow-xl group-hover:shadow-primary/30"
-              >
-                <BookOpen className="size-5.5 text-white" aria-hidden />
-              </motion.div>
-              <div className="flex flex-col leading-tight">
-                <motion.span
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1, duration: 0.4 }}
-                  className="bg-gradient-to-r from-ink via-primary to-accent bg-clip-text text-transparent font-bold text-lg tracking-tight"
-                >
+              <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-white shadow-sm shadow-primary/20">
+                <BookOpen className="size-5" aria-hidden />
+              </span>
+              <span className="flex flex-col leading-tight">
+                <span className="text-base font-semibold tracking-tight text-ink">
                   LIS LMS
-                </motion.span>
-                <motion.span
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2, duration: 0.4 }}
-                  className="hidden text-xs text-ink-muted sm:block"
-                >
-                  Indexing & Abstracting
-                </motion.span>
-              </div>
+                </span>
+                <span className="hidden text-xs text-ink-subtle sm:block">
+                  Indexing &amp; Abstracting
+                </span>
+              </span>
             </Link>
 
             <nav aria-label="Primary navigation" className="hidden items-center gap-0.5 md:flex">
@@ -72,129 +46,69 @@ export function AppShell({
           </div>
 
           <div className="hidden items-center gap-3 md:flex">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, type: "spring", stiffness: 300 }}
-              className="relative"
-            >
-              <Badge 
-                variant="neutral" 
-                className="relative overflow-hidden bg-gradient-to-r from-border to-border/50 text-ink-muted"
-              >
-                <span className="relative">{roleLabel}</span>
-              </Badge>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4 }}
-              className="relative max-w-48 truncate text-sm text-ink-muted"
-              title={email}
-            >
-              <span className="relative z-10 bg-surface/80 px-1">{email}</span>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 }}
-            >
-              <SignOutButton />
-            </motion.div>
+            <Badge variant="neutral" className="bg-canvas text-ink-muted">
+              {roleLabel}
+            </Badge>
+            <span className="max-w-48 truncate text-sm text-ink-muted" title={email}>
+              {email}
+            </span>
+            <SignOutButton />
           </div>
 
-          <motion.details
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="relative md:hidden"
-          >
-            <summary className="flex size-10 cursor-pointer list-none items-center justify-center rounded-xl border border-border/50 bg-surface/90 backdrop-blur text-ink transition-all hover:bg-surface hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2">
+          <details className="relative md:hidden">
+            <summary className="flex size-10 cursor-pointer list-none items-center justify-center rounded-lg border border-border bg-surface text-ink transition-colors hover:bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2">
               <span className="sr-only">Open menu</span>
               <span aria-hidden className="flex flex-col gap-1.5">
-                <motion.span className="block h-0.5 w-6 bg-ink rounded" />
-                <motion.span className="block h-0.5 w-5 bg-ink rounded" />
-                <motion.span className="block h-0.5 w-4 bg-ink rounded" />
+                <span className="block h-0.5 w-5 rounded bg-ink" />
+                <span className="block h-0.5 w-5 rounded bg-ink" />
+                <span className="block h-0.5 w-5 rounded bg-ink" />
               </span>
             </summary>
-            <div className="absolute right-0 top-full mt-2 w-72 rounded-2xl border border-border/50 bg-surface/95 backdrop-blur-lg p-3 shadow-xl shadow-black/10 ring-1 ring-black/5">
+            <div className="absolute right-0 top-full mt-2 w-72 rounded-xl border border-border bg-surface p-3 shadow-lg shadow-black/10 ring-1 ring-black/5">
               <div className="flex flex-col gap-1 px-3 py-2">
-                <Badge 
-                  variant="neutral" 
-                  className="w-fit bg-gradient-to-r from-primary/15 to-accent/15 text-ink border-primary/20"
-                >
+                <Badge variant="neutral" className="w-fit bg-primary-soft text-primary">
                   {roleLabel}
                 </Badge>
                 <span className="truncate text-xs text-ink-muted">{email}</span>
               </div>
-              <div className="mt-1 flex flex-col border-t border-border/50 pt-1">
+              <div className="mt-1 flex flex-col border-t border-border pt-1">
                 <NavLinks links={nav} />
               </div>
-              <div className="mt-1 border-t border-border/50 pt-1">
+              <div className="mt-1 border-t border-border pt-1">
                 <SignOutButton />
               </div>
             </div>
-          </motion.details>
+          </details>
         </div>
+      </header>
 
-        {/* Progress indicator line */}
-        <motion.div
-          className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary to-accent"
-          animate={{ width: ["0%", "100%"] }}
-          transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        />
-      </motion.header>
-
-      <motion.main
-        id="main"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6"
-      >
+      <main id="main" className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6">
         {children}
-      </motion.main>
+      </main>
 
-      <motion.footer
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
-        className="relative border-t border-border/50 bg-gradient-to-b from-surface via-surface/50 to-canvas/50 py-10 no-print overflow-hidden"
-      >
-        {/* Footer background accents */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_center,_var(--tw-gradient-from)_0%,transparent_60%)] from-primary/3 via-transparent to-accent/3 pointer-events-none" aria-hidden />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 size-64 rounded-full bg-gradient-to-r from-primary/10 to-accent/10 blur-3xl pointer-events-none" aria-hidden />
-        
-        <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <footer className="border-t border-white/10 bg-[#0B3A82] py-10 no-print">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <div className="lg:col-span-2">
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-accent to-purple-600 shadow-lg shadow-primary/25">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="size-5 text-white" aria-hidden>
-                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-                  </svg>
-                </div>
+              <div className="mb-4 flex items-center gap-2.5">
+                <span className="flex size-9 items-center justify-center rounded-lg bg-white/10 text-white">
+                  <BookOpen className="size-5" aria-hidden />
+                </span>
                 <div>
-                  <p className="font-semibold text-ink">LIS LMS</p>
-                  <p className="text-xs text-ink-muted">Indexing & Abstracting Learning Management System</p>
+                  <p className="font-semibold text-white">LIS LMS</p>
+                  <p className="text-xs text-blue-100">
+                    Indexing &amp; Abstracting Learning Management System
+                  </p>
                 </div>
               </div>
-              <p className="text-sm text-ink-muted max-w-md">
-                A comprehensive learning management system for information science education. 
-                Built with Next.js 16, React 19, Supabase, and Tailwind CSS v4.
+              <p className="max-w-md text-sm text-blue-100">
+                A comprehensive learning management system for information science
+                education.
               </p>
             </div>
 
             <div>
-              <h4 className="font-semibold text-ink mb-3 flex items-center gap-2">
-                <svg className="size-4 text-primary" aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8h9z"/>
-                </svg>
-                Quick Links
-              </h4>
+              <h4 className="mb-3 font-semibold text-white">Quick Links</h4>
               <nav aria-label="Footer navigation">
                 <ul className="space-y-2 text-sm">
                   {[
@@ -204,11 +118,10 @@ export function AppShell({
                     { href: "/help", label: "Help & FAQ" },
                   ].map((link) => (
                     <li key={link.href}>
-                      <Link 
-                        href={link.href} 
-                        className="text-ink-muted hover:text-primary transition-colors flex items-center gap-1.5 group"
+                      <Link
+                        href={link.href}
+                        className="text-blue-100 transition-colors hover:text-white"
                       >
-                        <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                         {link.label}
                       </Link>
                     </li>
@@ -218,14 +131,7 @@ export function AppShell({
             </div>
 
             <div>
-              <h4 className="font-semibold text-ink mb-3 flex items-center gap-2">
-                <svg className="size-4 text-accent" aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                  <path d="M2 17l10 5 10-5"/>
-                  <path d="M2 12l10 5 10-5"/>
-                </svg>
-                Study Tools
-              </h4>
+              <h4 className="mb-3 font-semibold text-white">Study Tools</h4>
               <nav aria-label="Study tools">
                 <ul className="space-y-2 text-sm">
                   {[
@@ -237,11 +143,10 @@ export function AppShell({
                     { href: "/dashboard/announcements", label: "Announcements" },
                   ].map((link) => (
                     <li key={link.href}>
-                      <Link 
-                        href={link.href} 
-                        className="text-ink-muted hover:text-primary transition-colors flex items-center gap-1.5 group"
+                      <Link
+                        href={link.href}
+                        className="text-blue-100 transition-colors hover:text-white"
                       >
-                        <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                         {link.label}
                       </Link>
                     </li>
@@ -251,21 +156,24 @@ export function AppShell({
             </div>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-border/50">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ink-muted">
-              <p className="flex items-center gap-1.5">
-                <span className="inline-block size-1.5 rounded-full bg-gradient-to-r from-primary to-accent animate-pulse" aria-hidden></span>
-                © 2026 LIS LMS — Indexing & Abstracting. All rights reserved.
-              </p>
+          <div className="mt-10 border-t border-white/20 pt-6">
+            <div className="flex flex-col items-center justify-between gap-3 text-xs text-blue-200 sm:flex-row">
+              <p>© 2026 LIS LMS — Indexing &amp; Abstracting. All rights reserved.</p>
               <div className="flex items-center gap-4">
-                <a href="/help" className="hover:text-primary transition-colors">Privacy</a>
-                <a href="/help" className="hover:text-primary transition-colors">Terms</a>
-                <a href="/help" className="hover:text-primary transition-colors">Accessibility</a>
+                <a href="/help" className="transition-colors hover:text-white">
+                  Privacy
+                </a>
+                <a href="/help" className="transition-colors hover:text-white">
+                  Terms
+                </a>
+                <a href="/help" className="transition-colors hover:text-white">
+                  Accessibility
+                </a>
               </div>
             </div>
           </div>
         </div>
-      </motion.footer>
+      </footer>
     </div>
   );
 }

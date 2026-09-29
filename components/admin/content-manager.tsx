@@ -32,17 +32,34 @@ export default function ContentManager() {
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState<string | null>(null);
 
-  const load = useCallback(async () => {
-    setLoading(true);
+  const fetchModules = useCallback(async () => {
     const { data: mods } = await supabase!
       .from("modules")
       .select("id, position, title, status")
       .order("position");
-    setModules((mods ?? []) as Module[]);
-    setLoading(false);
+    return (mods ?? []) as Module[];
   }, [supabase]);
 
-  useEffect(() => { load(); }, [load]);
+  const load = useCallback(async () => {
+    setLoading(true);
+    setModules(await fetchModules());
+    setLoading(false);
+  }, [fetchModules]);
+
+  // The first load happens here; state updates arrive with the response rather than
+  // before it, so the effect body itself never triggers a render. `load` stays for the
+  // event handlers below, where switching the spinner on first is what you want.
+  useEffect(() => {
+    let cancelled = false;
+    fetchModules().then((mods) => {
+      if (cancelled) return;
+      setModules(mods);
+      setLoading(false);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [fetchModules]);
 
   async function move(kind: string, id: string, delta: number) {
     const { error } = await supabase!.rpc("move_content_row", {
@@ -139,7 +156,7 @@ export default function ContentManager() {
               </Button>
               <div className="flex flex-col gap-2">
                 {expanded === mod.id ? (
-                  <Chapters mod={mod} supabase={supabase} setTitle={setTitle} move={move} toggleStatus={toggleStatus} addRow={addRow} load={load} />
+                  <Chapters key={mod.id} mod={mod} supabase={supabase} setTitle={setTitle} move={move} toggleStatus={toggleStatus} addRow={addRow} />
                 ) : null}
               </div>
             </CardContent>
@@ -151,16 +168,31 @@ export default function ContentManager() {
 }
 
 function Chapters({
-  mod, supabase, setTitle, move, toggleStatus, addRow, load,
+  mod, supabase, setTitle, move, toggleStatus, addRow,
 }: {
-  mod: Module; supabase: ReturnType<typeof getBrowserSupabase>; setTitle: (t: string, id: string, v: string) => void; move: (k: string, id: string, d: number) => void; toggleStatus: (t: string, id: string, s: string) => void; addRow: (t: string, p: string | null) => void; load: () => void;
+  mod: Module; supabase: ReturnType<typeof getBrowserSupabase>; setTitle: (t: string, id: string, v: string) => void; move: (k: string, id: string, d: number) => void; toggleStatus: (t: string, id: string, s: string) => void; addRow: (t: string, p: string | null) => void;
 }) {
   const [chapters, setChapters] = useState<Chapter[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // `key={mod.id}` at the call site gives this component a fresh `loading = true` each
+  // time a different module is opened, so the effect does not have to set state before
+  // it fetches.
   useEffect(() => {
-    setLoading(true);
-    supabase!.from("chapters").select("id, module_id, position, title, slug, status").eq("module_id", mod.id).order("position").then(({ data }) => { setChapters((data ?? []) as Chapter[]); setLoading(false); });
+    let cancelled = false;
+    supabase!
+      .from("chapters")
+      .select("id, module_id, position, title, slug, status")
+      .eq("module_id", mod.id)
+      .order("position")
+      .then(({ data }) => {
+        if (cancelled) return;
+        setChapters((data ?? []) as Chapter[]);
+        setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [mod.id, supabase]);
 
   return (

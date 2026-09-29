@@ -1,6 +1,5 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { CheckCircle2, ShieldAlert, XCircle } from "lucide-react";
+import { CheckCircle2, Clock, ShieldAlert, XCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
 import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";
@@ -16,9 +15,32 @@ export default async function VerifyCertificatePage({
   params: Promise<{ number: string }>;
 }) {
   const { number } = await params;
-  const certificate = await getPublicCertificate(number);
+  const result = await getPublicCertificate(number);
 
-  if (!certificate) {
+  if (result.kind === "rate_limited") {
+    return (
+      <div className="flex min-h-screen flex-col">
+        <SiteHeader />
+        <main className="flex flex-1 flex-col items-center justify-center bg-canvas p-6">
+          <Card className="w-full max-w-md border-warning">
+            <CardHeader className="flex flex-col items-center text-center">
+              <Clock className="size-12 text-warning mb-4" />
+              <CardTitle className="text-xl">Too Many Attempts</CardTitle>
+            </CardHeader>
+            <CardContent className="text-center text-ink-muted">
+              <p>
+                This page allows 30 lookups a minute from one address. Please wait a minute and
+                try the link again.
+              </p>
+            </CardContent>
+          </Card>
+        </main>
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  if (result.kind === "not_found") {
     return (
       <div className="flex min-h-screen flex-col">
         <SiteHeader />
@@ -44,6 +66,7 @@ export default async function VerifyCertificatePage({
     );
   }
 
+  const certificate = result.certificate;
   const isRevoked = certificate.status === "revoked";
 
   return (

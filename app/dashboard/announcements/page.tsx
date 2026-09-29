@@ -33,7 +33,7 @@ export default async function AnnouncementsPage() {
   }
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-6">
       <header className="flex flex-col gap-2">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="info">
@@ -41,7 +41,7 @@ export default async function AnnouncementsPage() {
             Course news
           </Badge>
         </div>
-        <h1 className="font-display text-2xl leading-tight text-ink sm:text-3xl">
+        <h1 className="font-display text-2xl text-ink">
           Announcements and notifications
         </h1>
         <p className="max-w-2xl text-sm text-ink-muted">

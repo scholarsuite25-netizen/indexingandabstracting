@@ -26,8 +26,8 @@ export default async function AttemptPage({
   }
 
   return (
-    <div className="flex flex-col gap-5">
-      <header className="flex flex-col gap-3">
+    <div className="flex flex-col gap-6">
+      <header className="flex flex-col gap-2">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="info">Attempt {snapshot.attempt_no}</Badge>
           <Badge variant="neutral">
@@ -41,7 +41,7 @@ export default async function AttemptPage({
             </Badge>
           ) : null}
         </div>
-        <h1 className="font-display text-2xl leading-tight text-ink sm:text-3xl">
+        <h1 className="font-display text-2xl text-ink">
           {snapshot.title}
         </h1>
         <p className="text-sm text-ink-muted">

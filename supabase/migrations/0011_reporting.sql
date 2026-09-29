@@ -131,7 +131,7 @@ begin
   return jsonb_build_object(
     'assessment_id', p_assessment_id,
     'questions', (
-      select coalesce(jsonb_agg(q_json order by q.position), '[]'::jsonb)
+      select coalesce(jsonb_agg(q_json order by q_json.position), '[]'::jsonb)
       from (
         select
           q.id, q.position, q.stem_md, q.type, q.points,
@@ -157,7 +157,7 @@ begin
             else null
           end as difficulty_index,
           (
-            select coalesce(jsonb_agg(o_json order by o.label), '[]'::jsonb)
+            select coalesce(jsonb_agg(o_json order by o_json.label), '[]'::jsonb)
             from (
               select
                 o.label, o.text, o.is_correct,

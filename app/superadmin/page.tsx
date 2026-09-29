@@ -58,16 +58,19 @@ export default async function SuperadminPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
+      <header className="flex flex-wrap items-end justify-between gap-3">
+        <div className="flex flex-col gap-1">
           <h1 className="font-display text-2xl text-ink">System administration</h1>
-          <p className="text-sm text-ink-muted">{user.email}</p>
+          <p className="text-sm text-ink-muted">
+            Accounts, roles, course settings and the audit trail in one place.
+          </p>
+          <p className="text-xs text-ink-subtle">{user.email}</p>
         </div>
         <Badge variant="accent">Superadmin</Badge>
-      </div>
+      </header>
 
       {stats ? (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {statCard("Users", stats.users, <UserCog className="size-5" />, "/superadmin/users", "Registered learner accounts")}
           {statCard("Students", stats.students, <UserCog className="size-5" />, "/superadmin/users", "Role student")}
           {statCard("Admins", stats.admins, <UserCog className="size-5" />, "/superadmin/users", "Role admin")}
@@ -92,7 +95,7 @@ export default async function SuperadminPage() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[
-            { href: "/superadmin/users", label: "Users &amp; roles", desc: "Grant or revoke admin access. Every change is audited." },
+            { href: "/superadmin/users", label: "Users & roles", desc: "Grant or revoke admin access. Every change is audited." },
             { href: "/superadmin/settings", label: "Settings", desc: "Pass marks, retake policy and certificate rules." },
             { href: "/superadmin/audit", label: "Audit log", desc: "Every role change and sensitive action." },
           ].map((p) => (
@@ -100,7 +103,7 @@ export default async function SuperadminPage() {
               <CardHeader>
                 <CardTitle>{p.label}</CardTitle>
               </CardHeader>
-              <CardContent className="text-sm text-ink-muted">
+              <CardContent className="flex flex-col items-start text-sm text-ink-muted">
                 {p.desc}
                 <ButtonLink href={p.href} variant="outline" size="sm" className="mt-3">
                   Open <ArrowRight className="size-3" />

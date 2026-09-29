@@ -10,7 +10,6 @@ import { requireUser } from "@/lib/auth";
 import { getKnowledgeCheckState } from "@/lib/data/assessments";
 import { explainLessonUnavailable, getLessonView } from "@/lib/data/learner";
 import { supabaseConfigured } from "@/lib/supabase/server";
-import { cn } from "@/lib/utils/cn";
 
 export const metadata: Metadata = { title: "Lesson" };
 export const dynamic = "force-dynamic";
@@ -56,7 +55,7 @@ function LessonHeader({
         ) : null}
       </div>
 
-      <h1 className="font-display text-2xl leading-tight text-ink sm:text-3xl">{lesson.title}</h1>
+      <h1 className="font-display text-2xl text-ink">{lesson.title}</h1>
     </header>
   );
 }
@@ -176,12 +175,7 @@ export default async function LessonPage({
               tabIndex={-1}
               className="flex flex-col gap-2 scroll-mt-24 focus:outline-none"
             >
-              <h2
-                className={cn(
-                  "font-display text-ink",
-                  section.kind === "prose" ? "text-xl sm:text-2xl" : "text-lg",
-                )}
-              >
+              <h2 className="font-display text-xl text-ink">
                 {section.title}
               </h2>
               <Markdown source={section.content} kind={section.kind} />

@@ -26,8 +26,8 @@ export default async function TheoryPage({
   }
 
   return (
-    <div className="flex flex-col gap-5">
-      <header className="flex flex-col gap-3">
+    <div className="flex flex-col gap-6">
+      <header className="flex flex-col gap-2">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="info">Written examination</Badge>
           <Badge variant="neutral">5 of 7 questions</Badge>
@@ -39,7 +39,7 @@ export default async function TheoryPage({
             </Badge>
           ) : null}
         </div>
-        <h1 className="font-display text-2xl leading-tight text-ink sm:text-3xl">
+        <h1 className="font-display text-2xl text-ink">
           {workspace.title}
         </h1>
         {workspace.instructions ? (

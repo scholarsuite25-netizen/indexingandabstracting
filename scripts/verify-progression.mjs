@@ -95,7 +95,7 @@ async function state() {
   const { data: course } = await admin
     .from("courses")
     .select("id, code, status, enrolment_open")
-    .eq("code", "LIS 815")
+    .eq("code", "LIS LMS")
     .maybeSingle();
   if (!course) return { course: null };
 

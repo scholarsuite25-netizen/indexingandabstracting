@@ -23,7 +23,7 @@ import { listUsers, grantRole, revokeRole } from "@/lib/data/system";
 import { notFound } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
-export const metadata = { title: "Users &amp; roles" };
+export const metadata = { title: "Users & roles" };
 export const dynamic = "force-dynamic";
 
 async function handleGrant(formData: FormData) {
@@ -48,7 +48,12 @@ export default async function UsersPage() {
   if (!supabaseConfigured()) {
     return (
       <div className="flex flex-col gap-6">
-        <h1 className="font-display text-2xl text-ink">Users &amp; roles</h1>
+        <header className="flex flex-col gap-1">
+          <h1 className="font-display text-2xl text-ink">Users &amp; roles</h1>
+          <p className="text-sm text-ink-muted">
+            Grant or revoke admin access. Every change is audited.
+          </p>
+        </header>
         <EmptyState
           icon={<UserCog className="size-8" />}
           title="Waiting for Supabase keys"
@@ -62,12 +67,15 @@ export default async function UsersPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
+      <header className="flex flex-wrap items-end justify-between gap-3">
+        <div className="flex flex-col gap-1">
           <h1 className="font-display text-2xl text-ink">Users &amp; roles</h1>
-          <p className="text-sm text-ink-muted">{user.email}</p>
+          <p className="text-sm text-ink-muted">
+            Grant or revoke admin access. Every change is audited.
+          </p>
+          <p className="text-xs text-ink-subtle">{user.email}</p>
         </div>
-      </div>
+      </header>
 
       {users.length === 0 ? (
         <EmptyState
@@ -77,22 +85,26 @@ export default async function UsersPage() {
         />
       ) : (
         <section className="flex flex-col gap-4">
-          <Table>
+          <Table className="min-w-[640px]">
             <THead>
               <TR>
-                <TH>Name</TH>
-                <TH>Email</TH>
-                <TH>Role</TH>
-                <TH>Member since</TH>
-                <TH></TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Name</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Email</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Role</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Member since</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">
+                  <span className="sr-only">Actions</span>
+                </TH>
               </TR>
             </THead>
             <TBody>
               {users.map((r) => (
                 <TR key={r.id}>
-                  <TD>{r.full_name}</TD>
+                  <TD className="text-ink-muted">
+                    <span className="font-medium text-ink">{r.full_name}</span>
+                  </TD>
                   <TD className="tabular-nums text-ink-muted">{r.email}</TD>
-                  <TD>
+                  <TD className="text-ink-muted">
                     <Badge variant={r.role === "superadmin" ? "accent" : r.role === "admin" ? "info" : "neutral"}>
                       {r.role}
                     </Badge>
@@ -100,7 +112,7 @@ export default async function UsersPage() {
                   <TD className="tabular-nums text-ink-muted">
                     {new Date(r.created_at).toLocaleDateString()}
                   </TD>
-                  <TD>
+                  <TD className="text-ink-muted">
                     {r.role === "student" ? (
                       <form action={handleGrant} className="inline">
                         <input type="hidden" name="userId" value={r.id} />

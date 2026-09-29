@@ -59,16 +59,19 @@ export default async function AdminPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
+      <header className="flex flex-wrap items-end justify-between gap-3">
+        <div className="flex flex-col gap-1">
           <h1 className="font-display text-2xl text-ink">Administration</h1>
-          <p className="text-sm text-ink-muted">{user.email}</p>
+          <p className="text-sm text-ink-muted">
+            Learner activity, marking workload and course completion at a glance.
+          </p>
+          <p className="text-xs text-ink-subtle">{user.email}</p>
         </div>
         <Badge variant="info">Admin</Badge>
-      </div>
+      </header>
 
       {stats ? (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {statCard("Learners", stats.learners, <Users className="size-5" />, "/admin/learners", "Enrolled and active learners")}
           {statCard("Active this month", stats.activeLearners, <Users className="size-5" />, "/admin/learners", "Engaged in the last 14 days")}
           {statCard("Completion rate", stats.completionRate !== 0 ? Number((stats.completionRate).toFixed(1)) : null, <Scale className="size-5" />, "/admin/learners", "Average progress of active learners")}
@@ -103,7 +106,7 @@ export default async function AdminPage() {
                 Learners
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-ink-muted">
+            <CardContent className="flex flex-col items-start text-sm text-ink-muted">
               Enrolment, activity and completion figures, plus CSV exports.
               <ButtonLink href="/admin/learners" variant="outline" size="sm" className="mt-3">
                 Open learners <ArrowRight className="size-3" />
@@ -117,7 +120,7 @@ export default async function AdminPage() {
                 Theory marking
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-ink-muted">
+            <CardContent className="flex flex-col items-start text-sm text-ink-muted">
               Every paper handed in, ready to mark and release.
               <ButtonLink href="/admin/theory" variant="outline" size="sm" className="mt-3">
                 Open marking queue <ArrowRight className="size-3" />
@@ -131,7 +134,7 @@ export default async function AdminPage() {
                 Reports
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-ink-muted">
+            <CardContent className="flex flex-col items-start text-sm text-ink-muted">
               Learner, attempt and grade reports, plus question analytics.
               <ButtonLink href="/admin/reports" variant="outline" size="sm" className="mt-3">
                 Open reports <ArrowRight className="size-3" />
@@ -145,7 +148,7 @@ export default async function AdminPage() {
                 Content
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-ink-muted">
+            <CardContent className="flex flex-col items-start text-sm text-ink-muted">
               Modules, chapters, lessons and sections — reorder and edit in place.
               <ButtonLink href="/admin/content" variant="outline" size="sm" className="mt-3">
                 Open content manager <ArrowRight className="size-3" />
@@ -159,7 +162,7 @@ export default async function AdminPage() {
                 Questions
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-ink-muted">
+            <CardContent className="flex flex-col items-start text-sm text-ink-muted">
               Question bank and analytics per assessment.
               <ButtonLink href="/admin/questions" variant="outline" size="sm" className="mt-3">
                 Open question bank <ArrowRight className="size-3" />
@@ -173,7 +176,7 @@ export default async function AdminPage() {
                 Assessments
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-ink-muted">
+            <CardContent className="flex flex-col items-start text-sm text-ink-muted">
               Pass marks, durations, retake policy and availability windows.
               <ButtonLink href="/admin/assessments" variant="outline" size="sm" className="mt-3">
                 Open settings <ArrowRight className="size-3" />

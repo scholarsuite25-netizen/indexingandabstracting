@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ClipboardList, Info } from "lucide-react";
-import { Badge, Callout, EmptyState } from "@/components/ui";
+import { Badge, ButtonLink, Callout, EmptyState } from "@/components/ui";
 import { AssessmentCard } from "@/components/exam/assessment-card";
 import { TheoryGateCard } from "@/components/exam/theory-gate-card";
 import { requireUser } from "@/lib/auth";
@@ -55,7 +54,7 @@ export default async function AssessmentsPage() {
             Assessment centre
           </Badge>
         </div>
-        <h1 className="font-display text-2xl leading-tight text-ink sm:text-3xl">
+        <h1 className="font-display text-2xl text-ink">
           Assessments
         </h1>
         <p className="max-w-2xl text-sm text-ink-muted">
@@ -71,19 +70,14 @@ export default async function AssessmentsPage() {
           title="No assessments are published yet"
           description="Once an assessment is published it will appear here with its rules and your attempt history."
           action={
-            <Link
-              href="/dashboard/course"
-              className="font-medium text-primary underline-offset-2 hover:underline"
-            >
-              Back to the course
-            </Link>
+            <ButtonLink href="/dashboard/course">Back to the course</ButtonLink>
           }
         />
       ) : null}
 
       {objective.length > 0 ? (
-        <section className="flex flex-col gap-3">
-          <h2 className="font-display text-lg text-ink">Objective assessment</h2>
+        <section className="flex flex-col gap-4">
+          <h2 className="font-display text-xl text-ink">Objective assessment</h2>
           {objective.map((assessment) => (
             <AssessmentCard
               key={assessment.id}
@@ -95,8 +89,8 @@ export default async function AssessmentsPage() {
       ) : null}
 
       {knowledgeChecks.length > 0 ? (
-        <section className="flex flex-col gap-3">
-          <h2 className="font-display text-lg text-ink">Knowledge checks</h2>
+        <section className="flex flex-col gap-4">
+          <h2 className="font-display text-xl text-ink">Knowledge checks</h2>
           <p className="flex items-start gap-2 text-sm text-ink-muted">
             <Info className="mt-0.5 size-4 shrink-0" aria-hidden />
             These also appear inside their lesson, which is the easiest place to take them.
@@ -108,16 +102,16 @@ export default async function AssessmentsPage() {
       ) : null}
 
       {practical.length > 0 ? (
-        <section className="flex flex-col gap-3">
-          <h2 className="font-display text-lg text-ink">Practical submissions</h2>
+        <section className="flex flex-col gap-4">
+          <h2 className="font-display text-xl text-ink">Practical submissions</h2>
           {practical.map((assessment) => (
             <AssessmentCard key={assessment.id} assessment={assessment} />
           ))}
         </section>
       ) : null}
 
-      <section className="flex flex-col gap-3">
-        <h2 className="font-display text-lg text-ink">Theory examination</h2>
+      <section className="flex flex-col gap-4">
+        <h2 className="font-display text-xl text-ink">Theory examination</h2>
         <TheoryGateCard gate={theory.gate} paper={theory.paper} submissions={myPapers} />
       </section>
     </div>

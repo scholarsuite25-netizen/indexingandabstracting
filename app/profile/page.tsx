@@ -21,10 +21,10 @@ export default async function ProfilePage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div>
+      <header className="flex flex-col gap-1">
         <h1 className="font-display text-2xl text-ink">Profile &amp; account</h1>
         <p className="text-sm text-ink-muted">{user.email}</p>
-      </div>
+      </header>
 
       <ProfileForm
         userId={user.id}

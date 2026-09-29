@@ -6,10 +6,18 @@ import { toast } from "sonner";
 import { Button, Callout } from "@/components/ui";
 import { getBrowserSupabase } from "@/lib/supabase/client";
 
+type PracticalSubmissionForGrading = {
+  id: string;
+  body?: string;
+  status: "draft" | "submitted" | "graded";
+  score?: number | null;
+  feedback?: string | null;
+};
+
 export function PracticalGrader({
   submission,
 }: {
-  submission: any;
+  submission: PracticalSubmissionForGrading;
 }) {
   const router = useRouter();
   const [score, setScore] = useState(submission.score?.toString() || "");

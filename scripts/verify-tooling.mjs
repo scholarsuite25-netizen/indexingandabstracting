@@ -109,7 +109,7 @@ async function main() {
   const { data: course } = await admin
     .from("courses")
     .select("id, code, enrolment_open")
-    .eq("code", "LIS 815")
+    .eq("code", "LIS LMS")
     .maybeSingle();
   if (!course) {
     console.log("");

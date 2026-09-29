@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   description:
     "Learning management system for LIS LMS Indexing and Abstracting: seven modules, fourteen chapters, practical exercises, objective and theory examinations.",
   manifest: "/manifest.json",
-  themeColor: "#ff3b5c",
+  themeColor: "#0B3A82",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#ff3b5c",
+  themeColor: "#0B3A82",
 };
 
 export default function RootLayout({
@@ -55,7 +55,7 @@ export default function RootLayout({
       <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-        <meta name="theme-color" content="#ff3b5c" />
+        <meta name="theme-color" content="#0B3A82" />
         {plausibleDomain && (
           <>
             <script

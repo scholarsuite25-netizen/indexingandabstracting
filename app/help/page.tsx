@@ -49,14 +49,14 @@ export default function HelpPage() {
   return (
     <>
       <SiteHeader />
-      <main id="main" className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
-        <div className="mb-8 flex flex-col gap-2">
-          <h1 className="text-3xl text-ink">Help</h1>
-          <p className="measure text-ink-muted">
+      <main id="main" className="mx-auto flex max-w-4xl flex-col gap-6 px-4 py-12 sm:px-6">
+        <header className="flex flex-col gap-2">
+          <h1 className="font-display text-2xl text-ink">Help</h1>
+          <p className="text-sm text-ink-muted">
             Answers to the questions students ask most often about this course
             and platform.
           </p>
-        </div>
+        </header>
 
         <div className="flex flex-col gap-4">
           {faqs.map((faq) => (

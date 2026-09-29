@@ -13,7 +13,12 @@ export default async function PracticalsPage() {
   if (!activities || activities.length === 0) {
     return (
       <div className="flex flex-col gap-6">
-        <h1 className="font-display text-2xl text-ink">Practical Labs</h1>
+        <header className="flex flex-col gap-2">
+          <h1 className="font-display text-2xl text-ink">Practical Labs</h1>
+          <p className="text-sm text-ink-muted">
+            Hands-on exercises from Appendix A to apply what you&apos;ve learned.
+          </p>
+        </header>
         <EmptyState
           icon={<BookOpenCheck className="size-8" />}
           title="No practical activities found"
@@ -25,41 +30,45 @@ export default async function PracticalsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-2">
-        <h1 className="font-display text-3xl text-ink">Practical Labs</h1>
-        <p className="text-ink-muted">
-          Hands-on exercises from Appendix A to apply what you've learned.
+      <header className="flex flex-col gap-2">
+        <h1 className="font-display text-2xl text-ink">Practical Labs</h1>
+        <p className="text-sm text-ink-muted">
+          Hands-on exercises from Appendix A to apply what you&apos;ve learned.
         </p>
-      </div>
+      </header>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {activities.map((activity: any) => (
-          <Card key={activity.id} className="flex flex-col">
-            <CardHeader>
-              <div className="flex justify-between items-start gap-2">
-                <Badge variant={activity.is_required ? "warning" : "neutral"}>
-                  {activity.is_required ? "Required" : "Optional"}
-                </Badge>
-                {activity.chapter && (
-                  <span className="text-xs text-ink-subtle">
-                    Ch {activity.chapter.position}
-                  </span>
-                )}
-              </div>
-              <CardTitle className="mt-2 text-lg">{activity.title}</CardTitle>
-            </CardHeader>
-            <CardContent className="mt-auto pt-4 border-t border-border">
-              <ButtonLink
-                href={`/dashboard/practicals/${activity.id}`}
-                variant="outline"
-                className="w-full justify-between"
-              >
-                Open workspace
-                <ArrowRight className="size-4" />
-              </ButtonLink>
-            </CardContent>
-          </Card>
-        ))}
+        {activities.map((activity) => {
+          const chapter = activity.chapter as unknown as {
+            position: number;
+            title: string;
+          } | null;
+          return (
+            <Card key={activity.id} className="flex flex-col">
+              <CardHeader>
+                <div className="flex items-start justify-between gap-2">
+                  <Badge variant={activity.is_required ? "warning" : "neutral"}>
+                    {activity.is_required ? "Required" : "Optional"}
+                  </Badge>
+                  {chapter ? (
+                    <span className="text-xs text-ink-subtle">Ch {chapter.position}</span>
+                  ) : null}
+                </div>
+                <CardTitle className="mt-2">{activity.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="mt-auto border-t border-border pt-4">
+                <ButtonLink
+                  href={`/dashboard/practicals/${activity.id}`}
+                  variant="outline"
+                  className="w-full justify-between"
+                >
+                  Open workspace
+                  <ArrowRight className="size-4" aria-hidden />
+                </ButtonLink>
+              </CardContent>
+            </Card>
+          );
+        })}
       </div>
     </div>
   );

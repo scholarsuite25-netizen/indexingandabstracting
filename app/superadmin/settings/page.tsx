@@ -38,7 +38,12 @@ export default async function SettingsPage() {
   if (!supabaseConfigured()) {
     return (
       <div className="flex flex-col gap-6">
-        <h1 className="font-display text-2xl text-ink">Settings</h1>
+        <header className="flex flex-col gap-1">
+          <h1 className="font-display text-2xl text-ink">Settings</h1>
+          <p className="text-sm text-ink-muted">
+            Pass marks, retake policy and certificate rules for the course.
+          </p>
+        </header>
         <EmptyState
           icon={<Settings className="size-8" />}
           title="Waiting for Supabase keys"
@@ -52,12 +57,15 @@ export default async function SettingsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
+      <header className="flex flex-wrap items-end justify-between gap-3">
+        <div className="flex flex-col gap-1">
           <h1 className="font-display text-2xl text-ink">Settings</h1>
-          <p className="text-sm text-ink-muted">{user.email}</p>
+          <p className="text-sm text-ink-muted">
+            Pass marks, retake policy and certificate rules for the course.
+          </p>
+          <p className="text-xs text-ink-subtle">{user.email}</p>
         </div>
-      </div>
+      </header>
 
       {settings.length === 0 ? (
         <EmptyState
@@ -67,12 +75,14 @@ export default async function SettingsPage() {
         />
       ) : (
         <section className="flex flex-col gap-4">
-          <Table>
+          <Table className="min-w-[640px]">
             <THead>
               <TR>
-                <TH>Setting</TH>
-                <TH>Value</TH>
-                <TH></TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Setting</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Value</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">
+                  <span className="sr-only">Actions</span>
+                </TH>
               </TR>
             </THead>
             <TBody>
@@ -80,11 +90,11 @@ export default async function SettingsPage() {
                 .filter((s) => !s.is_secret)
                 .map((s) => (
                   <TR key={s.key}>
-                    <TD>
+                    <TD className="text-ink-muted">
                       <code className="text-sm text-ink">{s.key}</code>
                       <p className="text-xs text-ink-muted">{s.description ?? ""}</p>
                     </TD>
-                    <td>
+                    <TD className="text-ink-muted">
                       <form action={handleUpdate} className="flex gap-2">
                         <input type="hidden" name="key" value={s.key} />
                         <Input
@@ -96,7 +106,8 @@ export default async function SettingsPage() {
                           Save
                         </Button>
                       </form>
-                    </td>
+                    </TD>
+                    <TD />
                   </TR>
                 ))}
             </TBody>

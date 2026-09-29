@@ -400,12 +400,22 @@ export type TheoryStatus = {
   paper: TheoryPaper | null;
 };
 
-export type CertificateStatus = {
-  eligible: boolean;
-  issued: boolean;
-  number: string | null;
-  issuedAt: string | null;
-};
+  /** The per-criterion breakdown returned by the certificate_eligible RPC. */
+  export type CertificateRequirements = {
+    eligible?: boolean;
+    lessons?: { done?: number; total?: number };
+    objective?: { best?: number; pass_mark?: number };
+    theory?: { best?: number; pass_mark?: number };
+    practicals?: { done?: number; total?: number; pass_mark?: number; required?: boolean };
+  };
+
+  export type CertificateStatus = {
+    eligible: boolean;
+    issued: boolean;
+    number: string | null;
+    issuedAt: string | null;
+    requirements?: CertificateRequirements;
+  };
 
 export type RecentActivity = { kind: string; title: string; module: string; date: string }[];
 
@@ -468,7 +478,7 @@ export async function getLearnerDashboard(): Promise<LearnerDashboard | null> {
   const certElig = (certResult.data as Record<string, unknown>) ?? { eligible: false };
   const { data: cert } = await supabase
     .from("certificates")
-    .select("number, issued_at")
+    .select("certificate_number, issued_at")
     .eq("user_id", user.id)
     .eq("course_id", courseId)
     .eq("status", "issued")
@@ -476,8 +486,9 @@ export async function getLearnerDashboard(): Promise<LearnerDashboard | null> {
   const certificate: CertificateStatus = {
     eligible: Boolean(certElig.eligible),
     issued: Boolean(cert),
-    number: cert?.number ?? null,
+    number: cert?.certificate_number ?? null,
     issuedAt: cert?.issued_at ?? null,
+    requirements: certElig as CertificateRequirements,
   };
 
   const [reading, progress] = await Promise.all([

@@ -58,7 +58,12 @@ export default async function CoursePage() {
   if (!supabaseConfigured()) {
     return (
       <div className="flex flex-col gap-6">
-        <h1 className="font-display text-2xl text-ink">Course</h1>
+        <header className="flex flex-col gap-2">
+          <h1 className="font-display text-2xl text-ink">Course</h1>
+          <p className="text-sm text-ink-muted">
+            The course outline, your lessons and your progress in one place.
+          </p>
+        </header>
         <Callout tone="warning" title="Waiting for Supabase keys">
           Add your project URL and anon key to <code>.env.local</code> to load the course,
           track reading and record progress.
@@ -72,7 +77,12 @@ export default async function CoursePage() {
   if (!overview) {
     return (
       <div className="flex flex-col gap-6">
-        <h1 className="font-display text-2xl text-ink">Course</h1>
+        <header className="flex flex-col gap-2">
+          <h1 className="font-display text-2xl text-ink">Course</h1>
+          <p className="text-sm text-ink-muted">
+            The course outline, your lessons and your progress in one place.
+          </p>
+        </header>
         <EmptyState
           icon={<BookOpen className="size-8" />}
           title="The course has not been loaded yet"
@@ -84,13 +94,13 @@ export default async function CoursePage() {
 
   if (!overview.enrolled) {
     return (
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-6">
         <section className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="info">{overview.course.code}</Badge>
             <Badge variant="neutral">Postgraduate</Badge>
           </div>
-          <h1 className="font-display text-3xl text-ink">{overview.course.title}</h1>
+          <h1 className="font-display text-2xl text-ink">{overview.course.title}</h1>
           <p className="measure text-base leading-relaxed text-ink-muted">
             {overview.course.description || COURSE.description}
           </p>
@@ -102,11 +112,11 @@ export default async function CoursePage() {
           </div>
         </section>
 
-        <section className="flex flex-col gap-3" aria-labelledby="outcomes">
+        <section className="flex flex-col gap-4" aria-labelledby="outcomes">
           <h2 id="outcomes" className="font-display text-xl text-ink">
             What you will be able to do
           </h2>
-          <ul className="grid gap-2.5 sm:grid-cols-2">
+          <ul className="grid gap-4 sm:grid-cols-2">
             {LEARNING_OUTCOMES.map((outcome) => (
               <li
                 key={outcome}
@@ -134,7 +144,7 @@ export default async function CoursePage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <section className="flex flex-col gap-5 rounded-card border border-border bg-surface p-5 shadow-sm sm:p-6">
+      <section className="flex flex-col gap-4 rounded-card border border-border bg-surface p-5 shadow-sm sm:p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">

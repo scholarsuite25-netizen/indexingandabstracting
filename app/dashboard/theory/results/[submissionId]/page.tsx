@@ -20,13 +20,13 @@ export default async function TheoryResultPage({
   const result = await getTheoryResult(submissionId);
   if (result) {
     return (
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-6">
         <header className="flex flex-col gap-2">
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="info">Released</Badge>
             <Badge variant="neutral">{result.total_words} words written</Badge>
           </div>
-          <h1 className="font-display text-2xl leading-tight text-ink sm:text-3xl">
+          <h1 className="font-display text-2xl text-ink">
             {result.title}
           </h1>
           <p className="max-w-2xl text-sm text-ink-muted">
@@ -79,7 +79,7 @@ export default async function TheoryResultPage({
   };
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-6">
       <header className="flex flex-col gap-2">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="neutral">
@@ -87,9 +87,13 @@ export default async function TheoryResultPage({
             {workspace.title}
           </Badge>
         </div>
-        <h1 className="font-display text-2xl leading-tight text-ink sm:text-3xl">
+        <h1 className="font-display text-2xl text-ink">
           Your theory result
         </h1>
+        <p className="max-w-2xl text-sm text-ink-muted">
+          Your marked paper will appear here question by question, with the feedback the
+          marker wrote.
+        </p>
       </header>
 
       <Callout tone={state.tone} title={state.title}>

@@ -23,16 +23,16 @@ export function GradeReleasedTemplate({ fullName, assessmentTitle, assessmentTyp
       body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: #1a1a2e; background-color: #f3f4f6; -webkit-font-smoothing: antialiased; }
       .email-wrapper { width: 100%; background-color: #f3f4f6; padding: 40px 20px; }
       .email-container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-      .header { background: linear-gradient(135deg, #ff3b5c 0%, #ff6b35 100%); padding: 32px 24px; text-align: center; }
+      .header { background: linear-gradient(135deg, #0B3A82 0%, #3b82f6 100%); padding: 32px 24px; text-align: center; }
       .logo { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 12px; background: rgba(255,255,255,0.2); margin-bottom: 16px; }
       .logo svg { width: 28px; height: 28px; }
       .header h1 { color: #ffffff; font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
       .content { padding: 32px 24px; }
       .preheader { display: none; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; }
-      .cta-button { display: inline-block; background: linear-gradient(135deg, #ff3b5c 0%, #ff6b35 100%); color: #ffffff !important; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 16px; margin: 24px 0; transition: opacity 0.2s; }
+      .cta-button { display: inline-block; background: linear-gradient(135deg, #0B3A82 0%, #3b82f6 100%); color: #ffffff !important; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 16px; margin: 24px 0; transition: opacity 0.2s; }
       .cta-button:hover { opacity: 0.9; }
       .footer { background: #f9fafb; border-top: 1px solid #e5e7eb; padding: 24px; text-align: center; font-size: 13px; color: #6b7280; }
-      .footer a { color: #ff3b5c; text-decoration: none; }
+      .footer a { color: #0B3A82; text-decoration: none; }
       .divider { height: 1px; background: #e5e7eb; margin: 24px 0; }
       @media only screen and (max-width: 600px) {
         .email-wrapper { padding: 20px 10px; }

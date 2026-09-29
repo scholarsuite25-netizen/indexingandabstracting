@@ -33,7 +33,7 @@ export function SidebarShell({
     <div className="flex min-h-screen bg-canvas">
       {/* Mobile sidebar toggle button */}
       <button
-        className="fixed top-4 left-4 z-50 lg:hidden flex size-10 items-center justify-center rounded-xl border border-border/50 bg-surface/90 backdrop-blur text-ink transition-all hover:bg-surface hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+        className="fixed top-4 left-4 z-50 lg:hidden flex size-10 items-center justify-center rounded-lg border border-border bg-surface/90 backdrop-blur text-ink transition-all hover:bg-surface hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
         onClick={() => setSidebarOpen(true)}
         aria-label="Open sidebar"
       >
@@ -79,7 +79,7 @@ export function SidebarShell({
         <header className="sticky top-0 z-30 h-16 border-b border-border/50 bg-surface/95 backdrop-blur-lg supports-[backdrop-filter]:bg-surface/80 flex items-center justify-between px-4 sm:px-6">
           <div className="flex items-center gap-4">
             <button
-              className="lg:hidden flex size-10 items-center justify-center rounded-xl border border-border/50 bg-surface/90 backdrop-blur text-ink transition-all hover:bg-surface hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+              className="lg:hidden flex size-10 items-center justify-center rounded-lg border border-border bg-surface/90 backdrop-blur text-ink transition-all hover:bg-surface hover:border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
               onClick={() => setSidebarOpen(true)}
               aria-label="Open sidebar"
             >
@@ -91,7 +91,7 @@ export function SidebarShell({
               className="flex items-center gap-2.5 transition-transform hover:scale-105"
               aria-label="LIS LMS Home"
             >
-              <span className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-accent to-purple-600 shadow-lg shadow-primary/25">
+              <span className="flex size-9 items-center justify-center rounded-lg bg-primary shadow-sm shadow-primary/20">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="size-5 text-white" aria-hidden>
                   <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
                   <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
@@ -99,7 +99,7 @@ export function SidebarShell({
               </span>
               <span className="flex flex-col leading-tight">
                 <span className="text-sm font-semibold text-ink">LIS LMS</span>
-                <span className="hidden text-xs text-ink-muted sm:block">Indexing & Abstracting</span>
+                <span className="hidden text-xs text-ink-subtle sm:block">Indexing &amp; Abstracting</span>
               </span>
             </Link>
           </div>

@@ -72,6 +72,18 @@ function theoryBadge(state: string) {
   }
 }
 
+function greeting() {
+  const h = new Date().getHours();
+  if (h < 12) return "Good morning";
+  if (h < 18) return "Good afternoon";
+  return "Good evening";
+}
+
+function displayName(email: string) {
+  const local = email.split("@")[0];
+  return local.charAt(0).toUpperCase() + local.slice(1);
+}
+
 export default async function DashboardPage() {
   const user = await requireUser("/dashboard");
 
@@ -195,9 +207,13 @@ export default async function DashboardPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="font-display text-2xl text-ink">Your learning</h1>
+          <h1 className="font-display text-2xl text-ink">
+            {greeting()}, {displayName(user.email)}
+          </h1>
           <p className="text-sm text-ink-muted">
-            {total > 0 ? `${done} of ${total} lessons complete` : "Nothing to show yet"}
+            {total > 0
+              ? `${done} of ${total} lessons complete — pick up where you left off.`
+              : "Nothing to show yet"}
           </p>
         </div>
         <Badge variant="neutral">Student</Badge>
@@ -207,7 +223,7 @@ export default async function DashboardPage() {
         <Card>
           <CardHeader className="flex-row items-center justify-between gap-4">
             <div className="min-w-0">
-              <p className="text-xs font-medium text-ink-subtle">Course progress</p>
+              <p className="text-xs font-medium uppercase tracking-wide text-primary">Continue learning</p>
               <p className="mt-1 font-display text-lg text-ink">
                 {current ? current.lesson.title : "All lessons complete"}
               </p>

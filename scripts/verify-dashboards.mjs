@@ -71,7 +71,7 @@ async function main() {
     await admin.from("user_roles").insert({ user_id: superUser.id, role_id: superRole.id });
 
     // Enroll learner
-    const { data: course } = await admin.from("courses").select("id").eq("code", "LIS 815").maybeSingle();
+    const { data: course } = await admin.from("courses").select("id").eq("code", "LIS LMS").maybeSingle();
     if (!course) throw new Error("Course not found");
     await admin.from("course_enrollments").insert({ user_id: learnerUser.id, course_id: course.id, status: "active" });
 

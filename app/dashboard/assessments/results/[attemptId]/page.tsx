@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { ResultReview } from "@/components/exam/result-review";
@@ -24,7 +23,7 @@ export default async function ResultsPage({
   return (
     <div className="flex flex-col gap-6">
       <header className="flex flex-col gap-2">
-        <h1 className="font-display text-2xl leading-tight text-ink sm:text-3xl">
+        <h1 className="font-display text-2xl text-ink">
           {results.assessment_title}
         </h1>
         <p className="text-sm text-ink-muted">
@@ -45,12 +44,9 @@ export default async function ResultsPage({
           <ArrowLeft className="size-4" aria-hidden />
           Assessment centre
         </ButtonLink>
-        <Link
-          href="/dashboard/course"
-          className="inline-flex min-h-11 items-center px-3 py-2 text-sm font-medium text-primary hover:bg-canvas focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-        >
+        <ButtonLink href="/dashboard/course" variant="ghost">
           Back to the course
-        </Link>
+        </ButtonLink>
       </div>
     </div>
   );

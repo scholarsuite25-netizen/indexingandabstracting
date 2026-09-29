@@ -3,6 +3,7 @@ import { Scale } from "lucide-react";
 import {
   Badge,
   Button,
+  ButtonLink,
   Card,
   CardContent,
   CardHeader,
@@ -50,41 +51,51 @@ export default async function AssessmentsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
+      <header className="flex flex-wrap items-end justify-between gap-3">
+        <div className="flex flex-col gap-1">
           <h1 className="font-display text-2xl text-ink">Assessments</h1>
-          <p className="text-sm text-ink-muted">{user.email}</p>
+          <p className="text-sm text-ink-muted">
+            Pass marks, durations and retake limits for every published assessment.
+          </p>
+          <p className="text-xs text-ink-subtle">{user.email}</p>
         </div>
-      </div>
+      </header>
 
       {assessments.length === 0 ? (
         <EmptyState
           icon={<Scale className="size-8" />}
           title="No assessments"
           description="Publish assessments to configure them."
+          action={
+            <ButtonLink href="/admin" variant="primary" size="sm">
+              Back to dashboard
+            </ButtonLink>
+          }
         />
       ) : (
         <section className="flex flex-col gap-4">
-          <Table>
+          <Table className="min-w-[640px]">
             <THead>
               <TR>
-                <TH>Type</TH>
-                <TH>Title</TH>
-                <TH>Pass mark</TH>
-                <TH>Duration</TH>
-                <TH>Max attempts</TH>
-                <TH>Status</TH>
-                <TH></TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Type</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Title</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Pass mark</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Duration</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Max attempts</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Status</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle" />
               </TR>
             </THead>
             <TBody>
               {assessments.map((a) => (
                 <TR key={a.id}>
-                  <TD>
-                    <Badge variant="info">{a.type}</Badge>
+                  <TD className="text-ink-muted">
+                    <Badge variant="info">{a.type.replace(/_/g, " ")}</Badge>
                   </TD>
-                  <TD>{a.title}</TD>
-                  <TD>
+                  <TD className="text-ink-muted">
+                    <span className="font-medium text-ink">{a.title}</span>
+                  </TD>
+                  <TD className="text-ink-muted">
                     <form action={handleUpdate} className="flex items-center gap-1">
                       <input type="hidden" name="assessmentId" value={a.id} />
                       <input type="hidden" name="field" value="pass_mark" />
@@ -92,7 +103,7 @@ export default async function AssessmentsPage() {
                       <Button variant="ghost" size="sm" type="submit">Save</Button>
                     </form>
                   </TD>
-                  <TD>
+                  <TD className="text-ink-muted">
                     <form action={handleUpdate} className="flex items-center gap-1">
                       <input type="hidden" name="assessmentId" value={a.id} />
                       <input type="hidden" name="field" value="duration_minutes" />
@@ -100,7 +111,7 @@ export default async function AssessmentsPage() {
                       <Button variant="ghost" size="sm" type="submit">Save</Button>
                     </form>
                   </TD>
-                  <TD>
+                  <TD className="text-ink-muted">
                     <form action={handleUpdate} className="flex items-center gap-1">
                       <input type="hidden" name="assessmentId" value={a.id} />
                       <input type="hidden" name="field" value="max_attempts" />

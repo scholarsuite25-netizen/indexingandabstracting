@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BookOpen, Megaphone, Search, SearchX, BookMarked, FileText } from "lucide-react";
-import { Badge, Callout, EmptyState, Input } from "@/components/ui";
+import { Badge, Button, ButtonLink, Callout, EmptyState, Input } from "@/components/ui";
 import { requireUser } from "@/lib/auth";
 import { searchCourse, searchTypeLabel, type SearchEntityType, type SearchHit } from "@/lib/data/tooling";
 import { supabaseConfigured } from "@/lib/supabase/server";
@@ -68,7 +68,7 @@ export default async function SearchPage({
             Course search
           </Badge>
         </div>
-        <h1 className="font-display text-2xl leading-tight text-ink sm:text-3xl">
+        <h1 className="font-display text-2xl text-ink">
           Search the course
         </h1>
         <p className="max-w-2xl text-sm text-ink-muted">
@@ -87,13 +87,10 @@ export default async function SearchPage({
             placeholder="PRECIS, recall, scope note…"
           />
         </div>
-        <button
-          type="submit"
-          className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-medium text-white hover:bg-primary-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-        >
+        <Button type="submit">
           <Search className="size-4" aria-hidden />
           Search
-        </button>
+        </Button>
       </form>
 
       {query.length < 2 ? (
@@ -108,12 +105,7 @@ export default async function SearchPage({
           title={`Nothing matched “${query}”`}
           description="Try a single distinctive word instead of a phrase - for example PRECIS, exhaustivity or fallout - or browse the glossary."
           action={
-            <Link
-              href="/dashboard/glossary"
-              className="font-medium text-primary underline-offset-2 hover:underline"
-            >
-              Open the glossary
-            </Link>
+            <ButtonLink href="/dashboard/glossary">Open the glossary</ButtonLink>
           }
         />
       ) : (
@@ -139,7 +131,7 @@ function SearchResultRow({ hit, query }: { hit: SearchHit; query: string }) {
         <Badge variant="neutral">{searchTypeLabel(hit.entityType)}</Badge>
         {hit.context ? <span className="text-xs text-ink-subtle">{hit.context}</span> : null}
       </div>
-      <h2 className="font-display text-lg text-ink">
+      <h2 className="font-display text-xl text-ink">
         <Link
           href={hit.href}
           className="hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"

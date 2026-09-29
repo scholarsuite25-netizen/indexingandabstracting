@@ -4,8 +4,8 @@
   "description": "Free online course for library and information science students covering indexing, abstracting, and metadata standards.",
   "start_url": "/dashboard",
   "display": "standalone",
-  "background_color": "#f7f8fa",
-  "theme_color": "#ff3b5c",
+  "background_color": "#f8fafc",
+  "theme_color": "#0B3A82",
   "orientation": "portrait-primary",
   "scope": "/",
   "icons": [
@@ -13,31 +13,31 @@
       "src": "/icons/icon-72.png",
       "sizes": "72x72",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-96.png",
       "sizes": "96x96",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-128.png",
       "sizes": "128x128",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-144.png",
       "sizes": "144x144",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-152.png",
       "sizes": "152x152",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-192.png",
@@ -66,21 +66,21 @@
       "short_name": "Dashboard",
       "description": "View your learning progress",
       "url": "/dashboard",
-      "icons": [{ "src": "/icons/dashboard.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/icons/dashboard.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
       "name": "Course",
       "short_name": "Course",
       "description": "Browse course modules",
       "url": "/dashboard/course",
-      "icons": [{ "src": "/icons/course.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/icons/course.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
       "name": "Assessments",
       "short_name": "Assessments",
       "description": "Take assessments",
       "url": "/dashboard/assessments",
-      "icons": [{ "src": "/icons/assessments.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/icons/assessments.png", "sizes": "192x192", "type": "image/png" }]
     }
   ],
   "prefer_related_applications": false

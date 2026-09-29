@@ -135,7 +135,7 @@ async function main() {
   const { data: course } = await admin
     .from("courses")
     .select("id")
-    .eq("code", "LIS 815")
+    .eq("code", "LIS LMS")
     .maybeSingle();
   if (!course) {
     console.log("\nNo LIS 815 course yet — run:  npm run db:seed\n");

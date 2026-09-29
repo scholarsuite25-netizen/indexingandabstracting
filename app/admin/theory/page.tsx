@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Inbox, Scale } from "lucide-react";
 import {
   Badge,
+  ButtonLink,
   Callout,
   EmptyState,
   Table,
@@ -42,9 +43,17 @@ export default async function TheoryQueuePage() {
 
   if (!supabaseConfigured()) {
     return (
-      <Callout tone="warning" title="Waiting for Supabase keys">
-        Add your project URL and anon key to <code>.env.local</code> to see the marking queue.
-      </Callout>
+      <div className="flex flex-col gap-6">
+        <header className="flex flex-col gap-1">
+          <h1 className="font-display text-2xl text-ink">Theory examination</h1>
+          <p className="text-sm text-ink-muted">
+            Every paper handed in, ready to mark and release.
+          </p>
+        </header>
+        <Callout tone="warning" title="Waiting for Supabase keys">
+          Add your project URL and anon key to <code>.env.local</code> to see the marking queue.
+        </Callout>
+      </div>
     );
   }
 
@@ -57,7 +66,7 @@ export default async function TheoryQueuePage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <header className="flex flex-col gap-2">
+      <header className="flex flex-col gap-3">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="info">
             <Scale className="size-3" aria-hidden />
@@ -65,14 +74,14 @@ export default async function TheoryQueuePage() {
           </Badge>
           <Badge variant="neutral">Pass mark {queue.pass_mark} of 100</Badge>
         </div>
-        <h1 className="font-display text-2xl leading-tight text-ink sm:text-3xl">
-          Theory examination
-        </h1>
-        <p className="max-w-2xl text-sm text-ink-muted">
-          Every paper that has been handed in, with the learner who wrote it. Marking is done
-          against each question&rsquo;s model answer, and a paper is only released once all five
-          answers carry a mark.
-        </p>
+        <div className="flex flex-col gap-1">
+          <h1 className="font-display text-2xl text-ink">Theory examination</h1>
+          <p className="max-w-2xl text-sm text-ink-muted">
+            Every paper handed in, with the learner who wrote it. Mark against each
+            question&rsquo;s model answer, and release a paper once all five answers carry a
+            mark.
+          </p>
+        </div>
       </header>
 
       {papers.length === 0 ? (
@@ -80,29 +89,36 @@ export default async function TheoryQueuePage() {
           icon={<Inbox className="size-8" />}
           title="No papers have been handed in"
           description="Papers appear here the moment a learner submits one. Nothing in a learner's draft is shown, because it is not finished work."
+          action={
+            <ButtonLink href="/admin" variant="primary" size="sm">
+              Back to dashboard
+            </ButtonLink>
+          }
         />
       ) : null}
 
       {waiting.length > 0 ? (
-        <section className="flex flex-col gap-3">
-          <h2 className="font-display text-lg text-ink">
+        <section className="flex flex-col gap-4">
+          <h2 className="font-display text-xl text-ink">
             Waiting to be marked ({waiting.length})
           </h2>
-          <Table>
+          <Table className="min-w-[640px]">
             <THead>
               <TR>
-                <TH>Learner</TH>
-                <TH>Status</TH>
-                <TH>Handed in</TH>
-                <TH>Progress</TH>
-                <TH>Mark</TH>
-                <TH />
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Learner</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Status</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Handed in</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Progress</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Mark</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">
+                  <span className="sr-only">Actions</span>
+                </TH>
               </TR>
             </THead>
             <TBody>
               {waiting.map((paper) => (
                 <TR key={paper.id}>
-                  <TD>
+                  <TD className="text-ink-muted">
                     <div className="flex flex-col">
                       <span className="font-medium text-ink">
                         {paper.learner_name ?? "Unnamed learner"}
@@ -110,7 +126,7 @@ export default async function TheoryQueuePage() {
                       <span className="text-xs text-ink-subtle">{paper.learner_email}</span>
                     </div>
                   </TD>
-                  <TD>
+                  <TD className="text-ink-muted">
                     <Badge variant={statusBadge[paper.status]}>{statusText[paper.status]}</Badge>
                   </TD>
                   <TD className="whitespace-nowrap text-ink-muted">
@@ -119,10 +135,10 @@ export default async function TheoryQueuePage() {
                   <TD className="tabular-nums text-ink-muted">
                     {paper.graded_count} of {paper.answer_count} marked
                   </TD>
-                  <TD className="tabular-nums text-ink">
+                  <TD className="tabular-nums text-ink-muted">
                     {paper.total_score === null ? "—" : `${paper.total_score}`}
                   </TD>
-                  <TD>
+                  <TD className="text-ink-muted">
                     <Link
                       href={`/admin/theory/${paper.id}`}
                       className="font-medium text-primary underline-offset-2 hover:underline"
@@ -138,24 +154,26 @@ export default async function TheoryQueuePage() {
       ) : null}
 
       {finished.length > 0 ? (
-        <section className="flex flex-col gap-3">
-          <h2 className="font-display text-lg text-ink">
+        <section className="flex flex-col gap-4">
+          <h2 className="font-display text-xl text-ink">
             Marked and released ({finished.length})
           </h2>
-          <Table>
+          <Table className="min-w-[640px]">
             <THead>
               <TR>
-                <TH>Learner</TH>
-                <TH>Status</TH>
-                <TH>Released</TH>
-                <TH>Mark</TH>
-                <TH />
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Learner</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Status</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Released</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">Mark</TH>
+                <TH className="text-left text-xs uppercase tracking-wide text-ink-subtle">
+                  <span className="sr-only">Actions</span>
+                </TH>
               </TR>
             </THead>
             <TBody>
               {finished.map((paper) => (
                 <TR key={paper.id}>
-                  <TD>
+                  <TD className="text-ink-muted">
                     <div className="flex flex-col">
                       <span className="font-medium text-ink">
                         {paper.learner_name ?? "Unnamed learner"}
@@ -163,16 +181,16 @@ export default async function TheoryQueuePage() {
                       <span className="text-xs text-ink-subtle">{paper.learner_email}</span>
                     </div>
                   </TD>
-                  <TD>
+                  <TD className="text-ink-muted">
                     <Badge variant={statusBadge[paper.status]}>{statusText[paper.status]}</Badge>
                   </TD>
                   <TD className="whitespace-nowrap text-ink-muted">
                     {paper.released_at ? new Date(paper.released_at).toLocaleDateString() : "—"}
                   </TD>
-                  <TD className="tabular-nums text-ink">
+                  <TD className="tabular-nums text-ink-muted">
                     {paper.total_score === null ? "—" : `${paper.total_score} / 100`}
                   </TD>
-                  <TD>
+                  <TD className="text-ink-muted">
                     <Link
                       href={`/admin/theory/${paper.id}`}
                       className="font-medium text-primary underline-offset-2 hover:underline"

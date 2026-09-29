@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { ArrowLeft, BookOpen } from "lucide-react";
-import { ButtonLink } from "@/components/ui";
+import { Card, CardContent, CardHeader } from "@/components/ui";
 import { Markdown } from "@/components/course/markdown";
 import { PracticalWorkspace } from "@/components/learner/practical-workspace";
 import { getPracticalActivity } from "@/lib/data/practicals";
@@ -24,30 +25,33 @@ export default async function PracticalActivityPage({
   }
 
   return (
-    <div className="flex flex-col gap-8">
-      <div className="flex flex-col gap-4">
-        <div>
-          <ButtonLink href="/dashboard/practicals" variant="ghost" className="px-0 hover:bg-transparent hover:text-primary">
-            <ArrowLeft className="mr-2 size-4" />
-            Back to Practicals
-          </ButtonLink>
-        </div>
-        <h1 className="font-display text-3xl text-ink">{activity.title}</h1>
+    <div className="flex flex-col gap-6">
+      <header className="flex flex-col gap-2">
+        <Link
+          href="/dashboard/practicals"
+          className="inline-flex min-h-11 w-fit items-center gap-2 text-sm font-medium text-primary hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          <ArrowLeft className="size-4" aria-hidden />
+          Back to practical labs
+        </Link>
+        <h1 className="font-display text-2xl text-ink">{activity.title}</h1>
         {activity.chapter && (
           <p className="flex items-center gap-2 text-sm text-ink-muted">
-            <BookOpen className="size-4" />
+            <BookOpen className="size-4" aria-hidden />
             Chapter {activity.chapter.position}: {activity.chapter.title}
           </p>
         )}
-      </div>
+      </header>
 
-      <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
-        <section className="flex flex-col gap-4 rounded-card border border-border bg-surface p-6 shadow-sm">
-          <h2 className="font-display text-xl text-ink">Instructions</h2>
-          <div className="prose prose-sm prose-slate max-w-none text-ink-muted">
+      <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr] lg:items-start">
+        <Card>
+          <CardHeader>
+            <h2 className="font-display text-xl text-ink">Instructions</h2>
+          </CardHeader>
+          <CardContent>
             <Markdown source={activity.instructions_md} kind="prose" />
-          </div>
-        </section>
+          </CardContent>
+        </Card>
 
         <section className="flex flex-col gap-4">
           <PracticalWorkspace activity={activity} />

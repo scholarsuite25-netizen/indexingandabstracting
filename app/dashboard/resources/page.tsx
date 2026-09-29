@@ -74,7 +74,7 @@ export default async function ResourcesPage() {
             Resources
           </Badge>
         </div>
-        <h1 className="font-display text-2xl leading-tight text-ink sm:text-3xl">
+        <h1 className="font-display text-2xl text-ink">
           Files and links for this course
         </h1>
         <p className="max-w-2xl text-sm text-ink-muted">
@@ -106,7 +106,7 @@ export default async function ResourcesPage() {
                 id={`resource-${resource.id}`}
                 className="flex flex-col gap-3 rounded-card border border-border bg-surface p-5 scroll-mt-24"
               >
-                <div className="flex flex-wrap items-start items-center justify-between gap-3">
+                <div className="flex flex-wrap items-center justify-between gap-3">
                   <div className="flex min-w-0 flex-col gap-1.5">
                     <div className="flex flex-wrap items-center gap-2">
                       {kindBadge(resource)}
@@ -117,7 +117,7 @@ export default async function ResourcesPage() {
                         <Badge variant="neutral">{resource.moduleTitle}</Badge>
                       ) : null}
                     </div>
-                    <h2 className="font-display text-lg text-ink">{resource.title}</h2>
+                    <h2 className="font-display text-xl text-ink">{resource.title}</h2>
                   </div>
                   <BookmarkButton
                     kind="resource"

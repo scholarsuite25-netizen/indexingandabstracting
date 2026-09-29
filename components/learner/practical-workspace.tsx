@@ -1,15 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Button, Callout } from "@/components/ui";
 import { getBrowserSupabase } from "@/lib/supabase/client";
+import type { PracticalSubmissionRow } from "@/lib/data/practicals";
+
+type PracticalActivityForWorkspace = {
+  id: string;
+  submission?: PracticalSubmissionRow | null;
+};
 
 export function PracticalWorkspace({
   activity,
 }: {
-  activity: any;
+  activity: PracticalActivityForWorkspace;
 }) {
   const router = useRouter();
   const [body, setBody] = useState(activity.submission?.body || "");
@@ -63,7 +69,7 @@ export function PracticalWorkspace({
 
   return (
     <div className="flex flex-col gap-6">
-      {isGraded && (
+      {isGraded && activity.submission && (
         <Callout tone="success" title="Activity Graded">
           <div className="mt-2 text-sm">
             <p><strong>Score:</strong> {activity.submission.score} / 10</p>

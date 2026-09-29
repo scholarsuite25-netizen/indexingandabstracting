@@ -596,6 +596,54 @@ async function main() {
      where submission_id = '${submissionId}'::uuid and question_id = ${qA(n)})`;
 
   // As the table owner, so RLS is out of the way and the trigger is what is under test.
+  //
+  // The certificate rules need a marked objective attempt, and the theory fixture
+  // does not create one - so without this the release below could never issue a
+  // certificate and the auto-issue path would go untested.
+  await db.exec(`
+    insert into public.assessment_attempts
+      (assessment_id, user_id, attempt_no, status, score, total, percentage, passed)
+    select obj.id, ts.user_id, 1, 'marked', 85, 100, 85, true
+    from public.theory_submissions ts
+    join public.assessments th on th.id = ts.assessment_id
+    join public.assessments obj on obj.course_id = th.course_id and obj.type = 'objective'
+    where ts.id = '${submissionId}'::uuid
+    on conflict (user_id, assessment_id, attempt_no) do update
+      set status = 'marked', score = 85, total = 100, percentage = 85, passed = true
+  `);
+
+  // ...and one required lesson, already read, because the certificate rules also
+  // need every required lesson of the course to be completed.
+  await db.exec(`
+    with paper as (
+      select th.course_id, ts.user_id
+      from public.theory_submissions ts
+      join public.assessments th on th.id = ts.assessment_id
+      where ts.id = '${submissionId}'::uuid
+    ), mod as (
+      insert into public.modules (id, course_id, position, title)
+        select '00000000-0000-0000-0000-00000000c001', course_id, 99, 'SMOKE certificate module'
+        from paper
+      returning id
+    ), chap as (
+      insert into public.chapters (id, module_id, position, title, slug)
+        select '00000000-0000-0000-0000-00000000c002', mod.id, 1,
+               'SMOKE certificate chapter', 'smoke-certificate-chapter'
+        from mod
+      returning id
+    ), les as (
+      insert into public.lessons (id, chapter_id, position, title)
+        select '00000000-0000-0000-0000-00000000c003', chap.id, 1, 'SMOKE certificate lesson'
+        from chap
+      returning id
+    )
+    insert into public.lesson_progress (user_id, lesson_id, status, reading_pct, completed_at)
+    select paper.user_id, les.id, 'completed', 100, now()
+    from paper, les
+    on conflict (user_id, lesson_id) do update
+      set status = 'completed', reading_pct = 100, completed_at = now()
+  `);
+
   await expectError(
     db,
     'the trigger refuses a submitted paper with no answers',
@@ -1102,6 +1150,249 @@ async function main() {
     fail(`expected both resource rows to exist, found ${staffView.rows[0].n}`);
   }
   console.log('  PASS  both resource rows exist (staff and system views are complete)');
+
+  // ---- Phase 10: public verification and revocation ----
+  //
+  // The certificates table has no `to anon` policy: a stranger who could query it
+  // directly could also page through every certificate the course has issued. So
+  // /verify/[number] goes through the SECURITY DEFINER function, which is what these
+  // checks exercise — as the anon role, with no session, the way a stranger arrives.
+
+  const certNumber = 'LIS815-2026-CERT000001';
+  await db.exec(`
+    insert into public.certificates (user_id, course_id, certificate_number, status)
+    values ('${SMOKE_STUDENT}',
+            (select id from public.courses where code = 'SMOKE'),
+            '${certNumber}', 'issued')
+    on conflict (certificate_number) do nothing;
+  `);
+
+  await db.query(`select set_config('request.jwt.sub', '', false)`);
+  await db.query(
+    `select set_config('request.headers', '{"x-forwarded-for":"203.0.113.10"}', false)`
+  );
+  await db.exec(`set role anon`);
+  try {
+    const lookup = await db.query(
+      `select public.get_public_certificate('${certNumber}') as r`
+    );
+    const payload = lookup.rows[0].r;
+    if (payload.found !== true) {
+      fail('a signed-out visitor cannot look up a real certificate number');
+    }
+    if (payload.number !== certNumber) {
+      fail('public verification returned the wrong certificate number');
+    }
+    if (!payload.student_name) {
+      fail('public verification did not return the learner name');
+    }
+    if (payload.status !== 'issued') {
+      fail(`public verification reported status ${payload.status}, expected issued`);
+    }
+    const leaked = ['user_id', 'email', 'id', 'course_id', 'issued_by', 'eligibility_snapshot']
+      .filter((k) => Object.prototype.hasOwnProperty.call(payload, k));
+    if (leaked.length) fail(`public verification leaked ${leaked.join(', ')}`);
+    console.log('  PASS  a signed-out visitor verifies a certificate and sees only public fields');
+
+    const missing = await db.query(
+      `select public.get_public_certificate('LIS815-2026-NOPE000000') as r`
+    );
+    if (missing.rows[0].r.found !== false) {
+      fail('a made-up certificate number came back as found');
+    }
+    console.log('  PASS  a made-up certificate number is not found');
+
+    // 30 lookups a minute per caller address; the 31st is refused.
+    await db.query(
+      `select set_config('request.headers', '{"x-forwarded-for":"203.0.113.11"}', false)`
+    );
+    let limitedAt = null;
+    for (let i = 1; i <= 31; i++) {
+      const r = await db.query(`select public.get_public_certificate('${certNumber}') as r`);
+      const hit = r.rows[0].r;
+      if (hit.rate_limited) {
+        limitedAt = i;
+        break;
+      }
+      if (hit.found !== true) fail(`public lookup ${i} failed before the limit was reached`);
+    }
+    if (limitedAt !== 31) {
+      fail(`the rate limit kicked in at call ${limitedAt ?? 'never'}, expected call 31`);
+    }
+    console.log('  PASS  public verification stops after 30 lookups a minute per caller');
+  } finally {
+    await db.exec(`reset role`);
+  }
+
+  // Only an administrator can revoke, a reason is required, and revocation is audited.
+  await db.query(`select set_config('request.jwt.sub', '${SMOKE_STUDENT}', false)`);
+  await db.exec(`set role authenticated`);
+  try {
+    await expectError(
+      db,
+      'a learner cannot revoke a certificate',
+      `select public.revoke_certificate(
+         (select id from public.certificates where certificate_number = '${certNumber}'),
+         'I changed my mind'
+       );`,
+      /only administrators/i,
+    );
+  } finally {
+    await db.exec(`reset role`);
+  }
+
+  await db.exec(`insert into public.user_roles (user_id, role_id)
+    select '${SMOKE_USER}', id from public.roles where code = 'admin'`);
+
+  await db.query(`select set_config('request.jwt.sub', '${SMOKE_USER}', false)`);
+  await db.exec(`set role authenticated`);
+  try {
+    await expectError(
+      db,
+      'a revocation with no reason is refused',
+      `select public.revoke_certificate(
+         (select id from public.certificates where certificate_number = '${certNumber}'),
+         ' '
+       );`,
+      /reason/i,
+    );
+
+    await db.query(`
+      select public.revoke_certificate(
+        (select id from public.certificates where certificate_number = '${certNumber}'),
+        'Issued to the wrong learner'
+      )
+    `);
+  } finally {
+    await db.exec(`reset role`);
+  }
+
+  const revokedAudit = await db.query(`
+    select count(*)::int as n from public.audit_logs where action = 'certificate.revoked'
+  `);
+  if (revokedAudit.rows[0].n !== 1) {
+    fail(`revocation wrote ${revokedAudit.rows[0].n} audit rows, expected 1`);
+  }
+  console.log('  PASS  only an administrator can revoke, with a reason, and it is audited');
+
+  // A fresh caller address: the previous one has just spent its thirty lookups.
+  await db.query(`select set_config('request.jwt.sub', '', false)`);
+  await db.query(
+    `select set_config('request.headers', '{"x-forwarded-for":"203.0.113.12"}', false)`
+  );
+  await db.exec(`set role anon`);
+  try {
+    const afterRevoke = await db.query(
+      `select public.get_public_certificate('${certNumber}') as r`
+    );
+    const row = afterRevoke.rows[0].r;
+    if (row.found !== true || row.status !== 'revoked') {
+      fail('a revoked certificate does not report as revoked on the public page');
+    }
+    if (row.revoked_reason !== 'Issued to the wrong learner') {
+      fail('the public page does not show why the certificate was revoked');
+    }
+    console.log('  PASS  a revoked certificate reports as revoked, with the reason');
+  } finally {
+    await db.exec(`reset role`);
+  }
+
+  // ---- Phase 10: releasing a marked paper issues the certificate ----
+  //
+  // The release happened further up this file. Whether it left a certificate
+  // behind depends on the auto_issue_certificates setting, so both are checked
+  // here, after `reset role`, where the certificates table can be read plainly.
+
+  const autoSetting = await db.query(
+    `select value from public.system_settings where key = 'auto_issue_certificates'`
+  );
+  if (!autoSetting.rows[0]) {
+    fail('the auto_issue_certificates setting does not exist, so release can never issue');
+  }
+
+  const releasedPaper = await db.query(
+    `select ts.user_id, a.course_id
+     from public.theory_submissions ts
+     join public.assessments a on a.id = ts.assessment_id
+     where ts.id = '${submissionId}'::uuid`
+  );
+  const issuedFor = await db.query(
+    `select count(*)::int as n from public.certificates
+     where user_id = '${releasedPaper.rows[0].user_id}'
+       and course_id = '${releasedPaper.rows[0].course_id}'`
+  );
+  if (Number(issuedFor.rows[0].n) < 1) {
+    const why = await db.query(
+      `select public.certificate_eligible('${releasedPaper.rows[0].user_id}', '${releasedPaper.rows[0].course_id}') as r`
+    );
+    fail(
+      `releasing the paper issued no certificate; eligibility says ${JSON.stringify(why.rows[0].r)}`
+    );
+  }
+  console.log('  PASS  releasing a marked paper issues the certificate automatically');
+
+  // ---- Phase 10: the practical requirement in certificate_eligible ----
+  //
+  // Off by default, so turning it on is the only thing that can change who qualifies.
+
+  const courseRow = await db.query(`select id from public.courses where code = 'SMOKE'`);
+  const smokeCourse = courseRow.rows[0].id;
+
+  const before = await db.query(
+    `select public.certificate_eligible('${SMOKE_STUDENT}', '${smokeCourse}') as r`
+  );
+  if (before.rows[0].r.practicals?.required !== false) {
+    fail('practicals are required for a certificate by default');
+  }
+  console.log('  PASS  practical activities do not gate a certificate by default');
+
+  await db.exec(`
+    insert into public.system_settings (key, value, description, is_secret)
+    values ('require_practicals', 'true', 'test', false)
+    on conflict (key) do update set value = 'true';
+
+    insert into public.practical_activities (course_id, title, is_required, status)
+    values ('${smokeCourse}', 'SMOKE required practical', true, 'published');
+  `);
+
+  const withEmpty = await db.query(
+    `select public.certificate_eligible('${SMOKE_STUDENT}', '${smokeCourse}') as r`
+  );
+  const emptyBlock = withEmpty.rows[0].r.practicals;
+  if (Number(emptyBlock.total) !== 1 || Number(emptyBlock.done) !== 0) {
+    fail('an ungraded required practical was not reported as outstanding');
+  }
+
+  await db.exec(`
+    insert into public.practical_submissions (activity_id, user_id, body, status, score)
+    select pa.id, '${SMOKE_STUDENT}', 'my work', 'graded', 6
+    from public.practical_activities pa
+    where pa.title = 'SMOKE required practical';
+  `);
+  const tooLow = await db.query(
+    `select public.certificate_eligible('${SMOKE_STUDENT}', '${smokeCourse}') as r`
+  );
+  if (Number(tooLow.rows[0].r.practicals.done) !== 0) {
+    fail('a practical graded below the pass mark counted towards the certificate');
+  }
+
+  await db.exec(`
+    update public.practical_submissions set score = 9
+    where user_id = '${SMOKE_STUDENT}'
+      and activity_id in (select id from public.practical_activities where title = 'SMOKE required practical');
+  `);
+  const passed = await db.query(
+    `select public.certificate_eligible('${SMOKE_STUDENT}', '${smokeCourse}') as r`
+  );
+  if (Number(passed.rows[0].r.practicals.done) !== 1) {
+    fail('a practical graded at or above the pass mark did not count towards the certificate');
+  }
+
+  await db.exec(`delete from public.system_settings where key = 'require_practicals'`);
+  await db.exec(`
+    delete from public.practical_activities where title = 'SMOKE required practical'
+  `);
+  console.log('  PASS  a required practical must be graded at the pass mark to qualify');
 
   console.log('');
   console.log('Combined file (exactly what db:push sends to your project)');

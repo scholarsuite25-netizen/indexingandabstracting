@@ -44,7 +44,7 @@ export default async function GlossaryPage() {
           </Badge>
           <Badge variant="neutral">Appendix C</Badge>
         </div>
-        <h1 className="font-display text-2xl leading-tight text-ink sm:text-3xl">
+        <h1 className="font-display text-2xl text-ink">
           Words you are expected to know
         </h1>
         <p className="max-w-2xl text-sm text-ink-muted">
