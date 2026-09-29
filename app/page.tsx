@@ -8,6 +8,10 @@ import {
   Lock,
   Search,
   Trophy,
+  BookOpen,
+  GraduationCap,
+  Clock,
+  ListChecks
 } from "lucide-react";
 import { Badge, ButtonLink, Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
 import { SiteFooter } from "@/components/marketing/site-footer";
@@ -44,298 +48,206 @@ const features = [
 
 export default function HomePage() {
   return (
-    <>
+    <div className="flex min-h-screen flex-col bg-[#f8fafc]">
       <SiteHeader />
-      <main id="main">
-        <section className="border-b border-border bg-surface">
-          <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.2fr_1fr] md:py-20">
-            <div className="flex flex-col items-start gap-5">
-              <Badge variant="info">
-                Postgraduate course · 7 modules · 14 chapters
-              </Badge>
-              <h1 className="text-4xl leading-tight text-ink sm:text-5xl">
-                {COURSE.code}: {COURSE.title}
-              </h1>
-              <p className="measure text-lg leading-relaxed text-ink-muted">
-                {COURSE.tagline}. Study subject analysis and indexes,
-                controlled vocabularies and thesaurus construction,
-                pre-coordinate and post-coordinate systems, evaluation measures,
-                abstracting, and digital and AI-assisted indexing — with
-                progress that is tracked and assessments that are marked
-                automatically.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <ButtonLink href="/signup" size="lg">
-                  Create your account
-                  <ArrowRight className="size-4" aria-hidden />
-                </ButtonLink>
-                <ButtonLink href="/login" variant="outline" size="lg">
-                  Sign in
-                </ButtonLink>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3 self-center">
-              {[
-                { value: `${ASSESSMENT_FACTS.objective.questions}`, label: "objective questions" },
-                { value: `${ASSESSMENT_FACTS.objective.durationMinutes} min`, label: "objective exam" },
-                { value: `${ASSESSMENT_FACTS.theory.answer} of ${ASSESSMENT_FACTS.theory.questions}`, label: "theory questions" },
-                { value: `${ASSESSMENT_FACTS.objective.passMark}%`, label: "to unlock theory" },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-card border border-border bg-canvas p-5"
-                >
-                  <p className="text-2xl font-semibold text-ink">{stat.value}</p>
-                  <p className="mt-1 text-sm text-ink-muted">{stat.label}</p>
+      <main id="main" className="flex-1 pt-16">
+        {/* HERO SECTION - Academic Blue Theme */}
+        <section className="relative overflow-hidden bg-[#0B3A82] py-20 sm:py-32">
+          {/* Subtle Abstract Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M0 40L40 0H20L0 20M40 40V20L20 40" fill="none" stroke="white" strokeWidth="1" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+            </svg>
+          </div>
+          
+          <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-8">
+              <div className="flex flex-col items-start gap-6">
+                <div className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm font-medium text-blue-100 backdrop-blur-sm">
+                  <span className="flex h-2 w-2 rounded-full bg-blue-400 mr-2"></span>
+                  Postgraduate Platform
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
+                
+                <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                  {COURSE.code}
+                  <span className="block text-blue-200 mt-2">{COURSE.title}</span>
+                </h1>
+                
+                <p className="max-w-2xl text-lg leading-relaxed text-blue-100/90 sm:text-xl">
+                  A professional course in indexing, abstracting and information organization. Master subject analysis, thesaurus construction, and AI-assisted indexing with automated grading and tracked progression.
+                </p>
+                
+                <div className="mt-4 flex flex-wrap gap-4">
+                  <ButtonLink href="/signup" size="lg" className="bg-white text-[#0B3A82] hover:bg-white/90 shadow-lg border-0 font-semibold px-8">
+                    Start Learning
+                    <ArrowRight className="ml-2 size-5" aria-hidden />
+                  </ButtonLink>
+                  <ButtonLink href="/login" variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 px-8">
+                    Sign in
+                  </ButtonLink>
+                </div>
+              </div>
 
-        <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6" id="outcomes">
-          <div className="mb-8 flex flex-col gap-2">
-            <h2 className="text-2xl text-ink sm:text-3xl">
-              What you will be able to do
-            </h2>
-            <p className="measure text-ink-muted">
-              Learning objectives drawn from the course chapters.
-            </p>
-          </div>
-          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {LEARNING_OUTCOMES.map((outcome) => (
-              <li
-                key={outcome}
-                className="flex gap-3 rounded-card border border-border bg-surface p-4"
-              >
-                <CheckCircle2
-                  className="mt-0.5 size-5 shrink-0 text-success"
-                  aria-hidden
-                />
-                <span className="text-sm leading-relaxed text-ink-muted">
-                  {outcome}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="border-y border-border bg-surface" id="modules">
-          <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-            <div className="mb-8 flex flex-col gap-2">
-              <h2 className="text-2xl text-ink sm:text-3xl">
-                Course structure
-              </h2>
-              <p className="measure text-ink-muted">
-                Seven modules containing fourteen chapters, each with core
-                reading, a knowledge check and practical exercises.
-              </p>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              {MODULES.map((module) => (
-                <Card key={module.position} className="h-full">
-                  <CardHeader>
-                    <div className="flex items-center justify-between gap-3">
-                      <Badge variant="info">Module {module.position}</Badge>
-                      <span className="text-xs text-ink-subtle">
-                        {module.chapters.length}{" "}
-                        {module.chapters.length === 1 ? "chapter" : "chapters"}
-                      </span>
+              {/* Course Statistics Cards */}
+              <div className="grid grid-cols-2 gap-4 self-center lg:pl-10">
+                {[
+                  { value: "07", label: "Modules", icon: Layers },
+                  { value: "14", label: "Chapters", icon: BookOpen },
+                  { value: `${ASSESSMENT_FACTS.objective.questions}`, label: "Objective Questions", icon: ListChecks },
+                  { value: `${ASSESSMENT_FACTS.objective.durationMinutes}`, label: "Minutes", icon: Clock },
+                ].map((stat) => (
+                  <div key={stat.label} className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition-all hover:bg-white/10 hover:shadow-2xl hover:shadow-black/20 hover:-translate-y-1">
+                    <div className="absolute right-[-10px] top-[-10px] opacity-10 transition-transform group-hover:scale-110">
+                      <stat.icon className="h-24 w-24 text-white" />
                     </div>
-                    <h3 className="font-display text-lg font-semibold leading-snug text-ink">
-                      {module.title}
-                    </h3>
-                  </CardHeader>
-                  <CardContent className="flex flex-col gap-3">
-                    <p className="text-sm leading-relaxed text-ink-muted">
-                      {module.summary}
-                    </p>
-                    <ul className="flex flex-col gap-1.5 border-t border-border pt-3">
-                      {module.chapters.map((chapter) => (
-                        <li
-                          key={chapter.position}
-                          className="flex gap-2 text-sm text-ink"
-                        >
-                          <span className="font-medium text-primary">
-                            Ch {chapter.position}
-                          </span>
-                          <span className="text-ink-muted">{chapter.title}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6" id="assessment">
-          <div className="mb-8 flex flex-col gap-2">
-            <h2 className="text-2xl text-ink sm:text-3xl">
-              How assessment works
-            </h2>
-            <p className="measure text-ink-muted">
-              You study in sequence, then sit the objective examination. Score
-              70% or higher and the theory examination unlocks.
-            </p>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-3">
-            <Card>
-              <CardHeader>
-                <ClipboardCheck className="size-6 text-primary" aria-hidden />
-                <h3 className="font-display text-lg font-semibold text-ink">
-                  Objective examination
-                </h3>
-              </CardHeader>
-              <CardContent>
-                <ul className="flex flex-col gap-2 text-sm text-ink-muted">
-                  <li>
-                    {ASSESSMENT_FACTS.objective.questions} questions, four
-                    options each, one correct answer
-                  </li>
-                  <li>
-                    One mark per question — {ASSESSMENT_FACTS.objective.totalMarks} marks
-                    total
-                  </li>
-                  <li>
-                    Time allowed: {ASSESSMENT_FACTS.objective.durationLabel}
-                  </li>
-                  <li>Marked automatically the moment you submit</li>
-                  <li className="font-medium text-ink">
-                    {ASSESSMENT_FACTS.objective.passMark}% or higher unlocks the
-                    theory examination
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <FileText className="size-6 text-primary" aria-hidden />
-                <h3 className="font-display text-lg font-semibold text-ink">
-                  Theory examination
-                </h3>
-              </CardHeader>
-              <CardContent>
-                <ul className="flex flex-col gap-2 text-sm text-ink-muted">
-                  <li>
-                    {ASSESSMENT_FACTS.theory.questions} questions shown — you
-                    answer exactly {ASSESSMENT_FACTS.theory.answer}
-                  </li>
-                  <li>
-                    Each selected question carries{" "}
-                    {ASSESSMENT_FACTS.theory.marksPerQuestion} marks (maximum{" "}
-                    {ASSESSMENT_FACTS.theory.totalMarks})
-                  </li>
-                  <li>Time allowed: {ASSESSMENT_FACTS.theory.durationLabel}</li>
-                  <li>Graded by your lecturer with written feedback</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <BookOpenCheck className="size-6 text-primary" aria-hidden />
-                <h3 className="font-display text-lg font-semibold text-ink">
-                  Continuous work
-                </h3>
-              </CardHeader>
-              <CardContent>
-                <ul className="flex flex-col gap-2 text-sm text-ink-muted">
-                  <li>Chapter knowledge checks as you study</li>
-                  <li>
-                    Practical exercises: thesaurus entries, PRECIS strings,
-                    KWIC/KWOC, precision and recall calculations, abstract
-                    writing
-                  </li>
-                  <li>Revision centre before the examinations</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-
-          <Card className="mt-6">
-            <CardHeader>
-              <CardTitle>Assessment components and weighting</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                {ASSESSMENT_FACTS.weights.map((item) => (
-                  <div
-                    key={item.component}
-                    className="rounded-lg border border-border bg-canvas p-4"
-                  >
-                    <p className="text-xl font-semibold text-primary">
-                      {item.weight}
-                    </p>
-                    <p className="mt-1 text-sm font-medium text-ink">
-                      {item.component}
-                    </p>
-                    <p className="mt-1 text-xs leading-relaxed text-ink-muted">
-                      {item.preparation}
-                    </p>
+                    <p className="relative z-10 text-4xl font-bold text-white">{stat.value}</p>
+                    <p className="relative z-10 mt-2 text-sm font-medium text-blue-200 uppercase tracking-wider">{stat.label}</p>
                   </div>
                 ))}
               </div>
-              <p className="mt-4 text-xs text-ink-subtle">
-                Weightings are taken from the Assessment and Examination Guide
-                in the supplied study guide.
-              </p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </section>
 
-        <section className="border-t border-border bg-surface">
-          <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-            <div className="mb-8 flex items-center gap-3">
-              <Layers className="size-6 text-primary" aria-hidden />
-              <h2 className="text-2xl text-ink sm:text-3xl">
-                Built for serious study
-              </h2>
+        {/* LEARNING OBJECTIVES - Structured Grid */}
+        <section className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6" id="outcomes">
+          <div className="mb-12 text-center">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-[#0B3A82]">Learning Outcomes</h2>
+            <h3 className="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">What you will be able to do</h3>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
+              Master the core competencies required for professional information organization.
+            </p>
+          </div>
+          
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {LEARNING_OUTCOMES.map((outcome, index) => (
+              <div key={index} className="flex gap-4 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition-shadow hover:shadow-md">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#0B3A82]/10">
+                  <CheckCircle2 className="h-6 w-6 text-[#0B3A82]" aria-hidden />
+                </div>
+                <p className="text-sm font-medium leading-relaxed text-slate-700">{outcome}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* COURSE CURRICULUM - Visually Impressive */}
+        <section className="bg-slate-50 py-20 border-y border-slate-200" id="modules">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="mb-12 text-center">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-[#0B3A82]">Curriculum</h2>
+              <h3 className="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">Course Structure</h3>
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
+                Seven comprehensive modules containing fourteen chapters of core reading, knowledge checks, and practicals.
+              </p>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {features.map((feature) => (
-                <div
-                  key={feature.title}
-                  className="flex gap-4 rounded-card border border-border bg-canvas p-5"
-                >
-                  <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary-soft text-primary">
-                    <feature.icon className="size-5" aria-hidden />
-                  </span>
-                  <div className="flex flex-col gap-1.5">
-                    <p className="font-medium text-ink">{feature.title}</p>
-                    <p className="text-sm leading-relaxed text-ink-muted">
-                      {feature.body}
-                    </p>
+            
+            <div className="grid gap-8 md:grid-cols-2 lg:gap-12">
+              {MODULES.map((module) => (
+                <div key={module.position} className="flex flex-col rounded-3xl bg-white shadow-sm ring-1 ring-slate-200 overflow-hidden transition-all hover:shadow-lg">
+                  <div className="bg-[#0B3A82]/5 p-6 border-b border-slate-100">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="inline-flex items-center rounded-full bg-[#0B3A82] px-3 py-1 text-xs font-bold text-white uppercase tracking-wider">
+                        Module {String(module.position).padStart(2, '0')}
+                      </span>
+                      <span className="flex items-center text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                        <BookOpen className="mr-1.5 h-4 w-4" />
+                        {module.chapters.length} {module.chapters.length === 1 ? "Chapter" : "Chapters"}
+                      </span>
+                    </div>
+                    <h4 className="text-xl font-bold text-slate-900 leading-tight mb-2">{module.title}</h4>
+                    <p className="text-sm text-slate-600 leading-relaxed">{module.summary}</p>
+                  </div>
+                  <div className="p-6">
+                    <ul className="space-y-4">
+                      {module.chapters.map((chapter) => (
+                        <li key={chapter.position} className="flex items-start gap-3 group">
+                          <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-bold text-slate-500 group-hover:bg-[#0B3A82] group-hover:text-white transition-colors">
+                            {chapter.position}
+                          </div>
+                          <span className="text-sm font-medium text-slate-700 pt-0.5 group-hover:text-[#0B3A82] transition-colors">{chapter.title}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               ))}
             </div>
+          </div>
+        </section>
 
-            <div className="mt-10 flex flex-col items-start gap-4 rounded-card bg-primary-strong p-6 text-white sm:flex-row sm:items-center sm:justify-between sm:p-8">
-              <div className="flex flex-col gap-1">
-                <p className="text-xl font-semibold">Ready to begin?</p>
-                <p className="text-sm text-white/80">
-                  Create an account to enrol in {COURSE.code} and start with
-                  the course orientation.
-                </p>
+        {/* ASSESSMENT INFO */}
+        <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6" id="assessment">
+          <div className="mb-12 text-center">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-[#0B3A82]">Evaluation</h2>
+            <h3 className="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">How assessment works</h3>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50">
+                <ClipboardCheck className="h-7 w-7 text-[#0B3A82]" />
               </div>
-              <ButtonLink
-                href="/signup"
-                size="lg"
-                className="bg-white text-primary-strong hover:bg-white/90"
-              >
-                Create your account
-                <ArrowRight className="size-4" aria-hidden />
+              <h4 className="mb-4 text-xl font-bold text-slate-900">Objective Exam</h4>
+              <ul className="space-y-3 text-sm text-slate-600">
+                <li className="flex items-start"><CheckCircle2 className="mr-2 h-4 w-4 text-[#0B3A82] shrink-0 mt-0.5" /> {ASSESSMENT_FACTS.objective.questions} questions, one correct answer</li>
+                <li className="flex items-start"><CheckCircle2 className="mr-2 h-4 w-4 text-[#0B3A82] shrink-0 mt-0.5" /> {ASSESSMENT_FACTS.objective.durationLabel} time limit</li>
+                <li className="flex items-start font-semibold text-slate-900"><CheckCircle2 className="mr-2 h-4 w-4 text-[#0B3A82] shrink-0 mt-0.5" /> Score {ASSESSMENT_FACTS.objective.passMark}% to unlock theory</li>
+              </ul>
+            </div>
+
+            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50">
+                <FileText className="h-7 w-7 text-[#0B3A82]" />
+              </div>
+              <h4 className="mb-4 text-xl font-bold text-slate-900">Theory Exam</h4>
+              <ul className="space-y-3 text-sm text-slate-600">
+                <li className="flex items-start"><CheckCircle2 className="mr-2 h-4 w-4 text-[#0B3A82] shrink-0 mt-0.5" /> Answer {ASSESSMENT_FACTS.theory.answer} out of {ASSESSMENT_FACTS.theory.questions} questions</li>
+                <li className="flex items-start"><CheckCircle2 className="mr-2 h-4 w-4 text-[#0B3A82] shrink-0 mt-0.5" /> {ASSESSMENT_FACTS.theory.durationLabel} time limit</li>
+                <li className="flex items-start"><CheckCircle2 className="mr-2 h-4 w-4 text-[#0B3A82] shrink-0 mt-0.5" /> Graded by lecturer with feedback</li>
+              </ul>
+            </div>
+
+            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50">
+                <GraduationCap className="h-7 w-7 text-[#0B3A82]" />
+              </div>
+              <h4 className="mb-4 text-xl font-bold text-slate-900">Continuous Work</h4>
+              <ul className="space-y-3 text-sm text-slate-600">
+                <li className="flex items-start"><CheckCircle2 className="mr-2 h-4 w-4 text-[#0B3A82] shrink-0 mt-0.5" /> Chapter knowledge checks</li>
+                <li className="flex items-start"><CheckCircle2 className="mr-2 h-4 w-4 text-[#0B3A82] shrink-0 mt-0.5" /> Practical exercises and PRECIS strings</li>
+                <li className="flex items-start"><CheckCircle2 className="mr-2 h-4 w-4 text-[#0B3A82] shrink-0 mt-0.5" /> Revision centre preparation</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* BOTTOM CTA */}
+        <section className="bg-[#0B3A82] py-20 text-center relative overflow-hidden">
+          <div className="absolute inset-0 opacity-5">
+            <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+              <defs><pattern id="grid-bottom" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M0 40L40 0H20L0 20M40 40V20L20 40" fill="none" stroke="white" strokeWidth="1" /></pattern></defs><rect width="100%" height="100%" fill="url(#grid-bottom)" />
+            </svg>
+          </div>
+          <div className="relative mx-auto max-w-3xl px-4 sm:px-6">
+            <h2 className="text-3xl font-extrabold text-white sm:text-4xl">Ready to begin your study?</h2>
+            <p className="mt-4 text-xl text-blue-100">
+              Join the academic platform and start your journey in information organization today.
+            </p>
+            <div className="mt-10 flex justify-center gap-4">
+              <ButtonLink href="/signup" size="lg" className="bg-white text-[#0B3A82] hover:bg-white/90 shadow-lg px-8 font-bold">
+                Enrol Now
               </ButtonLink>
             </div>
           </div>
         </section>
       </main>
       <SiteFooter />
-    </>
+    </div>
   );
 }
