@@ -48,8 +48,31 @@ Notes you can check yourself:
 
 - `README.md` names `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` as the minimum for Vercel. `BUILD_PLAN.md` section 20.3 adds `SUPABASE_SERVICE_ROLE_KEY`, marked server-only.
 - `SECURITY.md` says the anon key is safe to expose and the service-role key is not. Paste the service-role key into Vercel only, never into client code and never into git.
-- `lib/env.ts` checks the three Supabase values at startup and fails with a readable message. It does not check the SMTP, Plausible or Sentry names. Whether every `.env.example` line is needed in Vercel or only locally is not stated in the repo. To confirm.
-- Which variables belong in Vercel versus only in your local `.env.local` is partly a judgement call: `DATABASE_URL` and `SUPABASE_DB_PASSWORD` are used by the database scripts you run on your own machine. To confirm before you paste them anywhere.
+- `lib/env.ts` checks the three Supabase values at startup and fails with a readable message. It does not check the SMTP, Plausible or Sentry names.
+- Which variables belong in Vercel versus only in your local `.env.local`, confirmed on 29 Sep 2026: Vercel needs the three Supabase values, the six `SMTP_*` names (the email system reads them at send time, and `/api/health` reports `email: configured` only when all six are present), and `NEXT_PUBLIC_APP_URL` (the links inside emails are built from it, so a missing value produces relative links that do nothing in an inbox). `DATABASE_URL` and `SUPABASE_DB_PASSWORD` stay local — only the database scripts on your own machine use them. Plausible and Sentry names stay unset until those services are switched on.
+
+## Putting the SMTP keys into Vercel
+
+The six `SMTP_*` values live in `.env.local`, which is git-ignored on purpose: this repository is public, so they must never be committed. The Vercel CLI sets them instead (install it with `npm install -g vercel`, then sign in with `vercel login`):
+
+```
+vercel link --project indexingandabstracting
+vercel env add SMTP_HOST production
+vercel env add SMTP_PORT production
+vercel env add SMTP_SECURE production
+vercel env add SMTP_USER production
+vercel env add SMTP_PASSWORD production
+vercel env add SMTP_FROM production
+```
+
+Each command waits for the value; paste the line from `.env.local` and press Enter. `vercel env ls production` lists the names it has without printing the values. The values are then taken from the file itself, so nothing is typed twice:
+
+```powershell
+$map = @{}; Get-Content .env.local | ForEach-Object { if ($_ -match '^\s*([A-Za-z0-9_]+)\s*=\s*(.*)$') { $map[$Matches[1]] = $Matches[2].Trim() } }
+$map['SMTP_HOST'] | vercel env add SMTP_HOST production   # repeat for the other five
+```
+
+Two things to expect: `vercel link` writes a `VERCEL_OIDC_TOKEN` line into `.env.local` and adds `.vercel/` to `.gitignore` (both normal, and `.env.local` stays ignored), and `NEXT_PUBLIC_` variables only reach the site on the next deploy — environment variables are read when the build runs, not on every request.
 
 ## Building and running
 

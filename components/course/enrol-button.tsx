@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Button } from "@/components/ui";
 import { getBrowserSupabase } from "@/lib/supabase/client";
+import { sendEnrollmentEmailAction } from "@/lib/email/actions";
 
 export function EnrolButton({ courseId, enrolmentOpen }: { courseId: string; enrolmentOpen: boolean }) {
   const router = useRouter();
@@ -30,6 +31,7 @@ export function EnrolButton({ courseId, enrolmentOpen }: { courseId: string; enr
       return;
     }
     toast.success("You are enrolled — welcome to LIS LMS!");
+    void sendEnrollmentEmailAction(courseId).catch(() => undefined);
     router.refresh();
   }
 

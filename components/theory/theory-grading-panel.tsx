@@ -15,6 +15,7 @@ import {
   setTheoryOverallFeedback,
 } from "@/lib/theory/rpc";
 import { cn } from "@/lib/utils/cn";
+import { sendGradeReleasedEmailAction } from "@/lib/email/actions";
 
 type Marked = { score: number; feedback: string; rubricRef: string; saving: boolean };
 
@@ -88,6 +89,7 @@ export function TheoryGradingPanel({ view }: { view: TheoryGradingView }) {
     setReleasing(true);
     try {
       await releaseTheoryGrade(view.submission_id);
+      void sendGradeReleasedEmailAction(view.submission_id).catch(() => undefined);
       toast.success("Grade released. The learner has been notified.");
       router.refresh();
     } catch (error) {

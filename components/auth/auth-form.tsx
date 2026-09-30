@@ -9,6 +9,7 @@ import { Button, Callout, Card, CardContent, CardHeader, Input } from "@/compone
 import { signUpSchema, signInSchema } from "@/lib/validation/auth";
 import { getBrowserSupabase } from "@/lib/supabase/client";
 import { friendlyAuthError, homeForRole, safeNextPath } from "@/lib/roles";
+import { sendWelcomeEmailAction } from "@/lib/email/actions";
 
 export function AuthForm({ mode }: { mode: "login" | "signup" }) {
   const router = useRouter();
@@ -71,6 +72,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
 
         if (data.session) {
           toast.success("Account created. Welcome!");
+          void sendWelcomeEmailAction().catch(() => undefined);
           router.push("/dashboard");
           router.refresh();
           return;

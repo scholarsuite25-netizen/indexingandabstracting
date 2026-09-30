@@ -14,6 +14,7 @@ import {
   submitTheoryPaper,
 } from "@/lib/theory/rpc";
 import { cn } from "@/lib/utils/cn";
+import { sendTheorySubmittedEmailAction } from "@/lib/email/actions";
 
 const REQUIRED = 5;
 
@@ -228,6 +229,7 @@ export function TheoryRunner({
 
     try {
       await submitTheoryPaper(workspace.submission_id);
+      void sendTheorySubmittedEmailAction(workspace.submission_id).catch(() => undefined);
       router.push(resultsHref);
       router.refresh();
     } catch (error) {

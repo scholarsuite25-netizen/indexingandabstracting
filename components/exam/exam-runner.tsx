@@ -10,6 +10,7 @@ import { ExamError, fetchResults, markLessonComplete, saveAnswer, submitAttempt 
 import { QuestionPrompt } from "@/components/exam/question-prompt";
 import { ResultReview } from "@/components/exam/result-review";
 import { cn } from "@/lib/utils/cn";
+import { sendAttemptSubmittedEmailAction } from "@/lib/email/actions";
 
 type Phase = "answering" | "submitting" | "finished";
 
@@ -76,6 +77,7 @@ export function ExamRunner({
       setPhase("submitting");
       try {
         const result = await submitAttempt(snapshot.attempt_id);
+        void sendAttemptSubmittedEmailAction(snapshot.attempt_id).catch(() => undefined);
         if (result.expired || reason === "time") setExpired(true);
 
         if (mode === "objective") {
