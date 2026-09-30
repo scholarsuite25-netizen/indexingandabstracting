@@ -162,7 +162,7 @@ Followed in order, with the exact names: `DEPLOYMENT.md`. In short:
 npm run test:smoke -- --url https://your-address.vercel.app
 ```
 
-It checks the front page, that signed-out visitors are bounced away from protected pages, that a made-up certificate number reports "not found", and then runs the full signed-in learner journey against your live URL.
+It checks the front page, that signed-out visitors are bounced away from protected pages (including `/verify/[number]`, which now needs a sign-in), and then runs the full signed-in learner journey against your live URL — that journey is where a made-up certificate number is expected to say "not found".
 
 When something goes wrong:
 

@@ -25,6 +25,7 @@ Every database change is a numbered SQL file in `supabase/migrations/`. You neve
 | `0011_reporting.sql` | Reporting calls: dashboard statistics, question analytics, admin reports and content reordering. This file carries no header comment; its first line is the first function. |
 | `0012_notifications.sql` | Notification preferences and email tracking, with RLS enabled and policies written for both new tables. |
 | `0013_certificate_publicity.sql` | Public certificate verification, automatic issuance when a grade is released, and revocation with a reason. |
+| `0014_verify_requires_login.sql` | Verification is signed-in only: the `anon` role loses `EXECUTE` on `get_public_certificate()`. `proxy.ts` holds the page side of the same rule. |
 
 `DATABASE_SCHEMA.md` lists the entities in design order. `ASSESSMENT_RULES.md` and `ASSESSMENT_ENGINE.md` explain the rules those tables enforce.
 

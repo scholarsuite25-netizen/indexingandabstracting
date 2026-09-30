@@ -115,7 +115,7 @@ If the structure itself is wrong, fix the migration files and run `npm run db:pu
 npm run test:smoke -- --url https://your-deployment-address
 ```
 
-`scripts/smoke-test.mjs` checks the front page, that signed-out visitors are bounced away from protected pages, that a made-up certificate number reports "not found", and then runs the signed-in learner journey against that URL. See `TEST_PLAN.md`.
+`scripts/smoke-test.mjs` checks the front page, that signed-out visitors are bounced away from protected pages (including `/verify/[number]`, which requires a sign-in), and then runs the signed-in learner journey against that URL — including the made-up certificate number saying "not found". See `TEST_PLAN.md`.
 
 ## Continuous integration
 

@@ -11,7 +11,7 @@ Row Level Security, or RLS, is a set of rules kept inside the database itself. E
 - `supabase/migrations/0003_rls.sql` is the main file. It turns RLS on for every table in the `public` schema with one loop, then writes the policies.
 - `supabase/migrations/0009_study_tooling.sql` tightens two of them: examination papers are never a student resource, and a notification can only be read by its owner and never rewritten by them.
 - `supabase/migrations/0010_released_marks_only.sql` keeps a half-marked theory total away from the learner until release.
-- `supabase/migrations/0013_certificate_publicity.sql` adds a signed-out public read for certificate verification, because a policy that only allowed signed-in users made `/verify/[number]` return "not found" for every stranger.
+- `supabase/migrations/0013_certificate_publicity.sql` adds a narrow read for certificate verification (a `SECURITY DEFINER` function, because a policy that only allowed signed-in users made `/verify/[number]` say "not found" for every stranger). `supabase/migrations/0014_verify_requires_login.sql` then takes it back to signed-in callers: `proxy.ts` bounces a signed-out visitor to `/login` before the page renders, and the `anon` role loses `EXECUTE`, so the function cannot be reached around the page either.
 - `DATABASE_SCHEMA.md` states the intent: RLS on every user-facing table, students see published course material and their own records, admins manage content, superadmins manage the platform.
 
 ## The main policy groups

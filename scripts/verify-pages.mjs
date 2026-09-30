@@ -195,7 +195,12 @@ async function main() {
 
   console.log("\nSigned out");
   await test("protected pages redirect to the sign-in page", async () => {
-    for (const path of ["/dashboard", "/dashboard/course", `/dashboard/lessons/${first.id}`]) {
+    for (const path of [
+      "/dashboard",
+      "/dashboard/course",
+      `/dashboard/lessons/${first.id}`,
+      "/verify/NOT-A-REAL-CERTIFICATE",
+    ]) {
       const res = await page(path);
       assert(res.status === 307, `${path} answered ${res.status}`);
       assert(res.location.startsWith("/login"), `${path} went to ${res.location}`);
@@ -209,11 +214,37 @@ async function main() {
     }
   });
 
+  await test("a signed-in visitor is told when a certificate number is not real", async () => {
+    const res = await page("/verify/NOT-A-REAL-CERTIFICATE", cookie);
+    assert(res.status === 200, `verify page answered ${res.status}`);
+    assert(/certificate not found/i.test(res.text), "no not-found answer");
+    assert(
+      !/certificate verified|certificate revoked/i.test(res.text),
+      "the page claimed to verify a certificate that does not exist",
+    );
+    assert(
+      !/status:\s*(valid|revoked)/i.test(res.text),
+      "a certificate status was shown for a number that does not exist",
+    );
+  });
+
+  const CERT_NUMBER = process.env.PAGE_TEST_CERT_NUMBER;
+  if (CERT_NUMBER) {
+    await test(`the real certificate ${CERT_NUMBER} verifies on this site`, async () => {
+      const res = await page(`/verify/${encodeURIComponent(CERT_NUMBER)}`, cookie);
+      assert(res.status === 200, `verify page answered ${res.status}`);
+      assert(
+        /certificate verified|certificate revoked/i.test(res.text),
+        `neither verified nor revoked: ${res.text.slice(0, 200)}`,
+      );
+    });
+  }
+
   console.log("\nSigned in as an enrolled learner");
   await test("the dashboard renders the learner's progress", async () => {
     const res = await page("/dashboard", cookie);
     assert(res.status === 200, `dashboard answered ${res.status}`);
-    assert(/your learning/i.test(res.text), "no learner heading");
+    assert(/good (morning|afternoon|evening)/i.test(res.text), "no learner heading");
     assert(/continue learning|start the course/i.test(res.text), "no continue button");
     assert(/roadmap/i.test(res.text), "no roadmap");
   });

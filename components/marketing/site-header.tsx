@@ -11,7 +11,7 @@ const navLinks = [
 export function SiteHeader() {
   return (
     <div className="fixed top-0 z-50 w-full no-print">
-      <header className="w-full bg-[#0B3A82] px-4 shadow-md transition-all sm:px-6">
+      <header className="w-full border-b border-white/10 bg-[#08295e] px-4 shadow-md transition-all sm:px-6">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
             <span className="flex size-10 items-center justify-center rounded-lg bg-white/10 text-white">
@@ -58,7 +58,7 @@ export function SiteHeader() {
                 <span className="block h-0.5 w-5 bg-white" />
               </span>
             </summary>
-            <div className="absolute right-0 top-12 w-64 rounded-xl border border-white/10 bg-[#08295e] p-3 shadow-xl">
+            <div className="absolute right-0 top-12 w-64 rounded-xl border border-white/15 bg-[#061f47] p-3 shadow-xl">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}

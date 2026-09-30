@@ -15,13 +15,24 @@ const SMOKE_USER = '00000000-0000-0000-0000-0000000000aa';
 const SMOKE_STUDENT = '00000000-0000-0000-0000-0000000000bb';
 const SMOKE_OUTSIDER = '00000000-0000-0000-0000-0000000000cc';
 
-// Supabase grants these to the API roles. PGlite runs everything as the table owner,
-// which bypasses RLS, so without the grants the "as a student" tests prove nothing.
+// Supabase grants these to the API roles, and it does so with *default privileges*:
+// anything a migration creates afterwards is born granted, so a migration that takes a
+// grant away (0014_verify_requires_login.sql) actually keeps it taken away. PGlite runs
+// everything as the table owner, which bypasses RLS, so without the grants the "as a
+// student" tests prove nothing.
+const DEFAULT_PRIVILEGES = `
+grant usage on schema public to anon, authenticated, service_role;
+alter default privileges in schema public grant all on tables to anon, authenticated, service_role;
+alter default privileges in schema public grant all on sequences to anon, authenticated, service_role;
+alter default privileges in schema public grant execute on functions to anon, authenticated, service_role;
+`;
+
+// Applied after the migrations, and deliberately without functions: re-granting
+// `execute on all functions` here would silently undo a revoke written by a migration.
 const GRANTS = `
 grant usage on schema public to anon, authenticated, service_role;
 grant all on all tables in schema public to anon, authenticated, service_role;
 grant all on all sequences in schema public to anon, authenticated, service_role;
-grant execute on all functions in schema public to anon, authenticated, service_role;
 `;
 
 const PRELUDE = `
@@ -70,6 +81,7 @@ export async function createMigratedDb() {
     .sort();
   const db = await PGlite.create();
   await db.exec(PRELUDE);
+  await db.exec(DEFAULT_PRIVILEGES);
   for (const f of files) {
     await db.exec(readFileSync(join(migrationsDir, f), 'utf8'));
   }
@@ -103,6 +115,7 @@ async function main() {
 
   try {
     await db.exec(PRELUDE);
+    await db.exec(DEFAULT_PRIVILEGES);
   } catch (e) {
     fail(`Supabase emulation prelude: ${e.message}`);
   }
@@ -1151,12 +1164,14 @@ async function main() {
   }
   console.log('  PASS  both resource rows exist (staff and system views are complete)');
 
-  // ---- Phase 10: public verification and revocation ----
+  // ---- Phase 10: verification (signed-in) and revocation ----
   //
   // The certificates table has no `to anon` policy: a stranger who could query it
   // directly could also page through every certificate the course has issued. So
-  // /verify/[number] goes through the SECURITY DEFINER function, which is what these
-  // checks exercise — as the anon role, with no session, the way a stranger arrives.
+  // /verify/[number] goes through the SECURITY DEFINER function — reached only from
+  // behind a sign-in (proxy.ts) — and since migration 0014 the function is granted to
+  // `authenticated` alone. These checks run it as a signed-in user; a further check
+  // proves the anon role is refused outright.
 
   const certNumber = 'LIS815-2026-CERT000001';
   await db.exec(`
@@ -1167,18 +1182,18 @@ async function main() {
     on conflict (certificate_number) do nothing;
   `);
 
-  await db.query(`select set_config('request.jwt.sub', '', false)`);
+  await db.query(`select set_config('request.jwt.sub', '${SMOKE_STUDENT}', false)`);
   await db.query(
     `select set_config('request.headers', '{"x-forwarded-for":"203.0.113.10"}', false)`
   );
-  await db.exec(`set role anon`);
+  await db.exec(`set role authenticated`);
   try {
     const lookup = await db.query(
       `select public.get_public_certificate('${certNumber}') as r`
     );
     const payload = lookup.rows[0].r;
     if (payload.found !== true) {
-      fail('a signed-out visitor cannot look up a real certificate number');
+      fail('a signed-in visitor cannot look up a real certificate number');
     }
     if (payload.number !== certNumber) {
       fail('public verification returned the wrong certificate number');
@@ -1192,7 +1207,7 @@ async function main() {
     const leaked = ['user_id', 'email', 'id', 'course_id', 'issued_by', 'eligibility_snapshot']
       .filter((k) => Object.prototype.hasOwnProperty.call(payload, k));
     if (leaked.length) fail(`public verification leaked ${leaked.join(', ')}`);
-    console.log('  PASS  a signed-out visitor verifies a certificate and sees only public fields');
+    console.log('  PASS  a signed-in visitor verifies a certificate and sees only public fields');
 
     const missing = await db.query(
       `select public.get_public_certificate('LIS815-2026-NOPE000000') as r`
@@ -1220,6 +1235,21 @@ async function main() {
       fail(`the rate limit kicked in at call ${limitedAt ?? 'never'}, expected call 31`);
     }
     console.log('  PASS  public verification stops after 30 lookups a minute per caller');
+  } finally {
+    await db.exec(`reset role`);
+  }
+
+  // Migration 0014 took the anon (and PUBLIC) grant away, so the database itself refuses
+  // a caller with no session — the page gate and the grant agree.
+  await db.query(`select set_config('request.jwt.sub', '', false)`);
+  await db.exec(`set role anon`);
+  try {
+    await expectError(
+      db,
+      'a signed-out caller is refused by the database (grant is authenticated-only)',
+      `select public.get_public_certificate('${certNumber}');`,
+      /permission denied/i,
+    );
   } finally {
     await db.exec(`reset role`);
   }
@@ -1276,21 +1306,21 @@ async function main() {
   console.log('  PASS  only an administrator can revoke, with a reason, and it is audited');
 
   // A fresh caller address: the previous one has just spent its thirty lookups.
-  await db.query(`select set_config('request.jwt.sub', '', false)`);
+  await db.query(`select set_config('request.jwt.sub', '${SMOKE_STUDENT}', false)`);
   await db.query(
     `select set_config('request.headers', '{"x-forwarded-for":"203.0.113.12"}', false)`
   );
-  await db.exec(`set role anon`);
+  await db.exec(`set role authenticated`);
   try {
     const afterRevoke = await db.query(
       `select public.get_public_certificate('${certNumber}') as r`
     );
     const row = afterRevoke.rows[0].r;
     if (row.found !== true || row.status !== 'revoked') {
-      fail('a revoked certificate does not report as revoked on the public page');
+      fail('a revoked certificate does not report as revoked on the verification page');
     }
     if (row.revoked_reason !== 'Issued to the wrong learner') {
-      fail('the public page does not show why the certificate was revoked');
+      fail('the verification page does not show why the certificate was revoked');
     }
     console.log('  PASS  a revoked certificate reports as revoked, with the reason');
   } finally {

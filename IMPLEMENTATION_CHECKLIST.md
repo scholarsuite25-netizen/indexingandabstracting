@@ -106,7 +106,7 @@ npm run test:smoke -- --url https://your-site   # check the deployed site
 - [x] **[VERIFY]** Student **cannot** read `question_options`, cannot write `lesson_progress`, cannot insert grades, cannot change own role ✅ written into `test:rls` (executes against your project)
 - [x] **[VERIFY]** Instructor (non-admin, course-assigned) can author content; students cannot ✅ written into `test:rls`
 - [x] **[VERIFY]** `npm run test:rls` green **against your Supabase project** ✅ **48 passed, 0 failed** (26 Sep, after the two database fixes below were re-applied)
-- [x] **[VERIFY]** Public certificate verification returns only minimal fields ✅ built with Phase 10 and proven by `check:sql` ("a signed-out visitor verifies a certificate and sees only public fields")
+- [x] **[VERIFY]** Certificate verification returns only minimal fields, and only to signed-in visitors ✅ built with Phase 10 and proven by `check:sql` ("a signed-in visitor verifies a certificate and sees only public fields"; since `0014`, "a signed-out caller is refused by the database")
 - [ ] **[YOU]** Confirm in the Supabase Table Editor that you can see the tables (a quick confidence check)
 
 ---
@@ -324,7 +324,7 @@ Migration `0009_study_tooling.sql` (exam papers invisible even when a row says `
 - [x] **[ME]** Certificate issuance (staff/superadmin, or automatic on release) with unguessable certificate number + audit — `issue_certificate()` / `issue_certificate_core()`; `release_theory_grade()` issues it when `auto_issue_certificates` is on ✅ `check:sql` "releasing a marked paper issues the certificate automatically"
 - [x] **[ME]** Printable certificate page (browser Print → PDF; no PDF library) with learner name, course, date, number, institution, QR — `components/…/certificate-view.tsx` + `@media print` rules in `globals.css`
 - [x] **[ME]** QR generated in-browser (no external API) — `react-qr-code` inside `certificate-view.tsx`
-- [x] **[ME]** Public `/verify/[number]` page: name, course, completion date, status only; rate-limited; audited — `get_public_certificate()` (30 lookups/minute per caller, audited, minimal fields) ✅ `check:sql` and the live production smoke test
+- [x] **[ME]** `/verify/[number]` page: name, course, completion date, status only; rate-limited; audited; **signed-in only since 29 Sep** (`proxy.ts` sends a signed-out visitor to `/login`, `0014_verify_requires_login.sql` revokes the `anon` grant) — `get_public_certificate()` (30 lookups/minute per caller, audited, minimal fields) ✅ `check:sql` and the signed-in half of the smoke test
 - [x] **[ME]** Revoke flow (status + reason) reflected on verification — `revoke_certificate()` + `components/staff/certificate-revoke.tsx` + admin screen ✅ `check:sql` (refuses a missing reason, audits the change, shows the reason publicly)
 
 **GATE — Phase 10**
@@ -412,7 +412,7 @@ Migration `0009_study_tooling.sql` (exam papers invisible even when a row says `
 
 **GATE — Final**
 - [x] **[VERIFY]** Production URL serves the app over HTTPS ✅ the smoke test fetched every page over `https://`
-- [ ] **[VERIFY]** Full journey completed on production: student → exams → grade → certificate → public verification — *the reading, study-tool and download half of the journey is scripted and green on production; the examination → grading → certificate half has only been proven against the live database, not by one walk-through on the live site. That walk-through is the last big check.*
+- [ ] **[VERIFY]** Full journey completed on production: student → exams → grade → certificate → verification — *the reading, study-tool and download half of the journey is scripted and green on production; the examination → grading → certificate half has only been proven against the live database, not by one walk-through on the live site. That walk-through is the last big check. Verification now needs a sign-in, so do that half while signed in.*
 - [x] **[VERIFY]** `npm run test:all` green against production-equivalent config ✅ all eight suites green on 29 Sep against your live Supabase project (after the anon key was replaced and migration 0013 applied)
 - [x] **[VERIFY]** No secrets in git history; `.env.example` complete ✅ no `.env*` file was ever committed, no JWT or service key appears in any commit, and `.env.example` carries all 17 names
 - [ ] **[VERIFY]** Backups scheduled; a restore has been drilled once — *drilled once ✅ (29 Sep, dry run). "Scheduled" is open: nothing takes a backup automatically yet, so it is a habit until you want a weekly `npm run db:backup` in CI or a reminder.*
@@ -434,7 +434,7 @@ Migration `0009_study_tooling.sql` (exam papers invisible even when a row says `
 | 7 — Theory exam & grading | ✅ built & verified — `npm run db:push` applied, `npm run test:theory` **34 ✅ / 0 ❌**, `check:sql` green (10 migrations) |
 | 8 — Learner tooling | ✅ built & verified — `npm run test:tooling` 20 ✅ / 0 ❌, `npm run test:pages` 17 ✅ / 0 ❌, `lint` / `typecheck` / `build` clean |
 | 9 — Dashboards & Analytics | ✅ built & verified — `npm run test:dashboards` green 29 Sep (hand-checked counts matched; the `question_analytics` RPC bug it exposed is fixed in `0011_reporting.sql`) |
-| 10 — Certificates & Verification | ✅ built & verified 29 Sep — eligibility, issuance on release, revoke, rate-limited public verify all proven by `check:sql`; production smoke green (2 gate checks still open: outstanding-requirements UI, A4 print) |
+| 10 — Certificates & Verification | ✅ built & verified 29 Sep — eligibility, issuance on release, revoke, rate-limited verify (signed-in only since `0014`) all proven by `check:sql`; production smoke green (2 gate checks still open: outstanding-requirements UI, A4 print) |
 | 11 — Practical Labs & Enrichment | ⚠️ practicals built (pages, workspace, grading); **Supplementary Enrichment not started (0 of 16 units)** |
 | 12 — Accessibility & Polish | ❌ not verified — `lint` / `typecheck` / `build` clean and axe installed, but no axe run, keyboard pass, contrast audit or Lighthouse score has been recorded |
 | 13 — Full QA | ⚠️ automated gate green 29 Sep (all eight suites); the end-to-end acceptance journey and the security sweep are still open |
@@ -446,7 +446,7 @@ Migration `0009_study_tooling.sql` (exam papers invisible even when a row says `
 
 **Next action (you):** three short ones, then the rest is mine:
 1. Walk the site as a student on `npm run dev` → <http://localhost:3000>: read a lesson, try to mark it complete before 90%, resize to 360px.
-2. On the live site, do the half of the journey no script covers yet: objective paper at 70%+ → theory exam (5 of 7) → hand in → mark it at `/admin/theory` → release → open `/dashboard/certificate` → copy the number → check it at `https://indexingandabstracting.vercel.app/verify/<number>`.
+2. On the live site, do the half of the journey no script covers yet: objective paper at 70%+ → theory exam (5 of 7) → hand in → mark it at `/admin/theory` → release → open `/dashboard/certificate` → copy the number → check it at `https://indexingandabstracting.vercel.app/verify/<number>` (signed in; in a private window the same link lands on `/login`).
 3. Decide on the Supplementary Enrichment units (16 of them, content work) — say **"write the enrichment units"** and that becomes the next block.
 
 **Then me:** the Phase 12 accessibility/performance passes, the scripted acceptance journey, and a scheduled backup — in whichever order you point me at.

@@ -9,13 +9,12 @@
 // What it does, in order:
 //   1. the front page answers, and it is the real site (not an error page);
 //   2. signed-out visitors are bounced to the sign-in page everywhere it matters
-//      (dashboard, staff area, superadmin area, certificate page);
-//   3. the public certificate page answers for a made-up number, and reports it as
-//      not found rather than leaking anything;
-//   4. with --number, a real certificate number is checked on the live site;
-//   5. the full signed-in learner journey runs against the live URL (that is
+//      (dashboard, staff area, superadmin area, the certificate page);
+//   3. with --number, a real certificate number is checked on the live site — by the
+//      signed-in half of the journey, because /verify/[number] needs a session;
+//   4. the full signed-in learner journey runs against the live URL (that is
 //      npm run test:pages pointed at this site: sign-in, reading, study tools,
-//      downloads, and the rules that keep locked content locked).
+//      downloads, certificate lookup, and the rules that keep locked content locked).
 //
 // It needs .env.local as usual (the journey signs in as a temporary student and
 // deletes that account afterwards). Nothing on the site is changed except that one
@@ -117,7 +116,7 @@ async function main() {
 
   console.log("\nSigned out");
   await test("the public pages answer", async () => {
-    for (const path of ["/help", "/login", "/verify/NOT-A-REAL-CERTIFICATE"]) {
+    for (const path of ["/help", "/login"]) {
       const res = await page(path);
       assert(res.status === 200, `${path} answered ${res.status}`);
     }
@@ -130,6 +129,7 @@ async function main() {
       "/admin",
       "/admin/certificates",
       "/superadmin",
+      "/verify/NOT-A-REAL-CERTIFICATE",
     ]) {
       const res = await page(path);
       assert(res.status === 307 || res.status === 308, `${path} answered ${res.status}`);
@@ -137,37 +137,16 @@ async function main() {
     }
   });
 
-  await test("an unknown certificate number is reported as not found", async () => {
-    const res = await page("/verify/NOT-A-REAL-CERTIFICATE");
-    assert(res.status === 200, `verify page answered ${res.status}`);
-    assert(/certificate not found/i.test(res.text), "no not-found answer");
-    assert(
-      !/certificate verified|certificate revoked/i.test(res.text),
-      "the page claimed to verify a certificate that does not exist",
-    );
-    assert(
-      !/status:\s*(valid|revoked)/i.test(res.text),
-      "a certificate status was shown for a number that does not exist",
-    );
-  });
-
-  if (NUMBER) {
-    await test(`the real certificate ${NUMBER} verifies on the live site`, async () => {
-      const res = await page(`/verify/${encodeURIComponent(NUMBER)}`);
-      assert(res.status === 200, `verify page answered ${res.status}`);
-      assert(
-        /certificate verified|certificate revoked/i.test(res.text),
-        `neither verified nor revoked: ${res.text.slice(0, 200)}`,
-      );
-    });
-  }
-
   console.log("\nSigned-in journey (npm run test:pages against this site)");
   const journey = spawnSync("npm", ["run", "test:pages"], {
     shell: true,
     stdio: "inherit",
     cwd: root,
-    env: { ...process.env, PAGE_TEST_BASE_URL: BASE },
+    env: {
+      ...process.env,
+      PAGE_TEST_BASE_URL: BASE,
+      ...(NUMBER ? { PAGE_TEST_CERT_NUMBER: NUMBER } : {}),
+    },
   });
   const journeyOk = journey.status === 0;
   if (journeyOk) passed++;

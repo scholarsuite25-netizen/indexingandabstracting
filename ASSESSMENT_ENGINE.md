@@ -59,7 +59,7 @@ Migration `0010_released_marks_only.sql` exists because a running total used to 
 - Note the two different numbers: `theory_unlock_score` (70) opens the theory paper; `objective_pass_mark` (50) is the certificate threshold. Both are settings an admin can change.
 - Auto-issue: when a theory grade is released and the setting `auto_issue_certificates` is true, the release function tries to issue a certificate. Failure is logged to the audit table rather than breaking the release.
 - Revocation: `revoke_certificate()` is admin-only, requires a reason of at least 3 characters, and writes an audit line.
-- Public verification: `get_public_certificate()` is granted to `anon` and `authenticated`. It returns only the number, dates, status, revocation reason, course title, learner name and institution. It is rate-limited to **30 lookups a minute per caller address** using the `rate_limits` table, and every lookup is audited, whether it found a match or not.
+- Verification: `get_public_certificate()` is granted to `authenticated` only (since `0014_verify_requires_login.sql`), and `/verify/[number]` sends signed-out visitors to `/login` first — verification is a signed-in feature. It returns only the number, dates, status, revocation reason, course title, learner name and institution. It is rate-limited to **30 lookups a minute per caller address** using the `rate_limits` table, and every lookup is audited, whether it found a match or not.
 
 ## Where each layer sits
 

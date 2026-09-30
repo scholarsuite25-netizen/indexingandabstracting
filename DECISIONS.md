@@ -113,4 +113,18 @@ Every entry explains **what was decided**, **why**, and **what the alternative w
 
 ---
 
+## D17 - Certificate verification is a signed-in feature, not a public one
+
+**Decided (29 Sep):** `/verify/[number]` needs an account. `proxy.ts` sends a signed-out visitor to `/login?next=/verify/<number>` before the page renders, and migration `0014_verify_requires_login.sql` revokes the `anon` grant on `get_public_certificate()`, so the database refuses the same lookup when it is called around the page. Downloads already behaved this way — the file route answers 401 without a session.
+
+**Why:** the owner asked for it. Hiding the page alone would not be enough: with the anon key, a stranger could still call the PostgREST endpoint for the function and get the same answer. The grant is what actually closes it, and the page gate is what makes the rule visible.
+
+**Alternatives rejected, and why:**
+- *Leaving the grant alone and only gating the page.* The visible rule and the real rule would disagree, and the real one is the database.
+- *Keeping it public so employers can check a certificate unaided.* A deliberate trade-off: an employer now needs an account. Reversing this is two lines (re-grant `anon`, remove `/verify` from the protected prefixes) if it ever becomes a problem.
+
+**Consequence:** the smoke test's certificate checks moved into the signed-in half of the journey (`test:pages`), `check:sql` now proves both sides — a signed-in visitor sees the public fields, a signed-out caller is refused — and `npm run db:push` has a 14th migration to apply.
+
+---
+
 *New decisions are appended here as they are made.*
