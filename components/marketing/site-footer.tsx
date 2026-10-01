@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { BookOpen, Phone, MessageCircle } from "lucide-react";
+import Image from "next/image";
+import { Phone, MessageCircle } from "lucide-react";
 
 export function SiteFooter() {
   return (
@@ -7,8 +8,8 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 md:grid-cols-4 lg:gap-16">
         <div className="flex flex-col gap-4 md:col-span-2">
           <div className="flex items-center gap-3">
-            <span className="flex size-10 items-center justify-center rounded-lg bg-white/10 text-white shadow-sm">
-              <BookOpen className="size-6" aria-hidden />
+            <span className="flex size-10 items-center justify-center rounded-lg bg-white overflow-hidden shadow-sm">
+              <Image src="/images/logo.jpg" alt="LIS LMS Logo" width={40} height={40} className="object-cover" />
             </span>
             <span className="text-lg font-bold tracking-tight text-white">
               LIS LMS
