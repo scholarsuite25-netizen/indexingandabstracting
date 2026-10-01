@@ -6,6 +6,7 @@ import {
   Users,
   BarChart3,
   FolderOpen,
+  GraduationCap,
   HelpCircle,
   Settings,
   MessageSquare,
@@ -21,6 +22,7 @@ const adminNav = [
   { href: "/admin/content", label: "Content", icon: <FolderOpen className="size-4" /> },
   { href: "/admin/questions", label: "Questions", icon: <MessageSquare className="size-4" /> },
   { href: "/admin/assessments", label: "Assessments", icon: <Settings className="size-4" /> },
+  { href: "/dashboard", label: "Dashboard", exact: true, icon: <GraduationCap className="size-4" /> },
   { href: "/profile", label: "Profile", icon: <Users className="size-4" /> },
   { href: "/help", label: "Help", icon: <HelpCircle className="size-4" /> },
 ];

@@ -5,6 +5,7 @@ import {
   Users,
   Settings,
   FileText,
+  GraduationCap,
   Shield,
   ArrowLeft,
 } from "lucide-react";
@@ -15,6 +16,7 @@ const superadminNav = [
   { href: "/superadmin/settings", label: "Settings", icon: <Settings className="size-4" /> },
   { href: "/superadmin/audit", label: "Audit", icon: <FileText className="size-4" /> },
   { href: "/admin", label: "Admin", icon: <Shield className="size-4" /> },
+  { href: "/dashboard", label: "Dashboard", exact: true, icon: <GraduationCap className="size-4" /> },
   { href: "/profile", label: "Profile", icon: <ArrowLeft className="size-4" /> },
 ];
 
