@@ -1,6 +1,7 @@
 import {
   sendEmailWithRetry,
 } from "./client";
+import { recordEmail } from "./log";
 import {
   WelcomeTemplate,
   PasswordResetTemplate,
@@ -22,6 +23,14 @@ export interface SendOptions {
   maxRetries?: number;
 }
 
+export interface TemplatedSendOptions {
+  maxRetries?: number;
+  /** Written to `email_log.template_type`, so the log reads as a sentence, not a hash. */
+  templateType?: string;
+  /** Whom the mail concerns — for `email_log.user_id`, never read back for permission. */
+  userId?: string | null;
+}
+
 function renderTemplate(template: { __html: string }): string {
   return template.__html;
 }
@@ -30,29 +39,43 @@ export async function sendTemplatedEmail(
   to: string | string[],
   template: { __html: string },
   subject: string,
-  options?: { maxRetries?: number }
+  options?: TemplatedSendOptions
 ): Promise<{ success: boolean; error?: string; messageId?: string }> {
   const html = renderTemplate(template);
   const text = html.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
 
-  return sendEmailWithRetry(
+  const result = await sendEmailWithRetry(
     to,
     subject,
     html,
     text,
     options?.maxRetries
   );
+
+  await recordEmail({
+    userId: options?.userId ?? null,
+    to: Array.isArray(to) ? to.join(", ") : to,
+    subject,
+    templateType: options?.templateType ?? "unknown",
+    success: result.success,
+    error: result.error,
+    messageId: result.messageId,
+  });
+
+  return result;
 }
 
 export async function sendWelcomeEmail(
   to: string,
   fullName: string,
-  dashboardUrl: string
+  dashboardUrl: string,
+  userId?: string | null
 ): Promise<{ success: boolean; error?: string; messageId?: string }> {
   return sendTemplatedEmail(
     to,
     WelcomeTemplate({ fullName, dashboardUrl }),
-    "Welcome to LIS LMS \u2014 Your Learning Journey Begins"
+    "Welcome to LIS LMS \u2014 Your Learning Journey Begins",
+    { templateType: "welcome", userId }
   );
 }
 
@@ -60,12 +83,14 @@ export async function sendPasswordResetEmail(
   to: string,
   fullName: string,
   resetUrl: string,
-  expiresHours: number = 24
+  expiresHours: number = 24,
+  userId?: string | null
 ): Promise<{ success: boolean; error?: string; messageId?: string }> {
   return sendTemplatedEmail(
     to,
     PasswordResetTemplate({ fullName, resetUrl, expiresHours }),
-    "Reset Your LIS LMS Password"
+    "Reset Your LIS LMS Password",
+    { templateType: "password-reset", userId }
   );
 }
 
@@ -73,12 +98,14 @@ export async function sendVerificationEmail(
   to: string,
   fullName: string,
   verificationUrl: string,
-  expiresHours: number = 24
+  expiresHours: number = 24,
+  userId?: string | null
 ): Promise<{ success: boolean; error?: string; messageId?: string }> {
   return sendTemplatedEmail(
     to,
     VerificationTemplate({ fullName, verificationUrl, expiresHours }),
-    "Verify Your Email Address \u2014 LIS LMS"
+    "Verify Your Email Address \u2014 LIS LMS",
+    { templateType: "verify-email", userId }
   );
 }
 
@@ -88,7 +115,8 @@ export async function sendAssessmentReminderEmail(
   assessmentTitle: string,
   assessmentType: "knowledge_check" | "objective" | "theory" | "practical",
   dueDate: string,
-  dashboardUrl: string
+  dashboardUrl: string,
+  userId?: string | null
 ): Promise<{ success: boolean; error?: string; messageId?: string }> {
   return sendTemplatedEmail(
     to,
@@ -99,7 +127,8 @@ export async function sendAssessmentReminderEmail(
       dueDate,
       dashboardUrl,
     }),
-    `Reminder: ${assessmentTitle} Due Soon`
+    `Reminder: ${assessmentTitle} Due Soon`,
+    { templateType: "assessment-reminder", userId }
   );
 }
 
@@ -108,7 +137,8 @@ export async function sendAssessmentSubmissionEmail(
   fullName: string,
   assessmentTitle: string,
   assessmentType: "knowledge_check" | "objective" | "theory" | "practical",
-  dashboardUrl: string
+  dashboardUrl: string,
+  userId?: string | null
 ): Promise<{ success: boolean; error?: string; messageId?: string }> {
   return sendTemplatedEmail(
     to,
@@ -118,7 +148,8 @@ export async function sendAssessmentSubmissionEmail(
       assessmentType,
       dashboardUrl,
     }),
-    `Submitted: ${assessmentTitle}`
+    `Submitted: ${assessmentTitle}`,
+    { templateType: "assessment-submission", userId }
   );
 }
 
@@ -131,7 +162,8 @@ export async function sendGradeReleasedEmail(
   total: number,
   percentage: number,
   passed: boolean,
-  dashboardUrl: string
+  dashboardUrl: string,
+  userId?: string | null
 ): Promise<{ success: boolean; error?: string; messageId?: string }> {
   return sendTemplatedEmail(
     to,
@@ -145,7 +177,8 @@ export async function sendGradeReleasedEmail(
       passed,
       dashboardUrl,
     }),
-    `Grade Released: ${assessmentTitle}`
+    `Grade Released: ${assessmentTitle}`,
+    { templateType: "grade-released", userId }
   );
 }
 
@@ -156,7 +189,8 @@ export async function sendCertificateIssuedEmail(
   certificateNumber: string,
   issuedDate: string,
   verificationUrl: string,
-  dashboardUrl: string
+  dashboardUrl: string,
+  userId?: string | null
 ): Promise<{ success: boolean; error?: string; messageId?: string }> {
   return sendTemplatedEmail(
     to,
@@ -168,7 +202,8 @@ export async function sendCertificateIssuedEmail(
       verificationUrl,
       dashboardUrl,
     }),
-    `Your Certificate for ${courseTitle} is Ready`
+    `Your Certificate for ${courseTitle} is Ready`,
+    { templateType: "certificate-issued", userId }
   );
 }
 
@@ -176,7 +211,8 @@ export async function sendEnrollmentConfirmationEmail(
   to: string,
   fullName: string,
   courseTitle: string,
-  dashboardUrl: string
+  dashboardUrl: string,
+  userId?: string | null
 ): Promise<{ success: boolean; error?: string; messageId?: string }> {
   return sendTemplatedEmail(
     to,
@@ -185,7 +221,8 @@ export async function sendEnrollmentConfirmationEmail(
       courseTitle,
       dashboardUrl,
     }),
-    `Enrolled: ${courseTitle}`
+    `Enrolled: ${courseTitle}`,
+    { templateType: "enrollment-confirmation", userId }
   );
 }
 
@@ -195,7 +232,8 @@ export async function sendCourseAnnouncementEmail(
   announcementTitle: string,
   announcementBody: string,
   courseTitle: string,
-  dashboardUrl: string
+  dashboardUrl: string,
+  userId?: string | null
 ): Promise<{ success: boolean; error?: string; messageId?: string }> {
   return sendTemplatedEmail(
     to,
@@ -206,7 +244,8 @@ export async function sendCourseAnnouncementEmail(
       courseTitle,
       dashboardUrl,
     }),
-    `Announcement: ${announcementTitle}`
+    `Announcement: ${announcementTitle}`,
+    { templateType: "course-announcement", userId }
   );
 }
 
@@ -217,7 +256,8 @@ export async function sendAdminNotificationEmail(
   title: string,
   message: string,
   dashboardUrl: string,
-  details?: Record<string, string>
+  details?: Record<string, string>,
+  userId?: string | null
 ): Promise<{ success: boolean; error?: string; messageId?: string }> {
   return sendTemplatedEmail(
     to,
@@ -229,7 +269,8 @@ export async function sendAdminNotificationEmail(
       dashboardUrl,
       details,
     }),
-    `Admin Alert: ${title}`
+    `Admin Alert: ${title}`,
+    { templateType: "admin-notification", userId }
   );
 }
 

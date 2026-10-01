@@ -74,6 +74,27 @@ $map['SMTP_HOST'] | vercel env add SMTP_HOST production   # repeat for the other
 
 Two things to expect: `vercel link` writes a `VERCEL_OIDC_TOKEN` line into `.env.local` and adds `.vercel/` to `.gitignore` (both normal, and `.env.local` stays ignored), and `NEXT_PUBLIC_` variables only reach the site on the next deploy — environment variables are read when the build runs, not on every request.
 
+## Keeping email out of the spam folder
+
+Everything below is about Gmail's two sending paths — the app's six `SMTP_*` settings and the custom SMTP configured on the **Supabase dashboard** (Auth sends the password-reset mail) — and about what can and cannot be guaranteed from this side of the wire.
+
+**What the code guarantees (checked 1 Oct 2026):**
+
+- **The technical authentication passes.** Mail leaves as `ESUT Library <esutlibrary@gmail.com>` through `smtp.gmail.com:587`, so Gmail signs it itself: `gmail.com` SPF (`v=spf1 redirect=_spf.google.com`) and DMARC (`p=none`) both pass, and the DKIM key lives at `google._domainkey.gmail.com`. Nothing here can be forged into a fail by the code, because Google does the signing.
+- **The message identity matches the sender.** Every message carries its own `Message-ID` on the site's domain (`@indexingandabstracting.vercel.app`) instead of a hosting container's hostname, and an optional `SMTP_REPLY_TO` (unset by default) can point the replies elsewhere.
+- **The plain-text half keeps the links.** `sendEmail` builds the text part from the HTML *before* stripping tags, so each link appears as `label (https://…)`, and the text and HTML versions therefore say the same thing.
+- **Every send attempt is recorded** in the `email_log` table (`to`, `subject`, `template_type`, `sent`/`failed`, error text, message id), and `/api/health` reports the newest attempt's status as `checks.email.lastAttempt` — so "did that email go out?" is a question with an answer.
+- **There is a test button.** The admin dashboard's **Email test** card sends the real welcome template to any address you type; administrators only (`is_admin()`), and the outcome appears in the card.
+
+**What only a human with an inbox can do:**
+
+1. Open `/admin`, put your own address in **Email test**, press the button, and look where it lands.
+2. If the first message is in **Spam**, mark it *Not spam* once and reply or star it — Gmail learns from that single action far more than any header can influence, and the follow-ups arrive in the inbox. Repeat once per mailbox that matters (each recipient provider filters on its own history).
+3. Test the **Supabase** path separately: `/login` → *Forgot password*. That mail is sent by Supabase Auth through the custom SMTP on the dashboard, not by this code, so it needs its own inbox check.
+4. Never send a test to a list. The sending account is a consumer Gmail address: its daily limit is 500 messages, and its reputation is shared by everything sent through it.
+
+**Honest limits:** no code change can *guarantee* inbox placement for every recipient — filters weigh engagement and the recipient provider's own history, which live outside this repository. What is guaranteed is that authentication passes, the content and structure are clean, every attempt is logged, and a single *Not spam* click trains the one mailbox that matters. If the course grows past a few hundred learners a day, or guaranteed placement starts to matter commercially, the next step is a **custom domain** (SPF + DKIM + DMARC under your own domain, plus Gmail Postmaster Tools) — that is a dashboard/DNS job, not a code change, and `COSTS.md` is where the trade-offs live.
+
 ## Building and running
 
 On your machine:

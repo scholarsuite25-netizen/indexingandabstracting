@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServerSupabase } from "@/lib/supabase/server";
+import { createAdminSupabase } from "@/lib/supabase/admin";
 
 export async function GET() {
   const checks = {
@@ -77,10 +78,42 @@ export async function GET() {
     process.env.SMTP_PASSWORD &&
     process.env.SMTP_FROM;
 
-  checks.checks.email = {
+  const emailCheck: {
+    status: "healthy" | "degraded" | "down";
+    configured: boolean;
+    lastAttempt?: { status: string; subject: string; at: string };
+    [key: string]: unknown;
+  } = {
     status: emailConfigured ? "healthy" : "degraded",
     configured: !!emailConfigured,
   };
+
+  // The newest row in email_log says whether the last real send was accepted by the
+  // SMTP server. Only the status, subject and time leave the building — never the
+  // error text, which can name internals on an endpoint anybody may read.
+  try {
+    const admin = createAdminSupabase();
+    if (admin) {
+      const { data } = await admin
+        .from("email_log")
+        .select("status, subject, created_at")
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      if (data) {
+        emailCheck.lastAttempt = {
+          status: data.status,
+          subject: data.subject,
+          at: data.created_at,
+        };
+        if (data.status === "failed") emailCheck.status = "degraded";
+      }
+    }
+  } catch {
+    // reporting the last attempt is a bonus; never let it break the health check
+  }
+
+  checks.checks.email = emailCheck;
 
   const httpStatus = checks.status === "down" ? 503 : checks.status === "degraded" ? 200 : 200;
 

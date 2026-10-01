@@ -5,6 +5,7 @@ import {
   FileText,
   GraduationCap,
   LayoutGrid,
+  Mail,
   PencilLine,
   Scale,
   Users,
@@ -19,6 +20,7 @@ import {
   EmptyState,
   Skeleton,
 } from "@/components/ui";
+import { EmailTestTool } from "@/components/admin/email-test";
 import { requireRole } from "@/lib/auth";
 import { supabaseConfigured } from "@/lib/supabase/server";
 import { getDashboardStats } from "@/lib/data/admin";
@@ -196,6 +198,18 @@ export default async function AdminPage() {
               <ButtonLink href="/admin/assessments" variant="outline" size="sm" className="mt-3">
                 Open settings <ArrowRight className="size-3" />
               </ButtonLink>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Mail className="size-4 text-ink-subtle" aria-hidden />
+                Email test
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col items-start gap-3 text-sm text-ink-muted">
+              Send the real welcome email to any address and see where it lands.
+              <EmailTestTool />
             </CardContent>
           </Card>
         </div>

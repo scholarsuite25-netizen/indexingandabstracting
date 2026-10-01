@@ -23,9 +23,10 @@ import {
   sendCertificateIssuedEmail,
   sendAdminNotificationEmail,
 } from "./send";
+import { sendTestEmail } from "./test";
 
-type MailOutcome = { sent: boolean; reason?: string };
-type SendResult = { success: boolean; error?: string };
+type MailOutcome = { sent: boolean; reason?: string; messageId?: string };
+type SendResult = { success: boolean; error?: string; messageId?: string };
 
 function appUrl(): string {
   return (process.env.NEXT_PUBLIC_APP_URL || process.env.NEXT_PUBLIC_SITE_URL || "").replace(
@@ -39,7 +40,9 @@ function skip(reason: string): MailOutcome {
 }
 
 function outcome(result: SendResult): MailOutcome {
-  return result.success ? { sent: true } : { sent: false, reason: result.error ?? "send failed" };
+  return result.success
+    ? { sent: true, messageId: result.messageId }
+    : { sent: false, reason: result.error ?? "send failed", messageId: result.messageId };
 }
 
 function caught(error: unknown): MailOutcome {
@@ -107,7 +110,9 @@ export async function sendWelcomeEmailAction(): Promise<MailOutcome> {
     if (!user?.email) return skip("no signed-in user");
 
     const name = displayName(user.user_metadata?.full_name as string | undefined, user.email);
-    return outcome(await sendWelcomeEmail(user.email, name, `${appUrl()}/dashboard`));
+    return outcome(
+      await sendWelcomeEmail(user.email, name, `${appUrl()}/dashboard`, user.id)
+    );
   } catch (error) {
     return caught(error);
   }
@@ -147,6 +152,7 @@ export async function sendEnrollmentEmailAction(courseId: string): Promise<MailO
         displayName(profile?.full_name, email),
         course?.title ?? "the course",
         `${appUrl()}/dashboard`,
+        user.id,
       ),
     );
   } catch (error) {
@@ -187,6 +193,7 @@ export async function sendTheorySubmittedEmailAction(submissionId: string): Prom
           title,
           type,
           `${appUrl()}/dashboard`,
+          submission.user_id,
         )
       ).success;
     }
@@ -252,7 +259,8 @@ export async function sendAttemptSubmittedEmailAction(attemptId: string): Promis
         assessment?.title ?? "Objective examination",
         type,
         `${appUrl()}/dashboard`,
-      ),
+        attempt.user_id,
+      )
     );
   } catch (error) {
     return caught(error);
@@ -315,6 +323,7 @@ export async function sendGradeReleasedEmailAction(submissionId: string): Promis
         percentage,
         passed,
         `${appUrl()}/dashboard`,
+        submission.user_id,
       )
     ).success;
 
@@ -350,12 +359,38 @@ export async function sendGradeReleasedEmailAction(submissionId: string): Promis
           }),
           `${appUrl()}/verify/${certificate.certificate_number}`,
           `${appUrl()}/dashboard/certificate`,
+          submission.user_id,
         )
       ).success;
     }
 
     if (!gradeSent && !certificateSent) return skip("nothing was sent");
     return { sent: true };
+  } catch (error) {
+    return caught(error);
+  }
+}
+
+/**
+ * The dashboard's "send test email" button: the same welcome template a new sign-up
+ * receives, sent to an address the administrator types in.
+ *
+ * It answers the only question that matters about deliverability — *does it arrive,
+ * and where does it land* — with a real message rather than a claim about settings.
+ * Administrator-only (`is_admin()` against this caller's session), and the outcome,
+ * like every other action here, cannot fail the screen it was called from.
+ */
+export async function sendTestEmailAction(to: string): Promise<MailOutcome> {
+  try {
+    const supabase = await createServerSupabase();
+    if (!supabase) return skip("supabase not configured");
+
+    const outcomeResult = await sendTestEmail(supabase, to);
+    return {
+      sent: outcomeResult.sent,
+      reason: outcomeResult.reason,
+      messageId: outcomeResult.messageId,
+    };
   } catch (error) {
     return caught(error);
   }
