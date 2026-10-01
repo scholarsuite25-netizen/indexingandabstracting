@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
-import { X } from "lucide-react";
+import { X, LogOut } from "lucide-react";
 import { StudyToolsMenu } from "@/components/shell/study-tools-menu";
+import { getBrowserSupabase } from "@/lib/supabase/client";
 
 export type NavLink = {
   href: string;
@@ -34,6 +35,17 @@ function SidebarContent({
   onClose: () => void;
   onNavigate?: () => void;
 }) {
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    const supabase = getBrowserSupabase();
+    if (supabase) {
+      await supabase.auth.signOut();
+      router.push("/");
+      router.refresh();
+    }
+  };
+
   return (
     <div className="flex flex-col h-full">
       {/* Sidebar Header */}
@@ -106,7 +118,14 @@ function SidebarContent({
       </nav>
 
       {/* Sidebar Footer */}
-      <div className="p-4 border-t border-border/50">
+      <div className="p-4 border-t border-border/50 flex flex-col gap-3">
+        <button
+          onClick={handleSignOut}
+          className="flex items-center gap-2 text-sm font-medium text-ink-muted hover:text-danger transition-colors px-2 py-1"
+        >
+          <LogOut className="size-4" />
+          Sign out
+        </button>
         <p className="text-xs text-ink-muted text-center">
           LIS LMS — Indexing & Abstracting
         </p>
