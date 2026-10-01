@@ -1,4 +1,4 @@
-const CACHE_NAME = 'lis815-v1';
+const CACHE_NAME = 'lis815-v2';
 const STATIC_ASSETS = [
   '/',
   '/dashboard',

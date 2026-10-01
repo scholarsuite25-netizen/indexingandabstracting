@@ -19,11 +19,35 @@ const sourceSerif = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "LIS LMS — Indexing and Abstracting",
-    template: "%s · LIS LMS LMS",
+    default: "LIS LMS | Indexing and Abstracting Platform",
+    template: "%s | LIS LMS",
   },
   description:
-    "Learning management system for LIS LMS Indexing and Abstracting: seven modules, fourteen chapters, practical exercises, objective and theory examinations.",
+    "A premium learning management system for LIS 815: Indexing and Abstracting. Master subject analysis, thesaurus construction, and digital indexing.",
+  keywords: ["LIS", "LMS", "Indexing", "Abstracting", "Library Science", "Information Science", "Education", "Postgraduate"],
+  authors: [{ name: "Dr. Uzoamaka Ogwo" }],
+  openGraph: {
+    title: "LIS LMS | Indexing and Abstracting Platform",
+    description: "A premium learning management system for LIS 815: Indexing and Abstracting. Master subject analysis, thesaurus construction, and digital indexing.",
+    url: "https://indexingandabstracting.vercel.app",
+    siteName: "LIS LMS",
+    images: [
+      {
+        url: "/images/hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "LIS LMS",
+      },
+    ],
+    locale: "en_NG",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LIS LMS | Indexing and Abstracting Platform",
+    description: "A premium learning management system for LIS 815: Indexing and Abstracting.",
+    images: ["/images/hero.jpg"],
+  },
   manifest: "/manifest.json",
   themeColor: "#0B3A82",
   appleWebApp: {

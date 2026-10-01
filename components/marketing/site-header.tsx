@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookOpen } from "lucide-react";
+import Image from "next/image";
 import { ButtonLink } from "@/components/ui";
 
 const navLinks = [
@@ -14,8 +14,8 @@ export function SiteHeader() {
       <header className="w-full border-b border-white/10 bg-[#08295e] px-4 shadow-md transition-all sm:px-6">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
-            <span className="flex size-10 items-center justify-center rounded-lg bg-white/10 text-white">
-              <BookOpen className="size-6" aria-hidden />
+            <span className="flex size-10 items-center justify-center rounded-lg bg-white overflow-hidden shadow-sm">
+              <Image src="/images/logo.jpg" alt="LIS LMS Logo" width={40} height={40} className="object-cover" />
             </span>
             <span className="flex flex-col leading-tight">
               <span className="text-lg font-bold tracking-tight text-white">LIS LMS</span>
