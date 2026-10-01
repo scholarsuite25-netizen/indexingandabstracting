@@ -305,10 +305,14 @@ export type Resource = {
   moduleId: string | null;
   moduleTitle: string | null;
   source: string;
+  categoryId: string | null;
+  categoryTitle: string | null;
+  categoryPosition: number | null;
 };
 
 const RESOURCE_SELECT =
-  "id, title, description, kind, visibility, url, mime_type, size_bytes, module_id, source";
+  "id, title, description, kind, visibility, url, mime_type, size_bytes, module_id, source, " +
+  "category_id, resource_categories(id,title,position)";
 
 /**
  * The resources centre. Row-level security already hides draft, unenrolled and
@@ -324,7 +328,6 @@ export async function listResources(): Promise<Resource[] | null> {
   const { data, error } = await supabase
     .from("resources")
     .select(RESOURCE_SELECT)
-    .order("kind")
     .order("title");
   if (error) return null;
 
@@ -333,19 +336,29 @@ export async function listResources(): Promise<Resource[] | null> {
   );
   const moduleTitles = await moduleTitlesFor(supabase, rows.map((r) => r.module_id));
 
-  return rows.map((row) => ({
-    id: row.id,
-    title: row.title,
-    description: row.description ?? null,
-    kind: row.kind,
-    visibility: row.visibility,
-    url: row.url ?? null,
-    mimeType: row.mime_type ?? null,
-    sizeBytes: row.size_bytes ?? null,
-    moduleId: row.module_id ?? null,
-    moduleTitle: row.module_id ? moduleTitles.get(row.module_id) ?? null : null,
-    source: row.source,
-  }));
+  return rows.map((row) => {
+    const embedded = row.resource_categories;
+    const category =
+      embedded && !Array.isArray(embedded)
+        ? (embedded as { id?: string; title?: string | null; position?: number | null })
+        : null;
+    return {
+      id: row.id,
+      title: row.title,
+      description: row.description ?? null,
+      kind: row.kind,
+      visibility: row.visibility,
+      url: row.url ?? null,
+      mimeType: row.mime_type ?? null,
+      sizeBytes: row.size_bytes ?? null,
+      moduleId: row.module_id ?? null,
+      moduleTitle: row.module_id ? moduleTitles.get(row.module_id) ?? null : null,
+      source: row.source,
+      categoryId: row.category_id ?? null,
+      categoryTitle: category?.title ?? null,
+      categoryPosition: typeof category?.position === "number" ? category.position : null,
+    };
+  });
 }
 
 /** Full row including the storage path - used by the download route. */
@@ -353,12 +366,13 @@ export async function getResourceForDownload(
   resourceId: string,
 ): Promise<Pick<Resource, "id" | "title" | "kind" | "visibility" | "url" | "mimeType"> & {
   storagePath: string | null;
+  uploadPath: string | null;
 } | null> {
   const supabase = await createServerSupabase();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from("resources")
-    .select("id, title, kind, visibility, url, mime_type, storage_path")
+    .select("id, title, kind, visibility, url, mime_type, storage_path, upload_path")
     .eq("id", resourceId)
     .maybeSingle();
   if (error || !data) return null;
@@ -371,6 +385,7 @@ export async function getResourceForDownload(
     url: row.url ?? null,
     mimeType: row.mime_type ?? null,
     storagePath: row.storage_path ?? null,
+    uploadPath: row.upload_path ?? null,
   };
 }
 

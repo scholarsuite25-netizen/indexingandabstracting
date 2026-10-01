@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   ArrowRight,
   Award,
+  FileText,
   GraduationCap,
   LayoutGrid,
   PencilLine,
@@ -38,7 +39,7 @@ function statCard(
         <div>
           <p className="text-xs font-medium text-ink-subtle">{label}</p>
           <p className="mt-1 font-display text-2xl text-ink">
-            {value !== null ? value.toLocaleString() : "—"}
+            {typeof value === "number" ? value.toLocaleString() : "—"}
           </p>
         </div>
         <div className="text-ink-subtle">{icon}</div>
@@ -138,6 +139,20 @@ export default async function AdminPage() {
               Learner, attempt and grade reports, plus question analytics.
               <ButtonLink href="/admin/reports" variant="outline" size="sm" className="mt-3">
                 Open reports <ArrowRight className="size-3" />
+              </ButtonLink>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <FileText className="size-4 text-ink-subtle" aria-hidden />
+                Resources
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col items-start gap-2 text-sm text-ink-muted">
+              Add files and links, group them into categories, and choose who can see them.
+              <ButtonLink href="/admin/resources" variant="outline" size="sm" className="mt-1">
+                Open resources <ArrowRight className="size-3" />
               </ButtonLink>
             </CardContent>
           </Card>

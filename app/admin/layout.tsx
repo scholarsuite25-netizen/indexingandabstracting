@@ -11,6 +11,7 @@ import {
   Settings,
   MessageSquare,
   Award,
+  Library,
 } from "lucide-react";
 
 const adminNav = [
@@ -20,6 +21,7 @@ const adminNav = [
   { href: "/admin/certificates", label: "Certificates", icon: <Award className="size-4" /> },
   { href: "/admin/reports", label: "Reports", icon: <BarChart3 className="size-4" /> },
   { href: "/admin/content", label: "Content", icon: <FolderOpen className="size-4" /> },
+  { href: "/admin/resources", label: "Resources", icon: <Library className="size-4" /> },
   { href: "/admin/questions", label: "Questions", icon: <MessageSquare className="size-4" /> },
   { href: "/admin/assessments", label: "Assessments", icon: <Settings className="size-4" /> },
   { href: "/dashboard", label: "Dashboard", exact: true, icon: <GraduationCap className="size-4" /> },

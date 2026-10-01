@@ -392,16 +392,40 @@ async function seed(client, content) {
     });
   }
 
+  // --- resource categories (the group headings on the learner resources page)
+  const categoryIds = new Map();
+  const categoryTitles = [];
+  for (const item of content.resources.items) {
+    const title = typeof item.category === "string" ? item.category.trim() : "";
+    if (title && !categoryTitles.includes(title)) categoryTitles.push(title);
+  }
+  let categoryPosition = 0;
+  for (const title of categoryTitles) {
+    const id = await ensure(
+      "resource_categories",
+      { course_id: courseId, title },
+      { position: categoryPosition, status: "published" },
+      {},
+    );
+    if (id) categoryIds.set(title, id);
+    categoryPosition += 1;
+  }
+
   // --- resources (student files/links; exam papers stay staff-only)
   for (const item of content.resources.items) {
     const filePath = item.storage_path ? path.join(ROOT, item.storage_path) : null;
     const size = filePath && fs.existsSync(filePath) ? fs.statSync(filePath).size : null;
+    const categoryId =
+      typeof item.category === "string" && item.category.trim()
+        ? categoryIds.get(item.category.trim()) ?? null
+        : null;
     await ensure(
       "resources",
       { course_id: courseId, title: item.title },
       {
         description: item.description,
         kind: item.kind,
+        category_id: categoryId,
         visibility: item.visibility,
         source: item.source,
         storage_path: item.storage_path ?? null,
@@ -415,6 +439,7 @@ async function seed(client, content) {
       },
       {
         description: item.description,
+        category_id: categoryId,
         visibility: item.visibility,
         storage_path: item.storage_path ?? null,
         url: item.url ?? null,

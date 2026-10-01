@@ -436,6 +436,13 @@ else fail("resources: no items found in content/resources/resources.json");
 const resourceProblems = [];
 for (const item of resourceItems) {
   const label = item.title || "(untitled resource)";
+  if (item.category !== undefined) {
+    if (typeof item.category !== "string" || item.category.trim() === "") {
+      resourceProblems.push(`${label}: category must be a non-empty name (got ${JSON.stringify(item.category)})`);
+    } else if (item.category.trim().length > 60) {
+      resourceProblems.push(`${label}: category name is too long (max 60 characters)`);
+    }
+  }
   if (!["file", "link", "exam_paper"].includes(item.kind)) {
     resourceProblems.push(`${label}: kind must be file | link | exam_paper (got "${item.kind}")`);
   }

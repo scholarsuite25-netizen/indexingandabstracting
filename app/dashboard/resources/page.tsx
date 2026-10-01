@@ -65,6 +65,28 @@ export default async function ResourcesPage() {
     .filter((bookmark) => bookmark.kind === "resource")
     .map((bookmark) => bookmark.refId);
 
+  // Group under the categories the staff set up in the admin screen. A resource
+  // with no category still appears, in a final "Other resources" group.
+  type Group = { key: string; title: string; position: number; items: Resource[] };
+  const groups: Group[] = [];
+  const byKey = new Map<string, Group>();
+  for (const resource of resources) {
+    const key = resource.categoryId ?? "uncategorised";
+    let group = byKey.get(key);
+    if (!group) {
+      group = {
+        key,
+        title: resource.categoryTitle ?? "Other resources",
+        position: resource.categoryPosition ?? Number.MAX_SAFE_INTEGER,
+        items: [],
+      };
+      byKey.set(key, group);
+      groups.push(group);
+    }
+    group.items.push(resource);
+  }
+  groups.sort((a, b) => a.position - b.position || a.title.localeCompare(b.title));
+
   return (
     <div className="flex flex-col gap-6">
       <header className="flex flex-col gap-2">
@@ -91,8 +113,23 @@ export default async function ResourcesPage() {
           description="Files and links attached to the course by your lecturer will appear here."
         />
       ) : (
-        <ul className="flex flex-col gap-3">
-          {resources.map((resource) => {
+        <div className="flex flex-col gap-8">
+          {groups.map((group) => (
+            <section
+              key={group.key}
+              aria-labelledby={`category-${group.key}`}
+              className="flex flex-col gap-3"
+            >
+              <div className="flex flex-wrap items-baseline gap-3">
+                <h2 id={`category-${group.key}`} className="font-display text-xl text-ink">
+                  {group.title}
+                </h2>
+                <span className="text-xs text-ink-subtle">
+                  {group.items.length} {group.items.length === 1 ? "item" : "items"}
+                </span>
+              </div>
+              <ul className="flex flex-col gap-3">
+                {group.items.map((resource) => {
             const size = formatSize(resource.sizeBytes);
             const href =
               resource.kind === "link" && resource.url
@@ -153,8 +190,11 @@ export default async function ResourcesPage() {
                 </div>
               </li>
             );
-          })}
-        </ul>
+                })}
+              </ul>
+            </section>
+          ))}
+        </div>
       )}
     </div>
   );

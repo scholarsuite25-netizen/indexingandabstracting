@@ -13,7 +13,7 @@ export type DashboardStat = {
   completions: number;
   certificates: number;
   recentRegistrations: number;
-  engagement: { module: string; completed: number }[];
+  engagement: { id: string; title: string; completed: number }[];
 };
 
 export type LearnerRow = {
@@ -112,7 +112,29 @@ export async function getDashboardStats(): Promise<DashboardStat | null> {
     p_course_id: courseId,
   });
   if (error || !data) return null;
-  return data as DashboardStat;
+
+  // The RPC answers with snake_case keys; the pages read camelCase. Map them here
+  // so a missing key becomes 0 instead of undefined reaching .toLocaleString().
+  const raw = data as Record<string, unknown>;
+  const num = (value: unknown): number => {
+    const n = Number(value);
+    return Number.isFinite(n) ? n : 0;
+  };
+  return {
+    learners: num(raw.learners),
+    activeLearners: num(raw.active_learners),
+    completionRate: num(raw.completion_rate),
+    attempts: num(raw.attempts),
+    avgScore: num(raw.avg_score),
+    theoryEligible: num(raw.theory_eligible),
+    gradingQueue: num(raw.grading_queue),
+    completions: num(raw.completions),
+    certificates: num(raw.certificates),
+    recentRegistrations: num(raw.recent_registrations),
+    engagement: Array.isArray(raw.engagement)
+      ? (raw.engagement as DashboardStat["engagement"])
+      : [],
+  };
 }
 
 export async function getReport(kind: ReportKind): Promise<ReportResult | null> {

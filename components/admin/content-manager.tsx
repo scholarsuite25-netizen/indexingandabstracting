@@ -30,7 +30,6 @@ export default function ContentManager() {
   const supabase = getBrowserSupabase();
   const [modules, setModules] = useState<Module[]>([]);
   const [loading, setLoading] = useState(true);
-  const [expanded, setExpanded] = useState<string | null>(null);
 
   const fetchModules = useCallback(async () => {
     const { data: mods } = await supabase!
@@ -155,9 +154,7 @@ export default function ContentManager() {
                 <Plus className="size-3 mr-1" /> Add chapter
               </Button>
               <div className="flex flex-col gap-2">
-                {expanded === mod.id ? (
-                  <Chapters key={mod.id} mod={mod} supabase={supabase} setTitle={setTitle} move={move} toggleStatus={toggleStatus} addRow={addRow} />
-                ) : null}
+                <Chapters key={mod.id} mod={mod} supabase={supabase} setTitle={setTitle} move={move} toggleStatus={toggleStatus} addRow={addRow} />
               </div>
             </CardContent>
           </Card>
