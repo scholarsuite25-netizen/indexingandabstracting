@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookOpen } from "lucide-react";
+import { BookOpen, Phone, MessageCircle } from "lucide-react";
 
 export function SiteFooter() {
   return (
@@ -18,6 +18,19 @@ export function SiteFooter() {
             Indexing and Abstracting — a premium learning platform built around
             the official LIS LMS study guide and examination papers.
           </p>
+
+          <div className="mt-2 border-t border-white/20 pt-4">
+            <p className="text-sm font-semibold text-white">Course Facilitator</p>
+            <p className="text-sm text-blue-100">Dr. Uzoamaka Ogwo</p>
+            <div className="mt-2 flex gap-4">
+              <a href="tel:+2348039473344" className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-200 hover:text-white transition-colors">
+                <Phone className="size-4" /> Call
+              </a>
+              <a href="https://wa.me/2348039473344" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-200 hover:text-white transition-colors">
+                <MessageCircle className="size-4" /> WhatsApp
+              </a>
+            </div>
+          </div>
         </div>
 
         <nav aria-label="Footer" className="flex flex-col gap-3 text-sm">
