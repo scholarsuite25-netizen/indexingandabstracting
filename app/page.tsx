@@ -83,11 +83,11 @@ export default function HomePage() {
                 </p>
                 
                 <div className="mt-4 flex flex-wrap gap-4">
-                  <ButtonLink href="/signup" size="lg" className="bg-white text-[#0B3A82] hover:bg-white/90 shadow-lg border-0 font-semibold px-8">
+                  <ButtonLink href="/signup" variant="custom" size="lg" className="bg-white text-[#0B3A82] hover:bg-white/90 shadow-lg border-0 font-semibold px-8">
                     Start Learning
                     <ArrowRight className="ml-2 size-5" aria-hidden />
                   </ButtonLink>
-                  <ButtonLink href="/login" variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 px-8">
+                  <ButtonLink href="/login" variant="custom" size="lg" className="border border-white/30 text-white hover:bg-white/10 px-8">
                     Sign in
                   </ButtonLink>
                 </div>
@@ -240,7 +240,7 @@ export default function HomePage() {
               Join the academic platform and start your journey in information organization today.
             </p>
             <div className="mt-10 flex justify-center gap-4">
-              <ButtonLink href="/signup" size="lg" className="bg-white text-[#0B3A82] hover:bg-white/90 shadow-lg px-8 font-bold">
+              <ButtonLink href="/signup" variant="custom" size="lg" className="bg-white text-[#0B3A82] hover:bg-white/90 shadow-lg px-8 font-bold">
                 Enrol Now
               </ButtonLink>
             </div>

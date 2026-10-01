@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils/cn";
 
-type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "danger";
+type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "danger" | "custom";
 type ButtonSize = "sm" | "md" | "lg";
 
 export interface ButtonLinkProps
@@ -19,6 +19,7 @@ const variantClasses: Record<ButtonVariant, string> = {
     "border border-border-strong bg-surface text-ink hover:bg-canvas",
   ghost: "text-ink hover:bg-canvas",
   danger: "bg-danger text-white hover:bg-danger/90",
+  custom: "",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
