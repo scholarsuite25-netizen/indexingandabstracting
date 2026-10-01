@@ -15,6 +15,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
   const router = useRouter();
   const [values, setValues] = React.useState({
     fullName: "",
+    institution: "",
     email: "",
     password: "",
   });
@@ -62,7 +63,12 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
         const { data, error } = await supabase.auth.signUp({
           email: values.email.trim(),
           password: values.password,
-          options: { data: { full_name: values.fullName.trim() } },
+          options: {
+            data: {
+              full_name: values.fullName.trim(),
+              institution: values.institution.trim(),
+            },
+          },
         });
 
         if (error) {
@@ -81,7 +87,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
         setNotice(
           "Your account is created. Check your inbox for a confirmation link, then sign in.",
         );
-        setValues({ fullName: "", email: "", password: "" });
+        setValues({ fullName: "", institution: "", email: "", password: "" });
         return;
       }
 
@@ -172,6 +178,19 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
                 value={values.fullName}
                 error={errors.fullName}
                 onChange={(event) => setField("fullName", event.target.value)}
+              />
+            ) : null}
+
+            {isSignUp ? (
+              <Input
+                name="institution"
+                label="Name of institution"
+                autoComplete="organization"
+                placeholder="e.g. Enugu State University of Science and Technology"
+                hint="The university, polytechnic or library you belong to"
+                value={values.institution}
+                error={errors.institution}
+                onChange={(event) => setField("institution", event.target.value)}
               />
             ) : null}
 
