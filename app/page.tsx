@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   ArrowRight,
   BookOpenCheck,
@@ -93,22 +94,53 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Course Statistics Cards */}
-              <div className="grid grid-cols-2 gap-4 self-center lg:pl-10">
-                {[
-                  { value: "07", label: "Modules", icon: Layers },
-                  { value: "14", label: "Chapters", icon: BookOpen },
-                  { value: `${ASSESSMENT_FACTS.objective.questions}`, label: "Objective Questions", icon: ListChecks },
-                  { value: `${ASSESSMENT_FACTS.objective.durationMinutes}`, label: "Minutes", icon: Clock },
-                ].map((stat) => (
-                  <div key={stat.label} className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition-all hover:bg-white/10 hover:shadow-2xl hover:shadow-black/20 hover:-translate-y-1">
-                    <div className="absolute right-[-10px] top-[-10px] opacity-10 transition-transform group-hover:scale-110">
-                      <stat.icon className="h-24 w-24 text-white" />
-                    </div>
-                    <p className="relative z-10 text-4xl font-bold text-white">{stat.value}</p>
-                    <p className="relative z-10 mt-2 text-sm font-medium text-blue-200 uppercase tracking-wider">{stat.label}</p>
+              {/* Hero Image */}
+              <div className="flex items-center justify-center lg:pl-10 relative">
+                <Image src="/images/hero.jpg" alt="Knowledge Organization" width={600} height={600} className="rounded-3xl object-cover shadow-2xl border border-white/20" priority />
+              </div>
+            </div>
+            
+            {/* Course Statistics Cards moved below hero */}
+            <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4">
+              {[
+                { value: "07", label: "Modules", icon: Layers },
+                { value: "14", label: "Chapters", icon: BookOpen },
+                { value: `${ASSESSMENT_FACTS.objective.questions}`, label: "Objective Questions", icon: ListChecks },
+                { value: `${ASSESSMENT_FACTS.objective.durationMinutes}`, label: "Minutes", icon: Clock },
+              ].map((stat) => (
+                <div key={stat.label} className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition-all hover:bg-white/10 hover:shadow-2xl hover:shadow-black/20 hover:-translate-y-1">
+                  <div className="absolute right-[-10px] top-[-10px] opacity-10 transition-transform group-hover:scale-110">
+                    <stat.icon className="h-24 w-24 text-white" />
                   </div>
-                ))}
+                  <p className="relative z-10 text-4xl font-bold text-white">{stat.value}</p>
+                  <p className="relative z-10 mt-2 text-sm font-medium text-blue-200 uppercase tracking-wider">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+            </div>
+          </div>
+        </section>
+
+        {/* NEW FEATURES SECTION */}
+        <section className="bg-white py-20" id="features">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+              <div>
+                <Image src="/images/study.jpg" alt="Guided Progression" width={500} height={500} className="rounded-2xl mx-auto" />
+              </div>
+              <div>
+                <h2 className="text-3xl font-bold text-slate-900 mb-4">Guided Progression & Tracking</h2>
+                <p className="text-lg text-slate-600 mb-6">Lessons unlock only once the required reading and knowledge checks are genuinely complete — recorded in the database, not just on screen.</p>
+              </div>
+            </div>
+            
+            <div className="grid gap-16 lg:grid-cols-2 lg:items-center mt-20">
+              <div className="order-2 lg:order-1">
+                <h2 className="text-3xl font-bold text-slate-900 mb-4">Full-Text Search & Glossary</h2>
+                <p className="text-lg text-slate-600 mb-6">Experience blazing-fast search across lessons, glossary, resources, and announcements, plus a searchable course glossary of key terms.</p>
+              </div>
+              <div className="order-1 lg:order-2">
+                <Image src="/images/search.jpg" alt="Search and Discovery" width={500} height={500} className="rounded-2xl mx-auto" />
               </div>
             </div>
           </div>
