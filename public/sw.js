@@ -1,12 +1,5 @@
-const CACHE_NAME = 'lis815-v2';
+const CACHE_NAME = 'lis815-v3';
 const STATIC_ASSETS = [
-  '/',
-  '/dashboard',
-  '/dashboard/course',
-  '/dashboard/assessments',
-  '/login',
-  '/signup',
-  '/help',
   '/manifest.json',
   '/globals.css',
 ];
