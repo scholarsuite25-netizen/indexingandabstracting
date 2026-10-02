@@ -39,7 +39,14 @@ export async function GET() {
 
   const authStart = Date.now();
   try {
-    const { data, error } = await supabase.auth.getUser();
+    // A health ping arrives with no session, so `supabase.auth.getUser()` would
+    // only prove that *the caller* is not signed in — it always answers
+    // "Auth session missing!" and every anonymous check reported degraded.
+    // Ask the Auth service itself instead: one page of users through the
+    // service-role key proves GoTrue is reachable and the key is accepted.
+    const admin = createAdminSupabase();
+    if (!admin) throw new Error("Service role key not configured");
+    const { error } = await admin.auth.admin.listUsers({ page: 1, perPage: 1 });
     if (error) throw error;
     checks.checks.auth = {
       status: "healthy",
