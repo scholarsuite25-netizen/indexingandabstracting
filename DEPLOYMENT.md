@@ -76,7 +76,7 @@ Two things to expect: `vercel link` writes a `VERCEL_OIDC_TOKEN` line into `.env
 
 ## Keeping email out of the spam folder
 
-Everything below is about Gmail's two sending paths — the app's six `SMTP_*` settings and the custom SMTP configured on the **Supabase dashboard** (Auth sends the password-reset mail) — and about what can and cannot be guaranteed from this side of the wire.
+Everything below is about Gmail's sending path — the app's six `SMTP_*` settings — and about what can and cannot be guaranteed from this side of the wire. (Supabase Auth's own SMTP is **broken on this project** — its signup and recovery endpoints answer `500 … Error sending email` — which is why registration and password reset now go through this app's transport instead: the link is still minted by Supabase, the message is sent by us. Nothing in this section depends on the Supabase dashboard any more.)
 
 **What the code guarantees (checked 1 Oct 2026):**
 
@@ -90,7 +90,7 @@ Everything below is about Gmail's two sending paths — the app's six `SMTP_*` s
 
 1. Open `/admin`, put your own address in **Email test**, press the button, and look where it lands.
 2. If the first message is in **Spam**, mark it *Not spam* once and reply or star it — Gmail learns from that single action far more than any header can influence, and the follow-ups arrive in the inbox. Repeat once per mailbox that matters (each recipient provider filters on its own history).
-3. Test the **Supabase** path separately: `/login` → *Forgot password*. That mail is sent by Supabase Auth through the custom SMTP on the dashboard, not by this code, so it needs its own inbox check.
+3. Test the **password reset** path separately: `/login` → *Forgot password*. The link is minted by Supabase but the mail is sent by this app through the same six `SMTP_*` settings, so it arrives from the same sender as everything else — still worth one real click through to `/reset-password`, because that is the message a locked-out learner depends on.
 4. Never send a test to a list. The sending account is a consumer Gmail address: its daily limit is 500 messages, and its reputation is shared by everything sent through it.
 
 **Honest limits:** no code change can *guarantee* inbox placement for every recipient — filters weigh engagement and the recipient provider's own history, which live outside this repository. What is guaranteed is that authentication passes, the content and structure are clean, every attempt is logged, and a single *Not spam* click trains the one mailbox that matters. If the course grows past a few hundred learners a day, or guaranteed placement starts to matter commercially, the next step is a **custom domain** (SPF + DKIM + DMARC under your own domain, plus Gmail Postmaster Tools) — that is a dashboard/DNS job, not a code change, and `COSTS.md` is where the trade-offs live.

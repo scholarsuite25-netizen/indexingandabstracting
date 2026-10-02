@@ -21,7 +21,6 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
   });
   const [errors, setErrors] = React.useState<Record<string, string>>({});
   const [formError, setFormError] = React.useState<string | null>(null);
-  const [notice, setNotice] = React.useState<string | null>(null);
   const [submitting, setSubmitting] = React.useState(false);
 
   const isSignUp = mode === "signup";
@@ -36,7 +35,6 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setFormError(null);
-    setNotice(null);
 
     const schema = isSignUp ? signUpSchema : signInSchema;
     const result = schema.safeParse(values);
@@ -60,39 +58,28 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
     setSubmitting(true);
     try {
       if (isSignUp) {
-        const { data, error } = await supabase.auth.signUp({
-          email: values.email.trim(),
-          password: values.password,
-          options: {
-            data: {
-              full_name: values.fullName.trim(),
-              institution: values.institution.trim(),
-            },
-          },
+        // The account is created by our own endpoint (see app/api/auth/signup), which
+        // does not depend on Supabase's confirmation email — that email's failures used
+        // to block registration outright. The browser then signs in as usual.
+        const response = await fetch("/api/auth/signup", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            fullName: values.fullName.trim(),
+            institution: values.institution.trim(),
+            email: values.email.trim(),
+            password: values.password,
+          }),
         });
-
-        if (error) {
-          setFormError(friendlyAuthError(error.message));
+        const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+        if (!response.ok || payload?.error) {
+          setFormError(friendlyAuthError(payload?.error ?? "Something went wrong."));
           return;
         }
-
-        if (data.session) {
-          toast.success("Account created. Welcome!");
-          void sendWelcomeEmailAction().catch(() => undefined);
-          router.push("/dashboard");
-          router.refresh();
-          return;
-        }
-
-        setNotice(
-          "Your account is created. Check your inbox for a confirmation link, then sign in.",
-        );
-        setValues({ fullName: "", institution: "", email: "", password: "" });
-        return;
       }
 
       const { error } = await supabase.auth.signInWithPassword({
-        email: values.email.trim(),
+        email: values.email.trim().toLowerCase(),
         password: values.password,
       });
 
@@ -113,6 +100,11 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
         : rawNext.startsWith("/admin") || rawNext.startsWith("/superadmin")
           ? homeForRole(roles)
           : safeNextPath(rawNext);
+
+      if (isSignUp) {
+        toast.success("Account created. Welcome!");
+        void sendWelcomeEmailAction().catch(() => undefined);
+      }
 
       router.push(target);
       router.refresh();
@@ -153,12 +145,6 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
               Account services activate as soon as the three Supabase keys are added to{" "}
               <code className="rounded bg-canvas px-1">.env.local</code> (Phase 2). Your details
               are not stored anywhere yet.
-            </Callout>
-          ) : null}
-
-          {notice ? (
-            <Callout tone="success" title="Check your email" className="mb-5">
-              {notice}
             </Callout>
           ) : null}
 

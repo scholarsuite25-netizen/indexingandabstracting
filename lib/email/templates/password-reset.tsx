@@ -55,7 +55,7 @@ export function PasswordResetTemplate({ fullName, resetUrl, expiresHours }: Pass
           <p style="color: #4b5563; margin-bottom: 24px; font-size: 16px;">We received a request to reset your password for your LIS LMS account. Click the button below to create a new password:</p>
           <div style="text-align: center;"><a href="${resetUrl}" class="cta-button">Reset Password</a></div>
           <div class="alert-box">
-            <p style="margin: 0; color: #991b1b; font-size: 15px;"><strong>Security notice:</strong> This link expires in ${expiresHours} hours. If you didn't request this, please ignore this email.</p>
+            <p style="margin: 0; color: #991b1b; font-size: 15px;"><strong>Security notice:</strong> This link expires in ${expiresHours} hour${expiresHours === 1 ? "" : "s"}. If you didn't request this, please ignore this email.</p>
           </div>
           <p style="color: #6b7280; font-size: 14px; margin-top: 24px;">If the button doesn't work, copy and paste this link into your browser:</p>
           <p style="word-break: break-all; color: #0B3A82; font-size: 13px; font-family: monospace; background: #f3f4f6; padding: 12px; border-radius: 6px;">${resetUrl}</p>

@@ -4,7 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { Button, Callout, Card, CardContent, CardHeader, Input } from "@/components/ui";
-import { getBrowserSupabase } from "@/lib/supabase/client";
 import { friendlyAuthError } from "@/lib/roles";
 
 export function ForgotPasswordForm() {
@@ -12,7 +11,6 @@ export function ForgotPasswordForm() {
   const [error, setError] = React.useState<string | null>(null);
   const [sent, setSent] = React.useState(false);
   const [submitting, setSubmitting] = React.useState(false);
-  const supabase = getBrowserSupabase();
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -23,19 +21,19 @@ export function ForgotPasswordForm() {
       return;
     }
 
-    if (!supabase) {
-      setError("Account services are not configured yet — add your Supabase keys to .env.local.");
-      return;
-    }
-
+    // Our own endpoint mints the Supabase link but delivers it through our Gmail
+    // transport — Supabase Auth's own SMTP currently fails every send it makes.
     setSubmitting(true);
-    const { error: err } = await supabase.auth.resetPasswordForEmail(email.trim(), {
-      redirectTo: `${window.location.origin}/reset-password`,
+    const response = await fetch("/api/auth/reset-password", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ email: email.trim() }),
     });
+    const payload = (await response.json().catch(() => null)) as { error?: string } | null;
     setSubmitting(false);
 
-    if (err) {
-      setError(friendlyAuthError(err.message));
+    if (!response.ok || payload?.error) {
+      setError(friendlyAuthError(payload?.error ?? "Something went wrong."));
       return;
     }
 
