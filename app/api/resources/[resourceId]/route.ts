@@ -32,6 +32,14 @@ export async function GET(
     return NextResponse.json({ error: "Not found." }, { status: 404 });
   }
 
+  // Examination papers and staff-only files never leave the staff room.
+  // Guests and students answer 404, the same as an id that does not exist.
+  const staff =
+    user?.roles.some((role) => role === "admin" || role === "superadmin") ?? false;
+  if ((resource.kind === "exam_paper" || resource.visibility === "staff") && !staff) {
+    return NextResponse.json({ error: "Not found." }, { status: 404 });
+  }
+
   // Links point at their own URL; this route only serves files.
   if (resource.kind === "link" || (!resource.storagePath && !resource.uploadPath)) {
     return NextResponse.json({ error: "Not found." }, { status: 404 });

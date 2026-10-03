@@ -54,7 +54,7 @@ export default async function GuestTheoryPage({
       ) : null}
 
       <GuestTheoryRunner
-        workspace={workspace as any}
+        workspace={workspace}
         resultsHref={`/dashboard/theory/guest-results/${assessmentId}`}
         backHref="/dashboard/assessments"
         backLabel="Back to the assessment centre"

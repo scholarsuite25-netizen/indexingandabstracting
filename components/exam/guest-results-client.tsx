@@ -22,7 +22,7 @@ export function GuestResultsClient({ assessmentId }: { assessmentId: string }) {
 
   return (
     <ResultReview
-      results={results as any}
+      results={results}
       actionHref="/dashboard/assessments"
       actionLabel="Back to the assessment centre"
     />

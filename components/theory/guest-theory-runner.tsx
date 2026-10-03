@@ -7,7 +7,7 @@ import { AlertTriangle, Check, ChevronLeft, ChevronRight, Send } from "lucide-re
 import { Badge, Button, Callout, Dialog, Progress } from "@/components/ui";
 import { Markdown } from "@/components/course/markdown";
 import type { TheoryWorkspace } from "@/lib/data/theory";
-import { useGuestProgress } from "@/components/course/guest-progress";
+import { useGuestProgress, type GuestTheorySubmission } from "@/components/course/guest-progress";
 import { cn } from "@/lib/utils/cn";
 
 const REQUIRED = 5;
@@ -218,7 +218,7 @@ export function GuestTheoryRunner({
 
     const totalScore = REQUIRED * workspace.marks_each;
 
-    const results = {
+    const results: GuestTheorySubmission = {
       submission_id: workspace.submission_id,
       assessment_id: workspace.assessment_id,
       course_id: "guest-course",

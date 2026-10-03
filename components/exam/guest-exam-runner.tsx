@@ -87,7 +87,7 @@ export function GuestExamRunner({
           // We assume the server action provides it in `q.options` via `is_correct` boolean if available,
           // OR we evaluate on the server via action. Let's do client evaluation.
           const selected = answers[q.id] ?? null;
-          const correctOpt = (q.options as any[]).find(o => o.is_correct);
+          const correctOpt = (q.options as { id: string; label: string; is_correct?: boolean }[]).find(o => o.is_correct);
           const isCorrect = selected === correctOpt?.id;
           if (isCorrect) score += q.points;
           return {
@@ -120,7 +120,7 @@ export function GuestExamRunner({
           percentage,
           passed,
           show_correct_answers: snapshot.show_correct_answers,
-          questions: resultQuestions as any
+          questions: resultQuestions
         };
 
         if (reason === "time") setExpired(true);

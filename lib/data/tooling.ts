@@ -3,6 +3,7 @@ import "server-only";
 import fs from "node:fs";
 import path from "node:path";
 import { createServerSupabase } from "@/lib/supabase/server";
+import { createAdminSupabase } from "@/lib/supabase/admin";
 
 type Supabase = NonNullable<Awaited<ReturnType<typeof createServerSupabase>>>;
 
@@ -29,7 +30,7 @@ export type GlossaryTerm = {
 /** Every glossary term the signed-in learner may read, A-Z by term. */
 export async function getGlossary(): Promise<GlossaryTerm[] | null> {
   const supabase = await createServerSupabase();
-  const adminClient = require("@/lib/supabase/admin").createAdminSupabase() ?? supabase;
+  const adminClient = createAdminSupabase() ?? supabase;
   if (!adminClient) return null;
 
   const { data, error } = await adminClient
@@ -118,22 +119,47 @@ export function searchTypeLabel(type: SearchEntityType): string {
 }
 
 /**
- * Full-text course search. The database decides what this learner may see:
- * locked lessons never appear, and a learner who is not enrolled gets nothing.
+ * Full-text course search. For a signed-in learner the database decides what
+ * they may see - locked lessons never appear, and a learner who is not
+ * enrolled gets nothing. Signed-out visitors search the open index directly.
  */
 export async function searchCourse(query: string): Promise<SearchHit[] | null> {
   const q = query.trim();
   if (q.length < 2) return [];
   const supabase = await createServerSupabase();
-  const adminClient = require("@/lib/supabase/admin").createAdminSupabase() ?? supabase;
+  const adminClient = createAdminSupabase() ?? supabase;
   if (!adminClient) return null;
 
-  const { data, error } = await adminClient.rpc("search_content", {
-    p_query: q,
-    p_limit: 30,
-  });
-  if (error) return [];
-  const rows = (data ?? []) as Row[];
+  const signedIn = supabase ? (await supabase.auth.getUser()).data.user : null;
+
+  let rows: Row[] = [];
+  if (supabase && signedIn) {
+    // Signed in: the database decides what this learner may see - locked
+    // lessons never appear, and a learner who is not enrolled gets nothing.
+    const { data, error } = await supabase.rpc("search_content", {
+      p_query: q,
+      p_limit: 30,
+    });
+    if (error) return [];
+    rows = (data ?? []) as Row[];
+  } else {
+    // Signed-out visitors search the same index openly. Only characters that
+    // survive plainto_tsquery are kept so the filter value stays literal.
+    const terms = q.replace(/[^A-Za-z0-9_\s-]+/g, " ").replace(/\s+/g, " ").trim();
+    if (!terms) return [];
+    const { data, error } = await adminClient
+      .from("search_index")
+      .select("entity_type, entity_id, course_id, title, body")
+      .or(`title_tsv.plfts."${terms}",body_tsv.plfts."${terms}"`)
+      .order("title")
+      .limit(30);
+    if (error) return [];
+    rows = ((data ?? []) as Row[]).map((r) => ({
+      ...r,
+      snippet: typeof r.body === "string" ? r.body.slice(0, 240) : "",
+      rank: 0,
+    }));
+  }
   if (rows.length === 0) return [];
 
   const idsByType = (type: SearchEntityType) =>
@@ -226,7 +252,7 @@ export type Announcement = {
 
 export async function listAnnouncements(): Promise<Announcement[] | null> {
   const supabase = await createServerSupabase();
-  const adminClient = require("@/lib/supabase/admin").createAdminSupabase() ?? supabase;
+  const adminClient = createAdminSupabase() ?? supabase;
   if (!adminClient) return null;
 
   const { data, error } = await adminClient
@@ -318,7 +344,7 @@ const RESOURCE_SELECT =
  */
 export async function listResources(): Promise<Resource[] | null> {
   const supabase = await createServerSupabase();
-  const adminClient = require("@/lib/supabase/admin").createAdminSupabase() ?? supabase;
+  const adminClient = createAdminSupabase() ?? supabase;
   if (!adminClient) return null;
   
   const user = await currentUser(supabase!);
@@ -368,7 +394,7 @@ export async function getResourceForDownload(
   uploadPath: string | null;
 } | null> {
   const supabase = await createServerSupabase();
-  const adminClient = require("@/lib/supabase/admin").createAdminSupabase() ?? supabase;
+  const adminClient = createAdminSupabase() ?? supabase;
   if (!adminClient) return null;
   const { data, error } = await adminClient
     .from("resources")

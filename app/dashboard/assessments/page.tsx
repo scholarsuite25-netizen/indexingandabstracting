@@ -7,7 +7,7 @@ import { TheoryGateCard } from "@/components/exam/theory-gate-card";
 import { GuestAssessmentGate } from "@/components/exam/guest-assessment-gate";
 import { GuestTheoryGate } from "@/components/exam/guest-theory-gate";
 import { requireUser } from "@/lib/auth";
-import { getAssessmentCentre, getTheoryStatus } from "@/lib/data/assessments";
+import { getAssessmentCentre, getTheoryStatus, type TheoryGate } from "@/lib/data/assessments";
 import { getMyTheorySubmissions } from "@/lib/data/theory";
 import { supabaseConfigured } from "@/lib/supabase/server";
 
@@ -33,6 +33,16 @@ export default async function AssessmentsPage() {
     getMyTheorySubmissions(),
   ]);
   if (!centre) notFound();
+
+  const baseGate: TheoryGate = theory.gate ?? {
+    state: "below_threshold",
+    threshold: 70,
+    best_percentage: null,
+    attempt_count: 0,
+    required_lessons_total: centre.required_lessons_total,
+    required_lessons_done: centre.required_lessons_done,
+    reason: "Complete the required lessons and reach the threshold on the objective paper.",
+  };
 
   const objective = centre.assessments.filter((a) => a.type === "objective");
   const knowledgeChecks = centre.assessments.filter((a) => a.type === "knowledge_check");
@@ -121,9 +131,19 @@ export default async function AssessmentsPage() {
         <GuestTheoryGate
           threshold={theory.gate?.threshold ?? 70}
           isGuest={isGuest}
-          fallback={<TheoryGateCard gate={{ ...theory.gate, state: "below_threshold" } as any} paper={theory.paper} submissions={myPapers} />}
+          fallback={
+            <TheoryGateCard
+              gate={{ ...baseGate, state: "below_threshold" }}
+              paper={theory.paper}
+              submissions={myPapers}
+            />
+          }
         >
-          <TheoryGateCard gate={{ ...theory.gate, state: "eligible" } as any} paper={theory.paper} submissions={myPapers} />
+          <TheoryGateCard
+            gate={{ ...baseGate, state: "eligible" }}
+            paper={theory.paper}
+            submissions={myPapers}
+          />
         </GuestTheoryGate>
       </section>
     </div>

@@ -17,7 +17,12 @@ export function GuestGate({
 }) {
   const { progress, isLoaded } = useGuestProgress();
 
-  if (!isLoaded) return <div className="animate-pulse h-32 bg-surface rounded-lg" />;
+  // Guests must wait for local storage to know what they have completed.
+  // Enrolled learners are authoritative from the server and render at once,
+  // so their pages arrive fully server-rendered.
+  if (isGuest && !isLoaded) {
+    return <div className="animate-pulse h-32 bg-surface rounded-lg" />;
+  }
 
   // If authenticated user, outstanding list is accurately computed by the server.
   // If guest, server says they haven't completed any prerequisites. We override with local storage.

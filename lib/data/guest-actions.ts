@@ -2,6 +2,10 @@
 
 import { createAdminSupabase } from "@/lib/supabase/admin";
 import type { AttemptSnapshot } from "@/lib/data/assessments";
+import type { TheoryWorkspace } from "@/lib/data/theory";
+
+/** An option row as the guest snapshot sees it — carries the marker's flag too. */
+type GuestQuestionOption = { id: string; label: string; text: string; is_correct?: boolean };
 
 export async function fetchGuestAssessmentSnapshot(assessmentId: string): Promise<AttemptSnapshot | null> {
   const adminClient = createAdminSupabase();
@@ -43,13 +47,13 @@ export async function fetchGuestAssessmentSnapshot(assessmentId: string): Promis
       points: q.points,
       type: q.type,
       selected_option_id: null,
-      options: (q.question_options as any[]) || []
+      options: ((q.question_options ?? []) as GuestQuestionOption[]) || []
     }))
   };
   return snapshot;
 }
 
-export async function fetchGuestTheoryWorkspace(assessmentId: string) {
+export async function fetchGuestTheoryWorkspace(assessmentId: string): Promise<TheoryWorkspace | null> {
   const adminClient = createAdminSupabase();
   if (!adminClient) return null;
 

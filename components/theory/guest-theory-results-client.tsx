@@ -42,17 +42,17 @@ export function GuestTheoryResultsClient({ assessmentId }: { assessmentId: strin
     status: submission.status,
     total_words: submission.total_words || 0,
     graded_at: submission.graded_at || submission.submitted_at,
-    answers: submission.questions.map((q: any) => ({
-      answer_id: q.answer_id,
-      question_id: q.id,
+    answers: submission.questions.map((q) => ({
       position: q.position,
       stem_md: q.stem_md,
-      max_score: q.points,
+      points: q.points,
       source_ref: null,
-      rubric_ref: null,
       answer_text: q.answer_text,
+      word_count: q.word_count,
       score: q.grade,
-      feedback: q.feedback_md
+      max_score: q.points,
+      feedback: q.feedback_md,
+      rubric_ref: null,
     }))
   };
 

@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ChevronLeft, ChevronRight, Clock, Lock } from "lucide-react";
-import { Badge, ButtonLink, Callout, EmptyState } from "@/components/ui";
+import { ArrowLeft, ChevronLeft, ChevronRight, Clock } from "lucide-react";
+import { Badge, ButtonLink, Callout } from "@/components/ui";
 import { Markdown } from "@/components/course/markdown";
 import { KnowledgeCheckPanel } from "@/components/exam/knowledge-check-panel";
 import { LessonRail } from "@/components/course/lesson-rail";
 import { GuestGate } from "@/components/course/guest-gate";
 import { requireUser } from "@/lib/auth";
 import { getKnowledgeCheckState } from "@/lib/data/assessments";
-import { explainLessonUnavailable, getLessonView } from "@/lib/data/learner";
+import { getLessonView } from "@/lib/data/learner";
 import { supabaseConfigured } from "@/lib/supabase/server";
 
 export const metadata: Metadata = { title: "Lesson" };
@@ -89,7 +89,9 @@ export default async function LessonPage({
     view;
   const outstanding = prerequisites.filter((p) => !p.completed);
   const contentHidden = lesson.kind === "reading" && sections.length === 0;
-  const locked = false; // outstanding.length > 0 || contentHidden;
+  // Enrolled learners keep the guided order, enforced on the server. Guests
+  // are gated in GuestGate against their local progress instead.
+  const locked = enrolled && (outstanding.length > 0 || contentHidden);
 
   // A knowledge check is the lesson: it runs here rather than in the assessment centre.
   const checkState =
