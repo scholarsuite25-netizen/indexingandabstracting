@@ -13,10 +13,10 @@
  * functions throw internally, this file catches, and the outcome is `sent: false`.
  */
 
+import { after } from "next/server";
 import { createServerSupabase } from "@/lib/supabase/server";
 import { createAdminSupabase } from "@/lib/supabase/admin";
 import {
-  sendWelcomeEmail,
   sendEnrollmentConfirmationEmail,
   sendAssessmentSubmissionEmail,
   sendGradeReleasedEmail,
@@ -98,26 +98,6 @@ async function personByEmail(userId: string): Promise<{ email: string; name: str
   return { email, name: displayName(data?.full_name, email) };
 }
 
-/** Welcome, right after the account is created and a session exists. */
-export async function sendWelcomeEmailAction(): Promise<MailOutcome> {
-  try {
-    const supabase = await createServerSupabase();
-    if (!supabase) return skip("supabase not configured");
-
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (!user?.email) return skip("no signed-in user");
-
-    const name = displayName(user.user_metadata?.full_name as string | undefined, user.email);
-    return outcome(
-      await sendWelcomeEmail(user.email, name, `${appUrl()}/dashboard`, user.id)
-    );
-  } catch (error) {
-    return caught(error);
-  }
-}
-
 /** Confirmation, right after enroll_self succeeds for this caller. */
 export async function sendEnrollmentEmailAction(courseId: string): Promise<MailOutcome> {
   try {
@@ -146,15 +126,20 @@ export async function sendEnrollmentEmailAction(courseId: string): Promise<MailO
     const email = (profile?.email ?? "").trim() || user.email;
     if (!email) return skip("no address on file");
 
-    return outcome(
-      await sendEnrollmentConfirmationEmail(
-        email,
-        displayName(profile?.full_name, email),
-        course?.title ?? "the course",
-        `${appUrl()}/dashboard`,
-        user.id,
-      ),
-    );
+    // The lookups above are quick and prove the enrolment is real; the SMTP round-trip
+    // is the slow part, so it runs after this action's response. That keeps the action
+    // off the critical path of the screen refresh it was called from — a hung mail
+    // server can no longer stall the dashboard the learner is looking at.
+    const name = displayName(profile?.full_name, email);
+    const title = course?.title ?? "the course";
+    after(async () => {
+      try {
+        await sendEnrollmentConfirmationEmail(email, name, title, `${appUrl()}/dashboard`, user.id);
+      } catch (error) {
+        console.error("Enrolment confirmation email failed:", error instanceof Error ? error.message : error);
+      }
+    });
+    return { sent: true };
   } catch (error) {
     return caught(error);
   }

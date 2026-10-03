@@ -1,4 +1,4 @@
-const CACHE_NAME = 'lis815-v3';
+const CACHE_NAME = 'lis815-v4';
 const STATIC_ASSETS = [
   '/manifest.json',
   '/globals.css',
@@ -20,18 +20,13 @@ async function activateServiceWorker() {
   await self.clients.claim();
 }
 
-async function fetchWithStrategy(request) {
-  const url = new URL(request.url);
-
-  if (url.pathname.startsWith('/api/')) {
-    return networkFirst(request);
-  }
-
-  if (request.mode === 'navigate' || request.headers.get('accept')?.includes('text/html')) {
-    return staleWhileRevalidate(request);
-  }
-
-  return cacheFirst(request);
+function isImmutableAsset(url, request) {
+  if (url.origin !== self.location.origin) return false;
+  if (request.headers.has('RSC') || request.headers.has('Next-Router-State-Tree')) return false;
+  const path = url.pathname;
+  if (path.startsWith('/_next/static/') || path.startsWith('/images/') || path.startsWith('/fonts/')) return true;
+  if (path === '/globals.css' || path === '/manifest.json' || path === '/favicon.ico') return true;
+  return /\.(?:woff2?|ttf|otf|png|jpe?g|svg|webp|gif|ico)$/.test(path);
 }
 
 async function cacheFirst(request) {
@@ -40,7 +35,7 @@ async function cacheFirst(request) {
 
   try {
     const response = await fetch(request);
-    if (response.ok) {
+    if (response.ok && response.type === 'basic') {
       const cache = await caches.open(CACHE_NAME);
       cache.put(request, response.clone());
     }
@@ -48,38 +43,6 @@ async function cacheFirst(request) {
   } catch {
     return new Response('Offline', { status: 503 });
   }
-}
-
-async function networkFirst(request) {
-  try {
-    const response = await fetch(request);
-    if (response.ok) {
-      const cache = await caches.open(CACHE_NAME);
-      cache.put(request, response.clone());
-    }
-    return response;
-  } catch {
-    const cached = await caches.match(request);
-    if (cached) return cached;
-    return new Response(JSON.stringify({ error: 'Offline' }), {
-      status: 503,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-}
-
-async function staleWhileRevalidate(request) {
-  const cached = await caches.match(request);
-
-  const fetchPromise = fetch(request).then(response => {
-    if (response.ok) {
-      const cache = caches.open(CACHE_NAME);
-      cache.then(c => c.put(request, response.clone()));
-    }
-    return response;
-  }).catch(() => cached);
-
-  return cached || fetchPromise;
 }
 
 self.addEventListener('install', event => {
@@ -91,8 +54,21 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  if (event.request.method !== 'GET') return;
-  event.respondWith(fetchWithStrategy(event.request));
+  const request = event.request;
+
+  if (request.method !== 'GET') return;
+
+  const url = new URL(request.url);
+
+  if (request.mode === 'navigate') return;
+  const accept = request.headers.get('accept') || '';
+  if (accept.includes('text/html') || accept.includes('text/x-component')) return;
+  if (url.pathname.startsWith('/api/')) return;
+  if (url.origin !== self.location.origin) return;
+
+  if (isImmutableAsset(url, request)) {
+    event.respondWith(cacheFirst(request));
+  }
 });
 
 self.addEventListener('message', event => {

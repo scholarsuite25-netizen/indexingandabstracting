@@ -146,15 +146,33 @@ async function signedIn(
 export async function getAssessmentCentre(): Promise<AssessmentCentre | null> {
   const supabase = await createServerSupabase();
   if (!supabase) return null;
-  const userId = await signedIn(supabase);
-  if (!userId) return null;
-
-  const courseId = await courseIdFor(supabase);
+  const adminClient = (await import("@/lib/supabase/admin")).createAdminSupabase() ?? supabase;
+  const courseId = await courseIdFor(adminClient);
   if (!courseId) return null;
 
-  const { data, error } = await supabase.rpc("assessment_centre", { p_course_id: courseId });
-  if (error || !data) return null;
-  return data as AssessmentCentre;
+  const userId = await signedIn(supabase);
+  if (userId) {
+    const { data, error } = await supabase.rpc("assessment_centre", { p_course_id: courseId });
+    if (!error && data) return data as AssessmentCentre;
+  }
+
+  const { data: assessments } = await adminClient
+    .from("assessments")
+    .select("id, title, description, pass_mark, duration_minutes, max_attempts, type, status, question_count")
+    .eq("status", "published")
+    .order("id");
+  const { data: lessons } = await adminClient
+    .from("lessons")
+    .select("id, is_required")
+    .eq("status", "published");
+  const required_lessons_total = (lessons || []).filter(l => l.is_required).length;
+  
+  return {
+    enrolled: false,
+    required_lessons_total,
+    required_lessons_done: 0,
+    assessments: (assessments || []).map(a => ({ ...a, attempts: [] } as unknown as AssessmentSummary))
+  };
 }
 
 /** A live paper, with every saved choice, so a reload resumes where the learner left off. */
@@ -184,36 +202,78 @@ export async function getAttemptResults(attemptId: string): Promise<AttemptResul
 export async function getTheoryStatus(): Promise<TheoryStatus> {
   const supabase = await createServerSupabase();
   if (!supabase) return { gate: null, paper: null };
-  const userId = await signedIn(supabase);
-  if (!userId) return { gate: null, paper: null };
-
-  const courseId = await courseIdFor(supabase);
+  const adminClient = (await import("@/lib/supabase/admin")).createAdminSupabase() ?? supabase;
+  
+  const courseId = await courseIdFor(adminClient);
   if (!courseId) return { gate: null, paper: null };
 
-  const [gateResult, centreResult] = await Promise.all([
-    supabase.rpc("theory_eligibility", { p_course_id: courseId }),
-    supabase.rpc("assessment_centre", { p_course_id: courseId }),
-  ]);
+  const userId = await signedIn(supabase);
+  if (userId) {
+    const [gateResult, centreResult] = await Promise.all([
+      supabase.rpc("theory_eligibility", { p_course_id: courseId }),
+      supabase.rpc("assessment_centre", { p_course_id: courseId }),
+    ]);
 
-  const gate = (gateResult.data as TheoryGate | null) ?? null;
-  const centre = (centreResult.data as AssessmentCentre | null) ?? null;
-  const theory = centre?.assessments.find((a) => a.type === "theory") ?? null;
+    const gate = (gateResult.data as TheoryGate | null) ?? null;
+    const centre = (centreResult.data as AssessmentCentre | null) ?? null;
+    const theory = centre?.assessments.find((a) => a.type === "theory") ?? null;
 
-  const paper: TheoryPaper | null = theory
+    const paper: TheoryPaper | null = theory
+      ? {
+          id: theory.id,
+          title: theory.title,
+          description: theory.description,
+          pass_mark: theory.pass_mark,
+          duration_minutes: theory.duration_minutes,
+          question_count: theory.question_count,
+          instructions:
+            typeof theory.settings.instructions === "string" ? theory.settings.instructions : null,
+          attempts: theory.attempts,
+        }
+      : null;
+
+    return { gate, paper };
+  }
+
+  // Fallback for guests
+  const { data: theoryRaw } = await adminClient
+    .from("assessments")
+    .select("id, title, description, pass_mark, duration_minutes, question_count, settings")
+    .eq("type", "theory")
+    .eq("status", "published")
+    .maybeSingle();
+
+  const paper: TheoryPaper | null = theoryRaw
     ? {
-        id: theory.id,
-        title: theory.title,
-        description: theory.description,
-        pass_mark: theory.pass_mark,
-        duration_minutes: theory.duration_minutes,
-        question_count: theory.question_count,
-        instructions:
-          typeof theory.settings.instructions === "string" ? theory.settings.instructions : null,
-        attempts: theory.attempts,
+        id: theoryRaw.id,
+        title: theoryRaw.title,
+        description: theoryRaw.description,
+        pass_mark: theoryRaw.pass_mark,
+        duration_minutes: theoryRaw.duration_minutes,
+        question_count: theoryRaw.question_count,
+        instructions: typeof theoryRaw.settings?.instructions === "string" ? theoryRaw.settings.instructions : null,
+        attempts: [],
       }
     : null;
 
-  return { gate, paper };
+  const { data: lessons } = await adminClient
+    .from("lessons")
+    .select("id, is_required")
+    .eq("status", "published");
+  const required_lessons_total = (lessons || []).filter(l => l.is_required).length;
+
+  return {
+    gate: {
+      state: "not_enrolled",
+      threshold: 70,
+      best_percentage: null,
+      attempt_count: 0,
+      required_lessons_total,
+      required_lessons_done: 0,
+      reason: "You are not enrolled."
+    },
+    paper
+  };
 }
 
 export type KnowledgeCheckState = {

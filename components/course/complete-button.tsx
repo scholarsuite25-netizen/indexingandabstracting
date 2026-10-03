@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui";
 import { getBrowserSupabase } from "@/lib/supabase/client";
+import { useGuestProgress } from "@/components/course/guest-progress";
 
 function friendly(error: { message: string }): string {
   const m = error.message ?? "";
@@ -32,8 +33,16 @@ export function CompleteButton({
 }) {
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
+  const guestCtx = useGuestProgress();
 
   async function complete() {
+    if (!enrolled) {
+      guestCtx.markCompleted(lessonId);
+      toast.success("Lesson marked complete.");
+      router.refresh();
+      return;
+    }
+
     const supabase = getBrowserSupabase();
     if (!supabase) {
       toast.error("Saving is unavailable until Supabase keys are added.");
@@ -51,8 +60,6 @@ export function CompleteButton({
     toast.success("Lesson marked complete.");
     router.refresh();
   }
-
-  if (!enrolled) return null;
 
   return (
     <div className="flex flex-col gap-2">

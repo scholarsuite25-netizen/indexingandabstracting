@@ -24,6 +24,15 @@ export function StartTheoryButton({
   async function start() {
     setBusy(true);
     try {
+      const supabase = (await import("@/lib/supabase/client")).getBrowserSupabase();
+      if (supabase) {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+          router.push(`/dashboard/theory/guest-attempt/${assessmentId}`);
+          return;
+        }
+      }
+
       const submissionId = await startTheoryPaper(assessmentId);
       router.push(`/dashboard/theory/${submissionId}`);
     } catch (error) {

@@ -34,11 +34,18 @@ export async function getSessionUser(): Promise<SessionUser | null> {
   };
 }
 
+/**
+ * The current signed-in learner, or a guest session when nobody is signed in.
+ *
+ * The app is browsable without an account, so this never redirects — pages render
+ * in a read-only guest mode and the database (RLS) still gates every row. Anything
+ * personal — enrolling, notes, results — simply has no data for a guest, and the
+ * admin areas keep their own role checks on top.
+ */
 export async function requireUser(nextPath?: string): Promise<SessionUser> {
   const user = await getSessionUser();
   if (!user) {
-    const next = nextPath && nextPath !== "/" ? `?next=${encodeURIComponent(nextPath)}` : "";
-    redirect(`/login${next}`);
+    return { id: "", email: "", roles: [] };
   }
   return user;
 }

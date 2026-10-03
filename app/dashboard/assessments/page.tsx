@@ -4,6 +4,8 @@ import { ClipboardList, Info } from "lucide-react";
 import { Badge, ButtonLink, Callout, EmptyState } from "@/components/ui";
 import { AssessmentCard } from "@/components/exam/assessment-card";
 import { TheoryGateCard } from "@/components/exam/theory-gate-card";
+import { GuestAssessmentGate } from "@/components/exam/guest-assessment-gate";
+import { GuestTheoryGate } from "@/components/exam/guest-theory-gate";
 import { requireUser } from "@/lib/auth";
 import { getAssessmentCentre, getTheoryStatus } from "@/lib/data/assessments";
 import { getMyTheorySubmissions } from "@/lib/data/theory";
@@ -14,7 +16,8 @@ export const dynamic = "force-dynamic";
 
 export default async function AssessmentsPage() {
   const path = "/dashboard/assessments";
-  await requireUser(path);
+  const user = await requireUser(path);
+  const isGuest = !user.id;
 
   if (!supabaseConfigured()) {
     return (
@@ -79,11 +82,14 @@ export default async function AssessmentsPage() {
         <section className="flex flex-col gap-4">
           <h2 className="font-display text-xl text-ink">Objective assessment</h2>
           {objective.map((assessment) => (
-            <AssessmentCard
+            <GuestAssessmentGate
               key={assessment.id}
-              assessment={assessment}
-              lockedReason={objectiveLock}
-            />
+              requiredLessonsTotal={centre.required_lessons_total}
+              isGuest={isGuest}
+              fallback={<AssessmentCard assessment={assessment} lockedReason={objectiveLock} />}
+            >
+              <AssessmentCard assessment={assessment} lockedReason={null} />
+            </GuestAssessmentGate>
           ))}
         </section>
       ) : null}
@@ -112,7 +118,13 @@ export default async function AssessmentsPage() {
 
       <section className="flex flex-col gap-4">
         <h2 className="font-display text-xl text-ink">Theory examination</h2>
-        <TheoryGateCard gate={theory.gate} paper={theory.paper} submissions={myPapers} />
+        <GuestTheoryGate
+          threshold={theory.gate?.threshold ?? 70}
+          isGuest={isGuest}
+          fallback={<TheoryGateCard gate={{ ...theory.gate, state: "below_threshold" } as any} paper={theory.paper} submissions={myPapers} />}
+        >
+          <TheoryGateCard gate={{ ...theory.gate, state: "eligible" } as any} paper={theory.paper} submissions={myPapers} />
+        </GuestTheoryGate>
       </section>
     </div>
   );

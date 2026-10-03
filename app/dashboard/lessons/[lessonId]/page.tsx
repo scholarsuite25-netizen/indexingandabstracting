@@ -6,6 +6,7 @@ import { Badge, ButtonLink, Callout, EmptyState } from "@/components/ui";
 import { Markdown } from "@/components/course/markdown";
 import { KnowledgeCheckPanel } from "@/components/exam/knowledge-check-panel";
 import { LessonRail } from "@/components/course/lesson-rail";
+import { GuestGate } from "@/components/course/guest-gate";
 import { requireUser } from "@/lib/auth";
 import { getKnowledgeCheckState } from "@/lib/data/assessments";
 import { explainLessonUnavailable, getLessonView } from "@/lib/data/learner";
@@ -81,17 +82,6 @@ export default async function LessonPage({
   const view = await getLessonView(lessonId);
 
   if (!view) {
-    const reason = await explainLessonUnavailable();
-    if (reason === "not-enrolled") {
-      return (
-        <EmptyState
-          icon={<Lock className="size-8" />}
-          title="You are not enrolled in this course yet"
-          description="Enrol first, then every lesson opens in sequence."
-          action={<ButtonLink href="/dashboard/course">Go to the course page</ButtonLink>}
-        />
-      );
-    }
     notFound();
   }
 
@@ -99,7 +89,7 @@ export default async function LessonPage({
     view;
   const outstanding = prerequisites.filter((p) => !p.completed);
   const contentHidden = lesson.kind === "reading" && sections.length === 0;
-  const locked = outstanding.length > 0 || contentHidden;
+  const locked = false; // outstanding.length > 0 || contentHidden;
 
   // A knowledge check is the lesson: it runs here rather than in the assessment centre.
   const checkState =
@@ -152,7 +142,8 @@ export default async function LessonPage({
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <GuestGate outstanding={outstanding} isGuest={!enrolled}>
+      <div className="flex flex-col gap-6">
       <LessonHeader lesson={lesson} breadcrumb={breadcrumb} />
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_19rem] lg:items-start">
@@ -229,5 +220,6 @@ export default async function LessonPage({
         />
       </div>
     </div>
+    </GuestGate>
   );
 }

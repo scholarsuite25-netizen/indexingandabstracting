@@ -9,7 +9,6 @@ import { Button, Callout, Card, CardContent, CardHeader, Input } from "@/compone
 import { signUpSchema, signInSchema } from "@/lib/validation/auth";
 import { getBrowserSupabase } from "@/lib/supabase/client";
 import { friendlyAuthError, homeForRole, safeNextPath } from "@/lib/roles";
-import { sendWelcomeEmailAction } from "@/lib/email/actions";
 
 export function AuthForm({ mode }: { mode: "login" | "signup" }) {
   const router = useRouter();
@@ -102,8 +101,9 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
           : safeNextPath(rawNext);
 
       if (isSignUp) {
+        // The welcome email is already on its way — sent by the sign-up endpoint
+        // itself (after its response), so nothing here can hold up the redirect.
         toast.success("Account created. Welcome!");
-        void sendWelcomeEmailAction().catch(() => undefined);
       }
 
       router.push(target);

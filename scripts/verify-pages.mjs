@@ -194,7 +194,7 @@ async function main() {
   assert(lockedPhrase, "could not read the locked lesson's text");
 
   console.log("\nSigned out");
-  await test("protected pages redirect to the sign-in page", async () => {
+  await test("protected pages are browsable without an account", async () => {
     for (const path of [
       "/dashboard",
       "/dashboard/course",
@@ -202,8 +202,7 @@ async function main() {
       "/verify/NOT-A-REAL-CERTIFICATE",
     ]) {
       const res = await page(path);
-      assert(res.status === 307, `${path} answered ${res.status}`);
-      assert(res.location.startsWith("/login"), `${path} went to ${res.location}`);
+      assert(res.status === 200, `${path} answered ${res.status}`);
     }
   });
 

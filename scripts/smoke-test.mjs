@@ -122,7 +122,7 @@ async function main() {
     }
   });
 
-  await test("protected pages bounce visitors to the sign-in page", async () => {
+  await test("protected pages are browsable without an account", async () => {
     for (const path of [
       "/dashboard",
       "/dashboard/certificate",
@@ -132,8 +132,7 @@ async function main() {
       "/verify/NOT-A-REAL-CERTIFICATE",
     ]) {
       const res = await page(path);
-      assert(res.status === 307 || res.status === 308, `${path} answered ${res.status}`);
-      assert(res.location.includes("/login"), `${path} went to ${res.location || "(nowhere)"}`);
+      assert(res.status === 200, `${path} answered ${res.status}`);
     }
   });
 

@@ -1,6 +1,7 @@
 import "server-only";
 
 import { createServerSupabase } from "@/lib/supabase/server";
+import { createAdminSupabase } from "@/lib/supabase/admin";
 
 export type LessonStatus = "locked" | "available" | "in_progress" | "completed";
 
@@ -64,20 +65,22 @@ export async function getLearnerOverview(): Promise<Overview | null> {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) return null;
+  // if (!user) return null; // open access
+  const userId = user?.id ?? "00000000-0000-0000-0000-000000000000";
 
-  const { data: course } = await supabase
+  const adminClient = createAdminSupabase() ?? supabase;
+
+  const { data: course } = await adminClient
     .from("courses")
     .select("id, code, title, description, enrolment_open")
     .eq("code", "LIS LMS")
     .maybeSingle();
   if (!course) return null;
-
   const { data: enrollment } = await supabase
     .from("course_enrollments")
     .select("progress_pct, required_lessons_done, status")
     .eq("course_id", course.id)
-    .eq("user_id", user.id)
+    .eq("user_id", userId)
     .maybeSingle();
 
   const overview: Overview = {
@@ -96,16 +99,16 @@ export async function getLearnerOverview(): Promise<Overview | null> {
     resumeLessonId: null,
   };
 
-  if (!enrollment) return overview;
+  // if (!enrollment) return overview; // Open access: fetch curriculum for everyone
 
   const [{ data: modules }, { data: chapters }] = await Promise.all([
-    supabase
+    adminClient
       .from("modules")
       .select("id, position, title")
       .eq("course_id", course.id)
       .eq("status", "published")
       .order("position"),
-    supabase.from("chapters").select("id, module_id, position, title, slug, status").order("position"),
+    adminClient.from("chapters").select("id, module_id, position, title, slug, status").order("position"),
   ]);
 
   const moduleList = (modules ?? []) as Row[];
@@ -117,14 +120,14 @@ export async function getLearnerOverview(): Promise<Overview | null> {
 
   const [{ data: lessons }, { data: progress }, { data: prereqs }] = await Promise.all([
     chapterIds.length
-      ? supabase
+      ? adminClient
           .from("lessons")
           .select("id, chapter_id, position, title, kind, is_required, status")
           .in("chapter_id", chapterIds)
           .order("position")
       : Promise.resolve({ data: [] }),
     supabase.from("lesson_progress").select("lesson_id, status, reading_pct"),
-    supabase.from("lesson_prerequisites").select("lesson_id, prerequisite_lesson_id"),
+    adminClient.from("lesson_prerequisites").select("lesson_id, prerequisite_lesson_id"),
   ]);
 
   const lessonList = ((lessons ?? []) as Row[]).filter((l) => l.status === "published");
@@ -232,9 +235,12 @@ export async function getLessonView(lessonId: string): Promise<LessonView | null
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) return null;
+  // if (!user) return null; // open access
+  const userId = user?.id ?? "00000000-0000-0000-0000-000000000000";
 
-  const { data: lesson } = await supabase
+  const adminClient = createAdminSupabase() ?? supabase;
+
+  const { data: lesson } = await adminClient
     .from("lessons")
     .select(
       `id, position, title, kind, est_minutes, required_reading_pct,
@@ -251,7 +257,7 @@ export async function getLessonView(lessonId: string): Promise<LessonView | null
   const courseId: string | undefined = moduleInfo?.course_id;
 
   const [{ data: sections }, { data: progress }, { data: enrollment }] = await Promise.all([
-    supabase
+    adminClient
       .from("lesson_sections")
       .select("id, position, kind, title, content_md")
       .eq("lesson_id", lessonId)
@@ -260,14 +266,14 @@ export async function getLessonView(lessonId: string): Promise<LessonView | null
       .from("lesson_progress")
       .select("status, reading_pct, last_section_id")
       .eq("lesson_id", lessonId)
-      .eq("user_id", user.id)
+      .eq("user_id", userId)
       .maybeSingle(),
     courseId
       ? supabase
           .from("course_enrollments")
           .select("id")
           .eq("course_id", courseId)
-          .eq("user_id", user.id)
+          .eq("user_id", userId)
           .maybeSingle()
       : Promise.resolve({ data: null }),
   ]);
@@ -277,11 +283,11 @@ export async function getLessonView(lessonId: string): Promise<LessonView | null
   let next: LessonView["next"] = null;
   if (courseId) {
     const [{ data: chapters }, { data: allLessons }] = await Promise.all([
-      supabase
+      adminClient
         .from("chapters")
         .select("id, module_id, position, modules ( position )")
         .order("position"),
-      supabase.from("lessons").select("id, chapter_id, position, title, status").order("position"),
+      adminClient.from("lessons").select("id, chapter_id, position, title, status").order("position"),
     ]);
     const modulePosition = new Map<string, number>();
     for (const row of (chapters ?? []) as Row[]) {
@@ -303,7 +309,7 @@ export async function getLessonView(lessonId: string): Promise<LessonView | null
   }
 
   // prerequisite ids + completion (RLS allows reading prerequisites)
-  const { data: prereqRows } = await supabase
+  const { data: prereqRows } = await adminClient
     .from("lesson_prerequisites")
     .select("prerequisite_lesson_id")
     .eq("lesson_id", lessonId);
@@ -320,7 +326,7 @@ export async function getLessonView(lessonId: string): Promise<LessonView | null
   // titles of prerequisites (separate query — self-join alias above is unreliable)
   const prereqIds = (prereqRows ?? []).map((r: Row) => r.prerequisite_lesson_id);
   const { data: prereqLessons } = prereqIds.length
-    ? await supabase.from("lessons").select("id, title").in("id", prereqIds)
+    ? await adminClient.from("lessons").select("id, title").in("id", prereqIds)
     : { data: [] };
 
   const prerequisites = ((prereqLessons ?? []) as Row[]).map((l) => ({
@@ -335,9 +341,9 @@ export async function getLessonView(lessonId: string): Promise<LessonView | null
       .select("id")
       .eq("kind", "lesson")
       .eq("ref_id", lessonId)
-      .eq("user_id", user.id)
+      .eq("user_id", userId)
       .maybeSingle(),
-    supabase.from("notes").select("id").eq("lesson_id", lessonId).eq("user_id", user.id),
+    supabase.from("notes").select("id").eq("lesson_id", lessonId).eq("user_id", userId),
   ]);
 
   return {

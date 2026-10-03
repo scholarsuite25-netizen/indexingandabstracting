@@ -6,6 +6,7 @@ import { Play } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui";
 import { ExamError, startAttempt } from "@/lib/exam/rpc";
+import { getBrowserSupabase } from "@/lib/supabase/client";
 
 /**
  * Starting a paper is a client action because the attempt id is the answer: the
@@ -29,6 +30,15 @@ export function StartAssessmentButton({
   async function start() {
     setLoading(true);
     try {
+      const supabase = getBrowserSupabase();
+      if (supabase) {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+          router.push(`/dashboard/assessments/guest-attempt/${assessmentId}`);
+          return;
+        }
+      }
+
       const attemptId = await startAttempt(assessmentId);
       router.push(`/dashboard/assessments/attempt/${attemptId}`);
     } catch (error) {

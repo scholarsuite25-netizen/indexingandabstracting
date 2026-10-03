@@ -1,7 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { createAdminSupabase } from "@/lib/supabase/admin";
 import { signUpSchema } from "@/lib/validation/auth";
 import { friendlyAuthError } from "@/lib/roles";
+import { sendWelcomeEmail } from "@/lib/email/send";
 
 /**
  * `POST { fullName, institution, email, password }` — creates the account.
@@ -48,7 +49,7 @@ export async function POST(request: Request) {
   const { fullName, institution, email, password } = parsed.data;
   const normalizedEmail = email.trim().toLowerCase();
 
-  const { error } = await admin.auth.admin.createUser({
+  const { error, data } = await admin.auth.admin.createUser({
     email: normalizedEmail,
     password,
     email_confirm: true,
@@ -62,6 +63,25 @@ export async function POST(request: Request) {
     const alreadyRegistered =
       code === "email_exists" || /already/.test(error.message.toLowerCase());
     return NextResponse.json({ error: message }, { status: alreadyRegistered ? 409 : 500 });
+  }
+
+  // The welcome note is sent *after* this response, from the server. Sending it as a
+  // client-side action from the sign-up form used to hold the redirect hostage: the
+  // browser would not commit the navigation to the dashboard until the SMTP round-trip
+  // finished, so a slow send left new learners staring at the form they had just
+  // submitted. `after()` schedules it against this route's lifetime instead, and a
+  // failed send logs itself through `email_log` without touching the registration.
+  const appUrl = (process.env.NEXT_PUBLIC_APP_URL || process.env.NEXT_PUBLIC_SITE_URL || "").replace(/\/+$/, "");
+  const name = fullName.trim() || normalizedEmail.split("@")[0];
+  const userId = data.user?.id;
+  if (userId) {
+    after(async () => {
+      try {
+        await sendWelcomeEmail(normalizedEmail, name, `${appUrl}/dashboard`, userId);
+      } catch (error) {
+        console.error("Welcome email failed:", error instanceof Error ? error.message : error);
+      }
+    });
   }
 
   return NextResponse.json({ ok: true });

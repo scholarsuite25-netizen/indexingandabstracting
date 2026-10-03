@@ -1,7 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-const PROTECTED_PREFIXES = ["/dashboard", "/admin", "/superadmin", "/profile", "/verify"];
 const AUTH_PAGES = ["/login", "/signup", "/forgot-password", "/reset-password"];
 
 function matches(path: string, prefixes: string[]): boolean {
@@ -39,15 +38,12 @@ export async function proxy(request: NextRequest) {
 
   const path = request.nextUrl.pathname;
 
-  if (!user && matches(path, PROTECTED_PREFIXES)) {
-    const loginUrl = request.nextUrl.clone();
-    loginUrl.pathname = "/login";
-    loginUrl.search = "";
-    loginUrl.searchParams.set("next", path);
-    return NextResponse.redirect(loginUrl);
-  }
+  // The app is browsable without an account: anonymous visitors are no longer
+  // bounced off the learner pages. Signed-in users are still kept off the auth
+  // pages, and the admin areas still enforce their role checks below.
+  const isGet = request.method === "GET";
 
-  if (user && matches(path, AUTH_PAGES)) {
+  if (isGet && user && matches(path, AUTH_PAGES)) {
     const rolesResult = await supabase.rpc("current_user_roles");
     const roles = (rolesResult.data as string[] | null) ?? [];
     const home =
@@ -58,7 +54,7 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(homeUrl);
   }
 
-  if (user && (path.startsWith("/admin") || path.startsWith("/superadmin"))) {
+  if (isGet && user && (path.startsWith("/admin") || path.startsWith("/superadmin"))) {
     const rolesResult = await supabase.rpc("current_user_roles");
     const roles = (rolesResult.data as string[] | null) ?? [];
 
