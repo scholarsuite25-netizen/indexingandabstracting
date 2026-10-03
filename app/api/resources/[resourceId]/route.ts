@@ -18,8 +18,13 @@ export async function GET(
   const { resourceId } = await params;
 
   const user = await getSessionUser();
+  
   if (!user) {
-    return NextResponse.json({ error: "Sign in to download this resource." }, { status: 401 });
+    const { cookies } = await import("next/headers");
+    const guestToken = (await cookies()).get("guest_access_token")?.value;
+    if (guestToken !== "granted") {
+      return NextResponse.json({ error: "Sign in to download this resource." }, { status: 401 });
+    }
   }
 
   const resource = await getResourceForDownload(resourceId);

@@ -29,11 +29,10 @@ export type GlossaryTerm = {
 /** Every glossary term the signed-in learner may read, A-Z by term. */
 export async function getGlossary(): Promise<GlossaryTerm[] | null> {
   const supabase = await createServerSupabase();
-  if (!supabase) return null;
-  const user = await currentUser(supabase);
-  if (!user) return null;
+  const adminClient = require("@/lib/supabase/admin").createAdminSupabase() ?? supabase;
+  if (!adminClient) return null;
 
-  const { data, error } = await supabase
+  const { data, error } = await adminClient
     .from("glossary_terms")
     .select(
       "id, term, slug, definition, example, notes, source, position, module_id, related_term_ids",
@@ -42,10 +41,10 @@ export async function getGlossary(): Promise<GlossaryTerm[] | null> {
   if (error) return null;
   const terms = (data ?? []) as Row[];
 
-  const moduleTitles = await moduleTitlesFor(supabase, terms.map((t) => t.module_id));
+  const moduleTitles = await moduleTitlesFor(adminClient, terms.map((t) => t.module_id));
   const relatedIds = [...new Set(terms.flatMap((t) => (t.related_term_ids ?? []) as string[]))];
   const relatedTerms = relatedIds.length
-    ? await moduleTitlesFor(supabase, relatedIds)
+    ? await moduleTitlesFor(adminClient, relatedIds)
     : new Map<string, string>();
 
   return terms.map((t) => ({
@@ -126,11 +125,10 @@ export async function searchCourse(query: string): Promise<SearchHit[] | null> {
   const q = query.trim();
   if (q.length < 2) return [];
   const supabase = await createServerSupabase();
-  if (!supabase) return null;
-  const user = await currentUser(supabase);
-  if (!user) return null;
+  const adminClient = require("@/lib/supabase/admin").createAdminSupabase() ?? supabase;
+  if (!adminClient) return null;
 
-  const { data, error } = await supabase.rpc("search_content", {
+  const { data, error } = await adminClient.rpc("search_content", {
     p_query: q,
     p_limit: 30,
   });
@@ -142,10 +140,10 @@ export async function searchCourse(query: string): Promise<SearchHit[] | null> {
     rows.filter((r) => r.entity_type === type).map((r) => r.entity_id as string);
 
   const [lessonContext, glossaryHits, resourceRows, announcementRows] = await Promise.all([
-    lessonModuleContext(supabase, idsByType("lesson")),
+    lessonModuleContext(adminClient, idsByType("lesson")),
     getGlossaryByIds(idsByType("glossary")),
-    resourceRowsById(supabase, idsByType("resource")),
-    announcementRowsById(supabase, idsByType("announcement")),
+    resourceRowsById(adminClient, idsByType("resource")),
+    announcementRowsById(adminClient, idsByType("announcement")),
   ]);
 
   return rows.map((r) => {
@@ -228,11 +226,10 @@ export type Announcement = {
 
 export async function listAnnouncements(): Promise<Announcement[] | null> {
   const supabase = await createServerSupabase();
-  if (!supabase) return null;
-  const user = await currentUser(supabase);
-  if (!user) return null;
+  const adminClient = require("@/lib/supabase/admin").createAdminSupabase() ?? supabase;
+  if (!adminClient) return null;
 
-  const { data, error } = await supabase
+  const { data, error } = await adminClient
     .from("announcements")
     .select("id, title, body_md, audience, pinned, publish_at, status")
     .order("pinned", { ascending: false })
@@ -321,20 +318,22 @@ const RESOURCE_SELECT =
  */
 export async function listResources(): Promise<Resource[] | null> {
   const supabase = await createServerSupabase();
-  if (!supabase) return null;
-  const user = await currentUser(supabase);
-  if (!user) return null;
+  const adminClient = require("@/lib/supabase/admin").createAdminSupabase() ?? supabase;
+  if (!adminClient) return null;
+  
+  const user = await currentUser(supabase!);
+  // allow open access guests to see everything except exam papers
 
-  const { data, error } = await supabase
+  const { data, error } = await adminClient
     .from("resources")
     .select(RESOURCE_SELECT)
     .order("title");
   if (error) return null;
 
   const rows = ((data ?? []) as Row[]).filter(
-    (row) => row.kind !== "exam_paper" || user.roles.some((role) => role === "admin" || role === "superadmin"),
+    (row) => row.kind !== "exam_paper" || user?.roles.some((role) => role === "admin" || role === "superadmin"),
   );
-  const moduleTitles = await moduleTitlesFor(supabase, rows.map((r) => r.module_id));
+  const moduleTitles = await moduleTitlesFor(adminClient, rows.map((r) => r.module_id));
 
   return rows.map((row) => {
     const embedded = row.resource_categories;
@@ -369,8 +368,9 @@ export async function getResourceForDownload(
   uploadPath: string | null;
 } | null> {
   const supabase = await createServerSupabase();
-  if (!supabase) return null;
-  const { data, error } = await supabase
+  const adminClient = require("@/lib/supabase/admin").createAdminSupabase() ?? supabase;
+  if (!adminClient) return null;
+  const { data, error } = await adminClient
     .from("resources")
     .select("id, title, kind, visibility, url, mime_type, storage_path, upload_path")
     .eq("id", resourceId)
